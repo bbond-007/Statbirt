@@ -1,0 +1,6 @@
+pandas>=2.2
+requests>=2.31
+beautifulsoup4>=4.12
+pybaseball>=2.2.7
+pytest>=8.0
+

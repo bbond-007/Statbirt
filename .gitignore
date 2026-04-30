@@ -1,0 +1,19 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.env
+.env.*
+
+# Large/generated local data
+data/cache/
+data/statbirt_candidates.csv
+
+# Generated dashboard exports. Rebuild with:
+# python3 -m statbirt.export_web --all-dates --limit 10
+web/data/top_picks.json
+web/data/dashboard_index.json
+web/data/dashboards/*.json
+!web/data/.gitkeep
+!web/data/dashboards/.gitkeep

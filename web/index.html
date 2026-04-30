@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Statbirt Daily Board</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="title-block">
+          <p class="eyebrow">Statbirt Daily Board</p>
+          <h1>Bob's Top 10 Hit Picks</h1>
+          <p id="board-subtitle" class="subtitle">Loading model output...</p>
+        </div>
+        <div class="status-panel" aria-label="Board status">
+          <div class="status-orbit">
+            <span id="pickable-count">0</span>
+            <small>Pickable</small>
+          </div>
+          <div class="status-copy">
+            <p id="status-note">Waiting for data</p>
+            <label class="date-picker" for="dashboard-date">
+              <span>Dashboard Date</span>
+              <select id="dashboard-date" disabled>
+                <option>Loading...</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </header>
+
+      <section class="summary-grid" aria-label="Daily summary">
+        <article>
+          <span>Total Candidates</span>
+          <strong id="total-candidates">--</strong>
+        </article>
+        <article>
+          <span>Shown</span>
+          <strong id="shown-count">--</strong>
+        </article>
+        <article>
+          <span>Top Score</span>
+          <strong id="top-score">--</strong>
+        </article>
+        <article>
+          <span>Top 10 Hits</span>
+          <strong id="top-10-hits">--</strong>
+        </article>
+        <article>
+          <span>Congregation Hits</span>
+          <strong id="congregation-hits">--</strong>
+        </article>
+      </section>
+
+      <section class="board" aria-label="Top picks board">
+        <div class="board-toolbar">
+          <div>
+            <h2>Score Makeup</h2>
+            <p>Each row shows the score, key model inputs, and current game result state.</p>
+          </div>
+        </div>
+
+        <div class="row-header" aria-hidden="true">
+          <span>Rank</span>
+          <span>Player</span>
+          <span>Status</span>
+          <span>Score</span>
+          <span>Key Factors</span>
+          <span>Primary Concern</span>
+        </div>
+
+        <div id="picks" class="pick-list"></div>
+      </section>
+    </main>
+
+    <template id="pick-template">
+      <article class="pick-row">
+        <div class="rank-cell"></div>
+        <div class="player-cell">
+          <div class="player-line">
+            <strong class="player-name"></strong>
+            <span class="pick-badge"></span>
+          </div>
+          <div class="matchup-line"></div>
+          <div class="pitcher-line"></div>
+          <div class="venue-line"></div>
+          <div class="game-detail-line"></div>
+          <div class="game-status-line"></div>
+        </div>
+        <div class="status-cell"></div>
+        <div class="score-cell">
+          <strong></strong>
+          <span></span>
+        </div>
+        <div class="factor-cell"></div>
+        <div class="risk-cell"></div>
+      </article>
+    </template>
+
+    <script src="app.js?v=20260429-congregation"></script>
+  </body>
+</html>
