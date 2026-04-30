@@ -6,7 +6,7 @@ This is a fresh project inspired by `/Users/blake/Coding/Baseball`, but the scor
 
 ## Current Status
 
-As of April 27, 2026:
+As of April 30, 2026:
 
 - Work is continuing in `/Users/blake/Coding/Statbirt`; no separate `Statbirt_v2` rebuild has been needed so far.
 - `data/manual/stuff_plus.csv` contains 526 normalized 2026 FanGraphs Stuff+ rows pulled through the FanGraphs leaderboard/API browser fallback.
@@ -304,6 +304,20 @@ The "Other" 3% slot is implemented as lineup opportunity, using expected plate a
 
 This repo is meant to track the durable project, not every generated data artifact.
 
+GitHub repo:
+
+```text
+https://github.com/bbond-007/Statbirt
+```
+
+The local `origin` remote uses a repo-specific SSH deploy key:
+
+```text
+git@github-statbirt:bbond-007/Statbirt.git
+```
+
+The SSH alias is configured in `~/.ssh/config` and points at the private key `~/.ssh/statbirt_github_ed25519`. The matching public key is registered on GitHub as the read/write deploy key named `Statbirt Mac deploy key`. Do not commit SSH keys, tokens, downloaded exports, or generated dashboard data.
+
 Tracked:
 
 - source code in `statbirt/`, `scripts/`, `web/`, and `tests/`
@@ -326,4 +340,19 @@ python3 -m statbirt.export_web --all-dates --limit 10
 
 Going forward, make a small commit after each meaningful project change. The commit history becomes the project memory that a future Codex session can inspect even if chat context is gone.
 
-When verifying code changes, `python3 -m compileall -q statbirt scripts` catches syntax/import issues. The scoring tests are in `tests/test_scoring.py`; the system Python used during setup did not have `pytest` installed, so the tests were previously run with a small manual harness.
+Typical change flow:
+
+```bash
+git status
+git add README.md statbirt tests scripts web data/manual
+git commit -m "Describe the change"
+git push
+```
+
+When verifying code changes, `python3 -m compileall -q statbirt scripts` catches syntax/import issues. After installing the dependencies from `requirements.txt`, run the test suite with:
+
+```bash
+python3 -m pytest -q
+```
+
+If `pytest` is not installed in the active Python environment, use `python3 -m compileall -q statbirt scripts` as the quick built-in smoke check until the environment is set up.
