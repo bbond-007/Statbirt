@@ -26,6 +26,7 @@ from .models import CandidateFeatures, ScoredCandidate
 from .results import RESULT_FIELDS, upsert_candidate_rows
 from .savant import (
     SeasonWindow,
+    STATCAST_CAREER_START_DATE,
     expected_pa_from_lineup_slot,
     load_or_build_statcast_store,
     load_park_factors,
@@ -270,6 +271,8 @@ def build_daily_candidates(
                 batter_ids=candidate_ids,
                 pitcher_ids=pitcher_ids,
                 windows=windows,
+                h2h_start_date=STATCAST_CAREER_START_DATE,
+                h2h_end_date=yesterday,
             )
             if verbose:
                 verb = "Loaded cached" if cache_hit else "Built"

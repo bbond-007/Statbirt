@@ -29,11 +29,12 @@ from .utils import (
 STATCAST_SEARCH_URL = "https://baseballsavant.mlb.com/statcast_search/csv"
 PARK_FACTORS_URL = "https://baseballsavant.mlb.com/leaderboard/statcast-park-factors"
 HEADERS = {"User-Agent": "Mozilla/5.0"}
+STATCAST_CAREER_START_DATE = date(2015, 3, 1)
 REQUEST_TIMEOUT_SECONDS = 90
 REQUEST_SLEEP_SECONDS = 0.08
 RETRYABLE_STATUS_CODES = {429, 500, 502, 503, 504}
 MAX_REQUEST_ATTEMPTS = 4
-MATCHUP_CACHE_SCHEMA = 2
+MATCHUP_CACHE_SCHEMA = 3
 
 
 @dataclass(frozen=True)
@@ -209,6 +210,106 @@ def fetch_statcast_details(
     return pd.concat(frames, ignore_index=True)
 
 
+def _fetch_statcast_matchup_batch(
+    *,
+    session: requests.Session,
+    batter_batch: list[int],
+    pitcher_batch: list[int],
+    start_date: date,
+    end_date: date,
+) -> pd.DataFrame:
+    params = _base_params("pitcher", start_date.isoformat(), end_date.isoformat())
+    params.extend(("pitchers_lookup[]", str(player_id)) for player_id in pitcher_batch)
+    params.extend(("batters_lookup[]", str(player_id)) for player_id in batter_batch)
+    last_exc: Exception | None = None
+    for attempt in range(1, MAX_REQUEST_ATTEMPTS + 1):
+        try:
+            response = session.get(STATCAST_SEARCH_URL, params=params, headers=HEADERS, timeout=REQUEST_TIMEOUT_SECONDS)
+            response.raise_for_status()
+            text = response.content.decode("utf-8-sig").strip()
+            return _read_statcast_csv(text)
+        except (requests.exceptions.RequestException, ValueError, pd.errors.EmptyDataError) as exc:
+            last_exc = exc
+            if attempt >= MAX_REQUEST_ATTEMPTS or not _is_retryable(exc):
+                break
+            time.sleep(1.5 * (2 ** (attempt - 1)))
+
+    if last_exc is not None and (len(batter_batch) > 1 or len(pitcher_batch) > 1):
+        if len(pitcher_batch) >= len(batter_batch) and len(pitcher_batch) > 1:
+            midpoint = max(1, len(pitcher_batch) // 2)
+            left = _fetch_statcast_matchup_batch(
+                session=session,
+                batter_batch=batter_batch,
+                pitcher_batch=pitcher_batch[:midpoint],
+                start_date=start_date,
+                end_date=end_date,
+            )
+            right = _fetch_statcast_matchup_batch(
+                session=session,
+                batter_batch=batter_batch,
+                pitcher_batch=pitcher_batch[midpoint:],
+                start_date=start_date,
+                end_date=end_date,
+            )
+        else:
+            midpoint = max(1, len(batter_batch) // 2)
+            left = _fetch_statcast_matchup_batch(
+                session=session,
+                batter_batch=batter_batch[:midpoint],
+                pitcher_batch=pitcher_batch,
+                start_date=start_date,
+                end_date=end_date,
+            )
+            right = _fetch_statcast_matchup_batch(
+                session=session,
+                batter_batch=batter_batch[midpoint:],
+                pitcher_batch=pitcher_batch,
+                start_date=start_date,
+                end_date=end_date,
+            )
+        if left.empty:
+            return right
+        if right.empty:
+            return left
+        return pd.concat([left, right], ignore_index=True)
+    if last_exc is not None:
+        raise last_exc
+    return pd.DataFrame()
+
+
+def fetch_statcast_matchup_details(
+    *,
+    batter_ids: Iterable[int],
+    pitcher_ids: Iterable[int],
+    start_date: date,
+    end_date: date,
+    batter_batch_size: int,
+    pitcher_batch_size: int,
+) -> pd.DataFrame:
+    batters = sorted({int(player_id) for player_id in batter_ids if player_id is not None})
+    pitchers = sorted({int(player_id) for player_id in pitcher_ids if player_id is not None})
+    if not batters or not pitchers or end_date < start_date:
+        return pd.DataFrame()
+    session = requests.Session()
+    frames: list[pd.DataFrame] = []
+    for pitcher_batch in chunked(pitchers, pitcher_batch_size):
+        for batter_batch in chunked(batters, batter_batch_size):
+            frame = _fetch_statcast_matchup_batch(
+                session=session,
+                batter_batch=batter_batch,
+                pitcher_batch=pitcher_batch,
+                start_date=start_date,
+                end_date=end_date,
+            )
+            if frame.empty:
+                continue
+            frames.append(frame)
+            time.sleep(REQUEST_SLEEP_SECONDS)
+    if not frames:
+        return pd.DataFrame()
+    return pd.concat(frames, ignore_index=True)
+
+
 def _to_numeric(frame: pd.DataFrame, columns: list[str]) -> None:
     for column in columns:
         if column in frame.columns:
@@ -304,22 +405,24 @@ def _ev_mean(frame: pd.DataFrame) -> float | None:
 
 
 class StatcastFeatureStore:
-    def __init__(self, batter_df: pd.DataFrame, pitcher_df: pd.DataFrame):
+    def __init__(self, batter_df: pd.DataFrame, pitcher_df: pd.DataFrame, h2h_df: pd.DataFrame | None = None):
         self.batter_df = prepare_pitch_data(batter_df)
         self.pitcher_df = prepare_pitch_data(pitcher_df)
+        self.h2h_df = prepare_pitch_data(h2h_df) if h2h_df is not None and not h2h_df.empty else self.pitcher_df
         self.batter_pa = final_pa_rows(self.batter_df)
         self.pitcher_pa = final_pa_rows(self.pitcher_df)
+        self.h2h_pa = final_pa_rows(self.h2h_df)
 
     def h2h(self, batter_id: int, pitcher_id: int | None) -> H2HFeatures:
-        if pitcher_id is None or self.pitcher_df.empty:
+        if pitcher_id is None or self.h2h_df.empty:
             return H2HFeatures()
-        pitches = self.pitcher_df[
-            (self.pitcher_df["batter"] == batter_id)
-            & (self.pitcher_df["pitcher"] == pitcher_id)
+        pitches = self.h2h_df[
+            (self.h2h_df["batter"] == batter_id)
+            & (self.h2h_df["pitcher"] == pitcher_id)
         ].copy()
-        pa = self.pitcher_pa[
-            (self.pitcher_pa["batter"] == batter_id)
-            & (self.pitcher_pa["pitcher"] == pitcher_id)
+        pa = self.h2h_pa[
+            (self.h2h_pa["batter"] == batter_id)
+            & (self.h2h_pa["pitcher"] == pitcher_id)
         ].copy()
         if pa.empty:
             return H2HFeatures()
@@ -525,6 +628,10 @@ def load_or_build_statcast_store(
     windows: Iterable[SeasonWindow],
     batter_batch_size: int = 24,
     pitcher_batch_size: int = 12,
+    h2h_start_date: date | None = None,
+    h2h_end_date: date | None = None,
+    h2h_batter_batch_size: int = 24,
+    h2h_pitcher_batch_size: int = 12,
 ) -> tuple[StatcastFeatureStore, bool, str]:
     normalized_windows = [
         {
@@ -544,6 +651,10 @@ def load_or_build_statcast_store(
             "windows": normalized_windows,
             "batter_batch_size": batter_batch_size,
             "pitcher_batch_size": pitcher_batch_size,
+            "h2h_start_date": h2h_start_date.isoformat() if h2h_start_date else None,
+            "h2h_end_date": h2h_end_date.isoformat() if h2h_end_date else None,
+            "h2h_batter_batch_size": h2h_batter_batch_size,
+            "h2h_pitcher_batch_size": h2h_pitcher_batch_size,
         }
     )
     cache_file = cache_path("statcast_store", f"{cache_key}.pkl")
@@ -565,7 +676,19 @@ def load_or_build_statcast_store(
         windows=windows,
         batch_size=pitcher_batch_size,
     )
-    store = StatcastFeatureStore(batter_df, pitcher_df)
+    h2h_df = (
+        fetch_statcast_matchup_details(
+            batter_ids=batter_ids,
+            pitcher_ids=pitcher_ids,
+            start_date=h2h_start_date,
+            end_date=h2h_end_date,
+            batter_batch_size=h2h_batter_batch_size,
+            pitcher_batch_size=h2h_pitcher_batch_size,
+        )
+        if h2h_start_date is not None and h2h_end_date is not None and h2h_end_date >= h2h_start_date
+        else None
+    )
+    store = StatcastFeatureStore(batter_df, pitcher_df, h2h_df=h2h_df)
     save_pickle(cache_file, {"schema": MATCHUP_CACHE_SCHEMA, "store": store})
     return store, False, str(cache_file)
 

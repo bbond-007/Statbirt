@@ -5,6 +5,8 @@ from pathlib import Path
 from types import SimpleNamespace
 import tempfile
 
+import pandas as pd
+
 from statbirt import export_web
 from statbirt import update_bullpen as bullpen_update
 from statbirt import update_weather as weather_update
@@ -13,6 +15,7 @@ from statbirt.export_web import candidate_payload
 from statbirt.mlb_api import get_games_for_date
 from statbirt.models import CandidateFeatures
 from statbirt.results import upsert_candidate_rows
+from statbirt.savant import StatcastFeatureStore
 from statbirt.scoring import evaluate_stop_valves, expected_pa_score, score_candidate, score_features
 
 
@@ -131,6 +134,59 @@ def test_score_candidate_preserves_score_even_when_not_pickable():
     assert result.score > 0
     assert not result.valve_result.pickable
     assert "Hitter BA under .150 over last 25 AB" in result.valve_result.hard_pass_reasons
+
+
+def test_h2h_uses_career_matchup_frame_without_polluting_pitcher_splits():
+    recent_pitcher_rows = pd.DataFrame(
+        [
+            {
+                "game_date": "2025-06-01",
+                "game_pk": 1,
+                "at_bat_number": 1,
+                "pitch_number": 1,
+                "batter": 10,
+                "pitcher": 20,
+                "stand": "R",
+                "p_throws": "R",
+                "events": "single",
+                "description": "hit_into_play",
+                "launch_speed": 95.0,
+                "estimated_ba_using_speedangle": 0.600,
+            }
+        ]
+    )
+    career_h2h_rows = pd.concat(
+        [
+            pd.DataFrame(
+                [
+                    {
+                        "game_date": "2021-06-01",
+                        "game_pk": 2,
+                        "at_bat_number": 1,
+                        "pitch_number": 1,
+                        "batter": 10,
+                        "pitcher": 20,
+                        "stand": "R",
+                        "p_throws": "R",
+                        "events": "strikeout",
+                        "description": "swinging_strike",
+                        "launch_speed": None,
+                        "estimated_ba_using_speedangle": None,
+                    }
+                ]
+            ),
+            recent_pitcher_rows,
+        ],
+        ignore_index=True,
+    )
+
+    store = StatcastFeatureStore(pd.DataFrame(), recent_pitcher_rows, h2h_df=career_h2h_rows)
+
+    h2h = store.h2h(10, 20)
+    assert h2h.pa == 2
+    assert h2h.k_rate == 0.5
+    assert h2h.hit_rate == 0.5
+    assert store.pitcher_split_opp_ba(20, "R") == 1.0
 
 
 def test_candidate_upsert_preserves_existing_result_columns():

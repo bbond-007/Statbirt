@@ -203,6 +203,8 @@ Most features come from MLB StatsAPI and Baseball Savant:
 - bullpen opponent batting average from relief pitcher hits allowed divided by relief pitcher at-bats allowed
 - sprint speed and park hit factors
 
+Direct H2H uses career Statcast matchup rows from March 1, 2015 through the day before the candidate date, matching Baseball Savant's Player Matchup table. The broader Savant store for hitter discipline, hitter splits, inferred pitch-type matchup, and pitcher L/R split context still uses the configurable recent-season window controlled by `--savant-years`.
+
 Weather uses MLB venue coordinates plus Open-Meteo:
 
 - The schedule payload gives each game venue and first pitch time.
