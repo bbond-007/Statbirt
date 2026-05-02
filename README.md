@@ -58,14 +58,14 @@ Use `--refresh-filled` to recalculate rows that already have results, or `--dry-
 
 ## Weather Backfill
 
-If Column R / `precip_probability` is blank but the rest of the candidate CSV looks good, refresh only the weather column:
+If Column R / `precip_probability` or `forecast_temperature_f` is blank but the rest of the candidate CSV looks good, refresh only the weather columns:
 
 ```bash
 cd /Users/blake/Coding/Statbirt
 python3 -m statbirt.update_weather
 ```
 
-Use `--dry-run` first to preview the row count, or `--refresh-filled` to recalculate weather values that are already present.
+Use `--dry-run` first to preview the row count, `--date YYYY-MM-DD` to limit the backfill to one board, or `--refresh-filled` to recalculate weather values that are already present.
 
 ## Bullpen Backfill
 
@@ -111,7 +111,7 @@ Open `http://localhost:8765`. The dashboard shows the top scored candidates for 
 
 The Bullpen score bucket still follows the v2 instruction sheet and uses opposing bullpen H/IP. The dashboard also shows `Relief BA`, calculated from MLB boxscore relief pitching hits allowed divided by relief pitching at-bats allowed, as a companion caution signal.
 
-Each player row includes the probable starter, ballpark, first-pitch time formatted by the browser's timezone, and the rain chance. The compact Key Factors chips intentionally omit Rain because it is already shown in the player details.
+Each player row includes the probable starter, ballpark, first-pitch time formatted by the browser's timezone, rain chance, and the nearest first-pitch forecast temperature when weather data provides it. The compact Key Factors chips intentionally omit Rain because it is already shown in the player details.
 
 The dashboard also reads the Congregation list at:
 
@@ -209,7 +209,7 @@ Weather uses MLB venue coordinates plus Open-Meteo:
 
 - The schedule payload gives each game venue and first pitch time.
 - When the schedule payload does not include coordinates, Statbirt hydrates the MLB venue endpoint with `location,timezone`.
-- `statbirt/weather.py` asks Open-Meteo for hourly `precipitation_probability` at the venue coordinates and uses the maximum value during the four-hour game window after first pitch.
+- `statbirt/weather.py` asks Open-Meteo for hourly `precipitation_probability` and `temperature_2m` at the venue coordinates. Rain uses the maximum probability during the four-hour game window after first pitch; temperature uses the hourly value nearest first pitch.
 - A small venue-coordinate override exists for Estadio Alfredo Harp Helu because MLB returns city/country for that Mexico City venue but not exact coordinates.
 
 FanGraphs Stuff+ is isolated in `statbirt/fangraphs.py`. The public FanGraphs leaderboard exposes Stuff+ under Major League Pitching, `type=36`, but direct local API requests can be Cloudflare-blocked. For reliability, Statbirt supports a manual file at:
@@ -254,7 +254,7 @@ Some columns are intentionally blank until their source data is loaded:
 
 - Columns AE-AN depend on Baseball Savant pitch-level data. They are blank when the daily run uses `--skip-savant`.
 - Column AS is `pitcher_stuff_plus`. It depends on FanGraphs Stuff+, preferably from `data/manual/stuff_plus.csv`.
-- Column R is `precip_probability`. It depends on weather being enabled and on usable venue coordinates.
+- Column R is `precip_probability`. It depends on weather being enabled and on usable venue coordinates. `forecast_temperature_f` is the nearest first-pitch forecast temperature in Fahrenheit from the same Open-Meteo call.
 - `game_start_time_utc` and `venue_name` are written by new daily runs from the MLB schedule payload and are also backfilled into web dashboard exports when older CSV rows do not have them.
 - Result columns stay blank until `python3 -m statbirt.update_results` is run after games are final.
 

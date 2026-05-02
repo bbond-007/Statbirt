@@ -36,7 +36,7 @@ from .savant import (
 )
 from .scoring import score_candidate
 from .utils import format_float, normalize_name, parse_float, parse_int, team_abbr
-from .weather import fetch_precipitation_probability
+from .weather import fetch_weather_forecast
 
 
 def format_datetime_utc(value) -> str:
@@ -286,12 +286,12 @@ def build_daily_candidates(
         if verbose:
             print("Fetching weather precipitation probabilities...", flush=True)
         for game in games:
-            probability, warning = fetch_precipitation_probability(
+            forecast, warning = fetch_weather_forecast(
                 latitude=game.venue_latitude,
                 longitude=game.venue_longitude,
                 game_datetime_utc=game.game_datetime_utc,
             )
-            weather_by_game[game.game_pk] = probability
+            weather_by_game[game.game_pk] = forecast
             if warning:
                 warnings.append(f"{game.away_abbr}@{game.home_abbr}: {warning}")
 
@@ -399,6 +399,7 @@ def build_daily_candidates(
                     missing_data.append("Missing probable starter")
                 if statcast_store is None:
                     missing_data.append("Missing Savant matchup/split features")
+                weather_forecast = weather_by_game.get(game.game_pk)
 
                 features = CandidateFeatures(
                     target_date=target_date,
@@ -425,7 +426,8 @@ def build_daily_candidates(
                         == team_metadata.get(context["opponent_id"], {}).get("division_id")
                     ),
                     doubleheader=team_game_counts[team_id] > 1,
-                    precipitation_probability=weather_by_game.get(game.game_pk),
+                    precipitation_probability=getattr(weather_forecast, "precipitation_probability", None),
+                    forecast_temperature_f=getattr(weather_forecast, "temperature_f", None),
                     opener_risk=likely_opener(pctx, pitcher_game_logs.get(pitcher_id, []), target_date=target_date)
                     if pitcher_id is not None
                     else True,
@@ -523,6 +525,7 @@ def scored_candidate_to_row(candidate: ScoredCandidate) -> dict[str, str]:
         "division_matchup": "Y" if f.same_division else "N",
         "doubleheader": "Y" if f.doubleheader else "N",
         "precip_probability": format_float(f.precipitation_probability, 1),
+        "forecast_temperature_f": format_float(f.forecast_temperature_f, 1),
         "probable_pitcher": f.pitcher_name,
         "probable_pitcher_id": "" if f.pitcher_id is None else str(f.pitcher_id),
         "pitcher_hand": f.pitcher_hand,

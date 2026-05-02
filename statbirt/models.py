@@ -46,6 +46,7 @@ class CandidateFeatures:
     same_division: bool = False
     doubleheader: bool = False
     precipitation_probability: float | None = None
+    forecast_temperature_f: float | None = None
     opener_risk: bool = False
     hitter_hipa_2500_pa: float | None = None
     hitter_pa_per_game_season: float | None = None

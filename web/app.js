@@ -118,6 +118,16 @@ function formatRainChance(value) {
   return `${parsed.toFixed(1)}%`;
 }
 
+function formatTemperature(value) {
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) return "N/A";
+  return `${Math.round(parsed)}°F`;
+}
+
+function weatherDetail(pick) {
+  return `Rain: ${formatRainChance(pick.precip_probability)} · Temp: ${formatTemperature(pick.forecast_temperature_f)}`;
+}
+
 function postponedStatus(pick) {
   const text = `${pick.game_state || ""} ${pick.game_status || ""} ${pick.game_state_label || ""}`.toLowerCase();
   return text.includes("postponed");
@@ -147,7 +157,7 @@ function renderPick(pick) {
   row.querySelector(".pitcher-line").textContent = `Probable starter: ${pick.probable_pitcher}`;
   row.querySelector(".venue-line").textContent = `Ballpark: ${pick.venue_name || "TBD"}`;
   row.querySelector(".game-detail-line").textContent =
-    `Start: ${formatGameStart(pick.game_start_time_utc)} · Rain: ${formatRainChance(pick.precip_probability)}`;
+    `Start: ${formatGameStart(pick.game_start_time_utc)} · ${weatherDetail(pick)}`;
   const statusLine = row.querySelector(".game-status-line");
   if (postponedStatus(pick)) {
     statusLine.textContent = `Game status: ${pick.game_status || "Postponed"}`;
@@ -177,18 +187,32 @@ function renderPick(pick) {
   const factorCell = row.querySelector(".factor-cell");
   selectedFactors(pick).forEach((item) => factorCell.append(createFactorChip(item)));
 
-  const reasons = [...(pick.hard_pass_reasons || []), ...(pick.concerns || [])];
   const riskCell = row.querySelector(".risk-cell");
   const riskLabel = document.createElement("span");
   riskLabel.className = "risk-label";
-  riskLabel.textContent = pick.pickable ? "Watch" : "Hard Pass";
+  const hardPassReasons = pick.hard_pass_reasons || [];
+  const concerns = pick.concerns || [];
+  const displayedReasons = hardPassReasons.length ? hardPassReasons : concerns;
 
-  const riskText = document.createElement("span");
-  riskText.className = "risk-text";
-  riskText.textContent = pick.primary_risk || "Clean";
-  riskText.title = reasons.join(" | ") || "No listed concerns";
+  riskLabel.textContent = hardPassReasons.length ? "Stop Valves" : (concerns.length ? "Watch" : "Clean");
+  riskCell.append(riskLabel);
 
-  riskCell.append(riskLabel, riskText);
+  if (displayedReasons.length) {
+    const riskList = document.createElement("div");
+    riskList.className = "risk-list";
+    displayedReasons.forEach((reason) => {
+      const item = document.createElement("span");
+      item.className = hardPassReasons.length ? "risk-reason hard" : "risk-reason concern";
+      item.textContent = reason;
+      riskList.append(item);
+    });
+    riskCell.append(riskList);
+  } else {
+    const riskText = document.createElement("span");
+    riskText.className = "risk-text";
+    riskText.textContent = "No stop valves";
+    riskCell.append(riskText);
+  }
   return row;
 }
 

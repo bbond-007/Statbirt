@@ -337,6 +337,7 @@ def test_weather_probability_uses_max_during_game_window():
                         "2026-04-27T00:00",
                     ],
                     "precipitation_probability": [5, 12, 55, 30, 0],
+                    "temperature_2m": [70.0, 71.2, 72.4, 73.1, 72.0],
                 }
             }
 
@@ -352,17 +353,25 @@ def test_weather_probability_uses_max_during_game_window():
             longitude=-76.621689,
             game_datetime_utc=datetime(2026, 4, 26, 20, 5, tzinfo=timezone.utc),
         )
+        forecast, forecast_warning = weather.fetch_weather_forecast(
+            latitude=39.283787,
+            longitude=-76.621689,
+            game_datetime_utc=datetime(2026, 4, 26, 20, 5, tzinfo=timezone.utc),
+        )
     finally:
         weather.requests.get = original_get
 
     assert probability == 55
     assert warning is None
+    assert forecast.precipitation_probability == 55
+    assert forecast.temperature_f == 70.0
+    assert forecast_warning is None
 
 
 def test_weather_updater_fills_precipitation_column():
     original_client = weather_update.MLBClient
     original_get_games = weather_update.get_games_for_date
-    original_fetch = weather_update.fetch_precipitation_probability
+    original_fetch = weather_update.fetch_weather_forecast
 
     class FakeClient:
         pass
@@ -380,11 +389,11 @@ def test_weather_updater_fills_precipitation_column():
         ]
 
     def fake_fetch(*, latitude, longitude, game_datetime_utc):
-        return 42.0, None
+        return weather.WeatherForecast(precipitation_probability=42.0, temperature_f=71.5), None
 
     weather_update.MLBClient = FakeClient
     weather_update.get_games_for_date = fake_get_games
-    weather_update.fetch_precipitation_probability = fake_fetch
+    weather_update.fetch_weather_forecast = fake_fetch
     try:
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "candidates.csv"
@@ -406,10 +415,11 @@ def test_weather_updater_fills_precipitation_column():
     finally:
         weather_update.MLBClient = original_client
         weather_update.get_games_for_date = original_get_games
-        weather_update.fetch_precipitation_probability = original_fetch
+        weather_update.fetch_weather_forecast = original_fetch
 
     assert summary["updated"] == 1
     assert row["precip_probability"] == "42.0"
+    assert row["forecast_temperature_f"] == "71.5"
 
 
 def test_bullpen_updater_fills_relief_batting_average():
@@ -463,6 +473,7 @@ def test_web_candidate_payload_uses_weighted_bucket_points():
         "pickable": "Y",
         "score": "25.00",
         "precip_probability": "12.0",
+        "forecast_temperature_f": "72.4",
         "park_hit_factor": "110.0",
         "component_hitter.hipa_2500_pa": "100.00",
         "component_hitter.pa_per_game_season": "100.00",
@@ -489,6 +500,7 @@ def test_web_candidate_payload_uses_weighted_bucket_points():
     assert payload["game_state_label"] == "Hit recorded"
     assert payload["game_hits"] == 1
     assert payload["precip_probability"] == "12.0"
+    assert payload["forecast_temperature_f"] == "72.4"
     assert payload["venue_name"] == "Fenway Park"
     assert payload["game_start_time_utc"] == "2026-04-27T23:10:00Z"
     assert "Rain" not in context_labels

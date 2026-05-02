@@ -365,6 +365,7 @@ def candidate_payload(
         "expected_pa": format_number(float_value(row, "expected_pa"), digits=1),
         "confirmed_lineup": row.get("confirmed_lineup") or "",
         "precip_probability": format_number(float_value(row, "precip_probability"), digits=1),
+        "forecast_temperature_f": format_number(float_value(row, "forecast_temperature_f"), digits=1),
         "game_state": state,
         "game_state_label": GAME_STATE_LABELS.get(state, GAME_STATE_LABELS["unknown"]),
         "game_status": game_state.get("status") or "",

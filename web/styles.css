@@ -461,7 +461,7 @@ h1 {
 }
 
 .risk-cell {
-  overflow: hidden;
+  overflow: visible;
   color: #273632;
   font-size: 0.75rem;
   line-height: 1.28;
@@ -477,10 +477,33 @@ h1 {
 }
 
 .risk-text {
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  color: var(--muted);
+}
+
+.risk-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.risk-reason {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  padding: 3px 6px;
+  border-radius: 6px;
+  font-size: 0.66rem;
+  font-weight: 760;
+}
+
+.risk-reason.hard {
+  background: rgba(185, 63, 71, 0.11);
+  color: var(--bad);
+}
+
+.risk-reason.concern {
+  background: rgba(161, 94, 0, 0.11);
+  color: var(--warn);
 }
 
 .empty-state {
