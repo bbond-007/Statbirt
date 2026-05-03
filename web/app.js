@@ -207,6 +207,13 @@ function renderPick(pick) {
     item.textContent = displayedReasons[0];
     item.title = tooltip;
     riskList.append(item);
+    if (displayedReasons.length > 1) {
+      const more = document.createElement("span");
+      more.className = "risk-more";
+      more.textContent = `+ ${displayedReasons.length - 1} more...`;
+      more.title = tooltip;
+      riskList.append(more);
+    }
     riskCell.append(riskList);
   } else {
     const riskText = document.createElement("span");
