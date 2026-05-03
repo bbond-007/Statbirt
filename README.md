@@ -119,7 +119,7 @@ The dashboard also reads the Congregation list at:
 /Users/blake/Coding/Statbirt/data/manual/congregation.csv
 ```
 
-The normal top 10 by score are always shown, then any Congregation players from that date's candidate CSV are added even if their model rank is outside the top 10. The dashboard `Status` column comes from this file, currently using `Publisher` and `Removed`.
+The normal top 10 by score are always shown, then any Congregation players from that date's candidate CSV are added even if their model rank is outside the top 10. The dashboard `Status` column comes from this file, currently using `Publisher` and `Removed`. The Stop Valves column shows the first triggered stop valve, and hovering it shows the full stop-valve list for that player.
 
 The summary cards show `Top 10 Hits` and `Congregation Hits` as hit percentages for completed/non-postponed games. Postponed games are excluded from those denominators.
 

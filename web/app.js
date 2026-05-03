@@ -200,12 +200,13 @@ function renderPick(pick) {
   if (displayedReasons.length) {
     const riskList = document.createElement("div");
     riskList.className = "risk-list";
-    displayedReasons.forEach((reason) => {
-      const item = document.createElement("span");
-      item.className = hardPassReasons.length ? "risk-reason hard" : "risk-reason concern";
-      item.textContent = reason;
-      riskList.append(item);
-    });
+    const tooltip = displayedReasons.join("\n");
+    riskList.title = tooltip;
+    const item = document.createElement("span");
+    item.className = hardPassReasons.length ? "risk-reason hard" : "risk-reason concern";
+    item.textContent = displayedReasons[0];
+    item.title = tooltip;
+    riskList.append(item);
     riskCell.append(riskList);
   } else {
     const riskText = document.createElement("span");
