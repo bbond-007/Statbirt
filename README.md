@@ -6,11 +6,11 @@ This is a fresh project inspired by `/Users/blake/Coding/Baseball`, but the scor
 
 ## Current Status
 
-As of April 30, 2026:
+As of May 5, 2026:
 
 - Work is continuing in `/Users/blake/Coding/Statbirt`; no separate `Statbirt_v2` rebuild has been needed so far.
-- `data/manual/stuff_plus.csv` contains 526 normalized 2026 FanGraphs Stuff+ rows pulled through the FanGraphs leaderboard/API browser fallback.
-- `data/statbirt_candidates.csv` has been regenerated with current Stuff+ values, so `pitcher_stuff_plus` is populated for the current candidate rows.
+- `data/manual/stuff_plus.csv` contains 559 normalized 2026 FanGraphs Stuff+ rows refreshed from the FanGraphs leaderboard through the browser snapshot fallback.
+- `pitcher_stuff_plus` is populated from `data/manual/stuff_plus.csv` during daily runs. After refreshing Stuff+, rerun the daily model to apply the newest values to candidate rows and dashboard exports.
 - `data/statbirt_candidates.csv` has Column R / `precip_probability` populated for the current candidate rows via the weather-only updater.
 - A full production-style run should avoid `--skip-savant`; that flag is only for faster smoke checks because it leaves Savant-dependent discipline and split columns blank.
 
@@ -236,7 +236,11 @@ python3 -m statbirt.import_stuff_plus ~/Downloads/FanGraphs\ Leaderboard.csv --s
 
 The importer writes the normalized file to `data/manual/stuff_plus.csv`, which the daily model reads automatically.
 
-On April 27, 2026, the FanGraphs leaderboard's visible `Data Export` button appeared as `Members Only`. The browser/API fallback still worked from the loaded leaderboard page, and the API field used for Stuff+ was `sp_stuff`. If the official export is blocked again, use the browser leaderboard/API route or recreate the normalized manual CSV with these columns:
+On April 27, 2026, the FanGraphs leaderboard's visible `Data Export` button appeared as `Members Only`. The browser/API fallback still worked from the loaded leaderboard page, and the API field used for Stuff+ was `sp_stuff`.
+
+On May 5, 2026, direct local API requests were Cloudflare-blocked, but the browser leaderboard still loaded. The page-size control was set to `Infinity`, then the visible 559-row Stuff+ table was extracted through the browser snapshot and merged into `data/manual/stuff_plus.csv`, preserving or resolving MLBAM IDs for every row. This visible leaderboard path gives whole-number Stuff+ values because that is how FanGraphs renders the table.
+
+If the official export is blocked again, use the browser leaderboard/API route or recreate the normalized manual CSV with these columns:
 
 ```text
 season,player_id,player,team,stuff_plus,source,updated

@@ -21,6 +21,7 @@ def _stuff_value_from_row(row: dict) -> float | None:
         "stuff+",
         "Stf+",
         "stf_plus",
+        "sp_stuff",
         "StuffPlus",
         "stuffPlus",
     ):
@@ -131,4 +132,3 @@ def lookup_stuff_plus(
     if player_id is not None and player_id in by_id:
         return by_id[player_id]
     return by_name.get(normalize_name(player_name))
-
