@@ -155,6 +155,7 @@ def build_daily_candidates(
     config: PipelineConfig | None = None,
     skip_savant: bool = False,
     skip_weather: bool = False,
+    confirmed_lineups_override: dict[int, dict] | None = None,
     verbose: bool = False,
 ) -> tuple[list[ScoredCandidate], list[str]]:
     config = config or PipelineConfig()
@@ -178,7 +179,7 @@ def build_daily_candidates(
 
     if verbose:
         print("Fetching confirmed lineups...", flush=True)
-    confirmed_lineups = fetch_confirmed_lineups()
+    confirmed_lineups = confirmed_lineups_override if confirmed_lineups_override is not None else fetch_confirmed_lineups()
 
     if verbose:
         print(f"Building recent hitter usage through {yesterday.isoformat()}...", flush=True)

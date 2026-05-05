@@ -117,7 +117,10 @@ def row_key(row: dict[str, str]):
 
 
 def has_result_data(row: dict[str, str]) -> bool:
-    return any(str(row.get(field, "")).strip() for field in RESULT_FIELDS if field != "notes")
+    return any(
+        str(row.get(field, "")).strip()
+        for field in ("result_hit", "result_hits", "result_ab", "result_pa", "result_updated_at")
+    )
 
 
 def merge_candidate_row(existing: dict[str, str], incoming: dict[str, str], fieldnames: list[str]) -> dict[str, str]:
@@ -288,6 +291,7 @@ def update_results_csv(
     *,
     refresh_filled: bool = False,
     dry_run: bool = False,
+    only_dates: set[date] | None = None,
 ) -> dict[str, int]:
     rows, fieldnames = load_candidates_table(path)
     if not rows:
@@ -300,6 +304,8 @@ def update_results_csv(
             continue
         row_date = parse_results_date(row.get("date"))
         if row_date is None or row_date > today:
+            continue
+        if only_dates is not None and row_date not in only_dates:
             continue
         rows_by_date.setdefault(row_date, []).append((idx, row))
 

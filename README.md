@@ -195,6 +195,39 @@ Generated outputs:
 
 `data/model_predictions.csv` is upserted by date/player/game, so rerunning the learned model refreshes that day's rows while preserving prior dates for comparison against Bob's picks and eventual hit results.
 
+## Historical Backfill
+
+Use the backfill command to create candidate rows for missing historical regular-season dates. It skips dates already present in `data/statbirt_candidates.csv` unless `--rerun-existing` is provided.
+
+Preview missing 2026 regular-season dates:
+
+```bash
+cd /Users/blake/Coding/Statbirt
+python3 -m statbirt.backfill --season 2026 --dry-run
+```
+
+Run a small validation batch first:
+
+```bash
+python3 -m statbirt.backfill --season 2026 --max-days 1 --update-results
+```
+
+Continue in chunks:
+
+```bash
+python3 -m statbirt.backfill --season 2026 --max-days 5 --update-results
+```
+
+When a chunk is complete, refresh the learned-model outputs:
+
+```bash
+python3 -m statbirt.learned_model run --date latest --top 25
+```
+
+Backfill uses the manual Stuff+ file by default and does not try the live FanGraphs API unless `--use-fangraphs-fetch` is passed. That avoids repeating the known FanGraphs 403 failure during long historical runs.
+
+For historical dates, the backfill command seeds candidates from the final boxscore batting order by default. That gives the training table a proxy for the confirmed lineup that would have been known before first pitch and avoids the early-season problem where no hitter has enough recent starts yet. Use `--no-historical-lineups` only when intentionally testing the pure recent-usage candidate filter.
+
 ## Model Shape
 
 The score is a 0-100 weighted score:
@@ -337,6 +370,7 @@ hitter_split_ba_1500_vs_rhp
 - `statbirt/update_bullpen.py`: bullpen relief BA/H-IP updater
 - `statbirt/export_web.py`: export top-pick JSON for the web dashboard
 - `statbirt/learned_model.py`: train and score the parallel learned hit-probability model
+- `statbirt/backfill.py`: historical regular-season candidate/result backfill helper
 - `statbirt/weather.py`: precipitation lookup via Open-Meteo
 - `data/manual/congregation.csv`: optional friend-curated player list and dashboard status labels
 - `scripts/run_daily.py`: convenience wrapper for the daily model
@@ -346,6 +380,7 @@ hitter_split_ba_1500_vs_rhp
 - `scripts/update_bullpen.py`: convenience wrapper for bullpen relief backfill
 - `scripts/export_web.py`: convenience wrapper for web dashboard export
 - `scripts/learned_model.py`: convenience wrapper for learned-model train/score commands
+- `scripts/backfill.py`: convenience wrapper for historical backfill
 - `web/index.html`: one-page Statbirt top-picks dashboard
 - `tests/test_scoring.py`: scoring and valve unit tests
 

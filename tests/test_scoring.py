@@ -14,7 +14,7 @@ from statbirt import weather
 from statbirt.export_web import candidate_payload
 from statbirt.mlb_api import get_games_for_date
 from statbirt.models import CandidateFeatures
-from statbirt.results import upsert_candidate_rows
+from statbirt.results import has_result_data, upsert_candidate_rows
 from statbirt.savant import StatcastFeatureStore
 from statbirt.scoring import evaluate_stop_valves, expected_pa_score, score_candidate, score_features
 
@@ -217,6 +217,11 @@ def test_candidate_upsert_preserves_existing_result_columns():
         assert updated["score"] == "61.00"
         assert updated["result_hit"] == "1"
         assert updated["result_hits"] == "2"
+
+
+def test_pending_result_status_is_not_treated_as_graded():
+    assert not has_result_data({"result_status": "Scheduled"})
+    assert has_result_data({"result_status": "Final", "result_hits": "0"})
 
 
 def test_candidate_upsert_replaces_ungraded_rows_for_same_date():
