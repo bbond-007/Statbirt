@@ -12,6 +12,7 @@ As of May 5, 2026:
 - `data/manual/stuff_plus.csv` contains 559 normalized 2026 FanGraphs Stuff+ rows refreshed from the FanGraphs leaderboard through the browser snapshot fallback.
 - `pitcher_stuff_plus` is populated from `data/manual/stuff_plus.csv` during daily runs. After refreshing Stuff+, rerun the daily model to apply the newest values to candidate rows and dashboard exports.
 - `data/statbirt_candidates.csv` has Column R / `precip_probability` populated for the current candidate rows via the weather-only updater.
+- A parallel learned hit-probability model now lives in `statbirt/learned_model.py`. It trains from labeled candidate/result rows and writes daily comparison predictions to `data/model_predictions.csv`.
 - A full production-style run should avoid `--skip-savant`; that flag is only for faster smoke checks because it leaves Savant-dependent discipline and split columns blank.
 
 ## Daily Run
@@ -147,6 +148,52 @@ python3 -m statbirt.export_web --congregation-csv data/manual/congregation.csv
 ```
 
 `--skip-savant`, `--skip-weather`, `--skip-fangraphs-fetch`, and `--skip-bullpen` are useful for debugging source-specific failures. They should not be used for a final daily board unless the missing source is intentionally being ignored.
+
+## Learned Hit Model
+
+The learned model is intentionally separate from the hand-weighted Bob score. It uses the same candidate CSV as a supervised-learning table:
+
+- pregame candidate columns become features
+- `result_hit` is the label
+- score components and Bob's final `score` are not used as model features
+- stop-valve reasons are converted into data-driven binary/count features
+
+The current local candidate history starts on April 26, 2026, so the first usable model is trained on the labeled 2026 rows we have collected so far. To include 2025 and deeper 2026 history, backfill candidate rows for those dates, update results, then retrain. The model tooling is built to absorb those rows as soon as they exist in `data/statbirt_candidates.csv`.
+
+Check current training coverage:
+
+```bash
+cd /Users/blake/Coding/Statbirt
+python3 -m statbirt.learned_model audit
+```
+
+Train the learned model from all labeled candidate rows:
+
+```bash
+python3 -m statbirt.learned_model train
+```
+
+Score the latest candidate date after a daily run:
+
+```bash
+python3 -m statbirt.learned_model score --date latest --top 25
+```
+
+Train and score in one step:
+
+```bash
+python3 -m statbirt.learned_model run --date latest --top 25
+```
+
+Generated outputs:
+
+```text
+/Users/blake/Coding/Statbirt/data/models/hit_probability_model.json
+/Users/blake/Coding/Statbirt/data/models/hit_probability_report.json
+/Users/blake/Coding/Statbirt/data/model_predictions.csv
+```
+
+`data/model_predictions.csv` is upserted by date/player/game, so rerunning the learned model refreshes that day's rows while preserving prior dates for comparison against Bob's picks and eventual hit results.
 
 ## Model Shape
 
@@ -289,6 +336,7 @@ hitter_split_ba_1500_vs_rhp
 - `statbirt/update_weather.py`: weather-only precipitation probability updater
 - `statbirt/update_bullpen.py`: bullpen relief BA/H-IP updater
 - `statbirt/export_web.py`: export top-pick JSON for the web dashboard
+- `statbirt/learned_model.py`: train and score the parallel learned hit-probability model
 - `statbirt/weather.py`: precipitation lookup via Open-Meteo
 - `data/manual/congregation.csv`: optional friend-curated player list and dashboard status labels
 - `scripts/run_daily.py`: convenience wrapper for the daily model
@@ -297,6 +345,7 @@ hitter_split_ba_1500_vs_rhp
 - `scripts/update_weather.py`: convenience wrapper for weather backfill
 - `scripts/update_bullpen.py`: convenience wrapper for bullpen relief backfill
 - `scripts/export_web.py`: convenience wrapper for web dashboard export
+- `scripts/learned_model.py`: convenience wrapper for learned-model train/score commands
 - `web/index.html`: one-page Statbirt top-picks dashboard
 - `tests/test_scoring.py`: scoring and valve unit tests
 
@@ -335,6 +384,8 @@ Ignored:
 
 - `data/cache/`
 - `data/statbirt_candidates.csv`
+- `data/model_predictions.csv`
+- `data/models/`
 - generated dashboard JSON in `web/data/`
 - Python caches and local environment files
 

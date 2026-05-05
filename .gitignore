@@ -9,6 +9,8 @@ __pycache__/
 # Large/generated local data
 data/cache/
 data/statbirt_candidates.csv
+data/model_predictions.csv
+data/models/
 
 # Generated dashboard exports. Rebuild with:
 # python3 -m statbirt.export_web --all-dates --limit 10
