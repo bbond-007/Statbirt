@@ -5,6 +5,7 @@ __pycache__/
 .venv/
 .env
 .env.*
+logs/
 
 # Large/generated local data
 data/cache/
