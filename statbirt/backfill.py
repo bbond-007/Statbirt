@@ -35,7 +35,7 @@ def regular_season_dates(client: MLBClient, start_day: date, end_day: date) -> l
         for game in games
         if game.get("gameType") == "R"
         for parsed in [canonical_date(game.get("officialDate") or game.get("gameDate"))]
-        if parsed is not None
+        if parsed is not None and start_day <= parsed <= end_day
     }
     return sorted(dates)
 

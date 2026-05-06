@@ -10,6 +10,7 @@ class FakeClient:
             {"gameType": "R", "officialDate": "2026-03-25", "gamePk": 1},
             {"gameType": "R", "officialDate": "2026-03-25", "gamePk": 2},
             {"gameType": "R", "officialDate": "2026-03-26", "gamePk": 3},
+            {"gameType": "R", "officialDate": "2026-08-01", "gamePk": 4},
             {"gameType": "A", "officialDate": "2026-07-14"},
         ]
 

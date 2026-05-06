@@ -4,28 +4,37 @@ Statbirt ranks MLB hitters by how attractive they are for a same-day "to get a h
 
 This is a fresh project inspired by `/Users/blake/Coding/Baseball`, but the scoring model is intentionally rebuilt around the new weight buckets and hard stop-valves.
 
+For Desktop PC/Codex handoff, routine operations, and current generated-data status, read:
+
+```text
+PROJECT_HANDOFF.md
+```
+
 ## Current Status
 
-As of May 5, 2026:
+As of May 6, 2026:
 
-- Work is continuing in `/Users/blake/Coding/Statbirt`; no separate `Statbirt_v2` rebuild has been needed so far.
+- The active shared project folder is `compy3600/Coding/Statbirt`; from this Mac it is mounted at `/Volumes/Coding/Statbirt`.
+- No separate `Statbirt_v2` rebuild has been needed so far.
+- `data/statbirt_candidates.csv` currently has 10,868 rows across 43 dates, spanning `2026-03-25` through `2026-05-06`.
+- 2026 historical backfill through `2026-05-05` is complete; `2026-05-06` is the active ungraded daily board.
 - `data/manual/stuff_plus.csv` contains 559 normalized 2026 FanGraphs Stuff+ rows refreshed from the FanGraphs leaderboard through the browser snapshot fallback.
 - `pitcher_stuff_plus` is populated from `data/manual/stuff_plus.csv` during daily runs. After refreshing Stuff+, rerun the daily model to apply the newest values to candidate rows and dashboard exports.
-- `data/statbirt_candidates.csv` has Column R / `precip_probability` populated for the current candidate rows via the weather-only updater.
-- A parallel learned hit-probability model now lives in `statbirt/learned_model.py`. It trains from labeled candidate/result rows and writes daily comparison predictions to `data/model_predictions.csv`.
+- The active dashboard export is `2026-05-06` with 29 displayed picks.
+- A parallel learned hit-probability model lives in `statbirt/learned_model.py`. It trains from labeled candidate/result rows and writes daily comparison predictions to `data/model_predictions.csv`.
 - A full production-style run should avoid `--skip-savant`; that flag is only for faster smoke checks because it leaves Savant-dependent discipline and split columns blank.
 
 ## Daily Run
 
 ```bash
-cd /Users/blake/Coding/Statbirt
+cd path/to/Statbirt
 python3 -m statbirt.cli --date YYYY-MM-DD --top 25
 ```
 
 The default output is:
 
 ```text
-/Users/blake/Coding/Statbirt/data/statbirt_candidates.csv
+data/statbirt_candidates.csv
 ```
 
 Daily runs upsert into the CSV instead of wiping it. Ungraded rows for the same date are replaced by the newest model output, while rows that already have postgame result columns filled in are preserved.
@@ -41,7 +50,7 @@ python3 -m statbirt.cli --date 2026-04-26 --top 25
 After games are final, update every candidate row with boxscore results:
 
 ```bash
-cd /Users/blake/Coding/Statbirt
+cd path/to/Statbirt
 python3 -m statbirt.update_results
 ```
 
@@ -62,7 +71,7 @@ Use `--refresh-filled` to recalculate rows that already have results, or `--dry-
 If Column R / `precip_probability` or `forecast_temperature_f` is blank but the rest of the candidate CSV looks good, refresh only the weather columns:
 
 ```bash
-cd /Users/blake/Coding/Statbirt
+cd path/to/Statbirt
 python3 -m statbirt.update_weather
 ```
 
@@ -73,7 +82,7 @@ Use `--dry-run` first to preview the row count, `--date YYYY-MM-DD` to limit the
 If `bullpen_opp_ba` / `Relief BA` is missing but the rest of the candidate CSV looks good, refresh only the bullpen relief columns:
 
 ```bash
-cd /Users/blake/Coding/Statbirt
+cd path/to/Statbirt
 python3 -m statbirt.update_bullpen
 ```
 
@@ -85,13 +94,13 @@ Bullpen values are built from MLB boxscores through the day before the candidate
 The one-page dashboard lives in:
 
 ```text
-/Users/blake/Coding/Statbirt/web/index.html
+web/index.html
 ```
 
 Refresh its data after the daily CSV is current:
 
 ```bash
-cd /Users/blake/Coding/Statbirt
+cd path/to/Statbirt
 python3 -m statbirt.export_web --date YYYY-MM-DD --limit 10
 ```
 
@@ -104,7 +113,7 @@ python3 -m statbirt.export_web --all-dates --limit 10
 Then serve the page locally:
 
 ```bash
-cd /Users/blake/Coding/Statbirt/web
+cd path/to/Statbirt/web
 python3 -m http.server 8765
 ```
 
@@ -117,7 +126,7 @@ Each player row includes the probable starter, ballpark, first-pitch time format
 The dashboard also reads the Congregation list at:
 
 ```text
-/Users/blake/Coding/Statbirt/data/manual/congregation.csv
+data/manual/congregation.csv
 ```
 
 The normal top 10 by score are always shown, then any Congregation players from that date's candidate CSV are added even if their model rank is outside the top 10. The dashboard `Status` column comes from this file, currently using `Publisher` and `Removed`. The Stop Valves column shows the first triggered stop valve, and hovering it shows the full stop-valve list for that player.
@@ -163,7 +172,7 @@ The current local candidate history starts on April 26, 2026, so the first usabl
 Check current training coverage:
 
 ```bash
-cd /Users/blake/Coding/Statbirt
+cd path/to/Statbirt
 python3 -m statbirt.learned_model audit
 ```
 
@@ -188,9 +197,9 @@ python3 -m statbirt.learned_model run --date latest --top 25
 Generated outputs:
 
 ```text
-/Users/blake/Coding/Statbirt/data/models/hit_probability_model.json
-/Users/blake/Coding/Statbirt/data/models/hit_probability_report.json
-/Users/blake/Coding/Statbirt/data/model_predictions.csv
+data/models/hit_probability_model.json
+data/models/hit_probability_report.json
+data/model_predictions.csv
 ```
 
 `data/model_predictions.csv` is upserted by date/player/game, so rerunning the learned model refreshes that day's rows while preserving prior dates for comparison against Bob's picks and eventual hit results.
@@ -202,7 +211,7 @@ Use the backfill command to create candidate rows for missing historical regular
 Preview missing 2026 regular-season dates:
 
 ```bash
-cd /Users/blake/Coding/Statbirt
+cd path/to/Statbirt
 python3 -m statbirt.backfill --season 2026 --dry-run
 ```
 
@@ -295,7 +304,7 @@ Weather uses MLB venue coordinates plus Open-Meteo:
 FanGraphs Stuff+ is isolated in `statbirt/fangraphs.py`. The public FanGraphs leaderboard exposes Stuff+ under Major League Pitching, `type=36`, but direct local API requests can be Cloudflare-blocked. For reliability, Statbirt supports a manual file at:
 
 ```text
-/Users/blake/Coding/Statbirt/data/manual/stuff_plus.csv
+data/manual/stuff_plus.csv
 ```
 
 The manual file is now the preferred reliable path for Stuff+. The daily model reads it automatically, and `--skip-fangraphs-fetch` is safe when the manual file is current.
@@ -310,7 +319,7 @@ If FanGraphs export access is available:
 6. Import the downloaded CSV:
 
 ```bash
-cd /Users/blake/Coding/Statbirt
+cd path/to/Statbirt
 python3 -m statbirt.import_stuff_plus ~/Downloads/FanGraphs\ Leaderboard.csv --season 2026
 ```
 
