@@ -344,6 +344,16 @@ def candidate_payload(
     venue_name = row.get("venue_name") or game_state.get("venue_name") or ""
     game_start_time_utc = row.get("game_start_time_utc") or game_state.get("game_start_time_utc") or ""
     congregation_record = congregation_record_for(row, congregation)
+    last_5_hits = parse_int(row.get("hitter_last_5_games_hits"))
+    last_5_ab = parse_int(row.get("hitter_last_5_games_ab"))
+    last_5_ba = float_value(row, "hitter_last_5_games_ba")
+    hot_streak = (
+        last_5_hits is not None
+        and last_5_ab is not None
+        and last_5_ab > 0
+        and last_5_ba is not None
+        and last_5_ba >= 0.400
+    )
     return {
         "rank": rank,
         "date": row.get("date") or "",
@@ -356,6 +366,9 @@ def candidate_payload(
         "venue_name": venue_name,
         "congregation_status": (congregation_record or {}).get("status", ""),
         "congregation_member": congregation_record is not None,
+        "hot_streak": hot_streak,
+        "hot_streak_tooltip": f"{last_5_hits}-{last_5_ab}" if hot_streak else "",
+        "hitter_last_5_games_ba": format_rate(last_5_ba),
         "pickable": str(row.get("pickable") or "").upper() == "Y",
         "score": round(score, 2),
         "probable_pitcher": row.get("probable_pitcher") or "TBD",

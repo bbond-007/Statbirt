@@ -361,6 +361,13 @@ h1 {
   color: var(--good);
 }
 
+.hot-streak {
+  flex: 0 0 auto;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: help;
+}
+
 .matchup-line,
 .pitcher-line,
 .venue-line,

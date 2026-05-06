@@ -35,7 +35,7 @@ from .savant import (
     select_park_hit_factor,
 )
 from .scoring import score_candidate
-from .utils import format_float, normalize_name, parse_float, parse_int, team_abbr
+from .utils import format_float, normalize_name, parse_float, parse_int, safe_divide, team_abbr
 from .weather import fetch_weather_forecast
 
 
@@ -62,6 +62,26 @@ def season_pa_per_game(entries, *, target_date: date) -> float | None:
     if not prior:
         return None
     return sum(entry.plate_appearances for entry in prior) / len(prior)
+
+
+def recent_batting_summary(entries, *, target_date: date, games: int = 5) -> dict[str, float | int | None]:
+    prior = [
+        entry
+        for entry in entries
+        if entry.game_date < target_date and (entry.at_bats > 0 or entry.plate_appearances > 0)
+    ]
+    prior.sort(key=lambda entry: entry.game_date)
+    recent = prior[-games:]
+    if not recent:
+        return {"games": 0, "hits": None, "at_bats": None, "batting_average": None}
+    hits = sum(entry.hits for entry in recent)
+    at_bats = sum(entry.at_bats for entry in recent)
+    return {
+        "games": len(recent),
+        "hits": hits,
+        "at_bats": at_bats,
+        "batting_average": safe_divide(hits, at_bats),
+    }
 
 
 def _candidate_ids_for_team(
@@ -401,6 +421,11 @@ def build_daily_candidates(
                 if statcast_store is None:
                     missing_data.append("Missing Savant matchup/split features")
                 weather_forecast = weather_by_game.get(game.game_pk)
+                last_5_batting = recent_batting_summary(
+                    usage_logs.get(player_id, []),
+                    target_date=target_date,
+                    games=5,
+                )
 
                 features = CandidateFeatures(
                     target_date=target_date,
@@ -417,6 +442,9 @@ def build_daily_candidates(
                     confirmed_lineup=confirmed,
                     lineup_slot=lineup_slot,
                     starts_last_5=starts_last_5,
+                    hitter_last_5_games_hits=last_5_batting.get("hits"),
+                    hitter_last_5_games_ab=last_5_batting.get("at_bats"),
+                    hitter_last_5_games_ba=last_5_batting.get("batting_average"),
                     pitcher_id=pitcher_id,
                     pitcher_name=pitcher_name,
                     pitcher_hand=pitcher_hand,
@@ -522,6 +550,9 @@ def scored_candidate_to_row(candidate: ScoredCandidate) -> dict[str, str]:
         "lineup_slot": format_float(f.lineup_slot, 1),
         "expected_pa": format_float(f.expected_pa, 2),
         "starts_last_5": str(f.starts_last_5),
+        "hitter_last_5_games_hits": "" if f.hitter_last_5_games_hits is None else str(f.hitter_last_5_games_hits),
+        "hitter_last_5_games_ab": "" if f.hitter_last_5_games_ab is None else str(f.hitter_last_5_games_ab),
+        "hitter_last_5_games_ba": format_float(f.hitter_last_5_games_ba, 3),
         "road_game": "Y" if not f.is_home else "N",
         "division_matchup": "Y" if f.same_division else "N",
         "doubleheader": "Y" if f.doubleheader else "N",

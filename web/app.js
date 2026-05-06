@@ -170,6 +170,15 @@ function renderPick(pick) {
   badge.textContent = pick.pickable ? "Pickable" : "Pass";
   badge.classList.toggle("pickable", pick.pickable);
 
+  if (pick.hot_streak) {
+    const hotStreak = document.createElement("span");
+    hotStreak.className = "hot-streak";
+    hotStreak.textContent = "\u{1F525}";
+    hotStreak.title = pick.hot_streak_tooltip || "";
+    hotStreak.setAttribute("aria-label", `Last 5 games: ${pick.hot_streak_tooltip}`);
+    row.querySelector(".player-line").append(hotStreak);
+  }
+
   const statusCell = row.querySelector(".status-cell");
   const congregationStatus = String(pick.congregation_status || "").trim();
   if (congregationStatus) {

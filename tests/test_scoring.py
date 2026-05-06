@@ -12,8 +12,9 @@ from statbirt import update_bullpen as bullpen_update
 from statbirt import update_weather as weather_update
 from statbirt import weather
 from statbirt.export_web import candidate_payload
-from statbirt.mlb_api import get_games_for_date
+from statbirt.mlb_api import BatterUsageEntry, get_games_for_date
 from statbirt.models import CandidateFeatures
+from statbirt.pipeline import recent_batting_summary
 from statbirt.results import has_result_data, upsert_candidate_rows
 from statbirt.savant import StatcastFeatureStore
 from statbirt.scoring import evaluate_stop_valves, expected_pa_score, score_candidate, score_features
@@ -96,6 +97,26 @@ def test_score_components_sum_to_weighted_score():
 def test_lower_lineup_slot_is_better_when_expected_pa_missing():
     assert expected_pa_score(1.0, None) == 100.0
     assert expected_pa_score(9.0, None) == 0.0
+
+
+def test_recent_batting_summary_uses_last_five_games_played():
+    entries = [
+        BatterUsageEntry(date(2026, 4, 19), True, 1, hits=4, at_bats=4, plate_appearances=4),
+        BatterUsageEntry(date(2026, 4, 20), True, 1, hits=1, at_bats=3, plate_appearances=4),
+        BatterUsageEntry(date(2026, 4, 21), True, 1, hits=0, at_bats=2, plate_appearances=4),
+        BatterUsageEntry(date(2026, 4, 22), True, 1, hits=2, at_bats=4, plate_appearances=4),
+        BatterUsageEntry(date(2026, 4, 23), True, 1, hits=0, at_bats=0, plate_appearances=1),
+        BatterUsageEntry(date(2026, 4, 24), True, 1, hits=1, at_bats=2, plate_appearances=4),
+        BatterUsageEntry(date(2026, 4, 25), True, 1, hits=2, at_bats=2, plate_appearances=4),
+        BatterUsageEntry(date(2026, 4, 26), True, 1, hits=3, at_bats=4, plate_appearances=4),
+    ]
+
+    summary = recent_batting_summary(entries, target_date=date(2026, 4, 26))
+
+    assert summary["games"] == 5
+    assert summary["hits"] == 5
+    assert summary["at_bats"] == 10
+    assert summary["batting_average"] == 0.5
 
 
 def test_good_candidate_is_pickable():
@@ -477,6 +498,9 @@ def test_web_candidate_payload_uses_weighted_bucket_points():
         "game_pk": "100",
         "pickable": "Y",
         "score": "25.00",
+        "hitter_last_5_games_hits": "5",
+        "hitter_last_5_games_ab": "10",
+        "hitter_last_5_games_ba": "0.500",
         "precip_probability": "12.0",
         "forecast_temperature_f": "72.4",
         "park_hit_factor": "110.0",
@@ -508,6 +532,8 @@ def test_web_candidate_payload_uses_weighted_bucket_points():
     assert payload["forecast_temperature_f"] == "72.4"
     assert payload["venue_name"] == "Fenway Park"
     assert payload["game_start_time_utc"] == "2026-04-27T23:10:00Z"
+    assert payload["hot_streak"] is True
+    assert payload["hot_streak_tooltip"] == "5-10"
     assert "Rain" not in context_labels
     assert "Park BA" not in context_labels
 
