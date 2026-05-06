@@ -498,6 +498,7 @@ def test_web_candidate_payload_uses_weighted_bucket_points():
         "game_pk": "100",
         "pickable": "Y",
         "score": "25.00",
+        "hitter_last_5_games_played": "5",
         "hitter_last_5_games_hits": "5",
         "hitter_last_5_games_ab": "10",
         "hitter_last_5_games_ba": "0.500",
@@ -536,6 +537,28 @@ def test_web_candidate_payload_uses_weighted_bucket_points():
     assert payload["hot_streak_tooltip"] == "5-10"
     assert "Rain" not in context_labels
     assert "Park BA" not in context_labels
+
+
+def test_web_candidate_payload_requires_five_games_for_hot_streak():
+    row = {
+        "date": "2026-04-27",
+        "player": "Short Sample",
+        "player_id": "1",
+        "team": "BOS",
+        "opponent": "NYY",
+        "game_pk": "100",
+        "pickable": "Y",
+        "score": "25.00",
+        "hitter_last_5_games_played": "1",
+        "hitter_last_5_games_hits": "4",
+        "hitter_last_5_games_ab": "4",
+        "hitter_last_5_games_ba": "1.000",
+    }
+
+    payload = candidate_payload(row, 1)
+
+    assert payload["hot_streak"] is False
+    assert payload["hot_streak_tooltip"] == ""
 
 
 def test_web_game_phase_prioritizes_postponed_over_final():

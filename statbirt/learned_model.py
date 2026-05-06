@@ -41,6 +41,7 @@ NUMERIC_COLUMNS = [
     "lineup_slot",
     "expected_pa",
     "starts_last_5",
+    "hitter_last_5_games_played",
     "hitter_last_5_games_hits",
     "hitter_last_5_games_ab",
     "hitter_last_5_games_ba",

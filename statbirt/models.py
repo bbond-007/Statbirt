@@ -39,6 +39,7 @@ class CandidateFeatures:
     confirmed_lineup: bool = False
     lineup_slot: float | None = None
     starts_last_5: int = 0
+    hitter_last_5_games_played: int = 0
     hitter_last_5_games_hits: int | None = None
     hitter_last_5_games_ab: int | None = None
     hitter_last_5_games_ba: float | None = None
