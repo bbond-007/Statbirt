@@ -1,6 +1,6 @@
 from datetime import date
 
-from statbirt.backfill import historical_lineups_for_date, regular_season_dates
+from statbirt.backfill import format_elapsed, historical_lineups_for_date, regular_season_dates
 
 
 class FakeClient:
@@ -40,6 +40,12 @@ def test_regular_season_dates_are_unique_and_regular_only():
         date(2026, 3, 25),
         date(2026, 3, 26),
     ]
+
+
+def test_format_elapsed_uses_compact_human_time():
+    assert format_elapsed(12.2) == "12s"
+    assert format_elapsed(125.0) == "2m 5s"
+    assert format_elapsed(3725.0) == "1h 2m 5s"
 
 
 def test_historical_lineups_use_boxscore_batting_order():

@@ -4,6 +4,7 @@ import argparse
 import csv
 from datetime import date, timedelta
 from pathlib import Path
+import time
 
 from .config import DEFAULT_OUTPUT_CSV, DEFAULT_STUFF_PLUS_CSV, PipelineConfig, StopValveConfig
 from .learned_model import score_candidates, train_model
@@ -11,6 +12,17 @@ from .mlb_api import MLBClient, canonical_date, season_start_for
 from .pipeline import build_daily_candidates, upsert_candidates_csv
 from .results import update_results_csv
 from .utils import normalize_name, parse_int
+
+
+def format_elapsed(seconds: float) -> str:
+    total_seconds = max(0, int(round(seconds)))
+    hours, remainder = divmod(total_seconds, 3600)
+    minutes, seconds = divmod(remainder, 60)
+    if hours:
+        return f"{hours}h {minutes}m {seconds}s"
+    if minutes:
+        return f"{minutes}m {seconds}s"
+    return f"{seconds}s"
 
 
 def existing_candidate_dates(path: str | Path) -> set[date]:
@@ -108,7 +120,8 @@ def backfill_dates(
     update_results: bool,
     train_learned_model: bool,
     use_historical_lineups: bool,
-) -> dict[str, int]:
+) -> dict:
+    total_started_at = time.perf_counter()
     summary = {
         "dates": len(dates),
         "built": 0,
@@ -116,8 +129,12 @@ def backfill_dates(
         "warnings": 0,
         "inserted": 0,
         "updated": 0,
+        "total_seconds": 0.0,
+        "total_runtime": "0s",
+        "day_timings": [],
     }
     for index, target_day in enumerate(dates, start=1):
+        day_started_at = time.perf_counter()
         print(f"\n[{index}/{len(dates)}] Backfilling {target_day.isoformat()}...", flush=True)
         confirmed_lineups_override = None
         if use_historical_lineups:
@@ -142,6 +159,17 @@ def backfill_dates(
         if not candidates:
             print("No candidates produced.", flush=True)
             summary["empty"] += 1
+            day_elapsed = time.perf_counter() - day_started_at
+            summary["day_timings"].append(
+                {
+                    "date": target_day.isoformat(),
+                    "seconds": round(day_elapsed, 1),
+                    "runtime": format_elapsed(day_elapsed),
+                    "status": "empty",
+                    "candidates": 0,
+                }
+            )
+            print(f"Date runtime: {format_elapsed(day_elapsed)}.", flush=True)
             continue
         write_summary = upsert_candidates_csv(output_csv, candidates)
         summary["built"] += 1
@@ -152,6 +180,17 @@ def backfill_dates(
             f"({write_summary['inserted']} inserted, {write_summary['updated']} updated).",
             flush=True,
         )
+        day_elapsed = time.perf_counter() - day_started_at
+        summary["day_timings"].append(
+            {
+                "date": target_day.isoformat(),
+                "seconds": round(day_elapsed, 1),
+                "runtime": format_elapsed(day_elapsed),
+                "status": "built",
+                "candidates": len(candidates),
+            }
+        )
+        print(f"Date runtime: {format_elapsed(day_elapsed)}.", flush=True)
 
     if update_results and dates:
         print("\nUpdating postgame results for candidate rows...", flush=True)
@@ -168,6 +207,9 @@ def backfill_dates(
         records = score_candidates(output_csv, date_filter="latest")
         print(f"Scored {len(records)} latest-date rows with the learned model.", flush=True)
 
+    total_elapsed = time.perf_counter() - total_started_at
+    summary["total_seconds"] = round(total_elapsed, 1)
+    summary["total_runtime"] = format_elapsed(total_elapsed)
     return summary
 
 
@@ -250,7 +292,16 @@ def main():
     )
     print("\nBackfill summary:")
     for key, value in summary.items():
+        if key == "day_timings":
+            continue
         print(f"- {key}: {value}")
+    if summary.get("day_timings"):
+        print("- day runtimes:")
+        for timing in summary["day_timings"]:
+            print(
+                f"  - {timing['date']}: {timing['runtime']} "
+                f"({timing['status']}, {timing['candidates']} candidates)"
+            )
 
 
 if __name__ == "__main__":
