@@ -1,0 +1,1338 @@
+{
+  "generated_at": "2026-06-19T11:42:05.066945+00:00",
+  "source_candidates": "X:\\Coding\\Statbirt\\data\\statbirt_candidates.csv",
+  "min_train_dates": 30,
+  "overview": {
+    "candidate_rows": 71733,
+    "labeled_decisions": 64482,
+    "labeled_dates": 270,
+    "date_min": "2025-03-18",
+    "date_max": "2026-06-18",
+    "overall_hit_rate": 0.5655997022424862,
+    "by_year": {
+      "2025": {
+        "decisions": 43707,
+        "hits": 24835,
+        "misses": 18872,
+        "hit_rate": 0.568215617635619
+      },
+      "2026": {
+        "decisions": 20775,
+        "hits": 11636,
+        "misses": 9139,
+        "hit_rate": 0.5600962695547533
+      }
+    }
+  },
+  "best_top1_strategy": {
+    "strategy": "wf_top5_safety_blend",
+    "label": "Top-5 safety blend",
+    "description": "Take the model top 5, then rerank by opportunity/contact safety factors.",
+    "top1_decisions": 229,
+    "top1_hits": 184,
+    "top1_misses": 45,
+    "top1_hit_rate": 0.8034934497816594,
+    "top1_max_streak": 16,
+    "top2_decisions": 222,
+    "top2_any_hits": 212,
+    "top2_any_hit_rate": 0.954954954954955,
+    "top2_any_max_streak": 72,
+    "top2_both_hits": 145,
+    "top2_both_hit_rate": 0.6531531531531531,
+    "ungraded_top1": 11,
+    "by_year": {
+      "2025": {
+        "top1_decisions": 153,
+        "top1_wins": 118,
+        "top1_hit_rate": 0.7712418300653595
+      },
+      "2026": {
+        "top1_decisions": 76,
+        "top1_wins": 66,
+        "top1_hit_rate": 0.868421052631579
+      }
+    }
+  },
+  "best_top2_strategy": {
+    "strategy": "wf_probability_top",
+    "label": "Walk-forward probability top",
+    "description": "Select the highest probability hitter from the walk-forward opportunity/contact model.",
+    "top1_decisions": 231,
+    "top1_hits": 183,
+    "top1_misses": 48,
+    "top1_hit_rate": 0.7922077922077922,
+    "top1_max_streak": 16,
+    "top2_decisions": 222,
+    "top2_any_hits": 217,
+    "top2_any_hit_rate": 0.9774774774774775,
+    "top2_any_max_streak": 70,
+    "top2_both_hits": 127,
+    "top2_both_hit_rate": 0.5720720720720721,
+    "ungraded_top1": 9,
+    "by_year": {
+      "2025": {
+        "top1_decisions": 151,
+        "top1_wins": 117,
+        "top1_hit_rate": 0.7748344370860927
+      },
+      "2026": {
+        "top1_decisions": 80,
+        "top1_wins": 66,
+        "top1_hit_rate": 0.825
+      }
+    }
+  },
+  "publisher_split": {
+    "strategy": "wf_probability_top",
+    "strategy_label": "Walk-forward probability top",
+    "top1_by_publisher": [
+      {
+        "decisions": 101,
+        "hits": 81,
+        "misses": 20,
+        "record": "81 / 101",
+        "hit_rate": 0.801980198019802,
+        "group": "Publisher"
+      },
+      {
+        "decisions": 130,
+        "hits": 102,
+        "misses": 28,
+        "record": "102 / 130",
+        "hit_rate": 0.7846153846153846,
+        "group": "Non-publisher"
+      }
+    ],
+    "top2_individual_by_publisher": [
+      {
+        "decisions": 159,
+        "hits": 121,
+        "misses": 38,
+        "record": "121 / 159",
+        "hit_rate": 0.7610062893081762,
+        "group": "Publisher picks"
+      },
+      {
+        "decisions": 285,
+        "hits": 223,
+        "misses": 62,
+        "record": "223 / 285",
+        "hit_rate": 0.7824561403508772,
+        "group": "Non-publisher picks"
+      }
+    ],
+    "top2_card_by_publisher_count": [
+      {
+        "group": "0 publishers",
+        "days": 96,
+        "any_hit_record": "94 / 96",
+        "any_hit_rate": 0.9791666666666666,
+        "both_hit_record": "58 / 96",
+        "both_hit_rate": 0.6041666666666666
+      },
+      {
+        "group": "1 publishers",
+        "days": 93,
+        "any_hit_record": "92 / 93",
+        "any_hit_rate": 0.989247311827957,
+        "both_hit_record": "55 / 93",
+        "both_hit_rate": 0.5913978494623656
+      },
+      {
+        "group": "2 publishers",
+        "days": 33,
+        "any_hit_record": "31 / 33",
+        "any_hit_rate": 0.9393939393939394,
+        "both_hit_record": "14 / 33",
+        "both_hit_rate": 0.42424242424242425
+      }
+    ],
+    "top2_card_has_publisher": [
+      {
+        "group": "At least one publisher",
+        "days": 126,
+        "any_hit_record": "123 / 126",
+        "any_hit_rate": 0.9761904761904762,
+        "both_hit_record": "69 / 126",
+        "both_hit_rate": 0.5476190476190477
+      },
+      {
+        "group": "No publishers",
+        "days": 96,
+        "any_hit_record": "94 / 96",
+        "any_hit_rate": 0.9791666666666666,
+        "both_hit_record": "58 / 96",
+        "both_hit_rate": 0.6041666666666666
+      }
+    ]
+  },
+  "strategy_summaries": [
+    {
+      "strategy": "wf_probability_top",
+      "label": "Walk-forward probability top",
+      "description": "Select the highest probability hitter from the walk-forward opportunity/contact model.",
+      "top1_decisions": 231,
+      "top1_hits": 183,
+      "top1_misses": 48,
+      "top1_hit_rate": 0.7922077922077922,
+      "top1_max_streak": 16,
+      "top2_decisions": 222,
+      "top2_any_hits": 217,
+      "top2_any_hit_rate": 0.9774774774774775,
+      "top2_any_max_streak": 70,
+      "top2_both_hits": 127,
+      "top2_both_hit_rate": 0.5720720720720721,
+      "ungraded_top1": 9,
+      "by_year": {
+        "2025": {
+          "top1_decisions": 151,
+          "top1_wins": 117,
+          "top1_hit_rate": 0.7748344370860927
+        },
+        "2026": {
+          "top1_decisions": 80,
+          "top1_wins": 66,
+          "top1_hit_rate": 0.825
+        }
+      }
+    },
+    {
+      "strategy": "wf_top5_safety_blend",
+      "label": "Top-5 safety blend",
+      "description": "Take the model top 5, then rerank by opportunity/contact safety factors.",
+      "top1_decisions": 229,
+      "top1_hits": 184,
+      "top1_misses": 45,
+      "top1_hit_rate": 0.8034934497816594,
+      "top1_max_streak": 16,
+      "top2_decisions": 222,
+      "top2_any_hits": 212,
+      "top2_any_hit_rate": 0.954954954954955,
+      "top2_any_max_streak": 72,
+      "top2_both_hits": 145,
+      "top2_both_hit_rate": 0.6531531531531531,
+      "ungraded_top1": 11,
+      "by_year": {
+        "2025": {
+          "top1_decisions": 153,
+          "top1_wins": 118,
+          "top1_hit_rate": 0.7712418300653595
+        },
+        "2026": {
+          "top1_decisions": 76,
+          "top1_wins": 66,
+          "top1_hit_rate": 0.868421052631579
+        }
+      }
+    },
+    {
+      "strategy": "wf_volume_floor",
+      "label": "Probability with volume floor",
+      "description": "Prefer hitters with PA/G >= 4.2 and expected PA >= 4.1, then sort by walk-forward probability.",
+      "top1_decisions": 228,
+      "top1_hits": 182,
+      "top1_misses": 46,
+      "top1_hit_rate": 0.7982456140350878,
+      "top1_max_streak": 16,
+      "top2_decisions": 220,
+      "top2_any_hits": 209,
+      "top2_any_hit_rate": 0.95,
+      "top2_any_max_streak": 69,
+      "top2_both_hits": 134,
+      "top2_both_hit_rate": 0.6090909090909091,
+      "ungraded_top1": 12,
+      "by_year": {
+        "2025": {
+          "top1_decisions": 150,
+          "top1_wins": 118,
+          "top1_hit_rate": 0.7866666666666666
+        },
+        "2026": {
+          "top1_decisions": 78,
+          "top1_wins": 64,
+          "top1_hit_rate": 0.8205128205128205
+        }
+      }
+    },
+    {
+      "strategy": "wf_top8_safety_floor",
+      "label": "Top-8 safety blend with floor",
+      "description": "Take the model top 8, apply PA and stop-count floors when possible, then rerank by safety.",
+      "top1_decisions": 228,
+      "top1_hits": 180,
+      "top1_misses": 48,
+      "top1_hit_rate": 0.7894736842105263,
+      "top1_max_streak": 21,
+      "top2_decisions": 213,
+      "top2_any_hits": 202,
+      "top2_any_hit_rate": 0.9483568075117371,
+      "top2_any_max_streak": 44,
+      "top2_both_hits": 140,
+      "top2_both_hit_rate": 0.6572769953051644,
+      "ungraded_top1": 12,
+      "by_year": {
+        "2025": {
+          "top1_decisions": 152,
+          "top1_wins": 117,
+          "top1_hit_rate": 0.7697368421052632
+        },
+        "2026": {
+          "top1_decisions": 76,
+          "top1_wins": 63,
+          "top1_hit_rate": 0.8289473684210527
+        }
+      }
+    },
+    {
+      "strategy": "wf_low_stop_floor",
+      "label": "Probability with volume + stop floor",
+      "description": "Apply the volume floor and require six or fewer stop valves when possible.",
+      "top1_decisions": 228,
+      "top1_hits": 178,
+      "top1_misses": 50,
+      "top1_hit_rate": 0.7807017543859649,
+      "top1_max_streak": 16,
+      "top2_decisions": 222,
+      "top2_any_hits": 209,
+      "top2_any_hit_rate": 0.9414414414414415,
+      "top2_any_max_streak": 71,
+      "top2_both_hits": 127,
+      "top2_both_hit_rate": 0.5720720720720721,
+      "ungraded_top1": 12,
+      "by_year": {
+        "2025": {
+          "top1_decisions": 150,
+          "top1_wins": 115,
+          "top1_hit_rate": 0.7666666666666667
+        },
+        "2026": {
+          "top1_decisions": 78,
+          "top1_wins": 63,
+          "top1_hit_rate": 0.8076923076923077
+        }
+      }
+    },
+    {
+      "strategy": "bob_score_volume_floor",
+      "label": "Bob score with volume floor",
+      "description": "Primary Bob score baseline after a PA volume floor.",
+      "top1_decisions": 230,
+      "top1_hits": 177,
+      "top1_misses": 53,
+      "top1_hit_rate": 0.7695652173913043,
+      "top1_max_streak": 18,
+      "top2_decisions": 224,
+      "top2_any_hits": 210,
+      "top2_any_hit_rate": 0.9375,
+      "top2_any_max_streak": 43,
+      "top2_both_hits": 121,
+      "top2_both_hit_rate": 0.5401785714285714,
+      "ungraded_top1": 10,
+      "by_year": {
+        "2025": {
+          "top1_decisions": 152,
+          "top1_wins": 123,
+          "top1_hit_rate": 0.8092105263157895
+        },
+        "2026": {
+          "top1_decisions": 78,
+          "top1_wins": 54,
+          "top1_hit_rate": 0.6923076923076923
+        }
+      }
+    }
+  ],
+  "score_ranges": [
+    {
+      "score_range": "<= 50",
+      "decisions": 50310,
+      "hits": 27266,
+      "misses": 23044,
+      "hit_rate": 0.5419598489365931,
+      "avg_score": 38.88511647783741,
+      "pickable_rate": 3.975352812562115e-05,
+      "publisher_rate": 0.04082687338501292,
+      "avg_stop_count": 9.270264360962035
+    },
+    {
+      "score_range": "50-55",
+      "decisions": 7783,
+      "hits": 4889,
+      "misses": 2894,
+      "hit_rate": 0.628163947064114,
+      "avg_score": 52.287376333033535,
+      "pickable_rate": 0.0015418219195682899,
+      "publisher_rate": 0.12398817936528331,
+      "avg_stop_count": 6.609405113709367
+    },
+    {
+      "score_range": "55-60",
+      "decisions": 4102,
+      "hits": 2693,
+      "misses": 1409,
+      "hit_rate": 0.6565090199902487,
+      "avg_score": 57.19201365187714,
+      "pickable_rate": 0.006094588005850805,
+      "publisher_rate": 0.16772306192101413,
+      "avg_stop_count": 5.8015602145294976
+    },
+    {
+      "score_range": "60-65",
+      "decisions": 1634,
+      "hits": 1147,
+      "misses": 487,
+      "hit_rate": 0.7019583843329253,
+      "avg_score": 62.06780905752753,
+      "pickable_rate": 0.01835985312117503,
+      "publisher_rate": 0.1988984088127295,
+      "avg_stop_count": 5.0195838433292534
+    },
+    {
+      "score_range": "65-70",
+      "decisions": 502,
+      "hits": 371,
+      "misses": 131,
+      "hit_rate": 0.7390438247011952,
+      "avg_score": 66.96880478087648,
+      "pickable_rate": 0.035856573705179286,
+      "publisher_rate": 0.300796812749004,
+      "avg_stop_count": 4.51593625498008
+    },
+    {
+      "score_range": "70-75",
+      "decisions": 128,
+      "hits": 87,
+      "misses": 41,
+      "hit_rate": 0.6796875,
+      "avg_score": 71.82007812500001,
+      "pickable_rate": 0.078125,
+      "publisher_rate": 0.421875,
+      "avg_stop_count": 3.7890625
+    },
+    {
+      "score_range": "75-80",
+      "decisions": 21,
+      "hits": 16,
+      "misses": 5,
+      "hit_rate": 0.7619047619047619,
+      "avg_score": 76.44238095238094,
+      "pickable_rate": 0.09523809523809523,
+      "publisher_rate": 0.38095238095238093,
+      "avg_stop_count": 3.4761904761904763
+    },
+    {
+      "score_range": ">= 80",
+      "decisions": 2,
+      "hits": 2,
+      "misses": 0,
+      "hit_rate": 1.0,
+      "avg_score": 80.63,
+      "pickable_rate": 0.0,
+      "publisher_rate": 0.0,
+      "avg_stop_count": 5.5
+    }
+  ],
+  "binary_factors": [
+    {
+      "factor": "Pickable",
+      "yes_decisions": 99,
+      "yes_hits": 72,
+      "yes_hit_rate": 0.7272727272727273,
+      "no_decisions": 64383,
+      "no_hits": 36399,
+      "no_hit_rate": 0.5653511019989749,
+      "edge_vs_no": 0.16192162527375242
+    },
+    {
+      "factor": "No stop valves",
+      "yes_decisions": 99,
+      "yes_hits": 72,
+      "yes_hit_rate": 0.7272727272727273,
+      "no_decisions": 64383,
+      "no_hits": 36399,
+      "no_hit_rate": 0.5653511019989749,
+      "edge_vs_no": 0.16192162527375242
+    },
+    {
+      "factor": "Publisher / congregation",
+      "yes_decisions": 4245,
+      "yes_hits": 2977,
+      "yes_hit_rate": 0.7012956419316844,
+      "no_decisions": 60237,
+      "no_hits": 33494,
+      "no_hit_rate": 0.5560369872337599,
+      "edge_vs_no": 0.14525865469792443
+    },
+    {
+      "factor": "Volume floor (PA/G and expected PA)",
+      "yes_decisions": 13778,
+      "yes_hits": 9077,
+      "yes_hit_rate": 0.6588038902598345,
+      "no_decisions": 50704,
+      "no_hits": 27394,
+      "no_hit_rate": 0.5402729567686968,
+      "edge_vs_no": 0.11853093349113775
+    },
+    {
+      "factor": "K rate <= 20%",
+      "yes_decisions": 23035,
+      "yes_hits": 13970,
+      "yes_hit_rate": 0.6064684176253528,
+      "no_decisions": 41447,
+      "no_hits": 22501,
+      "no_hit_rate": 0.542886095495452,
+      "edge_vs_no": 0.06358232212990078
+    },
+    {
+      "factor": "Season BA >= .275",
+      "yes_decisions": 16338,
+      "yes_hits": 9956,
+      "yes_hit_rate": 0.609376912718815,
+      "no_decisions": 48144,
+      "no_hits": 26515,
+      "no_hit_rate": 0.550743602525756,
+      "edge_vs_no": 0.05863331019305895
+    },
+    {
+      "factor": "H2H 3+ PA",
+      "yes_decisions": 27765,
+      "yes_hits": 16587,
+      "yes_hit_rate": 0.5974068071312804,
+      "no_decisions": 36717,
+      "no_hits": 19884,
+      "no_hit_rate": 0.5415475120516382,
+      "edge_vs_no": 0.05585929507964216
+    },
+    {
+      "factor": "H2H seen starter",
+      "yes_decisions": 37680,
+      "yes_hits": 22105,
+      "yes_hit_rate": 0.5866507430997877,
+      "no_decisions": 26802,
+      "no_hits": 14366,
+      "no_hit_rate": 0.5360047757630028,
+      "edge_vs_no": 0.05064596733678495
+    },
+    {
+      "factor": "Hot .400+ last 5",
+      "yes_decisions": 5888,
+      "yes_hits": 3534,
+      "yes_hit_rate": 0.600203804347826,
+      "no_decisions": 58594,
+      "no_hits": 32937,
+      "no_hit_rate": 0.5621224016110865,
+      "edge_vs_no": 0.038081402736739545
+    },
+    {
+      "factor": "Season BA >= .300",
+      "yes_decisions": 7340,
+      "yes_hits": 4332,
+      "yes_hit_rate": 0.5901907356948229,
+      "no_decisions": 57142,
+      "no_hits": 32139,
+      "no_hit_rate": 0.5624409366140493,
+      "edge_vs_no": 0.027749799080773685
+    },
+    {
+      "factor": "Confirmed lineup",
+      "yes_decisions": 52636,
+      "yes_hits": 29935,
+      "yes_hit_rate": 0.5687172277528687,
+      "no_decisions": 11846,
+      "no_hits": 6536,
+      "no_hit_rate": 0.5517474252912375,
+      "edge_vs_no": 0.016969802461631156
+    },
+    {
+      "factor": "Road game",
+      "yes_decisions": 32241,
+      "yes_hits": 18307,
+      "yes_hit_rate": 0.5678173753915822,
+      "no_decisions": 32241,
+      "no_hits": 18164,
+      "no_hit_rate": 0.5633820290933904,
+      "edge_vs_no": 0.004435346298191756
+    },
+    {
+      "factor": "Division matchup",
+      "yes_decisions": 20037,
+      "yes_hits": 11284,
+      "yes_hit_rate": 0.5631581574087937,
+      "no_decisions": 44445,
+      "no_hits": 25187,
+      "no_hit_rate": 0.566700416244797,
+      "edge_vs_no": -0.0035422588360032314
+    },
+    {
+      "factor": "Doubleheader",
+      "yes_decisions": 1316,
+      "yes_hits": 744,
+      "yes_hit_rate": 0.5653495440729484,
+      "no_decisions": 63166,
+      "no_hits": 35727,
+      "no_hit_rate": 0.5656049140360321,
+      "edge_vs_no": -0.00025536996308372917
+    }
+  ],
+  "numeric_features": [
+    {
+      "feature": "hitter_split_pa_season_vs_lhp",
+      "decisions": 702,
+      "correlation": 0.13280388930552395,
+      "bottom_quintile_decisions": 142,
+      "bottom_quintile_hit_rate": 0.4507042253521127,
+      "top_quintile_decisions": 140,
+      "top_quintile_hit_rate": 0.6857142857142857,
+      "top_minus_bottom": 0.23501006036217303
+    },
+    {
+      "feature": "hitter_pa_per_game_season",
+      "decisions": 63891,
+      "correlation": 0.16937618726014878,
+      "bottom_quintile_decisions": 12957,
+      "bottom_quintile_hit_rate": 0.42756810990198346,
+      "top_quintile_decisions": 12521,
+      "top_quintile_hit_rate": 0.6543407076112132,
+      "top_minus_bottom": 0.22677259770922975
+    },
+    {
+      "feature": "hitter_last_5_games_ab",
+      "decisions": 63891,
+      "correlation": 0.13842709633686184,
+      "bottom_quintile_decisions": 16543,
+      "bottom_quintile_hit_rate": 0.4609200265973524,
+      "top_quintile_decisions": 7434,
+      "top_quintile_hit_rate": 0.6462200699488835,
+      "top_minus_bottom": 0.1853000433515311
+    },
+    {
+      "feature": "score",
+      "decisions": 64482,
+      "correlation": 0.13043900903608405,
+      "bottom_quintile_decisions": 12915,
+      "bottom_quintile_hit_rate": 0.47286101432442895,
+      "top_quintile_decisions": 12894,
+      "top_quintile_hit_rate": 0.655110904296572,
+      "top_minus_bottom": 0.1822498899721431
+    },
+    {
+      "feature": "hitter_ba_500_ab",
+      "decisions": 64317,
+      "correlation": 0.10921126741526639,
+      "bottom_quintile_decisions": 13195,
+      "bottom_quintile_hit_rate": 0.4732853353543009,
+      "top_quintile_decisions": 12741,
+      "top_quintile_hit_rate": 0.6417078722235303,
+      "top_minus_bottom": 0.16842253686922942
+    },
+    {
+      "feature": "hitter_ba_2500_ab",
+      "decisions": 64317,
+      "correlation": 0.10431020905006624,
+      "bottom_quintile_decisions": 13259,
+      "bottom_quintile_hit_rate": 0.4795987631043065,
+      "top_quintile_decisions": 12405,
+      "top_quintile_hit_rate": 0.6401451027811367,
+      "top_minus_bottom": 0.16054633967683019
+    },
+    {
+      "feature": "hitter_hipa_500_pa",
+      "decisions": 64317,
+      "correlation": 0.10373328277949517,
+      "bottom_quintile_decisions": 12906,
+      "bottom_quintile_hit_rate": 0.4779172477917248,
+      "top_quintile_decisions": 12342,
+      "top_quintile_hit_rate": 0.6350672500405121,
+      "top_minus_bottom": 0.15715000224878733
+    },
+    {
+      "feature": "hitter_hipa_2500_pa",
+      "decisions": 64317,
+      "correlation": 0.09992624879466354,
+      "bottom_quintile_decisions": 12925,
+      "bottom_quintile_hit_rate": 0.48,
+      "top_quintile_decisions": 12415,
+      "top_quintile_hit_rate": 0.6367297623842126,
+      "top_minus_bottom": 0.15672976238421266
+    },
+    {
+      "feature": "hitter_split_ba_500_vs_rhp",
+      "decisions": 64361,
+      "correlation": 0.09443907311198313,
+      "bottom_quintile_decisions": 12947,
+      "bottom_quintile_hit_rate": 0.473623233181432,
+      "top_quintile_decisions": 12117,
+      "top_quintile_hit_rate": 0.6288685318148056,
+      "top_minus_bottom": 0.1552452986333736
+    },
+    {
+      "feature": "hitter_split_ba_1500_vs_rhp",
+      "decisions": 64361,
+      "correlation": 0.09462498161743829,
+      "bottom_quintile_decisions": 12912,
+      "bottom_quintile_hit_rate": 0.4714993804213135,
+      "top_quintile_decisions": 12596,
+      "top_quintile_hit_rate": 0.626468720228644,
+      "top_minus_bottom": 0.15496933980733046
+    },
+    {
+      "feature": "lineup_slot",
+      "decisions": 64482,
+      "correlation": -0.10300379003651676,
+      "bottom_quintile_decisions": 13362,
+      "bottom_quintile_hit_rate": 0.6281245322556503,
+      "top_quintile_decisions": 7050,
+      "top_quintile_hit_rate": 0.47319148936170213,
+      "top_minus_bottom": -0.15493304289394821
+    },
+    {
+      "feature": "hitter_last_5_games_hits",
+      "decisions": 63891,
+      "correlation": 0.10360137985682251,
+      "bottom_quintile_decisions": 16157,
+      "bottom_quintile_hit_rate": 0.4941511419199109,
+      "top_quintile_decisions": 8456,
+      "top_quintile_hit_rate": 0.6377719962157048,
+      "top_minus_bottom": 0.1436208542957939
+    },
+    {
+      "feature": "hitter_split_pa_season_vs_rhp",
+      "decisions": 706,
+      "correlation": 0.13190377535542352,
+      "bottom_quintile_decisions": 145,
+      "bottom_quintile_hit_rate": 0.503448275862069,
+      "top_quintile_decisions": 138,
+      "top_quintile_hit_rate": 0.644927536231884,
+      "top_minus_bottom": 0.14147926036981506
+    },
+    {
+      "feature": "expected_pa",
+      "decisions": 64482,
+      "correlation": 0.10239535436540127,
+      "bottom_quintile_decisions": 13753,
+      "bottom_quintile_hit_rate": 0.49058387260961245,
+      "top_quintile_decisions": 6631,
+      "top_quintile_hit_rate": 0.6306741064696124,
+      "top_minus_bottom": 0.14009023385999997
+    },
+    {
+      "feature": "hitter_hipa_75_ab",
+      "decisions": 64317,
+      "correlation": 0.08785737606567269,
+      "bottom_quintile_decisions": 12923,
+      "bottom_quintile_hit_rate": 0.4977946297299389,
+      "top_quintile_decisions": 12399,
+      "top_quintile_hit_rate": 0.6245664972981692,
+      "top_minus_bottom": 0.12677186756823028
+    },
+    {
+      "feature": "inferred_pitch_type_ba",
+      "decisions": 63475,
+      "correlation": 0.07417482531608445,
+      "bottom_quintile_decisions": 12875,
+      "bottom_quintile_hit_rate": 0.4855922330097087,
+      "top_quintile_decisions": 12523,
+      "top_quintile_hit_rate": 0.6084005430008784,
+      "top_minus_bottom": 0.1228083099911697
+    },
+    {
+      "feature": "hitter_ba_75_ab",
+      "decisions": 64317,
+      "correlation": 0.09095760870594051,
+      "bottom_quintile_decisions": 17065,
+      "bottom_quintile_hit_rate": 0.5067096396132434,
+      "top_quintile_decisions": 9644,
+      "top_quintile_hit_rate": 0.6291995022812111,
+      "top_minus_bottom": 0.12248986266796769
+    },
+    {
+      "feature": "hitter_k_rate_500_pa",
+      "decisions": 64376,
+      "correlation": -0.0810679237538245,
+      "bottom_quintile_decisions": 13416,
+      "bottom_quintile_hit_rate": 0.6207513416815742,
+      "top_quintile_decisions": 12795,
+      "top_quintile_hit_rate": 0.5044939429464634,
+      "top_minus_bottom": -0.11625739873511076
+    },
+    {
+      "feature": "hitter_ba_season",
+      "decisions": 63375,
+      "correlation": 0.06964932787183743,
+      "bottom_quintile_decisions": 12789,
+      "bottom_quintile_hit_rate": 0.4912033779028853,
+      "top_quintile_decisions": 12341,
+      "top_quintile_hit_rate": 0.603516732841747,
+      "top_minus_bottom": 0.11231335493886169
+    },
+    {
+      "feature": "hitter_split_ba_season_vs_rhp",
+      "decisions": 706,
+      "correlation": 0.05972541882496414,
+      "bottom_quintile_decisions": 145,
+      "bottom_quintile_hit_rate": 0.5379310344827586,
+      "top_quintile_decisions": 140,
+      "top_quintile_hit_rate": 0.6428571428571429,
+      "top_minus_bottom": 0.10492610837438432
+    },
+    {
+      "feature": "hitter_split_ba_1500_vs_lhp",
+      "decisions": 64252,
+      "correlation": 0.05959782521776721,
+      "bottom_quintile_decisions": 13192,
+      "bottom_quintile_hit_rate": 0.5015918738629472,
+      "top_quintile_decisions": 12690,
+      "top_quintile_hit_rate": 0.6023640661938534,
+      "top_minus_bottom": 0.10077219233090617
+    },
+    {
+      "feature": "hitter_split_ba_500_vs_lhp",
+      "decisions": 64252,
+      "correlation": 0.05959919359398603,
+      "bottom_quintile_decisions": 13192,
+      "bottom_quintile_hit_rate": 0.5015918738629472,
+      "top_quintile_decisions": 12689,
+      "top_quintile_hit_rate": 0.6023327291354716,
+      "top_minus_bottom": 0.10074085527252441
+    },
+    {
+      "feature": "inferred_pitch_type_xba",
+      "decisions": 63255,
+      "correlation": 0.053858789239351584,
+      "bottom_quintile_decisions": 12672,
+      "bottom_quintile_hit_rate": 0.4969223484848485,
+      "top_quintile_decisions": 12605,
+      "top_quintile_hit_rate": 0.5941293137643792,
+      "top_minus_bottom": 0.09720696527953065
+    },
+    {
+      "feature": "hitter_k_rate_season",
+      "decisions": 63846,
+      "correlation": -0.06657014315433499,
+      "bottom_quintile_decisions": 12826,
+      "bottom_quintile_hit_rate": 0.6023701855605801,
+      "top_quintile_decisions": 12616,
+      "top_quintile_hit_rate": 0.5068167406467977,
+      "top_minus_bottom": -0.09555344491378237
+    },
+    {
+      "feature": "pitcher_hpi_season",
+      "decisions": 63842,
+      "correlation": 0.06865258152101718,
+      "bottom_quintile_decisions": 12884,
+      "bottom_quintile_hit_rate": 0.5215771499534306,
+      "top_quintile_decisions": 12733,
+      "top_quintile_hit_rate": 0.6147019555485745,
+      "top_minus_bottom": 0.09312480559514391
+    },
+    {
+      "feature": "pitcher_last_start_walks",
+      "decisions": 677,
+      "correlation": -0.06633240841038777,
+      "bottom_quintile_decisions": 317,
+      "bottom_quintile_hit_rate": 0.6403785488958991,
+      "top_quintile_decisions": 51,
+      "top_quintile_hit_rate": 0.5490196078431373,
+      "top_minus_bottom": -0.09135894105276177
+    },
+    {
+      "feature": "hitter_ba_25_ab",
+      "decisions": 64317,
+      "correlation": 0.06351679704669304,
+      "bottom_quintile_decisions": 16610,
+      "bottom_quintile_hit_rate": 0.5270319084888622,
+      "top_quintile_decisions": 8691,
+      "top_quintile_hit_rate": 0.6171901967552641,
+      "top_minus_bottom": 0.09015828826640193
+    },
+    {
+      "feature": "pitcher_last_start_hits",
+      "decisions": 677,
+      "correlation": 0.04715673470863413,
+      "bottom_quintile_decisions": 265,
+      "bottom_quintile_hit_rate": 0.6,
+      "top_quintile_decisions": 83,
+      "top_quintile_hit_rate": 0.6867469879518072,
+      "top_minus_bottom": 0.08674698795180724
+    },
+    {
+      "feature": "hitter_last_5_games_ba",
+      "decisions": 63876,
+      "correlation": 0.057545303496780546,
+      "bottom_quintile_decisions": 13016,
+      "bottom_quintile_hit_rate": 0.516979102642901,
+      "top_quintile_decisions": 11540,
+      "top_quintile_hit_rate": 0.6022530329289428,
+      "top_minus_bottom": 0.0852739302860418
+    },
+    {
+      "feature": "hitter_whiff_rate_500_pa",
+      "decisions": 64376,
+      "correlation": -0.05613205758879512,
+      "bottom_quintile_decisions": 12905,
+      "bottom_quintile_hit_rate": 0.6065865943432778,
+      "top_quintile_decisions": 12836,
+      "top_quintile_hit_rate": 0.5345902150202555,
+      "top_minus_bottom": -0.07199637932302227
+    },
+    {
+      "feature": "pitcher_last_start_ip",
+      "decisions": 677,
+      "correlation": -0.029482213906712285,
+      "bottom_quintile_decisions": 159,
+      "bottom_quintile_hit_rate": 0.6352201257861635,
+      "top_quintile_decisions": 75,
+      "top_quintile_hit_rate": 0.5733333333333334,
+      "top_minus_bottom": -0.06188679245283013
+    },
+    {
+      "feature": "hitter_whiff_rate_season",
+      "decisions": 63839,
+      "correlation": -0.04687584789598239,
+      "bottom_quintile_decisions": 12776,
+      "bottom_quintile_hit_rate": 0.5907952410770194,
+      "top_quintile_decisions": 12566,
+      "top_quintile_hit_rate": 0.5297628521406971,
+      "top_minus_bottom": -0.061032388936322346
+    },
+    {
+      "feature": "hitter_split_ba_season_vs_lhp",
+      "decisions": 702,
+      "correlation": 0.05364375409598087,
+      "bottom_quintile_decisions": 151,
+      "bottom_quintile_hit_rate": 0.5562913907284768,
+      "top_quintile_decisions": 133,
+      "top_quintile_hit_rate": 0.6165413533834586,
+      "top_minus_bottom": 0.06024996265498184
+    },
+    {
+      "feature": "h2h_hits",
+      "decisions": 64482,
+      "correlation": 0.04778065565611391,
+      "bottom_quintile_decisions": 57109,
+      "bottom_quintile_hit_rate": 0.5587910837171024,
+      "top_quintile_decisions": 7373,
+      "top_quintile_hit_rate": 0.6183371761833718,
+      "top_minus_bottom": 0.05954609246626941
+    },
+    {
+      "feature": "pitcher_lr_opp_ba",
+      "decisions": 63706,
+      "correlation": 0.036750027893391296,
+      "bottom_quintile_decisions": 13012,
+      "bottom_quintile_hit_rate": 0.5388871810636335,
+      "top_quintile_decisions": 12522,
+      "top_quintile_hit_rate": 0.5955917585050311,
+      "top_minus_bottom": 0.05670457744139756
+    },
+    {
+      "feature": "h2h_pa",
+      "decisions": 64482,
+      "correlation": 0.044243541968886614,
+      "bottom_quintile_decisions": 43330,
+      "bottom_quintile_hit_rate": 0.5489960766212786,
+      "top_quintile_decisions": 12439,
+      "top_quintile_hit_rate": 0.6051129512018651,
+      "top_minus_bottom": 0.05611687458058656
+    },
+    {
+      "feature": "pitcher_lr_opp_ba_200",
+      "decisions": 63706,
+      "correlation": 0.033990163309974675,
+      "bottom_quintile_decisions": 13026,
+      "bottom_quintile_hit_rate": 0.5398433901427914,
+      "top_quintile_decisions": 12407,
+      "top_quintile_hit_rate": 0.5938583057951157,
+      "top_minus_bottom": 0.0540149156523243
+    },
+    {
+      "feature": "pitcher_hpi_350",
+      "decisions": 63587,
+      "correlation": 0.030300019974973353,
+      "bottom_quintile_decisions": 12821,
+      "bottom_quintile_hit_rate": 0.5381795491771313,
+      "top_quintile_decisions": 12656,
+      "top_quintile_hit_rate": 0.5889696586599241,
+      "top_minus_bottom": 0.05079010948279283
+    },
+    {
+      "feature": "pitcher_hpi_200",
+      "decisions": 63587,
+      "correlation": 0.0306385917529342,
+      "bottom_quintile_decisions": 12814,
+      "bottom_quintile_hit_rate": 0.5398782581551428,
+      "top_quintile_decisions": 12707,
+      "top_quintile_hit_rate": 0.5884158337923979,
+      "top_minus_bottom": 0.04853757563725514
+    },
+    {
+      "feature": "pitcher_lr_opp_ba_50",
+      "decisions": 63706,
+      "correlation": 0.02903900637550996,
+      "bottom_quintile_decisions": 13096,
+      "bottom_quintile_hit_rate": 0.5419211973121564,
+      "top_quintile_decisions": 12425,
+      "top_quintile_hit_rate": 0.5882494969818913,
+      "top_minus_bottom": 0.04632829966973495
+    },
+    {
+      "feature": "park_hit_factor",
+      "decisions": 60854,
+      "correlation": 0.038983428796647915,
+      "bottom_quintile_decisions": 12175,
+      "bottom_quintile_hit_rate": 0.5484188911704312,
+      "top_quintile_decisions": 11367,
+      "top_quintile_hit_rate": 0.5927685405120084,
+      "top_minus_bottom": 0.04434964934157726
+    },
+    {
+      "feature": "pitcher_stuff_plus",
+      "decisions": 54557,
+      "correlation": -0.029175475420567178,
+      "bottom_quintile_decisions": 12577,
+      "bottom_quintile_hit_rate": 0.5836049932416315,
+      "top_quintile_decisions": 10906,
+      "top_quintile_hit_rate": 0.5419035393361452,
+      "top_minus_bottom": -0.041701453905486296
+    },
+    {
+      "feature": "h2h_k_rate",
+      "decisions": 37682,
+      "correlation": -0.029196195273922275,
+      "bottom_quintile_decisions": 15137,
+      "bottom_quintile_hit_rate": 0.593380458479223,
+      "top_quintile_decisions": 7200,
+      "top_quintile_hit_rate": 0.5555555555555556,
+      "top_minus_bottom": -0.03782490292366747
+    },
+    {
+      "feature": "h2h_hit_rate",
+      "decisions": 37682,
+      "correlation": 0.026316691969120495,
+      "bottom_quintile_decisions": 15075,
+      "bottom_quintile_hit_rate": 0.5629850746268656,
+      "top_quintile_decisions": 7521,
+      "top_quintile_hit_rate": 0.5948677037627975,
+      "top_minus_bottom": 0.03188262913593187
+    },
+    {
+      "feature": "h2h_whiff_rate",
+      "decisions": 37486,
+      "correlation": -0.020157929788227898,
+      "bottom_quintile_decisions": 14999,
+      "bottom_quintile_hit_rate": 0.5923728248549903,
+      "top_quintile_decisions": 7382,
+      "top_quintile_hit_rate": 0.5610945543213222,
+      "top_minus_bottom": -0.03127827053366816
+    },
+    {
+      "feature": "pitcher_hits_last_18_ip",
+      "decisions": 64037,
+      "correlation": 0.015998983331715993,
+      "bottom_quintile_decisions": 15415,
+      "bottom_quintile_hit_rate": 0.5523840415180019,
+      "top_quintile_decisions": 10001,
+      "top_quintile_hit_rate": 0.5808419158084192,
+      "top_minus_bottom": 0.02845787429041724
+    },
+    {
+      "feature": "h2h_xba",
+      "decisions": 33134,
+      "correlation": 0.018679280442221703,
+      "bottom_quintile_decisions": 6633,
+      "bottom_quintile_hit_rate": 0.5777174732398613,
+      "top_quintile_decisions": 6611,
+      "top_quintile_hit_rate": 0.6029345031008925,
+      "top_minus_bottom": 0.025217029861031137
+    },
+    {
+      "feature": "hitter_bb_rate_season",
+      "decisions": 63846,
+      "correlation": 0.011078849155201348,
+      "bottom_quintile_decisions": 13062,
+      "bottom_quintile_hit_rate": 0.5448629612616751,
+      "top_quintile_decisions": 12590,
+      "top_quintile_hit_rate": 0.5687847498014297,
+      "top_minus_bottom": 0.023921788539754574
+    },
+    {
+      "feature": "h2h_exit_velocity",
+      "decisions": 34668,
+      "correlation": 0.018277954799874364,
+      "bottom_quintile_decisions": 7013,
+      "bottom_quintile_hit_rate": 0.5700841294738344,
+      "top_quintile_decisions": 6816,
+      "top_quintile_hit_rate": 0.5903755868544601,
+      "top_minus_bottom": 0.020291457380625766
+    },
+    {
+      "feature": "pitcher_last_start_strikeouts",
+      "decisions": 677,
+      "correlation": -0.013078940534670484,
+      "bottom_quintile_decisions": 218,
+      "bottom_quintile_hit_rate": 0.6100917431192661,
+      "top_quintile_decisions": 66,
+      "top_quintile_hit_rate": 0.5909090909090909,
+      "top_minus_bottom": -0.019182652210175122
+    },
+    {
+      "feature": "bullpen_hpi",
+      "decisions": 64194,
+      "correlation": 0.006382904591294875,
+      "bottom_quintile_decisions": 12995,
+      "bottom_quintile_hit_rate": 0.557291265871489,
+      "top_quintile_decisions": 12746,
+      "top_quintile_hit_rate": 0.5758669386474188,
+      "top_minus_bottom": 0.018575672775929752
+    },
+    {
+      "feature": "hitter_bb_rate_500_pa",
+      "decisions": 64376,
+      "correlation": 0.01854665472502022,
+      "bottom_quintile_decisions": 13735,
+      "bottom_quintile_hit_rate": 0.5568984346559883,
+      "top_quintile_decisions": 12806,
+      "top_quintile_hit_rate": 0.5737935342808058,
+      "top_minus_bottom": 0.0168950996248175
+    },
+    {
+      "feature": "bullpen_opp_ba",
+      "decisions": 64194,
+      "correlation": 0.007431304684971637,
+      "bottom_quintile_decisions": 13379,
+      "bottom_quintile_hit_rate": 0.5601315494431572,
+      "top_quintile_decisions": 12546,
+      "top_quintile_hit_rate": 0.5767575322812052,
+      "top_minus_bottom": 0.016625982838047948
+    },
+    {
+      "feature": "inferred_pitch_type_coverage",
+      "decisions": 64482,
+      "correlation": 0.0036131269054057555,
+      "bottom_quintile_decisions": 12968,
+      "bottom_quintile_hit_rate": 0.565314620604565,
+      "top_quintile_decisions": 12866,
+      "top_quintile_hit_rate": 0.5637338722213586,
+      "top_minus_bottom": -0.0015807483832064317
+    },
+    {
+      "feature": "sprint_speed",
+      "decisions": 62638,
+      "correlation": -0.002075081528501038,
+      "bottom_quintile_decisions": 12680,
+      "bottom_quintile_hit_rate": 0.5724763406940063,
+      "top_quintile_decisions": 12335,
+      "top_quintile_hit_rate": 0.5722740170247264,
+      "top_minus_bottom": -0.00020232366927996903
+    },
+    {
+      "feature": "starts_last_5",
+      "decisions": 64482,
+      "correlation": -0.0048782977253427565,
+      "bottom_quintile_decisions": 64482,
+      "bottom_quintile_hit_rate": 0.5655997022424862,
+      "top_quintile_decisions": 64482,
+      "top_quintile_hit_rate": 0.5655997022424862,
+      "top_minus_bottom": 0.0
+    },
+    {
+      "feature": "hitter_last_5_games_played",
+      "decisions": 64482,
+      "correlation": 0.03282019990725178,
+      "bottom_quintile_decisions": 64482,
+      "bottom_quintile_hit_rate": 0.5655997022424862,
+      "top_quintile_decisions": 64482,
+      "top_quintile_hit_rate": 0.5655997022424862,
+      "top_minus_bottom": 0.0
+    }
+  ],
+  "stop_reasons": [
+    {
+      "stop_reason": "No stop valve",
+      "decisions": 99,
+      "hits": 72,
+      "hit_rate": 0.7272727272727273,
+      "edge_vs_overall": 0.16167302503024106
+    },
+    {
+      "stop_reason": "Hitter last-500 PA BB rate over 12%",
+      "decisions": 7747,
+      "hits": 4540,
+      "hit_rate": 0.5860333032141474,
+      "edge_vs_overall": 0.020433600971661137
+    },
+    {
+      "stop_reason": "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows",
+      "decisions": 562,
+      "hits": 323,
+      "hit_rate": 0.5747330960854092,
+      "edge_vs_overall": 0.009133393842922999
+    },
+    {
+      "stop_reason": "H2H K rate over 20%",
+      "decisions": 17096,
+      "hits": 9825,
+      "hit_rate": 0.5746958352831072,
+      "edge_vs_overall": 0.009096133040620957
+    },
+    {
+      "stop_reason": "Opposing team may be using an opener",
+      "decisions": 2034,
+      "hits": 1162,
+      "hit_rate": 0.5712881022615536,
+      "edge_vs_overall": 0.005688400019067341
+    },
+    {
+      "stop_reason": "H2H whiff rate over 25%",
+      "decisions": 15260,
+      "hits": 8712,
+      "hit_rate": 0.5709043250327654,
+      "edge_vs_overall": 0.005304622790279212
+    },
+    {
+      "stop_reason": "Hitter season BB rate over 12%",
+      "decisions": 13022,
+      "hits": 7401,
+      "hit_rate": 0.5683458762094916,
+      "edge_vs_overall": 0.002746173967005383
+    },
+    {
+      "stop_reason": "Hitter is playing in a doubleheader",
+      "decisions": 1316,
+      "hits": 744,
+      "hit_rate": 0.5653495440729484,
+      "edge_vs_overall": -0.00025015816953788406
+    },
+    {
+      "stop_reason": "Starter allowed fewer than 10 hits over last 18 IP",
+      "decisions": 3446,
+      "hits": 1945,
+      "hit_rate": 0.5644225188624492,
+      "edge_vs_overall": -0.001177183380037028
+    },
+    {
+      "stop_reason": "Precipitation probability over 40%",
+      "decisions": 1088,
+      "hits": 610,
+      "hit_rate": 0.5606617647058824,
+      "edge_vs_overall": -0.004937937536603876
+    },
+    {
+      "stop_reason": "Starter Stuff+ over 95",
+      "decisions": 34663,
+      "hits": 19287,
+      "hit_rate": 0.5564146207771976,
+      "edge_vs_overall": -0.009185081465288625
+    },
+    {
+      "stop_reason": "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows",
+      "decisions": 42233,
+      "hits": 23402,
+      "hit_rate": 0.5541164492221722,
+      "edge_vs_overall": -0.011483253020314055
+    },
+    {
+      "stop_reason": "Hitter season whiff rate over 25%",
+      "decisions": 30965,
+      "hits": 17100,
+      "hit_rate": 0.5522363959308897,
+      "edge_vs_overall": -0.013363306311596546
+    },
+    {
+      "stop_reason": "Hitter is not at least .265 against both pitcher hands in 500/1500 AB windows",
+      "decisions": 54620,
+      "hits": 30160,
+      "hit_rate": 0.5521786891248627,
+      "edge_vs_overall": -0.01342101311762356
+    },
+    {
+      "stop_reason": "Hitter last-500 PA whiff rate over 25%",
+      "decisions": 33029,
+      "hits": 18200,
+      "hit_rate": 0.5510309122286475,
+      "edge_vs_overall": -0.014568790013838706
+    },
+    {
+      "stop_reason": "Starter H/IP under .875 over last 200 innings",
+      "decisions": 23233,
+      "hits": 12669,
+      "hit_rate": 0.5453019412043214,
+      "edge_vs_overall": -0.02029776103816483
+    },
+    {
+      "stop_reason": "Hitter is not at least .270 against today's pitcher hand",
+      "decisions": 46864,
+      "hits": 25434,
+      "hit_rate": 0.5427193581427108,
+      "edge_vs_overall": -0.022880344099775463
+    },
+    {
+      "stop_reason": "Hitter season PA/G under 4.2",
+      "decisions": 49740,
+      "hits": 26961,
+      "hit_rate": 0.5420386007237635,
+      "edge_vs_overall": -0.023561101518722705
+    },
+    {
+      "stop_reason": "Hitter season K rate over 22%",
+      "decisions": 31497,
+      "hits": 17056,
+      "hit_rate": 0.5415118900212719,
+      "edge_vs_overall": -0.024087812221214366
+    },
+    {
+      "stop_reason": "Hitter is below .270 over both long and last-500 AB windows",
+      "decisions": 47593,
+      "hits": 25737,
+      "hit_rate": 0.5407728027230896,
+      "edge_vs_overall": -0.02482689951939665
+    },
+    {
+      "stop_reason": "Hitter last-500 PA K rate over 22%",
+      "decisions": 34285,
+      "hits": 18481,
+      "hit_rate": 0.5390403966749308,
+      "edge_vs_overall": -0.02655930556755548
+    },
+    {
+      "stop_reason": "H2H PA below 2",
+      "decisions": 29943,
+      "hits": 16114,
+      "hit_rate": 0.5381558294092108,
+      "edge_vs_overall": -0.02744387283327543
+    },
+    {
+      "stop_reason": "Starter season H/IP under .875",
+      "decisions": 24132,
+      "hits": 12799,
+      "hit_rate": 0.5303746063318415,
+      "edge_vs_overall": -0.03522509591064471
+    },
+    {
+      "stop_reason": "Hitter BA under .150 over last 25 AB",
+      "decisions": 8260,
+      "hits": 4252,
+      "hit_rate": 0.514769975786925,
+      "edge_vs_overall": -0.050829726455561275
+    },
+    {
+      "stop_reason": "Starter's most recent start was dominant (6+ IP, 8+ K, <=3 H, <=2 BB)",
+      "decisions": 36,
+      "hits": 17,
+      "hit_rate": 0.4722222222222222,
+      "edge_vs_overall": -0.09337748002026403
+    }
+  ],
+  "report_html": "X:\\Coding\\Statbirt\\reports\\selection_strategy\\selection_strategy_report_20260619T114205Z.html",
+  "latest_html": "X:\\Coding\\Statbirt\\reports\\selection_strategy_latest.html",
+  "web_report_html": "X:\\Coding\\Statbirt\\web\\data\\selection_strategy_report.html",
+  "web_report_url": "data/selection_strategy_report.html",
+  "tables": {
+    "score_ranges_csv": "X:\\Coding\\Statbirt\\reports\\selection_strategy\\tables\\score_ranges.csv",
+    "binary_factors_csv": "X:\\Coding\\Statbirt\\reports\\selection_strategy\\tables\\binary_factors.csv",
+    "numeric_features_csv": "X:\\Coding\\Statbirt\\reports\\selection_strategy\\tables\\numeric_features.csv",
+    "stop_reasons_csv": "X:\\Coding\\Statbirt\\reports\\selection_strategy\\tables\\stop_reasons.csv",
+    "strategy_summary_csv": "X:\\Coding\\Statbirt\\reports\\selection_strategy\\tables\\strategy_summary.csv",
+    "strategy_daily_csv": "X:\\Coding\\Statbirt\\reports\\selection_strategy\\tables\\strategy_daily.csv"
+  }
+}

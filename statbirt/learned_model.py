@@ -12,6 +12,7 @@ import re
 import numpy as np
 
 from .config import DATA_DIR, DEFAULT_OUTPUT_CSV
+from .results import normalize_row_result_status
 from .utils import normalize_name, parse_float
 
 DEFAULT_MODEL_JSON = DATA_DIR / "models" / "hit_probability_model.json"
@@ -38,6 +39,7 @@ RESULT_COLUMNS = {
 }
 
 NUMERIC_COLUMNS = [
+    "score",
     "lineup_slot",
     "expected_pa",
     "starts_last_5",
@@ -72,16 +74,12 @@ NUMERIC_COLUMNS = [
     "pitcher_stuff_plus",
     "h2h_pa",
     "h2h_hit_rate",
-    "h2h_whiff_rate",
-    "h2h_k_rate",
-    "h2h_exit_velocity",
     "h2h_xba",
     "pitcher_lr_opp_ba",
     "pitcher_lr_opp_ba_50",
     "pitcher_lr_opp_ba_200",
     "inferred_pitch_type_ba",
     "inferred_pitch_type_xba",
-    "inferred_pitch_type_coverage",
     "bullpen_hpi",
     "bullpen_opp_ba",
     "sprint_speed",
@@ -96,10 +94,6 @@ BOOLEAN_COLUMNS = [
 ]
 
 CATEGORICAL_COLUMNS = [
-    "team",
-    "opponent",
-    "pitcher_hand",
-    "batter_stand",
 ]
 
 PREDICTION_FIELDS = [
@@ -119,6 +113,7 @@ PREDICTION_FIELDS = [
     "result_hits",
     "result_ab",
     "result_pa",
+    "result_status",
 ]
 
 
@@ -193,9 +188,6 @@ def build_feature_spec(
         values = sorted(value for value, count in counts.items() if count >= min_category_count)
         category_values[column] = values or ["unknown"]
 
-    stop_counts = Counter(reason for row in rows for reason in _split_pipe(row.get("hard_pass_reasons", "")))
-    stop_reasons = sorted(reason for reason, count in stop_counts.items() if count >= min_stop_reason_count)
-
     numeric_feature_names: list[str] = []
     medians: dict[str, float] = {}
     for column in NUMERIC_COLUMNS:
@@ -205,7 +197,7 @@ def build_feature_spec(
         observed = [value for value in values if value is not None]
         medians[name] = float(np.median(observed)) if observed else 0.0
 
-    for name in ("num__game_month", "num__game_day_of_week", "num__stop_valve_count", "num__concern_count"):
+    for name in ("num__game_month", "num__game_day_of_week"):
         numeric_feature_names.append(name)
         medians[name] = 0.0
 
@@ -220,15 +212,12 @@ def build_feature_spec(
     for column, values in category_values.items():
         feature_names.extend(f"cat__{column}__{_slug(value)}" for value in values)
 
-    feature_names.append("stop__has_any_stop_valve")
-    feature_names.extend(f"stop__{_slug(reason)}" for reason in stop_reasons)
-
     return {
         "numeric_columns": NUMERIC_COLUMNS,
         "boolean_columns": BOOLEAN_COLUMNS,
         "categorical_columns": CATEGORICAL_COLUMNS,
         "category_values": category_values,
-        "stop_reasons": stop_reasons,
+        "stop_reasons": [],
         "numeric_medians": medians,
         "feature_names": feature_names,
     }
@@ -248,11 +237,6 @@ def _row_feature_values(row: dict[str, str], spec: dict) -> dict[str, float]:
         feature = f"num__{name}"
         values[feature] = float(parsed) if parsed is not None else float(medians.get(feature, 0.0))
 
-    stop_reasons = set(_split_pipe(row.get("hard_pass_reasons", "")))
-    concerns = _split_pipe(row.get("concerns", ""))
-    values["num__stop_valve_count"] = float(len(stop_reasons))
-    values["num__concern_count"] = float(len(concerns))
-
     for column in spec["boolean_columns"]:
         values[f"bool__{column}"] = _bool_value(row.get(column, ""))
 
@@ -261,9 +245,6 @@ def _row_feature_values(row: dict[str, str], spec: dict) -> dict[str, float]:
         for allowed in allowed_values:
             values[f"cat__{column}__{_slug(allowed)}"] = 1.0 if current == allowed else 0.0
 
-    values["stop__has_any_stop_valve"] = 1.0 if stop_reasons else 0.0
-    for reason in spec["stop_reasons"]:
-        values[f"stop__{_slug(reason)}"] = 1.0 if reason in stop_reasons else 0.0
     return values
 
 
@@ -301,10 +282,9 @@ def _train_weights(
     l2: float,
 ) -> tuple[np.ndarray, float]:
     weights = np.zeros(x.shape[1], dtype=float)
-    intercept = 0.0
-    positives = max(float(y.sum()), 1.0)
-    negatives = max(float(len(y) - y.sum()), 1.0)
-    sample_weights = np.where(y == 1, len(y) / (2.0 * positives), len(y) / (2.0 * negatives))
+    prevalence = min(max(float(y.mean()), 1e-4), 1 - 1e-4)
+    intercept = math.log(prevalence / (1 - prevalence))
+    sample_weights = np.ones(len(y), dtype=float)
     weight_sum = float(sample_weights.sum())
 
     for step in range(iterations):
@@ -465,9 +445,9 @@ def train_model(
     model_out: str | Path = DEFAULT_MODEL_JSON,
     report_out: str | Path = DEFAULT_REPORT_JSON,
     min_rows: int = 200,
-    iterations: int = 2500,
-    learning_rate: float = 0.08,
-    l2: float = 0.01,
+    iterations: int = 340,
+    learning_rate: float = 0.055,
+    l2: float = 0.03,
 ) -> dict:
     all_rows = load_rows(candidates_csv)
     rows = labeled_rows(all_rows)
@@ -486,7 +466,7 @@ def train_model(
     model.update(
         {
             "model_type": "standardized_l2_logistic_regression",
-            "model_version": f"learned-logistic-v1-{trained_at.replace(':', '').replace('-', '')}",
+            "model_version": f"learned-logistic-v2-{trained_at.replace(':', '').replace('-', '')}",
             "trained_at": trained_at,
             "candidates_csv": str(Path(candidates_csv).resolve()),
             "training_rows": len(rows),
@@ -497,6 +477,8 @@ def train_model(
                 "learning_rate": learning_rate,
                 "l2": l2,
                 "min_rows": min_rows,
+                "class_weighting": "none",
+                "feature_profile": "opportunity_contact_without_stop_features",
             },
         }
     )
@@ -612,6 +594,7 @@ def score_candidates(
                 "result_hits": row.get("result_hits", ""),
                 "result_ab": row.get("result_ab", ""),
                 "result_pa": row.get("result_pa", ""),
+                "result_status": normalize_row_result_status(row),
             }
         )
 
@@ -682,9 +665,9 @@ def parse_args():
     train.add_argument("--model-out", default=str(DEFAULT_MODEL_JSON))
     train.add_argument("--report-out", default=str(DEFAULT_REPORT_JSON))
     train.add_argument("--min-rows", type=int, default=200)
-    train.add_argument("--iterations", type=int, default=2500)
-    train.add_argument("--learning-rate", type=float, default=0.08)
-    train.add_argument("--l2", type=float, default=0.01)
+    train.add_argument("--iterations", type=int, default=340)
+    train.add_argument("--learning-rate", type=float, default=0.055)
+    train.add_argument("--l2", type=float, default=0.03)
 
     score = subparsers.add_parser("score", help="Score candidate rows with a trained model.")
     score.add_argument("--candidates", default=str(DEFAULT_OUTPUT_CSV))
@@ -701,9 +684,9 @@ def parse_args():
     run.add_argument("--predictions-out", default=str(DEFAULT_PREDICTIONS_CSV))
     run.add_argument("--date", default="latest", help="YYYY-MM-DD, latest, or all.")
     run.add_argument("--min-rows", type=int, default=200)
-    run.add_argument("--iterations", type=int, default=2500)
-    run.add_argument("--learning-rate", type=float, default=0.08)
-    run.add_argument("--l2", type=float, default=0.01)
+    run.add_argument("--iterations", type=int, default=340)
+    run.add_argument("--learning-rate", type=float, default=0.055)
+    run.add_argument("--l2", type=float, default=0.03)
     run.add_argument("--top", type=int, default=25)
 
     audit = subparsers.add_parser("audit", help="Summarize candidate/result coverage.")

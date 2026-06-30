@@ -1,0 +1,96 @@
+{
+  "date": "2026-06-29",
+  "target": "learned_rank_top_2",
+  "committee_pick": "Otto Lopez",
+  "committee_summary": "The committee pick is Otto Lopez because his one-hit path is the cleaner and more durable profile. The model already makes him the recommended single with a 78.8 selection score, 99 safety score, Publisher status, 4.6 expected plate appearances, a .332 season average, a .304 last-500 average, and only two stop valves. The public context supports the local thesis: MLB still had Colorado's starter listed as TBD during the review window, but RotoWire projected Sean Sullivan, a left-hander with an 8.25 ERA, and placed Lopez second in the expected Marlins lineup at Coors Field. Lopez also brings a high-contact profile, strong rolling averages, elite current-season split against left-handed pitching, and recent RotoWire news describing a six-game hit streak with three straight multi-hit games. Sam Antonacci is a real two-pick partner because he projects leadoff, has strong recent form, and has an excellent local pitch-type matchup against Shane Baz. The reviewer still prefers Lopez because Antonacci has more stop valves, a lower safety score, a lower selection score, no H2H, lower season PA/G, and a tougher named opposing starter than the Marlins appear likely to see in Denver.",
+  "workflow_notes": [
+    "Staged the learned model raw top 2 for the active dashboard date.",
+    "Reviewed local model context, H2H, stop valves, expected PA, lineup slot, recent form, handedness splits, starter profile, and bullpen context.",
+    "Checked current free public sources for probable pitchers, lineup status, injury/news context, venue/weather context, and public player summaries.",
+    "Used pro, con, and reviewer committee roles before choosing the single hitter."
+  ],
+  "source_notes": [
+    {
+      "label": "MLB Marlins Starting Lineups",
+      "url": "https://www.mlb.com/marlins/roster/starting-lineups",
+      "note": "Checked the official Marlins-Rockies page; today's lineups were still TBD, with Sandy Alcantara listed for Miami and Colorado's starter still TBD during review."
+    },
+    {
+      "label": "MLB White Sox Starting Lineups",
+      "url": "https://www.mlb.com/whitesox/roster/starting-lineups",
+      "note": "Checked the official White Sox-Orioles page; today's lineups were still TBD, with Sean Burke and Shane Baz listed as probable starters. Recent White Sox lineups showed Antonacci leading off."
+    },
+    {
+      "label": "MLB StatsAPI Marlins-Rockies Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/824339/feed/live",
+      "note": "Verified scheduled status, official probable-pitcher state, venue context, and that official batting orders had not posted during the review."
+    },
+    {
+      "label": "MLB StatsAPI White Sox-Orioles Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/824822/feed/live",
+      "note": "Verified scheduled status, official probable pitchers, venue context, and that official batting orders had not posted during the review."
+    },
+    {
+      "label": "RotoWire Daily Lineups",
+      "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+      "note": "Reviewed expected lineups, weather, totals, and starter intel; RotoWire projected Lopez second against Sean Sullivan and Antonacci leadoff against Shane Baz."
+    },
+    {
+      "label": "RotoWire Otto Lopez News",
+      "url": "https://www.rotowire.com/baseball/player/otto-lopez-15753",
+      "note": "Reviewed Lopez's public season line and recent news describing a six-game hit streak with three straight multi-hit games."
+    },
+    {
+      "label": "RotoWire Sam Antonacci News",
+      "url": "https://www.rotowire.com/baseball/player/sam-antonacci-19717",
+      "note": "Reviewed Antonacci's recent public form note, including multiple hits in four of his last seven starts."
+    },
+    {
+      "label": "Marlins Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/marlins-injuries-and-roster-moves",
+      "note": "Checked the official Marlins injury page; Lopez was not listed among current injury updates."
+    },
+    {
+      "label": "White Sox Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/white-sox-injuries-and-roster-moves",
+      "note": "Checked the official White Sox injury page; Antonacci was not listed among current injury updates."
+    },
+    {
+      "label": "FOX Sports White Sox-Orioles",
+      "url": "https://www.foxsports.com/mlb/chicago-white-sox-vs-baltimore-orioles-jun-29-2026-game-boxscore-95947?tab=boxscore",
+      "note": "Reviewed public matchup information for Sean Burke vs. Shane Baz and team context."
+    },
+    {
+      "label": "Baseball Savant White Sox-Orioles Preview",
+      "url": "https://baseballsavant.mlb.com/preview?game_date=06%2F29%2F2026&game_pk=824822",
+      "note": "Reviewed the available Statcast game-preview source for the Antonacci-Baz matchup."
+    },
+    {
+      "label": "Recent MLB Boxscores via StatsAPI",
+      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1",
+      "note": "Checked recent public boxscore data for bullpen workload context across Colorado, Miami, Baltimore, and Chicago."
+    }
+  ],
+  "players": [
+    {
+      "rank": 1,
+      "player": "Otto Lopez",
+      "team": "MIA",
+      "opponent": "COL",
+      "probable_pitcher": "Sean Sullivan (projected)",
+      "pro_thesis": "Otto Lopez has the best single-pick foundation today because the strengths line up across model, role, form, and park. The learned shortlist makes him the recommended single with a 78.8 selection score and a 99 safety score, and he is a Publisher with 4.6 expected plate appearances near the top third of the order. The hitter profile is exactly what the contest wants: .332 season average, .304 over the last 500 at-bats, .333 over the last 75, .320 over the last 25, only a 13.6% last-500 strikeout rate, and low whiff risk. The external context helps rather than hurts. RotoWire projects him second at Coors Field against lefty Sean Sullivan, who is listed at 0-2 with an 8.25 ERA, and Lopez's local season split against left-handed pitching is .440 over 79 plate appearances. RotoWire also notes a six-game hit streak with three straight multi-hit efforts.",
+      "con_thesis": "The con case is that the Colorado starter was still officially TBD on MLB and StatsAPI during the morning review, so the Sullivan matchup cannot be treated as fully locked. That uncertainty explains both of Lopez's stop valves: no H2H history and possible opener or unsettled pitching plan. Coors gives the best hit environment on the slate, but it also leaves room for Colorado to manage the game with a bullpen path rather than a normal starter path. Lopez also has a slightly lower learned hit probability than some recent top choices at 73.2%, and his season PA/G is only 4.25, so a confirmed lineup slot matters. If Colorado announces a materially stronger right-handed starter or Lopez slides down the order, the case would need a late adjustment.",
+      "committee_thesis": "Committee read: Lopez is the single pick because the uncertainty is outweighed by the hitter and park floor. The pro advocate has the stronger safety profile, better batting-average baseline, lower swing-and-miss risk, Publisher status, Coors environment, and likely weak starter matchup. The con advocate is right that the official TBD starter is not ideal, but that risk is still easier to live with than Antonacci's lower selection score, lower safety score, five stop valves, and tougher Shane Baz matchup. The reviewer chooses Lopez unless late official lineup or starter news sharply changes the Colorado pitching plan."
+    },
+    {
+      "rank": 2,
+      "player": "Sam Antonacci",
+      "team": "CHW",
+      "opponent": "BAL",
+      "probable_pitcher": "Shane Baz",
+      "pro_thesis": "Sam Antonacci has a credible pro case and belongs on the two-pick card. He carries a 71.9% learned hit probability, projects for 4.7 plate appearances, has been used as Chicago's leadoff hitter in recent official lineups, and owns a .292 season average with a .300 last-five mark. The contact profile is strong: roughly 15% strikeout rate, 16% whiff rate, .320 over the last 75 at-bats, and .320 over the last 25. The handedness split is also favorable for today's right-handed starter, with Antonacci hitting .324 against righties this season and .322 in the larger windows. The best matchup signal is pitch-type based: the local model shows a .478 BA and .461 xBA matchup with high coverage against Baz's shape. RotoWire's recent note also supports the form, citing multiple hits in four of his last seven starts.",
+      "con_thesis": "The con case is that Antonacci asks the committee to trust a younger, less proven profile against a tougher pitcher. He has five stop valves, no H2H history, a lower 74 safety score, and a season PA/G below the preferred threshold. Shane Baz is not a soft target even with a 4.31 ERA: the local data shows 99 Stuff+, a sub-1.00 HPI in the 200- and 350-inning windows, and a pitcher split profile that does not clearly give left-handed hitters an easy lane in both 50- and 200-inning samples. Baltimore's bullpen context is also less appealing than Colorado's, with a lower opponent average and recent multi-inning coverage available. Antonacci can hit, but he has less margin for error than Lopez.",
+      "committee_thesis": "Committee read: Antonacci is the runner-up because his plate-discipline and pitch-type case are real, but not enough to beat Lopez's total profile. The pro advocate has a strong leadoff-volume argument, and the .324 split against right-handed pitching keeps him live. The con advocate wins the single-pick comparison because Antonacci faces a named starter with bat-missing ability, carries more stop valves, and lacks the Coors/Publisher/safety-score cushion that Lopez has. The reviewer would keep Antonacci as the best second hitter, not the best single."
+    }
+  ]
+}

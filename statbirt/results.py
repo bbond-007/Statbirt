@@ -18,6 +18,19 @@ RESULT_FIELDS = [
     "notes",
 ]
 
+RESULT_STATUS_FINAL = "final"
+RESULT_STATUS_PENDING = "pending"
+RESULT_STATUS_POSTPONED = "postponed"
+RESULT_STATUS_NO_APPEARANCE = "no_appearance"
+RESULT_STATUS_UNRESOLVED = "unresolved"
+RESULT_STATUS_VALUES = {
+    RESULT_STATUS_FINAL,
+    RESULT_STATUS_PENDING,
+    RESULT_STATUS_POSTPONED,
+    RESULT_STATUS_NO_APPEARANCE,
+    RESULT_STATUS_UNRESOLVED,
+}
+
 
 def parse_results_date(value: str) -> date | None:
     return canonical_date(value)
@@ -61,7 +74,10 @@ def ensure_fieldnames(fieldnames) -> list[str]:
 
 
 def coerce_row(row: dict[str, str], fieldnames: list[str]) -> dict[str, str]:
-    return {field: "" if row.get(field) is None else str(row.get(field, "")) for field in fieldnames}
+    coerced = {field: "" if row.get(field) is None else str(row.get(field, "")) for field in fieldnames}
+    if "result_status" in coerced:
+        coerced["result_status"] = normalize_row_result_status(coerced)
+    return coerced
 
 
 def load_candidates_table(path: str | Path) -> tuple[list[dict[str, str]], list[str]]:
@@ -175,6 +191,52 @@ def is_final_status(status_text: str) -> bool:
     return any(token in status for token in ("final", "game over", "completed"))
 
 
+def is_postponed_status(status_text: str) -> bool:
+    status = (status_text or "").strip().lower()
+    return any(token in status for token in ("postponed", "cancelled", "canceled"))
+
+
+def result_status_for_game_status(status_text: str) -> str:
+    status = (status_text or "").strip()
+    if not status:
+        return ""
+    if is_postponed_status(status):
+        return RESULT_STATUS_POSTPONED
+    if is_final_status(status):
+        return RESULT_STATUS_FINAL
+    return RESULT_STATUS_PENDING
+
+
+def normalize_result_status_value(status_text: str) -> str:
+    status = (status_text or "").strip()
+    if not status:
+        return ""
+    lowered = status.lower()
+    if lowered in RESULT_STATUS_VALUES:
+        return lowered
+    if "no appearance" in lowered:
+        return RESULT_STATUS_NO_APPEARANCE
+    if "unresolved" in lowered or "unable to match" in lowered:
+        return RESULT_STATUS_UNRESOLVED
+    return result_status_for_game_status(status)
+
+
+def normalize_row_result_status(row: dict[str, str]) -> str:
+    result_hit = str(row.get("result_hit", "")).strip()
+    if result_hit in {"0", "1"}:
+        return RESULT_STATUS_FINAL
+    status = normalize_result_status_value(row.get("result_status", ""))
+    if status:
+        return status
+    has_empty_boxscore = all(
+        str(row.get(field, "")).strip() == "0"
+        for field in ("result_hits", "result_ab", "result_pa")
+    )
+    if has_empty_boxscore and str(row.get("result_updated_at", "")).strip():
+        return RESULT_STATUS_NO_APPEARANCE
+    return ""
+
+
 def _game_status(game: dict) -> str:
     status = game.get("status") or {}
     if isinstance(status, dict):
@@ -275,13 +337,18 @@ def _resolve_row_result(row: dict[str, str], final_games: list[dict]):
     return None, "No final-game player match found."
 
 
+def _set_unresolved(row: dict[str, str], note: str) -> None:
+    row["result_status"] = RESULT_STATUS_UNRESOLVED
+    append_note(row, note)
+
+
 def _mark_no_appearance(row: dict[str, str], game: dict, note: str) -> None:
     row["game_pk"] = str(game.get("game_pk") or row.get("game_pk") or "")
     row["result_hit"] = ""
     row["result_hits"] = "0"
     row["result_ab"] = "0"
     row["result_pa"] = "0"
-    row["result_status"] = f"{game.get('status') or 'Final'} - no appearance"
+    row["result_status"] = RESULT_STATUS_NO_APPEARANCE
     row["result_updated_at"] = datetime.now().isoformat(timespec="seconds")
     append_note(row, note)
 
@@ -295,7 +362,7 @@ def update_results_csv(
 ) -> dict[str, int]:
     rows, fieldnames = load_candidates_table(path)
     if not rows:
-        return {"rows": 0, "updated": 0, "pending": 0}
+        return {"rows": 0, "updated": 0, "pending": 0, "postponed": 0}
     client = MLBClient()
     today = date.today()
     rows_by_date: dict[date, list[tuple[int, dict[str, str]]]] = {}
@@ -311,6 +378,7 @@ def update_results_csv(
 
     updated = 0
     pending = 0
+    postponed = 0
     for row_date, indexed_rows in sorted(rows_by_date.items()):
         games = _load_day_games(client, row_date)
         if not games:
@@ -319,19 +387,22 @@ def update_results_csv(
             before = dict(row)
             possible_games = _candidate_games_for_row(row, games)
             if not possible_games:
-                append_note(row, "No matching scheduled game found.")
+                _set_unresolved(row, "No matching scheduled game found.")
             else:
                 final_games = [game for game in possible_games if is_final_status(game.get("status", ""))]
                 if not final_games:
-                    row["result_status"] = possible_games[0].get("status", "") or row.get("result_status", "")
-                    pending += 1
+                    row["result_status"] = result_status_for_game_status(possible_games[0].get("status", ""))
+                    if row["result_status"] == RESULT_STATUS_POSTPONED:
+                        postponed += 1
+                    else:
+                        pending += 1
                 else:
                     resolved, error = _resolve_row_result(row, final_games)
                     if resolved is None:
                         if len(final_games) == 1:
                             _mark_no_appearance(row, final_games[0], error or "No batting appearance found.")
                         else:
-                            append_note(row, error or "Unable to match final game result.")
+                            _set_unresolved(row, error or "Unable to match final game result.")
                     else:
                         game, result = resolved
                         hits = int(result.get("hits") or 0)
@@ -339,7 +410,7 @@ def update_results_csv(
                         row["result_hits"] = str(hits)
                         row["result_ab"] = str(result.get("at_bats") or 0)
                         row["result_pa"] = str(result.get("plate_appearances") or 0)
-                        row["result_status"] = game.get("status") or "Final"
+                        row["result_status"] = RESULT_STATUS_FINAL
                         row["result_updated_at"] = datetime.now().isoformat(timespec="seconds")
                         row["result_hit"] = "1" if hits > 0 else "0"
                         if not result.get("appeared"):
@@ -349,4 +420,4 @@ def update_results_csv(
                 updated += 1
     if updated and not dry_run:
         write_candidates_table(path, rows, fieldnames)
-    return {"rows": len(rows), "updated": updated, "pending": pending}
+    return {"rows": len(rows), "updated": updated, "pending": pending, "postponed": postponed}

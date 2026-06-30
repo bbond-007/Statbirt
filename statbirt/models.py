@@ -54,6 +54,7 @@ class CandidateFeatures:
     opener_risk: bool = False
     hitter_hipa_2500_pa: float | None = None
     hitter_pa_per_game_season: float | None = None
+    hitter_ba_season: float | None = None
     hitter_ba_2500_ab: float | None = None
     hitter_hipa_500_pa: float | None = None
     hitter_hipa_75_ab: float | None = None
@@ -66,6 +67,10 @@ class CandidateFeatures:
     hitter_whiff_rate_500_pa: float | None = None
     hitter_k_rate_season: float | None = None
     hitter_k_rate_500_pa: float | None = None
+    hitter_split_ba_season_vs_lhp: float | None = None
+    hitter_split_ba_season_vs_rhp: float | None = None
+    hitter_split_pa_season_vs_lhp: int | None = None
+    hitter_split_pa_season_vs_rhp: int | None = None
     hitter_split_ba_500_vs_lhp: float | None = None
     hitter_split_ba_500_vs_rhp: float | None = None
     hitter_split_ba_1500_vs_lhp: float | None = None
@@ -76,8 +81,14 @@ class CandidateFeatures:
     pitcher_hpi_200: float | None = None
     pitcher_hpi_season: float | None = None
     pitcher_hits_last_18_ip: int | None = None
+    pitcher_last_start_date: date | None = None
+    pitcher_last_start_ip: float | None = None
+    pitcher_last_start_hits: int | None = None
+    pitcher_last_start_strikeouts: int | None = None
+    pitcher_last_start_walks: int | None = None
     pitcher_stuff_plus: float | None = None
     h2h_pa: int = 0
+    h2h_hits: int = 0
     h2h_hit_rate: float | None = None
     h2h_whiff_rate: float | None = None
     h2h_k_rate: float | None = None

@@ -1,0 +1,101 @@
+{
+  "date": "2026-06-22",
+  "target": "learned_rank_top_2",
+  "committee_pick": "Brice Turang",
+  "committee_summary": "The committee pick is Brice Turang because his case has the cleaner single-hit path once current context is layered onto the model. Turang and Nico Hoerner are nearly tied by learned probability, but Turang gets the better run environment, cleaner weather, stronger probable lineup spot, and better handedness fit. He is projected third by RotoWire, has a .295 season split against right-handed pitching, a 4-for-13 H2H history against Brady Singer with a .440 xBA, and faces a starter carrying a 5.32 ERA and 1.61 WHIP. Hoerner deserves the second slot because Senga's 2026 run prevention has been poor and the pitch-shape read gives him some fastball path, but Hoerner's .235 season average, .214 split against right-handed pitching, 8 stop valves, likely lower lineup slot, and Citi Field rain risk make his one-hit path more fragile.",
+  "workflow_notes": [
+    "Staged the learned model raw top 2 for the active dashboard date.",
+    "Reviewed local model context, H2H, stop valves, expected PA, lineup slot, recent form, handedness splits, starter profile, and bullpen context.",
+    "Checked current free public sources for probable pitchers, lineup status, injury notes, venue/weather context, and public player summaries.",
+    "Used pro, con, and reviewer committee roles before choosing the single hitter."
+  ],
+  "source_notes": [
+    {
+      "label": "MLB Brewers Starting Lineups",
+      "url": "https://www.mlb.com/brewers/roster/starting-lineups",
+      "note": "Checked official Brewers-Reds lineup status, venue, game time, and Brady Singer probable starter line; official lineups were still TBD."
+    },
+    {
+      "label": "MLB Cubs Starting Lineups",
+      "url": "https://www.mlb.com/cubs/roster/starting-lineups",
+      "note": "Checked official Cubs-Mets lineup status, venue, game time, and Kodai Senga probable starter line; official lineups were still TBD."
+    },
+    {
+      "label": "MLB Mets Starting Lineups",
+      "url": "https://www.mlb.com/mets/roster/starting-lineups",
+      "note": "Cross-checked the Cubs at Mets matchup, Senga listing, and official lineup status."
+    },
+    {
+      "label": "RotoWire Daily Lineups",
+      "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+      "note": "Reviewed expected batting orders; Turang was projected third for Milwaukee and Hoerner was projected lower than the model's historical lineup average."
+    },
+    {
+      "label": "ESPN Brewers-Reds Game Page",
+      "url": "https://www.espn.com/mlb/game/_/gameId/401815857/brewers-reds",
+      "note": "Reviewed public game page and probable context for Brewers at Reds."
+    },
+    {
+      "label": "MLB Gameday Cubs-Mets",
+      "url": "https://www.mlb.com/gameday/cubs-vs-mets/2026/06/22/823613/preview",
+      "note": "Reviewed MLB game page for the Cubs at Mets probable starter context."
+    },
+    {
+      "label": "RunsLeft Cubs-Mets Preview",
+      "url": "https://runsleft.com/games/2026-06-22/cubs-at-mets",
+      "note": "Reviewed pitch-by-pitch projected matchup shape, bullpen availability, and recent team form for the Cubs-Mets game."
+    },
+    {
+      "label": "Baseball Savant: Brice Turang",
+      "url": "https://baseballsavant.mlb.com/savant-player/brice-turang-668930",
+      "note": "Reviewed Turang's public 2026 standard batting summary."
+    },
+    {
+      "label": "Baseball Savant: Nico Hoerner",
+      "url": "https://baseballsavant.mlb.com/savant-player/nico-hoerner-663538",
+      "note": "Reviewed Hoerner's public 2026 standard batting summary."
+    },
+    {
+      "label": "Baseball Savant: Brady Singer",
+      "url": "https://baseballsavant.mlb.com/savant-player/brady-singer-663903",
+      "note": "Reviewed Singer's public 2026 pitching summary."
+    },
+    {
+      "label": "Baseball Savant: Kodai Senga",
+      "url": "https://baseballsavant.mlb.com/savant-player/kodai-senga-673540",
+      "note": "Reviewed Senga's public 2026 pitching summary."
+    },
+    {
+      "label": "MLB StatsAPI Brewers-Reds Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/824502/feed/live",
+      "note": "Verified official game status, probable pitcher context, and that official batting orders had not posted yet."
+    },
+    {
+      "label": "MLB StatsAPI Cubs-Mets Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/823613/feed/live",
+      "note": "Verified official game status, probable pitchers, and that official batting orders had not posted yet."
+    }
+  ],
+  "players": [
+    {
+      "rank": 1,
+      "player": "Brice Turang",
+      "team": "MIL",
+      "opponent": "CIN",
+      "probable_pitcher": "Brady Singer",
+      "pro_thesis": "Brice Turang's pro case starts with the matchup shape. The model gives him a 72.9% learned hit probability and 4.6 expected plate appearances, and RotoWire's expected lineup keeps him in a premium third slot. The surface season average is only .259, but the relevant split is much better: .295 against right-handed pitching this year and .278 across the last-500 righty sample. Brady Singer is a hittable target by both public and local measures, carrying a 5.32 ERA, 1.61 WHIP, 83 hits in 66 innings, and elevated left-handed batter damage in the staged data. Turang also owns a 4-for-13 H2H line with a .440 xBA, giving the case both volume and matchup support.",
+      "con_thesis": "The con case is that Turang is not a clean contact lock despite ranking first. Six stop valves is a real warning stack, especially the season and last-500 strikeout flags, the elevated walk flags, and the H2H K-rate flag. The walk piece matters in a hit-streak contest because a productive plate appearance can still be a failed pick. His last five games are cold at 4-for-22, his last-75 and last-25 batting average signals are mediocre, and the overall season average is under .260. Singer's recent last-start line was not a full collapse either, with only three hits allowed over five innings. Turang is playable, but the miss path is swing-and-miss plus walks rather than lack of opportunity.",
+      "committee_thesis": "Committee read: Turang is the single-pick choice because his current context resolves more cleanly than Hoerner's. The learned probability edge is small, but Turang adds the better projected lineup slot, cleaner weather, division-game familiarity, stronger right-handed pitching split, better H2H quality, and a more vulnerable opposing starter for contact allowed. The committee respects the stop valves and cold recent form, so this is not a high-conviction slam dunk. But compared with Hoerner's weather, lineup, handedness, and Senga-specific concerns, Turang has the more stable path to one hit."
+    },
+    {
+      "rank": 2,
+      "player": "Nico Hoerner",
+      "team": "CHC",
+      "opponent": "NYM",
+      "probable_pitcher": "Kodai Senga",
+      "pro_thesis": "Nico Hoerner's pro case is that the learned model still sees a viable hit path despite the ugly dashboard surface. He sits at a 72.6% learned hit probability with strong plate-discipline bones: a 7.3% season strikeout rate and barely over 10% whiff rate. Senga's 2026 public line is vulnerable, with a 9.00 ERA, 1.88 WHIP, 25 hits and 17 walks in 24 innings, and the RunsLeft pitch read gives Hoerner a meaningful edge against Senga's four-seamer. Hoerner is also a Publisher and has seen Senga eight times, so this is not a blind matchup. If he lands higher than the projected lineup slot, the contact profile gives him a plausible upset case.",
+      "con_thesis": "The con case is heavy enough to keep Hoerner behind Turang. He brings eight stop valves, including rain over 40%, H2H whiff and K flags, Senga's Stuff+ warning, the right-handed pitcher split valve, and pitcher-hand damage filters. The staged hitter form is poor: .235 season average, .214 against right-handed pitching, .174 over the last five, .160 over the last 25 at-bats, and .187 over the last 75. RotoWire and public matchup pages also create lineup uncertainty, with Hoerner not guaranteed the top-two slot that would best support his low-power, single-dependent profile. Add Citi Field's lower park hit factor and a strong Mets bullpen run-prevention shape, and the miss path is too visible.",
+      "committee_thesis": "Committee read: Hoerner is a credible two-pick partner because Senga's 2026 form has been poor and Hoerner's low strikeout skill always gives him a chance to sneak a ball through. The committee does not ignore the learned probability. For a single pick, though, too much of the case depends on Senga continuing to struggle and Hoerner getting enough quality plate appearances through rain and lineup uncertainty. His right-on-right split, recent cold stretch, eight stop valves, and lower park context make him the runner-up."
+    }
+  ]
+}

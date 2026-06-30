@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Statbirt Learned Shortlist</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell learned-shell">
+      <header class="topbar">
+        <div class="title-block">
+          <p class="eyebrow">Statbirt Learned Model</p>
+          <h1>Learned Top 5 Shortlist</h1>
+          <p id="board-subtitle" class="subtitle">Loading learned-model output...</p>
+          <nav class="dashboard-switcher" aria-label="Dashboard views">
+            <a href="index.html">Bob score board</a>
+            <a href="learned.html" aria-current="page">Learned shortlist</a>
+            <a href="data/selection_strategy_report.html">6-19-26 Strategy Report</a>
+          </nav>
+        </div>
+        <div class="status-panel" aria-label="Board status">
+          <div class="status-orbit learned-orbit">
+            <span id="top-probability-orbit">--</span>
+            <small>Top Prob</small>
+          </div>
+          <div class="status-copy">
+            <p id="status-note">Waiting for learned data</p>
+            <label class="date-picker" for="dashboard-date">
+              <span>Dashboard Date</span>
+              <select id="dashboard-date" disabled>
+                <option>Loading...</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </header>
+
+      <section class="summary-grid learned-summary" aria-label="Learned model summary">
+        <article>
+          <span>Total Predictions</span>
+          <strong id="total-predictions">--</strong>
+        </article>
+        <article>
+          <span>Shown</span>
+          <strong id="shown-count">--</strong>
+        </article>
+        <article>
+          <span>Top Prob</span>
+          <strong id="top-probability">--</strong>
+        </article>
+        <article>
+          <span>Top Safety</span>
+          <strong id="top-safety">--</strong>
+        </article>
+        <article>
+          <span>Top 5 Hits</span>
+          <strong id="top-five-result">--</strong>
+        </article>
+      </section>
+
+      <section class="board learned-board" aria-label="Learned model shortlist">
+        <div class="board-toolbar">
+          <div>
+            <h2>Shortlist Key Factors</h2>
+            <p>Ranked by learned hit probability with opportunity, contact, and risk context.</p>
+          </div>
+        </div>
+
+        <div class="row-header learned-row-header" aria-hidden="true">
+          <span>Rank</span>
+          <span>Player</span>
+          <span>H2H</span>
+          <span>Status</span>
+          <span>Probability</span>
+          <span>Key Factors</span>
+          <span>Stop Valves</span>
+          <span>Result</span>
+        </div>
+
+        <div id="picks" class="pick-list"></div>
+        <section id="daily-brief" class="daily-brief" aria-label="Daily selection brief" aria-live="polite"></section>
+      </section>
+    </main>
+
+    <template id="learned-pick-template">
+      <article class="pick-row learned-row">
+        <div class="rank-cell"></div>
+        <div class="player-cell">
+          <div class="player-line">
+            <strong class="player-name"></strong>
+            <span class="season-ba"></span>
+            <span class="pick-badge"></span>
+          </div>
+          <div class="matchup-line"></div>
+          <div class="pitcher-line"></div>
+          <div class="venue-line"></div>
+          <div class="game-detail-line"></div>
+        </div>
+        <div class="h2h-cell"></div>
+        <div class="status-cell"></div>
+        <div class="prob-cell">
+          <strong></strong>
+          <span></span>
+        </div>
+        <div class="factor-cell"></div>
+        <div class="risk-cell"></div>
+        <div class="result-cell"></div>
+      </article>
+    </template>
+
+    <script src="learned.js?v=20260620-thesis"></script>
+  </body>
+</html>

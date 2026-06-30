@@ -1,0 +1,802 @@
+{
+  "generated_at": "2026-06-22T13:02:23Z",
+  "date": "2026-06-22",
+  "requested_date": "2026-06-22",
+  "used_latest_fallback": false,
+  "target": "learned_rank_top_2",
+  "purpose": "Evidence staging only. ChatGPT/Codex should write the pro thesis, con thesis, and committee decision.",
+  "daily_timing": {
+    "morning_models_scheduled": "07:00 America/Chicago",
+    "recommended_stage_after": "08:00 America/Chicago",
+    "note": "The morning model scripts normally need about 45 minutes, so 8:00am Central gives them a buffer."
+  },
+  "workflow_prompt": "X:\\Coding\\Statbirt\\prompts\\learned_top2_thesis.md",
+  "expected_thesis_path": "X:\\Coding\\Statbirt\\data\\manual\\learned_top2_theses\\2026-06-22.json",
+  "dashboard_refresh_command": "py -3 -m statbirt.export_learned_web --date latest --limit 5",
+  "total_predictions_for_date": 418,
+  "injury_filtered_count": 59,
+  "selection_brief_from_local_metrics": {
+    "policy_version": "learned-selection-v1",
+    "headline": "Recommended single: Brice Turang. Best two-pick card: Brice Turang and Nico Hoerner.",
+    "recommended_single": {
+      "rank": 1,
+      "player": "Brice Turang",
+      "team": "MIL",
+      "opponent": "CIN",
+      "selection_score": 68.5,
+      "learned_hit_probability": 0.7291,
+      "pros": [
+        "High learned probability (72.9%).",
+        "Projected for 4.6 PA.",
+        "Premium lineup slot (3).",
+        "Positive H2H record (4-13)."
+      ],
+      "cons": [
+        "6 stop valves.",
+        "K rate 26.8%.",
+        "HiPA 500 0.238."
+      ],
+      "confidence_label": "Playable",
+      "thesis": "Brice Turang is a 68.5 selection-score play with a 72.9% learned hit probability, 4.6 expected PA, and a 70/100 reliability score. The positive case starts with high learned probability (72.9%); the main counterweight is 6 stop valves.",
+      "summary": "Brice Turang grades as playable at 68.5 on the reliability blend.",
+      "recommendation": "Best 1",
+      "h2h_record": "4-13",
+      "safety_score": 70,
+      "bob_score": 64.14,
+      "expected_pa": "4.6",
+      "lineup_slot": "2.8",
+      "hitter_ba_season": "0.259",
+      "probable_pitcher": "Brady Singer",
+      "pickable": false,
+      "stop_valve_count": 6,
+      "hard_pass_reasons": [
+        "Hitter season BB rate over 12%",
+        "Hitter last-500 PA BB rate over 12%",
+        "Hitter season K rate over 22%",
+        "Hitter last-500 PA K rate over 22%",
+        "H2H K rate over 20%",
+        "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows"
+      ],
+      "concerns": [],
+      "result_hit": null,
+      "result_hits": null,
+      "result_ab": null,
+      "result_pa": null,
+      "result_status": "",
+      "game_state": "unknown",
+      "game_status": "",
+      "game_hits": null
+    },
+    "recommended_pair": [
+      {
+        "rank": 1,
+        "player": "Brice Turang",
+        "team": "MIL",
+        "opponent": "CIN",
+        "selection_score": 68.5,
+        "learned_hit_probability": 0.7291,
+        "pros": [
+          "High learned probability (72.9%).",
+          "Projected for 4.6 PA.",
+          "Premium lineup slot (3).",
+          "Positive H2H record (4-13)."
+        ],
+        "cons": [
+          "6 stop valves.",
+          "K rate 26.8%.",
+          "HiPA 500 0.238."
+        ],
+        "confidence_label": "Playable",
+        "thesis": "Brice Turang is a 68.5 selection-score play with a 72.9% learned hit probability, 4.6 expected PA, and a 70/100 reliability score. The positive case starts with high learned probability (72.9%); the main counterweight is 6 stop valves.",
+        "summary": "Brice Turang grades as playable at 68.5 on the reliability blend.",
+        "recommendation": "Best 1",
+        "h2h_record": "4-13",
+        "safety_score": 70,
+        "bob_score": 64.14,
+        "expected_pa": "4.6",
+        "lineup_slot": "2.8",
+        "hitter_ba_season": "0.259",
+        "probable_pitcher": "Brady Singer",
+        "pickable": false,
+        "stop_valve_count": 6,
+        "hard_pass_reasons": [
+          "Hitter season BB rate over 12%",
+          "Hitter last-500 PA BB rate over 12%",
+          "Hitter season K rate over 22%",
+          "Hitter last-500 PA K rate over 22%",
+          "H2H K rate over 20%",
+          "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows"
+        ],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      },
+      {
+        "rank": 2,
+        "player": "Nico Hoerner",
+        "team": "CHC",
+        "opponent": "NYM",
+        "selection_score": 59.6,
+        "learned_hit_probability": 0.7258,
+        "pros": [
+          "High learned probability (72.6%).",
+          "Strong reliability score (76/100).",
+          "Has seen the probable starter (2-8).",
+          "Expected PA 4.3."
+        ],
+        "cons": [
+          "Current-season BA is .235.",
+          "8 stop valves.",
+          "HiPA 500 0.234."
+        ],
+        "confidence_label": "Watch",
+        "thesis": "Nico Hoerner is a 59.6 selection-score play with a 72.6% learned hit probability, 4.3 expected PA, and a 76/100 reliability score. The positive case starts with high learned probability (72.6%); the main counterweight is current-season BA is .235.",
+        "summary": "Nico Hoerner grades as watch at 59.6 on the reliability blend.",
+        "recommendation": "Best 2",
+        "h2h_record": "2-8",
+        "safety_score": 76,
+        "bob_score": 46.94,
+        "expected_pa": "4.3",
+        "lineup_slot": "4.6",
+        "hitter_ba_season": "0.235",
+        "probable_pitcher": "Kodai Senga",
+        "pickable": false,
+        "stop_valve_count": 8,
+        "hard_pass_reasons": [
+          "Precipitation probability over 40%",
+          "H2H whiff rate over 25%",
+          "H2H K rate over 20%",
+          "Starter H/IP under .875 over last 200 innings",
+          "Starter Stuff+ over 95",
+          "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows",
+          "Hitter is not at least .270 against today's pitcher hand",
+          "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows"
+        ],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      }
+    ],
+    "items": [
+      {
+        "rank": 1,
+        "player": "Brice Turang",
+        "team": "MIL",
+        "opponent": "CIN",
+        "selection_score": 68.5,
+        "learned_hit_probability": 0.7291,
+        "pros": [
+          "High learned probability (72.9%).",
+          "Projected for 4.6 PA.",
+          "Premium lineup slot (3).",
+          "Positive H2H record (4-13)."
+        ],
+        "cons": [
+          "6 stop valves.",
+          "K rate 26.8%.",
+          "HiPA 500 0.238."
+        ],
+        "confidence_label": "Playable",
+        "thesis": "Brice Turang is a 68.5 selection-score play with a 72.9% learned hit probability, 4.6 expected PA, and a 70/100 reliability score. The positive case starts with high learned probability (72.9%); the main counterweight is 6 stop valves.",
+        "summary": "Brice Turang grades as playable at 68.5 on the reliability blend.",
+        "recommendation": "Best 1",
+        "h2h_record": "4-13",
+        "safety_score": 70,
+        "bob_score": 64.14,
+        "expected_pa": "4.6",
+        "lineup_slot": "2.8",
+        "hitter_ba_season": "0.259",
+        "probable_pitcher": "Brady Singer",
+        "pickable": false,
+        "stop_valve_count": 6,
+        "hard_pass_reasons": [
+          "Hitter season BB rate over 12%",
+          "Hitter last-500 PA BB rate over 12%",
+          "Hitter season K rate over 22%",
+          "Hitter last-500 PA K rate over 22%",
+          "H2H K rate over 20%",
+          "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows"
+        ],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      },
+      {
+        "rank": 2,
+        "player": "Nico Hoerner",
+        "team": "CHC",
+        "opponent": "NYM",
+        "selection_score": 59.6,
+        "learned_hit_probability": 0.7258,
+        "pros": [
+          "High learned probability (72.6%).",
+          "Strong reliability score (76/100).",
+          "Has seen the probable starter (2-8).",
+          "Expected PA 4.3."
+        ],
+        "cons": [
+          "Current-season BA is .235.",
+          "8 stop valves.",
+          "HiPA 500 0.234."
+        ],
+        "confidence_label": "Watch",
+        "thesis": "Nico Hoerner is a 59.6 selection-score play with a 72.6% learned hit probability, 4.3 expected PA, and a 76/100 reliability score. The positive case starts with high learned probability (72.6%); the main counterweight is current-season BA is .235.",
+        "summary": "Nico Hoerner grades as watch at 59.6 on the reliability blend.",
+        "recommendation": "Best 2",
+        "h2h_record": "2-8",
+        "safety_score": 76,
+        "bob_score": 46.94,
+        "expected_pa": "4.3",
+        "lineup_slot": "4.6",
+        "hitter_ba_season": "0.235",
+        "probable_pitcher": "Kodai Senga",
+        "pickable": false,
+        "stop_valve_count": 8,
+        "hard_pass_reasons": [
+          "Precipitation probability over 40%",
+          "H2H whiff rate over 25%",
+          "H2H K rate over 20%",
+          "Starter H/IP under .875 over last 200 innings",
+          "Starter Stuff+ over 95",
+          "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows",
+          "Hitter is not at least .270 against today's pitcher hand",
+          "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows"
+        ],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      }
+    ]
+  },
+  "players": [
+    {
+      "rank": 1,
+      "player": "Brice Turang",
+      "player_id": "668930",
+      "team": "MIL",
+      "opponent": "CIN",
+      "dashboard_summary": {
+        "learned_hit_probability": 0.7291,
+        "bob_score": 64.14,
+        "pickable": false,
+        "safety_score": 70,
+        "h2h_record": "4-13",
+        "expected_pa": "4.6",
+        "lineup_slot": "2.8",
+        "season_ba": "0.259",
+        "last_5_ba": "0.182",
+        "hot_streak": false,
+        "hot_streak_tooltip": "",
+        "probable_pitcher": "Brady Singer",
+        "pitcher_hand": "R",
+        "batter_stand": "L",
+        "venue_name": "Great American Ball Park",
+        "weather_label": "Rain: 5.0%",
+        "congregation_status": ""
+      },
+      "model_signals": [
+        "Expected PA 4.6",
+        "Season PA/G 4.54",
+        "Lineup slot 3",
+        "Stuff+ 91.0"
+      ],
+      "model_risks": [
+        "6 stop valves",
+        "K rate 26.8%",
+        "HiPA 500 0.238"
+      ],
+      "stop_valves": [
+        "Hitter season BB rate over 12%",
+        "Hitter last-500 PA BB rate over 12%",
+        "Hitter season K rate over 22%",
+        "Hitter last-500 PA K rate over 22%",
+        "H2H K rate over 20%",
+        "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows"
+      ],
+      "watch_notes": [],
+      "field_context": {
+        "identity": {
+          "date": "2026-06-22",
+          "player": "Brice Turang",
+          "player_id": "668930",
+          "team": "MIL",
+          "team_id": "158",
+          "opponent": "CIN",
+          "opponent_id": "113",
+          "game_pk": "824502"
+        },
+        "learned_model": {
+          "learned_rank": "1",
+          "learned_hit_probability": "0.7291",
+          "model_version": "learned-logistic-v2-20260622T120342Z",
+          "model_trained_at": "2026-06-22T12:03:42Z",
+          "bob_score": "64.14",
+          "score": "64.14",
+          "pickable": "N"
+        },
+        "game_context": {
+          "venue_name": "Great American Ball Park",
+          "game_start_time_utc": "2026-06-22T23:10:00Z",
+          "road_game": "Y",
+          "division_matchup": "Y",
+          "doubleheader": "N",
+          "confirmed_lineup": "N",
+          "lineup_slot": "2.8",
+          "expected_pa": "4.60",
+          "starts_last_5": "5"
+        },
+        "weather_park": {
+          "precip_probability": "5.0",
+          "forecast_temperature_f": "67.6",
+          "park_hit_factor": "102.0"
+        },
+        "hitter_form_contact": {
+          "hitter_ba_season": "0.259",
+          "hitter_hipa_2500_pa": "0.228",
+          "hitter_pa_per_game_season": "4.54",
+          "hitter_ba_2500_ab": "0.258",
+          "hitter_hipa_500_pa": "0.238",
+          "hitter_hipa_75_ab": "0.220",
+          "hitter_ba_75_ab": "0.240",
+          "hitter_ba_25_ab": "0.240",
+          "hitter_ba_500_ab": "0.284",
+          "hitter_last_5_games_played": "5",
+          "hitter_last_5_games_hits": "4",
+          "hitter_last_5_games_ab": "22",
+          "hitter_last_5_games_ba": "0.182",
+          "sprint_speed": "28.6"
+        },
+        "hitter_plate_discipline": {
+          "hitter_bb_rate_season": "0.150",
+          "hitter_bb_rate_500_pa": "0.138",
+          "hitter_whiff_rate_season": "0.219",
+          "hitter_whiff_rate_500_pa": "0.229",
+          "hitter_k_rate_season": "0.258",
+          "hitter_k_rate_500_pa": "0.268"
+        },
+        "hitter_handedness_splits": {
+          "batter_stand": "L",
+          "pitcher_hand": "R",
+          "hitter_split_ba_season_vs_lhp": "0.163",
+          "hitter_split_ba_season_vs_rhp": "0.295",
+          "hitter_split_pa_season_vs_lhp": "90",
+          "hitter_split_pa_season_vs_rhp": "236",
+          "hitter_split_ba_500_vs_lhp": "0.243",
+          "hitter_split_ba_500_vs_rhp": "0.278",
+          "hitter_split_ba_1500_vs_lhp": "0.243",
+          "hitter_split_ba_1500_vs_rhp": "0.264"
+        },
+        "probable_starter": {
+          "probable_pitcher": "Brady Singer",
+          "probable_pitcher_id": "663903",
+          "pitcher_hand": "R",
+          "pitcher_hpi_350": "0.997",
+          "pitcher_hpi_200": "1.033",
+          "pitcher_hpi_season": "1.258",
+          "pitcher_hits_last_18_ip": "17",
+          "pitcher_stuff_plus": "91.0",
+          "pitcher_lr_opp_ba": "0.284",
+          "pitcher_lr_opp_ba_50": "0.312",
+          "pitcher_lr_opp_ba_200": "0.283"
+        },
+        "probable_starter_last_start": {
+          "pitcher_last_start_date": "2026-06-16",
+          "pitcher_last_start_ip": "5.0",
+          "pitcher_last_start_hits": "3",
+          "pitcher_last_start_strikeouts": "5",
+          "pitcher_last_start_walks": "3"
+        },
+        "h2h": {
+          "h2h_pa": "13",
+          "h2h_hits": "4",
+          "h2h_hit_rate": "0.308",
+          "h2h_whiff_rate": "0.250",
+          "h2h_k_rate": "0.231",
+          "h2h_exit_velocity": "91.5",
+          "h2h_xba": "0.440"
+        },
+        "pitch_type_matchup": {
+          "inferred_pitch_type_ba": "0.290",
+          "inferred_pitch_type_xba": "0.349",
+          "inferred_pitch_type_coverage": "0.744"
+        },
+        "bullpen_context": {
+          "bullpen_hpi": "0.919",
+          "bullpen_opp_ba": "0.241"
+        },
+        "bob_score_components": {
+          "component_hitter.hipa_2500_pa": "66.76",
+          "component_hitter.pa_per_game_season": "60.19",
+          "component_hitter.hipa_500_pa": "68.00",
+          "component_hitter.hipa_75_ab": "49.67",
+          "component_starting_pitcher.hpi_350": "49.43",
+          "component_starting_pitcher.hpi_season": "100.00",
+          "component_starting_pitcher.stuff_plus": "68.57",
+          "component_h2h.direct": "65.18",
+          "component_h2h.pitcher_lr_opp_ba": "58.24",
+          "component_h2h.inferred_pitch_type": "79.34",
+          "component_bullpen.hpi_season": "37.54",
+          "component_other.road_game": "100.00",
+          "component_other.division_matchup": "100.00",
+          "component_other.sprint_speed": "74.55",
+          "component_other.park_hit_factor": "60.00",
+          "component_other.lineup_opportunity": "83.33"
+        },
+        "results": {}
+      },
+      "missing_relevant_fields": {
+        "results": [
+          "result_hit",
+          "result_hits",
+          "result_ab",
+          "result_pa",
+          "result_status",
+          "result_updated_at",
+          "notes"
+        ]
+      },
+      "source_targets": [
+        {
+          "label": "MLB probable pitchers",
+          "url": "https://www.mlb.com/probable-pitchers",
+          "why": "Verify the probable starter has not changed."
+        },
+        {
+          "label": "MLB starting lineups",
+          "url": "https://www.mlb.com/starting-lineups",
+          "why": "Check whether the hitter is confirmed in the lineup and whether the slot changed."
+        },
+        {
+          "label": "MLB injury report",
+          "url": "https://www.mlb.com/injury-report",
+          "why": "Check for late injury or availability notes."
+        },
+        {
+          "label": "RotoWire bullpen usage",
+          "url": "https://www.rotowire.com/baseball/bullpen-usage.php",
+          "why": "Look for bullpen fatigue or unavailable leverage arms."
+        },
+        {
+          "label": "RotoWire daily lineups",
+          "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+          "why": "Cross-check lineup and late-scratch risk."
+        },
+        {
+          "label": "MLB news",
+          "url": "https://www.mlb.com/news",
+          "why": "Search for current notes on Brice Turang, Brady Singer, MIL, and CIN."
+        },
+        {
+          "label": "MLB live game feed",
+          "url": "https://statsapi.mlb.com/api/v1.1/game/824502/feed/live",
+          "why": "Verify official game, lineup, venue, and probable-pitcher context."
+        },
+        {
+          "label": "MLB boxscore endpoint",
+          "url": "https://statsapi.mlb.com/api/v1/game/824502/boxscore",
+          "why": "Useful after lineups post or for later result checks."
+        },
+        {
+          "label": "Baseball Savant: Brice Turang",
+          "url": "https://baseballsavant.mlb.com/savant-player/brice-turang-668930",
+          "why": "Review hitter quality of contact, rolling form, pitch-type strengths, and handedness context."
+        },
+        {
+          "label": "Baseball Savant: Brady Singer",
+          "url": "https://baseballsavant.mlb.com/savant-player/brady-singer-663903",
+          "why": "Review starter pitch mix, recent shape, contact allowed, and possible matchup fragility."
+        }
+      ],
+      "chatgpt_review_questions": [
+        "Has the probable starter or lineup changed since the morning run?",
+        "Do current news, beat notes, or injury reports create scratch, rest, or pinch-hit risk?",
+        "Does the hitter have a pitch-type or handedness edge that survives beyond the headline model probability?",
+        "Is the opposing bullpen likely to help or hurt the one-hit path if the starter exits early?",
+        "Is the recent form signal supported by contact quality, or does it look like short-sample noise?"
+      ]
+    },
+    {
+      "rank": 2,
+      "player": "Nico Hoerner",
+      "player_id": "663538",
+      "team": "CHC",
+      "opponent": "NYM",
+      "dashboard_summary": {
+        "learned_hit_probability": 0.7258,
+        "bob_score": 46.94,
+        "pickable": false,
+        "safety_score": 76,
+        "h2h_record": "2-8",
+        "expected_pa": "4.3",
+        "lineup_slot": "4.6",
+        "season_ba": "0.235",
+        "last_5_ba": "0.174",
+        "hot_streak": false,
+        "hot_streak_tooltip": "",
+        "probable_pitcher": "Kodai Senga",
+        "pitcher_hand": "R",
+        "batter_stand": "R",
+        "venue_name": "Citi Field",
+        "weather_label": "Rain: 52.0%",
+        "congregation_status": "Publisher"
+      },
+      "model_signals": [
+        "Expected PA 4.3",
+        "Season PA/G 4.57",
+        "Lineup slot 5",
+        "K rate 7.6%"
+      ],
+      "model_risks": [
+        "8 stop valves",
+        "HiPA 500 0.234"
+      ],
+      "stop_valves": [
+        "Precipitation probability over 40%",
+        "H2H whiff rate over 25%",
+        "H2H K rate over 20%",
+        "Starter H/IP under .875 over last 200 innings",
+        "Starter Stuff+ over 95",
+        "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows",
+        "Hitter is not at least .270 against today's pitcher hand",
+        "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows"
+      ],
+      "watch_notes": [],
+      "field_context": {
+        "identity": {
+          "date": "2026-06-22",
+          "player": "Nico Hoerner",
+          "player_id": "663538",
+          "team": "CHC",
+          "team_id": "112",
+          "opponent": "NYM",
+          "opponent_id": "121",
+          "game_pk": "823613"
+        },
+        "learned_model": {
+          "learned_rank": "2",
+          "learned_hit_probability": "0.7258",
+          "model_version": "learned-logistic-v2-20260622T120342Z",
+          "model_trained_at": "2026-06-22T12:03:42Z",
+          "bob_score": "46.94",
+          "score": "46.94",
+          "pickable": "N"
+        },
+        "game_context": {
+          "venue_name": "Citi Field",
+          "game_start_time_utc": "2026-06-22T23:10:00Z",
+          "road_game": "Y",
+          "division_matchup": "N",
+          "doubleheader": "N",
+          "confirmed_lineup": "N",
+          "lineup_slot": "4.6",
+          "expected_pa": "4.30",
+          "starts_last_5": "5"
+        },
+        "weather_park": {
+          "precip_probability": "52.0",
+          "forecast_temperature_f": "71.3",
+          "park_hit_factor": "96.0"
+        },
+        "hitter_form_contact": {
+          "hitter_ba_season": "0.235",
+          "hitter_hipa_2500_pa": "0.251",
+          "hitter_pa_per_game_season": "4.57",
+          "hitter_ba_2500_ab": "0.278",
+          "hitter_hipa_500_pa": "0.234",
+          "hitter_hipa_75_ab": "0.173",
+          "hitter_ba_75_ab": "0.187",
+          "hitter_ba_25_ab": "0.160",
+          "hitter_ba_500_ab": "0.264",
+          "hitter_last_5_games_played": "5",
+          "hitter_last_5_games_hits": "4",
+          "hitter_last_5_games_ab": "23",
+          "hitter_last_5_games_ba": "0.174",
+          "sprint_speed": "28.2"
+        },
+        "hitter_plate_discipline": {
+          "hitter_bb_rate_season": "0.094",
+          "hitter_bb_rate_500_pa": "0.080",
+          "hitter_whiff_rate_season": "0.109",
+          "hitter_whiff_rate_500_pa": "0.111",
+          "hitter_k_rate_season": "0.073",
+          "hitter_k_rate_500_pa": "0.076"
+        },
+        "hitter_handedness_splits": {
+          "batter_stand": "R",
+          "pitcher_hand": "R",
+          "hitter_split_ba_season_vs_lhp": "0.287",
+          "hitter_split_ba_season_vs_rhp": "0.214",
+          "hitter_split_pa_season_vs_lhp": "95",
+          "hitter_split_pa_season_vs_rhp": "247",
+          "hitter_split_ba_500_vs_lhp": "0.341",
+          "hitter_split_ba_500_vs_rhp": "0.256",
+          "hitter_split_ba_1500_vs_lhp": "0.341",
+          "hitter_split_ba_1500_vs_rhp": "0.258"
+        },
+        "probable_starter": {
+          "probable_pitcher": "Kodai Senga",
+          "probable_pitcher_id": "673540",
+          "pitcher_hand": "R",
+          "pitcher_hpi_350": "0.809",
+          "pitcher_hpi_200": "0.848",
+          "pitcher_hpi_season": "1.167",
+          "pitcher_hits_last_18_ip": "24",
+          "pitcher_stuff_plus": "97.0",
+          "pitcher_lr_opp_ba": "0.221",
+          "pitcher_lr_opp_ba_50": "0.250",
+          "pitcher_lr_opp_ba_200": "0.221"
+        },
+        "probable_starter_last_start": {
+          "pitcher_last_start_date": "2026-06-16",
+          "pitcher_last_start_ip": "4.0",
+          "pitcher_last_start_hits": "2",
+          "pitcher_last_start_strikeouts": "5",
+          "pitcher_last_start_walks": "4"
+        },
+        "h2h": {
+          "h2h_pa": "8",
+          "h2h_hits": "2",
+          "h2h_hit_rate": "0.250",
+          "h2h_whiff_rate": "0.267",
+          "h2h_k_rate": "0.375",
+          "h2h_exit_velocity": "88.7",
+          "h2h_xba": "0.415"
+        },
+        "pitch_type_matchup": {
+          "inferred_pitch_type_ba": "0.259",
+          "inferred_pitch_type_xba": "0.310",
+          "inferred_pitch_type_coverage": "0.805"
+        },
+        "bullpen_context": {
+          "bullpen_hpi": "0.843",
+          "bullpen_opp_ba": "0.225"
+        },
+        "bob_score_components": {
+          "component_hitter.hipa_2500_pa": "94.75",
+          "component_hitter.pa_per_game_season": "62.87",
+          "component_hitter.hipa_500_pa": "64.00",
+          "component_hitter.hipa_75_ab": "18.56",
+          "component_starting_pitcher.hpi_350": "11.81",
+          "component_starting_pitcher.hpi_season": "83.33",
+          "component_starting_pitcher.stuff_plus": "51.43",
+          "component_h2h.direct": "50.13",
+          "component_h2h.pitcher_lr_opp_ba": "0.99",
+          "component_h2h.inferred_pitch_type": "59.87",
+          "component_bullpen.hpi_season": "20.61",
+          "component_other.road_game": "100.00",
+          "component_other.division_matchup": "0.00",
+          "component_other.sprint_speed": "67.27",
+          "component_other.park_hit_factor": "30.00",
+          "component_other.lineup_opportunity": "58.33"
+        },
+        "results": {}
+      },
+      "missing_relevant_fields": {
+        "results": [
+          "result_hit",
+          "result_hits",
+          "result_ab",
+          "result_pa",
+          "result_status",
+          "result_updated_at",
+          "notes"
+        ]
+      },
+      "source_targets": [
+        {
+          "label": "MLB probable pitchers",
+          "url": "https://www.mlb.com/probable-pitchers",
+          "why": "Verify the probable starter has not changed."
+        },
+        {
+          "label": "MLB starting lineups",
+          "url": "https://www.mlb.com/starting-lineups",
+          "why": "Check whether the hitter is confirmed in the lineup and whether the slot changed."
+        },
+        {
+          "label": "MLB injury report",
+          "url": "https://www.mlb.com/injury-report",
+          "why": "Check for late injury or availability notes."
+        },
+        {
+          "label": "RotoWire bullpen usage",
+          "url": "https://www.rotowire.com/baseball/bullpen-usage.php",
+          "why": "Look for bullpen fatigue or unavailable leverage arms."
+        },
+        {
+          "label": "RotoWire daily lineups",
+          "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+          "why": "Cross-check lineup and late-scratch risk."
+        },
+        {
+          "label": "MLB news",
+          "url": "https://www.mlb.com/news",
+          "why": "Search for current notes on Nico Hoerner, Kodai Senga, CHC, and NYM."
+        },
+        {
+          "label": "MLB live game feed",
+          "url": "https://statsapi.mlb.com/api/v1.1/game/823613/feed/live",
+          "why": "Verify official game, lineup, venue, and probable-pitcher context."
+        },
+        {
+          "label": "MLB boxscore endpoint",
+          "url": "https://statsapi.mlb.com/api/v1/game/823613/boxscore",
+          "why": "Useful after lineups post or for later result checks."
+        },
+        {
+          "label": "Baseball Savant: Nico Hoerner",
+          "url": "https://baseballsavant.mlb.com/savant-player/nico-hoerner-663538",
+          "why": "Review hitter quality of contact, rolling form, pitch-type strengths, and handedness context."
+        },
+        {
+          "label": "Baseball Savant: Kodai Senga",
+          "url": "https://baseballsavant.mlb.com/savant-player/kodai-senga-673540",
+          "why": "Review starter pitch mix, recent shape, contact allowed, and possible matchup fragility."
+        }
+      ],
+      "chatgpt_review_questions": [
+        "Has the probable starter or lineup changed since the morning run?",
+        "Do current news, beat notes, or injury reports create scratch, rest, or pinch-hit risk?",
+        "Does the hitter have a pitch-type or handedness edge that survives beyond the headline model probability?",
+        "Is the opposing bullpen likely to help or hurt the one-hit path if the starter exits early?",
+        "Is the recent form signal supported by contact quality, or does it look like short-sample noise?"
+      ]
+    }
+  ],
+  "chatgpt_committee_process": [
+    "Read this staged context and treat it as evidence, not as a thesis.",
+    "Browse current free sources for lineup, probable pitcher, injury/news, bullpen, and matchup updates.",
+    "Write a pro thesis and con thesis for each player.",
+    "Have a final reviewer compare the arguments and choose one single hitter.",
+    "Save the finished dashboard-ready JSON to expected_thesis_path, then refresh the learned dashboard export."
+  ],
+  "output_schema": {
+    "date": "2026-06-22",
+    "target": "learned_rank_top_2",
+    "committee_pick": "Player Name",
+    "committee_summary": "One paragraph explaining the single-pick decision.",
+    "source_notes": [
+      {
+        "label": "Source name",
+        "url": "https://...",
+        "note": "What was reviewed."
+      }
+    ],
+    "players": [
+      {
+        "rank": 1,
+        "player": "Player Name",
+        "team": "AAA",
+        "opponent": "BBB",
+        "probable_pitcher": "Pitcher Name",
+        "pro_thesis": "Dashboard-ready paragraph.",
+        "con_thesis": "Dashboard-ready paragraph.",
+        "committee_thesis": "Dashboard-ready paragraph."
+      }
+    ]
+  }
+}

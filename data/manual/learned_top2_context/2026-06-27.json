@@ -1,0 +1,808 @@
+{
+  "generated_at": "2026-06-27T13:02:23Z",
+  "date": "2026-06-27",
+  "requested_date": "2026-06-27",
+  "used_latest_fallback": false,
+  "target": "learned_rank_top_2",
+  "purpose": "Evidence staging only. ChatGPT/Codex should write the pro thesis, con thesis, and committee decision.",
+  "daily_timing": {
+    "morning_models_scheduled": "07:00 America/Chicago",
+    "recommended_stage_after": "08:00 America/Chicago",
+    "note": "The morning model scripts normally need about 45 minutes, so 8:00am Central gives them a buffer."
+  },
+  "workflow_prompt": "X:\\Coding\\Statbirt\\prompts\\learned_top2_thesis.md",
+  "expected_thesis_path": "X:\\Coding\\Statbirt\\data\\manual\\learned_top2_theses\\2026-06-27.json",
+  "dashboard_refresh_command": "py -3 -m statbirt.export_learned_web --date latest --limit 5",
+  "total_predictions_for_date": 488,
+  "injury_filtered_count": 64,
+  "selection_brief_from_local_metrics": {
+    "policy_version": "learned-selection-v1",
+    "headline": "Recommended single: Byron Buxton. Best two-pick card: Byron Buxton and JJ Wetherholt.",
+    "recommended_single": {
+      "rank": 1,
+      "player": "Byron Buxton",
+      "team": "MIN",
+      "opponent": "COL",
+      "selection_score": 69.0,
+      "learned_hit_probability": 0.7761,
+      "pros": [
+        "High learned probability (77.6%).",
+        "Projected for 4.7 PA.",
+        "Premium lineup slot (2).",
+        "Has seen the probable starter (2-11)."
+      ],
+      "cons": [
+        "7 stop valves.",
+        "K rate 26.2%.",
+        "HiPA 500 0.236."
+      ],
+      "confidence_label": "Playable",
+      "thesis": "Byron Buxton is a 69.0 selection-score play with a 77.6% learned hit probability, 4.7 expected PA, and a 70/100 reliability score. The positive case starts with high learned probability (77.6%); the main counterweight is 7 stop valves.",
+      "summary": "Byron Buxton grades as playable at 69.0 on the reliability blend.",
+      "recommendation": "Best 1",
+      "h2h_record": "2-11",
+      "safety_score": 70,
+      "bob_score": 64.47,
+      "expected_pa": "4.7",
+      "lineup_slot": "2.0",
+      "hitter_ba_season": "0.276",
+      "probable_pitcher": "Michael Lorenzen",
+      "pickable": false,
+      "stop_valve_count": 7,
+      "hard_pass_reasons": [
+        "Hitter is below .270 over both long and last-500 AB windows",
+        "Hitter season whiff rate over 25%",
+        "Hitter last-500 PA whiff rate over 25%",
+        "Hitter season K rate over 22%",
+        "Hitter last-500 PA K rate over 22%",
+        "H2H whiff rate over 25%",
+        "H2H K rate over 20%"
+      ],
+      "concerns": [],
+      "result_hit": null,
+      "result_hits": null,
+      "result_ab": null,
+      "result_pa": null,
+      "result_status": "",
+      "game_state": "unknown",
+      "game_status": "",
+      "game_hits": null
+    },
+    "recommended_pair": [
+      {
+        "rank": 1,
+        "player": "Byron Buxton",
+        "team": "MIN",
+        "opponent": "COL",
+        "selection_score": 69.0,
+        "learned_hit_probability": 0.7761,
+        "pros": [
+          "High learned probability (77.6%).",
+          "Projected for 4.7 PA.",
+          "Premium lineup slot (2).",
+          "Has seen the probable starter (2-11)."
+        ],
+        "cons": [
+          "7 stop valves.",
+          "K rate 26.2%.",
+          "HiPA 500 0.236."
+        ],
+        "confidence_label": "Playable",
+        "thesis": "Byron Buxton is a 69.0 selection-score play with a 77.6% learned hit probability, 4.7 expected PA, and a 70/100 reliability score. The positive case starts with high learned probability (77.6%); the main counterweight is 7 stop valves.",
+        "summary": "Byron Buxton grades as playable at 69.0 on the reliability blend.",
+        "recommendation": "Best 1",
+        "h2h_record": "2-11",
+        "safety_score": 70,
+        "bob_score": 64.47,
+        "expected_pa": "4.7",
+        "lineup_slot": "2.0",
+        "hitter_ba_season": "0.276",
+        "probable_pitcher": "Michael Lorenzen",
+        "pickable": false,
+        "stop_valve_count": 7,
+        "hard_pass_reasons": [
+          "Hitter is below .270 over both long and last-500 AB windows",
+          "Hitter season whiff rate over 25%",
+          "Hitter last-500 PA whiff rate over 25%",
+          "Hitter season K rate over 22%",
+          "Hitter last-500 PA K rate over 22%",
+          "H2H whiff rate over 25%",
+          "H2H K rate over 20%"
+        ],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      },
+      {
+        "rank": 2,
+        "player": "JJ Wetherholt",
+        "team": "STL",
+        "opponent": "MIA",
+        "selection_score": 68.6,
+        "learned_hit_probability": 0.746,
+        "pros": [
+          "High learned probability (74.6%).",
+          "Strong reliability score (82/100).",
+          "Projected for 4.8 PA.",
+          "Premium lineup slot (1)."
+        ],
+        "cons": [
+          "No H2H history against the probable starter.",
+          "5 stop valves.",
+          "HiPA 500 0.222."
+        ],
+        "confidence_label": "Playable",
+        "thesis": "JJ Wetherholt is a 68.6 selection-score play with a 74.6% learned hit probability, 4.8 expected PA, and a 82/100 reliability score. The positive case starts with high learned probability (74.6%); the main counterweight is no H2H history against the probable starter.",
+        "summary": "JJ Wetherholt grades as playable at 68.6 on the reliability blend.",
+        "recommendation": "Best 2",
+        "h2h_record": "0-0",
+        "safety_score": 82,
+        "bob_score": 52.87,
+        "expected_pa": "4.8",
+        "lineup_slot": "1.0",
+        "hitter_ba_season": "0.259",
+        "probable_pitcher": "Ryan Gusto",
+        "pickable": false,
+        "stop_valve_count": 5,
+        "hard_pass_reasons": [
+          "H2H PA below 2",
+          "Hitter is below .270 over both long and last-500 AB windows",
+          "Starter Stuff+ over 95",
+          "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows",
+          "Hitter is not at least .270 against today's pitcher hand"
+        ],
+        "concerns": [
+          "Missing H2H whiff rate",
+          "Missing H2H K rate"
+        ],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      }
+    ],
+    "items": [
+      {
+        "rank": 1,
+        "player": "Byron Buxton",
+        "team": "MIN",
+        "opponent": "COL",
+        "selection_score": 69.0,
+        "learned_hit_probability": 0.7761,
+        "pros": [
+          "High learned probability (77.6%).",
+          "Projected for 4.7 PA.",
+          "Premium lineup slot (2).",
+          "Has seen the probable starter (2-11)."
+        ],
+        "cons": [
+          "7 stop valves.",
+          "K rate 26.2%.",
+          "HiPA 500 0.236."
+        ],
+        "confidence_label": "Playable",
+        "thesis": "Byron Buxton is a 69.0 selection-score play with a 77.6% learned hit probability, 4.7 expected PA, and a 70/100 reliability score. The positive case starts with high learned probability (77.6%); the main counterweight is 7 stop valves.",
+        "summary": "Byron Buxton grades as playable at 69.0 on the reliability blend.",
+        "recommendation": "Best 1",
+        "h2h_record": "2-11",
+        "safety_score": 70,
+        "bob_score": 64.47,
+        "expected_pa": "4.7",
+        "lineup_slot": "2.0",
+        "hitter_ba_season": "0.276",
+        "probable_pitcher": "Michael Lorenzen",
+        "pickable": false,
+        "stop_valve_count": 7,
+        "hard_pass_reasons": [
+          "Hitter is below .270 over both long and last-500 AB windows",
+          "Hitter season whiff rate over 25%",
+          "Hitter last-500 PA whiff rate over 25%",
+          "Hitter season K rate over 22%",
+          "Hitter last-500 PA K rate over 22%",
+          "H2H whiff rate over 25%",
+          "H2H K rate over 20%"
+        ],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      },
+      {
+        "rank": 2,
+        "player": "JJ Wetherholt",
+        "team": "STL",
+        "opponent": "MIA",
+        "selection_score": 68.6,
+        "learned_hit_probability": 0.746,
+        "pros": [
+          "High learned probability (74.6%).",
+          "Strong reliability score (82/100).",
+          "Projected for 4.8 PA.",
+          "Premium lineup slot (1)."
+        ],
+        "cons": [
+          "No H2H history against the probable starter.",
+          "5 stop valves.",
+          "HiPA 500 0.222."
+        ],
+        "confidence_label": "Playable",
+        "thesis": "JJ Wetherholt is a 68.6 selection-score play with a 74.6% learned hit probability, 4.8 expected PA, and a 82/100 reliability score. The positive case starts with high learned probability (74.6%); the main counterweight is no H2H history against the probable starter.",
+        "summary": "JJ Wetherholt grades as playable at 68.6 on the reliability blend.",
+        "recommendation": "Best 2",
+        "h2h_record": "0-0",
+        "safety_score": 82,
+        "bob_score": 52.87,
+        "expected_pa": "4.8",
+        "lineup_slot": "1.0",
+        "hitter_ba_season": "0.259",
+        "probable_pitcher": "Ryan Gusto",
+        "pickable": false,
+        "stop_valve_count": 5,
+        "hard_pass_reasons": [
+          "H2H PA below 2",
+          "Hitter is below .270 over both long and last-500 AB windows",
+          "Starter Stuff+ over 95",
+          "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows",
+          "Hitter is not at least .270 against today's pitcher hand"
+        ],
+        "concerns": [
+          "Missing H2H whiff rate",
+          "Missing H2H K rate"
+        ],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      }
+    ]
+  },
+  "players": [
+    {
+      "rank": 1,
+      "player": "Byron Buxton",
+      "player_id": "621439",
+      "team": "MIN",
+      "opponent": "COL",
+      "dashboard_summary": {
+        "learned_hit_probability": 0.7761,
+        "bob_score": 64.47,
+        "pickable": false,
+        "safety_score": 70,
+        "h2h_record": "2-11",
+        "expected_pa": "4.7",
+        "lineup_slot": "2.0",
+        "season_ba": "0.276",
+        "last_5_ba": "0.304",
+        "hot_streak": false,
+        "hot_streak_tooltip": "",
+        "probable_pitcher": "Michael Lorenzen",
+        "pitcher_hand": "R",
+        "batter_stand": "R",
+        "venue_name": "Target Field",
+        "weather_label": "Rain: 2.0%",
+        "congregation_status": ""
+      },
+      "model_signals": [
+        "Expected PA 4.7",
+        "Season PA/G 4.51",
+        "Lineup slot 2",
+        "Stuff+ 88.0"
+      ],
+      "model_risks": [
+        "7 stop valves",
+        "K rate 26.2%",
+        "HiPA 500 0.236"
+      ],
+      "stop_valves": [
+        "Hitter is below .270 over both long and last-500 AB windows",
+        "Hitter season whiff rate over 25%",
+        "Hitter last-500 PA whiff rate over 25%",
+        "Hitter season K rate over 22%",
+        "Hitter last-500 PA K rate over 22%",
+        "H2H whiff rate over 25%",
+        "H2H K rate over 20%"
+      ],
+      "watch_notes": [],
+      "field_context": {
+        "identity": {
+          "date": "2026-06-27",
+          "player": "Byron Buxton",
+          "player_id": "621439",
+          "team": "MIN",
+          "team_id": "142",
+          "opponent": "COL",
+          "opponent_id": "115",
+          "game_pk": "823689"
+        },
+        "learned_model": {
+          "learned_rank": "1",
+          "learned_hit_probability": "0.7761",
+          "model_version": "learned-logistic-v2-20260627T120950Z",
+          "model_trained_at": "2026-06-27T12:09:50Z",
+          "bob_score": "64.47",
+          "score": "64.47",
+          "pickable": "N"
+        },
+        "game_context": {
+          "venue_name": "Target Field",
+          "game_start_time_utc": "2026-06-27T23:10:00Z",
+          "road_game": "N",
+          "division_matchup": "N",
+          "doubleheader": "N",
+          "confirmed_lineup": "N",
+          "lineup_slot": "2.0",
+          "expected_pa": "4.70",
+          "starts_last_5": "5"
+        },
+        "weather_park": {
+          "precip_probability": "2.0",
+          "forecast_temperature_f": "81.4",
+          "park_hit_factor": "106.0"
+        },
+        "hitter_form_contact": {
+          "hitter_ba_season": "0.276",
+          "hitter_hipa_2500_pa": "0.234",
+          "hitter_pa_per_game_season": "4.51",
+          "hitter_ba_2500_ab": "0.258",
+          "hitter_hipa_500_pa": "0.236",
+          "hitter_hipa_75_ab": "0.312",
+          "hitter_ba_75_ab": "0.333",
+          "hitter_ba_25_ab": "0.320",
+          "hitter_ba_500_ab": "0.266",
+          "hitter_last_5_games_played": "5",
+          "hitter_last_5_games_hits": "7",
+          "hitter_last_5_games_ab": "23",
+          "hitter_last_5_games_ba": "0.304",
+          "sprint_speed": "29.4"
+        },
+        "hitter_plate_discipline": {
+          "hitter_bb_rate_season": "0.069",
+          "hitter_bb_rate_500_pa": "0.068",
+          "hitter_whiff_rate_season": "0.311",
+          "hitter_whiff_rate_500_pa": "0.323",
+          "hitter_k_rate_season": "0.250",
+          "hitter_k_rate_500_pa": "0.262"
+        },
+        "hitter_handedness_splits": {
+          "batter_stand": "R",
+          "pitcher_hand": "R",
+          "hitter_split_ba_season_vs_lhp": "0.268",
+          "hitter_split_ba_season_vs_rhp": "0.278",
+          "hitter_split_pa_season_vs_lhp": "88",
+          "hitter_split_pa_season_vs_rhp": "232",
+          "hitter_split_ba_500_vs_lhp": "0.300",
+          "hitter_split_ba_500_vs_rhp": "0.266",
+          "hitter_split_ba_1500_vs_lhp": "0.300",
+          "hitter_split_ba_1500_vs_rhp": "0.274"
+        },
+        "probable_starter": {
+          "probable_pitcher": "Michael Lorenzen",
+          "probable_pitcher_id": "547179",
+          "pitcher_hand": "R",
+          "pitcher_hpi_350": "1.043",
+          "pitcher_hpi_200": "1.221",
+          "pitcher_hpi_season": "1.487",
+          "pitcher_hits_last_18_ip": "24",
+          "pitcher_stuff_plus": "88.0",
+          "pitcher_lr_opp_ba": "0.275",
+          "pitcher_lr_opp_ba_50": "0.289",
+          "pitcher_lr_opp_ba_200": "0.283"
+        },
+        "probable_starter_last_start": {
+          "pitcher_last_start_date": "2026-06-21",
+          "pitcher_last_start_ip": "5.3",
+          "pitcher_last_start_hits": "7",
+          "pitcher_last_start_strikeouts": "5",
+          "pitcher_last_start_walks": "1"
+        },
+        "h2h": {
+          "h2h_pa": "11",
+          "h2h_hits": "2",
+          "h2h_hit_rate": "0.182",
+          "h2h_whiff_rate": "0.381",
+          "h2h_k_rate": "0.273",
+          "h2h_exit_velocity": "85.9",
+          "h2h_xba": "0.307"
+        },
+        "pitch_type_matchup": {
+          "inferred_pitch_type_ba": "0.316",
+          "inferred_pitch_type_xba": "0.360",
+          "inferred_pitch_type_coverage": "0.462"
+        },
+        "bullpen_context": {
+          "bullpen_hpi": "1.060",
+          "bullpen_opp_ba": "0.274"
+        },
+        "bob_score_components": {
+          "component_hitter.hipa_2500_pa": "73.75",
+          "component_hitter.pa_per_game_season": "56.34",
+          "component_hitter.hipa_500_pa": "66.00",
+          "component_hitter.hipa_75_ab": "100.00",
+          "component_starting_pitcher.hpi_350": "58.55",
+          "component_starting_pitcher.hpi_season": "100.00",
+          "component_starting_pitcher.stuff_plus": "77.14",
+          "component_h2h.direct": "31.80",
+          "component_h2h.pitcher_lr_opp_ba": "50.19",
+          "component_h2h.inferred_pitch_type": "89.03",
+          "component_bullpen.hpi_season": "68.81",
+          "component_other.road_game": "0.00",
+          "component_other.division_matchup": "0.00",
+          "component_other.sprint_speed": "89.09",
+          "component_other.park_hit_factor": "80.00",
+          "component_other.lineup_opportunity": "91.67"
+        },
+        "results": {}
+      },
+      "missing_relevant_fields": {
+        "results": [
+          "result_hit",
+          "result_hits",
+          "result_ab",
+          "result_pa",
+          "result_status",
+          "result_updated_at",
+          "notes"
+        ]
+      },
+      "source_targets": [
+        {
+          "label": "MLB probable pitchers",
+          "url": "https://www.mlb.com/probable-pitchers",
+          "why": "Verify the probable starter has not changed."
+        },
+        {
+          "label": "MLB starting lineups",
+          "url": "https://www.mlb.com/starting-lineups",
+          "why": "Check whether the hitter is confirmed in the lineup and whether the slot changed."
+        },
+        {
+          "label": "MLB injury report",
+          "url": "https://www.mlb.com/injury-report",
+          "why": "Check for late injury or availability notes."
+        },
+        {
+          "label": "RotoWire bullpen usage",
+          "url": "https://www.rotowire.com/baseball/bullpen-usage.php",
+          "why": "Look for bullpen fatigue or unavailable leverage arms."
+        },
+        {
+          "label": "RotoWire daily lineups",
+          "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+          "why": "Cross-check lineup and late-scratch risk."
+        },
+        {
+          "label": "MLB news",
+          "url": "https://www.mlb.com/news",
+          "why": "Search for current notes on Byron Buxton, Michael Lorenzen, MIN, and COL."
+        },
+        {
+          "label": "MLB live game feed",
+          "url": "https://statsapi.mlb.com/api/v1.1/game/823689/feed/live",
+          "why": "Verify official game, lineup, venue, and probable-pitcher context."
+        },
+        {
+          "label": "MLB boxscore endpoint",
+          "url": "https://statsapi.mlb.com/api/v1/game/823689/boxscore",
+          "why": "Useful after lineups post or for later result checks."
+        },
+        {
+          "label": "Baseball Savant: Byron Buxton",
+          "url": "https://baseballsavant.mlb.com/savant-player/byron-buxton-621439",
+          "why": "Review hitter quality of contact, rolling form, pitch-type strengths, and handedness context."
+        },
+        {
+          "label": "Baseball Savant: Michael Lorenzen",
+          "url": "https://baseballsavant.mlb.com/savant-player/michael-lorenzen-547179",
+          "why": "Review starter pitch mix, recent shape, contact allowed, and possible matchup fragility."
+        }
+      ],
+      "chatgpt_review_questions": [
+        "Has the probable starter or lineup changed since the morning run?",
+        "Do current news, beat notes, or injury reports create scratch, rest, or pinch-hit risk?",
+        "Does the hitter have a pitch-type or handedness edge that survives beyond the headline model probability?",
+        "Is the opposing bullpen likely to help or hurt the one-hit path if the starter exits early?",
+        "Is the recent form signal supported by contact quality, or does it look like short-sample noise?"
+      ]
+    },
+    {
+      "rank": 2,
+      "player": "JJ Wetherholt",
+      "player_id": "802139",
+      "team": "STL",
+      "opponent": "MIA",
+      "dashboard_summary": {
+        "learned_hit_probability": 0.746,
+        "bob_score": 52.87,
+        "pickable": false,
+        "safety_score": 82,
+        "h2h_record": "0-0",
+        "expected_pa": "4.8",
+        "lineup_slot": "1.0",
+        "season_ba": "0.259",
+        "last_5_ba": "0.217",
+        "hot_streak": false,
+        "hot_streak_tooltip": "",
+        "probable_pitcher": "Ryan Gusto",
+        "pitcher_hand": "R",
+        "batter_stand": "L",
+        "venue_name": "Busch Stadium",
+        "weather_label": "Rain: 12.0%",
+        "congregation_status": ""
+      },
+      "model_signals": [
+        "Expected PA 4.8",
+        "Season PA/G 4.62",
+        "Lineup slot 1",
+        "K rate 15.9%"
+      ],
+      "model_risks": [
+        "5 stop valves",
+        "HiPA 500 0.222"
+      ],
+      "stop_valves": [
+        "H2H PA below 2",
+        "Hitter is below .270 over both long and last-500 AB windows",
+        "Starter Stuff+ over 95",
+        "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows",
+        "Hitter is not at least .270 against today's pitcher hand"
+      ],
+      "watch_notes": [
+        "Missing H2H whiff rate",
+        "Missing H2H K rate"
+      ],
+      "field_context": {
+        "identity": {
+          "date": "2026-06-27",
+          "player": "JJ Wetherholt",
+          "player_id": "802139",
+          "team": "STL",
+          "team_id": "138",
+          "opponent": "MIA",
+          "opponent_id": "146",
+          "game_pk": "823038"
+        },
+        "learned_model": {
+          "learned_rank": "2",
+          "learned_hit_probability": "0.7460",
+          "model_version": "learned-logistic-v2-20260627T120950Z",
+          "model_trained_at": "2026-06-27T12:09:50Z",
+          "bob_score": "52.87",
+          "score": "52.87",
+          "pickable": "N"
+        },
+        "game_context": {
+          "venue_name": "Busch Stadium",
+          "game_start_time_utc": "2026-06-27T23:15:00Z",
+          "road_game": "N",
+          "division_matchup": "N",
+          "doubleheader": "N",
+          "confirmed_lineup": "N",
+          "lineup_slot": "1.0",
+          "expected_pa": "4.80",
+          "starts_last_5": "5"
+        },
+        "weather_park": {
+          "precip_probability": "12.0",
+          "forecast_temperature_f": "85.0",
+          "park_hit_factor": "101.0"
+        },
+        "hitter_form_contact": {
+          "hitter_ba_season": "0.259",
+          "hitter_hipa_2500_pa": "0.222",
+          "hitter_pa_per_game_season": "4.62",
+          "hitter_ba_2500_ab": "0.259",
+          "hitter_hipa_500_pa": "0.222",
+          "hitter_hipa_75_ab": "0.268",
+          "hitter_ba_75_ab": "0.293",
+          "hitter_ba_25_ab": "0.200",
+          "hitter_ba_500_ab": "0.259",
+          "hitter_last_5_games_played": "5",
+          "hitter_last_5_games_hits": "5",
+          "hitter_last_5_games_ab": "23",
+          "hitter_last_5_games_ba": "0.217",
+          "sprint_speed": "27.4"
+        },
+        "hitter_plate_discipline": {
+          "hitter_bb_rate_season": "0.102",
+          "hitter_bb_rate_500_pa": "0.111",
+          "hitter_whiff_rate_season": "0.209",
+          "hitter_whiff_rate_500_pa": "0.212",
+          "hitter_k_rate_season": "0.157",
+          "hitter_k_rate_500_pa": "0.159"
+        },
+        "hitter_handedness_splits": {
+          "batter_stand": "L",
+          "pitcher_hand": "R",
+          "hitter_split_ba_season_vs_lhp": "0.247",
+          "hitter_split_ba_season_vs_rhp": "0.262",
+          "hitter_split_pa_season_vs_lhp": "112",
+          "hitter_split_pa_season_vs_rhp": "231",
+          "hitter_split_ba_500_vs_lhp": "0.240",
+          "hitter_split_ba_500_vs_rhp": "0.252",
+          "hitter_split_ba_1500_vs_lhp": "0.240",
+          "hitter_split_ba_1500_vs_rhp": "0.252"
+        },
+        "probable_starter": {
+          "probable_pitcher": "Ryan Gusto",
+          "probable_pitcher_id": "687473",
+          "pitcher_hand": "R",
+          "pitcher_hpi_350": "1.136",
+          "pitcher_hpi_200": "1.136",
+          "pitcher_hpi_season": "1.222",
+          "pitcher_hits_last_18_ip": "22",
+          "pitcher_stuff_plus": "96.0",
+          "pitcher_lr_opp_ba": "0.312",
+          "pitcher_lr_opp_ba_50": "0.331",
+          "pitcher_lr_opp_ba_200": "0.319"
+        },
+        "probable_starter_last_start": {
+          "pitcher_last_start_date": "2026-06-21",
+          "pitcher_last_start_ip": "4.3",
+          "pitcher_last_start_hits": "3",
+          "pitcher_last_start_strikeouts": "6",
+          "pitcher_last_start_walks": "2"
+        },
+        "h2h": {
+          "h2h_pa": "0",
+          "h2h_hits": "0"
+        },
+        "pitch_type_matchup": {
+          "inferred_pitch_type_ba": "0.286",
+          "inferred_pitch_type_xba": "0.339",
+          "inferred_pitch_type_coverage": "0.790"
+        },
+        "bullpen_context": {
+          "bullpen_hpi": "0.724",
+          "bullpen_opp_ba": "0.200"
+        },
+        "bob_score_components": {
+          "component_hitter.hipa_2500_pa": "59.03",
+          "component_hitter.pa_per_game_season": "69.07",
+          "component_hitter.hipa_500_pa": "52.22",
+          "component_hitter.hipa_75_ab": "82.20",
+          "component_starting_pitcher.hpi_350": "77.30",
+          "component_starting_pitcher.hpi_season": "94.44",
+          "component_starting_pitcher.stuff_plus": "54.29",
+          "component_h2h.direct": "50.00",
+          "component_h2h.pitcher_lr_opp_ba": "83.66",
+          "component_h2h.inferred_pitch_type": "75.22",
+          "component_bullpen.hpi_season": "0.00",
+          "component_other.road_game": "0.00",
+          "component_other.division_matchup": "0.00",
+          "component_other.sprint_speed": "52.73",
+          "component_other.park_hit_factor": "55.00",
+          "component_other.lineup_opportunity": "100.00"
+        },
+        "results": {}
+      },
+      "missing_relevant_fields": {
+        "h2h": [
+          "h2h_hit_rate",
+          "h2h_whiff_rate",
+          "h2h_k_rate",
+          "h2h_exit_velocity",
+          "h2h_xba"
+        ],
+        "results": [
+          "result_hit",
+          "result_hits",
+          "result_ab",
+          "result_pa",
+          "result_status",
+          "result_updated_at",
+          "notes"
+        ]
+      },
+      "source_targets": [
+        {
+          "label": "MLB probable pitchers",
+          "url": "https://www.mlb.com/probable-pitchers",
+          "why": "Verify the probable starter has not changed."
+        },
+        {
+          "label": "MLB starting lineups",
+          "url": "https://www.mlb.com/starting-lineups",
+          "why": "Check whether the hitter is confirmed in the lineup and whether the slot changed."
+        },
+        {
+          "label": "MLB injury report",
+          "url": "https://www.mlb.com/injury-report",
+          "why": "Check for late injury or availability notes."
+        },
+        {
+          "label": "RotoWire bullpen usage",
+          "url": "https://www.rotowire.com/baseball/bullpen-usage.php",
+          "why": "Look for bullpen fatigue or unavailable leverage arms."
+        },
+        {
+          "label": "RotoWire daily lineups",
+          "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+          "why": "Cross-check lineup and late-scratch risk."
+        },
+        {
+          "label": "MLB news",
+          "url": "https://www.mlb.com/news",
+          "why": "Search for current notes on JJ Wetherholt, Ryan Gusto, STL, and MIA."
+        },
+        {
+          "label": "MLB live game feed",
+          "url": "https://statsapi.mlb.com/api/v1.1/game/823038/feed/live",
+          "why": "Verify official game, lineup, venue, and probable-pitcher context."
+        },
+        {
+          "label": "MLB boxscore endpoint",
+          "url": "https://statsapi.mlb.com/api/v1/game/823038/boxscore",
+          "why": "Useful after lineups post or for later result checks."
+        },
+        {
+          "label": "Baseball Savant: JJ Wetherholt",
+          "url": "https://baseballsavant.mlb.com/savant-player/jj-wetherholt-802139",
+          "why": "Review hitter quality of contact, rolling form, pitch-type strengths, and handedness context."
+        },
+        {
+          "label": "Baseball Savant: Ryan Gusto",
+          "url": "https://baseballsavant.mlb.com/savant-player/ryan-gusto-687473",
+          "why": "Review starter pitch mix, recent shape, contact allowed, and possible matchup fragility."
+        }
+      ],
+      "chatgpt_review_questions": [
+        "Has the probable starter or lineup changed since the morning run?",
+        "Do current news, beat notes, or injury reports create scratch, rest, or pinch-hit risk?",
+        "Does the hitter have a pitch-type or handedness edge that survives beyond the headline model probability?",
+        "Is the opposing bullpen likely to help or hurt the one-hit path if the starter exits early?",
+        "Is the recent form signal supported by contact quality, or does it look like short-sample noise?"
+      ]
+    }
+  ],
+  "chatgpt_committee_process": [
+    "Read this staged context and treat it as evidence, not as a thesis.",
+    "Browse current free sources for lineup, probable pitcher, injury/news, bullpen, and matchup updates.",
+    "Write a pro thesis and con thesis for each player.",
+    "Have a final reviewer compare the arguments and choose one single hitter.",
+    "Save the finished dashboard-ready JSON to expected_thesis_path, then refresh the learned dashboard export."
+  ],
+  "output_schema": {
+    "date": "2026-06-27",
+    "target": "learned_rank_top_2",
+    "committee_pick": "Player Name",
+    "committee_summary": "One paragraph explaining the single-pick decision.",
+    "source_notes": [
+      {
+        "label": "Source name",
+        "url": "https://...",
+        "note": "What was reviewed."
+      }
+    ],
+    "players": [
+      {
+        "rank": 1,
+        "player": "Player Name",
+        "team": "AAA",
+        "opponent": "BBB",
+        "probable_pitcher": "Pitcher Name",
+        "pro_thesis": "Dashboard-ready paragraph.",
+        "con_thesis": "Dashboard-ready paragraph.",
+        "committee_thesis": "Dashboard-ready paragraph."
+      }
+    ]
+  }
+}

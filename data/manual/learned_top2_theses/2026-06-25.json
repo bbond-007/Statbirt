@@ -1,0 +1,81 @@
+{
+  "date": "2026-06-25",
+  "target": "learned_rank_top_2",
+  "committee_pick": "JJ Wetherholt",
+  "committee_summary": "The committee pick is JJ Wetherholt because the morning thesis has to price in availability, not just hitter quality. Bobby Witt Jr. has the cleaner healthy-player profile: better safety score, Publisher status, stronger season baseline, a hot 8-for-17 last-five stretch, and a small 1-for-2 H2H edge. But public injury context still has him day-to-day with a Grade 1 MCL sprain after missing multiple starts, and the official lineup had not posted during the review window. Wetherholt is less perfect statistically, with four stop valves and no H2H history, but he carries the higher learned hit probability, projects for leadoff volume, has no comparable acute injury flag, and gets a vulnerable Zac Gallen profile that includes a rough season line, a poor recent start, and an excellent local pitch-type matchup. If Bobby is later confirmed active and moving normally, he becomes a very live real-time pivot, but for the automated single-pick read the committee prefers Wetherholt's combination of probability, volume, matchup, and availability.",
+  "workflow_notes": [
+    "Staged the learned model raw top 2 for the active dashboard date.",
+    "Reviewed local model context, H2H, stop valves, expected PA, lineup slot, recent form, handedness splits, starter profile, and bullpen context.",
+    "Checked current free public sources for probable pitchers, lineup status, injury/news context, venue/weather context, and public player summaries.",
+    "Used pro, con, and reviewer committee roles before choosing the single hitter."
+  ],
+  "source_notes": [
+    {
+      "label": "MLB Starting Lineups",
+      "url": "https://www.mlb.com/starting-lineups",
+      "note": "Checked the official daily lineup page; Royals-Rays and D-backs-Cardinals lineups were still listed as TBD during the morning review."
+    },
+    {
+      "label": "Cardinals Starting Lineups",
+      "url": "https://www.mlb.com/cardinals/roster/starting-lineups",
+      "note": "Checked the official Cardinals lineup page; today's lineup was still TBD, but recent lineups showed Wetherholt in the leadoff spot."
+    },
+    {
+      "label": "RotoWire Daily Lineups",
+      "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+      "note": "Reviewed projected lineups, game context, and probable-starter notes; Witt was projected second, while the Rays pitching plan still carried opener/primary-pitcher uncertainty."
+    },
+    {
+      "label": "ESPN Diamondbacks at Cardinals",
+      "url": "https://www.espn.com/mlb/game/_/gameId/401815904/diamondbacks-cardinals",
+      "note": "Reviewed probable starters, venue/weather, injury context, and Zac Gallen's public season line."
+    },
+    {
+      "label": "ESPN Royals at Rays",
+      "url": "https://www.espn.com/mlb/game/_/gameId/401815902/royals-rays",
+      "note": "Reviewed game context and public availability signals around Bobby Witt Jr."
+    },
+    {
+      "label": "MLB Bobby Witt Jr. Injury Update",
+      "url": "https://www.mlb.com/royals/video/an-injury-update-on-bobby-witt-jr-s-mcl-sprain",
+      "note": "Reviewed the June 24 MLB injury update describing Witt's Grade 1 MCL sprain and expected return context."
+    },
+    {
+      "label": "MLB Bobby Witt Jr. MCL Article",
+      "url": "https://www.mlb.com/news/bobby-witt-jr-out-with-grade-1-mcl-sprain",
+      "note": "Reviewed MLB's article on Witt's Grade 1 MCL sprain, day-to-day status, and team caution around a possible IL decision."
+    },
+    {
+      "label": "MLB StatsAPI D-backs-Cardinals Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/823042/feed/live",
+      "note": "Verified official scheduled status, probable pitchers, and that official batting orders had not posted during the review."
+    },
+    {
+      "label": "MLB StatsAPI Royals-Rays Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/822961/feed/live",
+      "note": "Verified official scheduled status, probable pitchers, and that official batting orders had not posted during the review."
+    }
+  ],
+  "players": [
+    {
+      "rank": 1,
+      "player": "JJ Wetherholt",
+      "team": "STL",
+      "opponent": "ARI",
+      "probable_pitcher": "Zac Gallen",
+      "pro_thesis": "JJ Wetherholt's pro case is built on volume and a very hittable matchup. The learned model gives him the best probability on the board at 77.8%, and the local context projects him for 4.8 plate appearances from the leadoff spot. Recent official Cardinals lineups support that top-of-order usage even though today's official lineup had not posted during the review. The pitcher side is the larger reason to listen: Zac Gallen entered with a 6.10 ERA, 1.63 WHIP, and 105 hits allowed in 79.2 innings on ESPN, while the local data adds 36 hits allowed over his last 18 innings, a 12-hit last start, and a modest 87 Stuff+. Wetherholt also has a strong inferred pitch-type matchup at .457 BA and .515 xBA with high coverage, and his low strikeout/whiff profile helps turn that opportunity into a one-hit path.",
+      "con_thesis": "The con case is that Wetherholt is not a clean stop-valve play. He is hitting .262 on the season and only 5-for-23 over his last five games, so the current-form signal is more ordinary than explosive. He has no direct H2H history against Gallen, triggers four stop valves, and is just under the preferred thresholds against right-handed pitching in both the season split and larger windows. Busch Stadium also carries a morning rain signal around 40%, and official lineup confirmation was still pending. In plain terms, Wetherholt is more of a model-plus-matchup recommendation than a fully validated human comfort pick.",
+      "committee_thesis": "Committee read: Wetherholt is the single-pick choice because his risks are baseball risks, while Bobby Witt Jr.'s biggest risk is availability. The reviewer gives extra weight to leadoff volume, higher learned probability, Gallen's current vulnerability, and the absence of an acute injury flag. The no-H2H issue and mediocre last-five line keep the confidence from becoming automatic, but the profile still has the better morning-floor once scratch risk is included. Wetherholt is the committee pick unless later lineup/news context clearly resolves Witt as fully active."
+    },
+    {
+      "rank": 2,
+      "player": "Bobby Witt Jr.",
+      "team": "KCR",
+      "opponent": "TBR",
+      "probable_pitcher": "Casey Legumina",
+      "pro_thesis": "Bobby Witt Jr. has the strongest healthy-player case in the top two. He carries a 73.5% learned probability, a 95 safety score, Publisher status, a .295 season average, and a hot 8-for-17 last-five line. The shorter rolling windows are excellent as well, with a .480 last-25 average and .320 last-75 average, while his season and larger-window splits against right-handed pitching all clear the main handedness concern. The matchup also gives him ways through: the local data shows a 1-for-2 H2H record, no H2H strikeouts or whiffs, a favorable righty-contact profile against Casey Legumina, a dome environment, and a Rays bullpen context that is not especially intimidating for a one-hit target.",
+      "con_thesis": "The con case is not really about Bobby's bat; it is about whether the dashboard can trust him to be the same player today. Public MLB injury context still describes a Grade 1 MCL sprain, day-to-day status, and missed starts, and the official Royals lineup had not posted during the morning review. A lower-body issue matters for a one-hit pick because it can create a full scratch, a late scratch, a pinch-hit path, reduced running effort, or a quicker exit than the model expects. There is also Rays pitching-plan uncertainty: the local feed lists Casey Legumina, while public lineup sources point toward a possible opener/primary-pitcher arrangement. If Witt is confirmed starting and moving normally, he may be the best real-time play, but the automation window cannot assume that.",
+      "committee_thesis": "Committee read: Witt is the runner-up, not because the hitter profile is weak, but because the injury/lineup risk changes the contest decision. The pro advocate would take him immediately on a clean lineup card: he is hotter, safer by the local score, and more established than Wetherholt. The con advocate wins the morning vote because a contest pick has to survive availability risk before it can benefit from talent. If official Royals news later confirms Witt in the lineup with no restriction, he becomes a serious pivot candidate; absent that confirmation, the committee leaves him second."
+    }
+  ]
+}

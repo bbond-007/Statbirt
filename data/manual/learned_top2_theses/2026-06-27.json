@@ -1,0 +1,101 @@
+{
+  "date": "2026-06-27",
+  "target": "learned_rank_top_2",
+  "committee_pick": "Byron Buxton",
+  "committee_summary": "The committee pick is Byron Buxton, with the caveat that this is a higher-variance single than yesterday's Díaz profile. Buxton has the stronger run environment and pitcher target: the learned model gives him the top probability at 77.6%, he projects second in the order, Target Field has only minimal rain risk, and Michael Lorenzen's current profile is highly attackable with a 7.11 ERA on MLB's lineup page, a local 1.487 season HPI, 24 hits allowed over his last 18 innings, and 7 hits allowed in his last start. Buxton's own recent form is also useful for a one-hit pick: .304 over his last five games, .320 over the last 25 at-bats, .333 over the last 75, and public recent notes showing sustained extra-base impact. JJ Wetherholt is a credible two-pick partner because of his leadoff role, low strikeout profile, and Ryan Gusto's 6.00 ERA, but Wetherholt brings no H2H history, weaker recent form, below-threshold right-handed-pitching splits, and a tougher Marlins bullpen context. The deciding factor is that Buxton's risks are mostly swing-and-miss volatility, while his positive matchup context is materially stronger.",
+  "workflow_notes": [
+    "Staged the learned model raw top 2 for the active dashboard date.",
+    "Reviewed local model context, H2H, stop valves, expected PA, lineup slot, recent form, handedness splits, starter profile, and bullpen context.",
+    "Checked current free public sources for probable pitchers, lineup status, injury/news context, venue/weather context, and public player summaries.",
+    "Used pro, con, and reviewer committee roles before choosing the single hitter."
+  ],
+  "source_notes": [
+    {
+      "label": "MLB Twins Starting Lineups",
+      "url": "https://www.mlb.com/twins/roster/starting-lineups",
+      "note": "Checked the official Rockies-Twins page; today's lineups were still TBD, with Michael Lorenzen and Mike Paredes listed as probable starters. Recent Twins lineups showed Buxton in the second spot."
+    },
+    {
+      "label": "MLB Cardinals Starting Lineups",
+      "url": "https://www.mlb.com/cardinals/roster/starting-lineups",
+      "note": "Checked the official Marlins-Cardinals page; today's lineups were still TBD, with Ryan Gusto and Andre Pallante listed as probable starters. Recent Cardinals lineups showed Wetherholt leading off."
+    },
+    {
+      "label": "MLB StatsAPI Rockies-Twins Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/823689/feed/live",
+      "note": "Verified scheduled status, official probable pitchers, venue context, and that official batting orders had not posted during the review."
+    },
+    {
+      "label": "MLB StatsAPI Marlins-Cardinals Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/823038/feed/live",
+      "note": "Verified scheduled status, official probable pitchers, venue context, and that official batting orders had not posted during the review."
+    },
+    {
+      "label": "RotoWire Daily Lineups",
+      "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+      "note": "Reviewed expected lineups, probable-starter context, game weather, and totals; RotoWire projected Buxton second and Wetherholt leadoff."
+    },
+    {
+      "label": "Twins Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/twins-injuries-and-roster-moves",
+      "note": "Checked the latest MLB Twins injury page; Buxton was not listed among current injuries."
+    },
+    {
+      "label": "Cardinals Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/cardinals-injuries-and-roster-moves",
+      "note": "Checked the latest MLB Cardinals injury page; Wetherholt was not listed among current injuries, while Dustin May's back tightness explained the Cardinals rotation adjustment."
+    },
+    {
+      "label": "Rockies vs. Twins Injured List",
+      "url": "https://kfan.iheart.com/content/2026-06-25-rockies-vs-twins-series-injured-list-june-26-28/",
+      "note": "Reviewed series injury context, listed pitching matchup, and last-10 team comparison; Buxton was not on the injury list."
+    },
+    {
+      "label": "ESPN Marlins-Cardinals Preview",
+      "url": "https://www.espn.com/mlb/preview?gameId=401815932",
+      "note": "Reviewed Ryan Gusto's public season line and the note that Wetherholt is 12-for-43 over his last 10 games."
+    },
+    {
+      "label": "RotoWire Byron Buxton News",
+      "url": "https://www.rotowire.com/baseball/player/byron-buxton-12448",
+      "note": "Reviewed recent public Buxton news and form notes, including his recent power run."
+    },
+    {
+      "label": "RotoWire JJ Wetherholt News",
+      "url": "https://www.rotowire.com/baseball/player/jj-wetherholt-19500",
+      "note": "Reviewed public Wetherholt player context and recent news references."
+    },
+    {
+      "label": "Baseball Savant Rockies-Twins Preview",
+      "url": "https://baseballsavant.mlb.com/preview?game_date=06%2F27%2F2026&game_pk=823689",
+      "note": "Reviewed Statcast game-preview context for the Rockies-Twins matchup."
+    },
+    {
+      "label": "Recent MLB Boxscores via StatsAPI",
+      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1",
+      "note": "Checked recent public boxscore data for bullpen workload context across Colorado, Minnesota, Miami, and St. Louis."
+    }
+  ],
+  "players": [
+    {
+      "rank": 1,
+      "player": "Byron Buxton",
+      "team": "MIN",
+      "opponent": "COL",
+      "probable_pitcher": "Michael Lorenzen",
+      "pro_thesis": "Byron Buxton's pro case is the best blend of model signal and game context in today's top two. The learned model puts him first at 77.6%, and the public and local lineup context keeps him in a premium second slot with 4.7 expected plate appearances. The matchup target is favorable: Michael Lorenzen is listed by MLB at 2-9 with a 7.11 ERA, while the local model shows a 1.487 season HPI, 24 hits allowed over his last 18 innings, only 88 Stuff+, and 7 hits allowed in his last start. Buxton's form supports attacking that profile: .304 over his last five games, .320 over the last 25 at-bats, .333 over the last 75, and strong recent public notes around his power surge. Target Field also helps the thesis with a positive local park factor and low precipitation risk.",
+      "con_thesis": "The con case is that Buxton's hit path can disappear through swing-and-miss. He triggers seven stop valves, including season and last-500 whiff and strikeout rates, plus poor H2H whiff and strikeout signals against Lorenzen. The direct record is only 2-for-11, and the local H2H strikeout rate is high enough that the small-sample history cannot be treated as a clean positive. He is not pickable by the main stop-valve standard, and a low-walk, high-power hitter can produce loud outs or empty strikeout plate appearances even in a favorable run environment. Official lineups were also still TBD during the morning review, so the projected second slot still needs normal pregame confirmation.",
+      "committee_thesis": "Committee read: Buxton is the single pick because the favorable parts of the profile are stronger than the risks. The pro advocate has the better pitcher target, the better recent hitter form, the better game environment, and the higher learned probability. The con advocate is right that this is not a low-volatility contact play, but Wetherholt's alternative case has its own weaknesses without the same offensive context. The reviewer accepts Buxton's strikeout risk because Lorenzen and the Colorado bullpen create more ways for one ball in play to become a hit."
+    },
+    {
+      "rank": 2,
+      "player": "JJ Wetherholt",
+      "team": "STL",
+      "opponent": "MIA",
+      "probable_pitcher": "Ryan Gusto",
+      "pro_thesis": "JJ Wetherholt's pro case is built on plate appearance volume and contact stability. He projects to lead off, carries 4.8 expected plate appearances, has a strong 82 safety score, and keeps the ball in play far more reliably than Buxton with a local strikeout rate around 16% and a whiff rate near 21%. Ryan Gusto is a reasonable pitcher target: ESPN lists him at 0-2 with a 6.00 ERA and 1.61 WHIP, and the local data shows a 1.222 season HPI, 22 hits allowed over his last 18 innings, and a left-handed-batter allowed-average profile above .300 in the local split windows. Public preview context also notes Wetherholt has been 12-for-43 over his last 10 games, which gives the broader form picture more support than the five-game line alone.",
+      "con_thesis": "The con case is that Wetherholt's profile is more stable than explosive, and several key filters remain below threshold. He has no H2H history against Gusto, triggers five stop valves, and sits at .259 for the season with a .217 last-five line and a .200 last-25 mark locally. His right-handed-pitching splits are below the preferred cutoffs in season, 500, and 1500 windows, and Gusto's 96 Stuff+ creates just enough starter-quality resistance to matter. The bigger separator is bullpen context: Miami's local bullpen profile is much better than Colorado's, and recent boxscore usage does not show the same late-game vulnerability that helps Buxton. If Gusto exits early, Wetherholt may face a harder second half of the game.",
+      "committee_thesis": "Committee read: Wetherholt is a valid two-pick partner, but not the single. The pro advocate has a coherent case around leadoff volume, low strikeouts, and a hittable starter. The con advocate wins the comparison because Wetherholt's recent form and handedness splits are weaker, and the no-H2H gap removes one of the checks this workflow values. Against Buxton, Wetherholt is the safer bat-to-ball type but not the better one-hit environment. The reviewer keeps him second unless late news removes Buxton from the lineup or materially changes the Rockies pitching plan."
+    }
+  ]
+}

@@ -23,12 +23,13 @@ def main():
         dry_run=args.dry_run,
     )
     action = "Would update" if args.dry_run else "Updated"
+    postponed = summary.get("postponed", 0)
+    postponed_text = f", {postponed} postponed" if postponed else ""
     print(
         f"{action} {summary['updated']} row(s) in {Path(args.results_csv).resolve()} "
-        f"({summary['pending']} pending, {summary['rows']} total)."
+        f"({summary['pending']} pending{postponed_text}, {summary['rows']} total)."
     )
 
 
 if __name__ == "__main__":
     main()
-

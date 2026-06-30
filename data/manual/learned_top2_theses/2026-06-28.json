@@ -1,0 +1,91 @@
+{
+  "date": "2026-06-28",
+  "target": "learned_rank_top_2",
+  "committee_pick": "Brandon Nimmo",
+  "committee_summary": "The committee pick is Brandon Nimmo because the morning process has to treat Wyatt Langford's hamstring as a real availability and performance risk. Langford is the model's raw top probability at 82.3%, has stronger recent form, and projects into a better lineup slot if he starts. But MLB's Rangers injury page lists him day-to-day after being scratched minutes before first pitch on June 27 with left hamstring tightness, and official lineups were still TBD during review. Nimmo's case is less volatile: he has an 81.0% learned probability, a stronger 86 safety score, fewer stop valves, useful 1-for-4 H2H with strong contact quality, and no current injury listing. Shane Bieber is also a valid pitcher target for both hitters, with MLB/RotoWire listing a 9.82 ERA and the local data showing 9 hits allowed in 3.7 innings in his last start. If Langford is later confirmed fully active, he becomes a viable real-time pivot, but for the automated single-pick thesis the committee chooses Nimmo as the more dependable one-hit play.",
+  "workflow_notes": [
+    "Staged the learned model raw top 2 for the active dashboard date.",
+    "Reviewed local model context, H2H, stop valves, expected PA, lineup slot, recent form, handedness splits, starter profile, and bullpen context.",
+    "Checked current free public sources for probable pitchers, lineup status, injury/news context, venue/weather context, and public player summaries.",
+    "Used pro, con, and reviewer committee roles before choosing the single hitter."
+  ],
+  "source_notes": [
+    {
+      "label": "MLB Blue Jays Starting Lineups",
+      "url": "https://www.mlb.com/bluejays/roster/starting-lineups",
+      "note": "Checked the official Rangers-Blue Jays page; today's lineups were still TBD, with Kumar Rocker and Shane Bieber listed as probable starters."
+    },
+    {
+      "label": "MLB StatsAPI Rangers-Blue Jays Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/822795/feed/live",
+      "note": "Verified official scheduled status, probable pitchers, venue context, and that official batting orders had not posted during the review."
+    },
+    {
+      "label": "RotoWire Daily Lineups",
+      "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+      "note": "Reviewed expected lineups, probable-starter context, dome status, total, and betting context; RotoWire projected Langford second and Nimmo fifth against Shane Bieber."
+    },
+    {
+      "label": "Rangers Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/rangers-injuries-and-roster-moves",
+      "note": "Checked the official Rangers injury page; Langford was listed day-to-day with left hamstring tightness after a June 27 late scratch."
+    },
+    {
+      "label": "RotoWire Wyatt Langford News",
+      "url": "https://www.rotowire.com/baseball/player/wyatt-langford-18842",
+      "note": "Reviewed Langford's player page, current day-to-day hamstring status, recent hot streak note, and handedness/road split context."
+    },
+    {
+      "label": "RotoWire Brandon Nimmo News",
+      "url": "https://www.rotowire.com/baseball/player/brandon-nimmo-12146",
+      "note": "Reviewed Nimmo's player context and public hitter profile."
+    },
+    {
+      "label": "RotoWire Brandon Nimmo Headline",
+      "url": "https://www.rotowire.com/baseball/headlines/brandon-nimmo-news-goes-deep-in-loss-1010751",
+      "note": "Reviewed the June 23 note on Nimmo's recent extra-base production and broader June form."
+    },
+    {
+      "label": "MLB Brandon Nimmo RBI Double",
+      "url": "https://www.mlb.com/video/patrick-corbin-in-play-run-s-to-brandon-nimmo",
+      "note": "Reviewed recent MLB highlight context showing Nimmo's June 26 RBI double in Toronto."
+    },
+    {
+      "label": "MLB Rangers-Blue Jays Preview",
+      "url": "https://www.mlb.com/stories/game-preview/822795",
+      "note": "Reviewed the MLB game preview noting Bieber's recent 2026 debut and the Rocker-Bieber probable pitching matchup."
+    },
+    {
+      "label": "Lone Star Ball Rangers-Blue Jays Recap",
+      "url": "https://www.lonestarball.com/rangers-mlb-game-day-thread/91629/texas-rangers-issue-cease-and-desist-to-toronto-blue-jays-with-win",
+      "note": "Reviewed recent team context from June 27, including Texas winning without Langford in the lineup and the Sunday finale matchup."
+    },
+    {
+      "label": "Recent MLB Boxscores via StatsAPI",
+      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1",
+      "note": "Checked recent public boxscore data for bullpen workload context across Toronto and Texas."
+    }
+  ],
+  "players": [
+    {
+      "rank": 1,
+      "player": "Wyatt Langford",
+      "team": "TEX",
+      "opponent": "TOR",
+      "probable_pitcher": "Shane Bieber",
+      "pro_thesis": "Wyatt Langford has the highest-upside baseball case in today's top two. The learned model gives him the top probability at 82.3%, and the local context projects him near the top of the order with 4.7 expected plate appearances. His form is stronger than Nimmo's: .318 over the last five games, .360 over the last 25 at-bats, .333 over the last 75, and the RotoWire page notes a significant recent hot stretch before the late scratch. The opponent context is also attractive. Shane Bieber is listed by MLB and RotoWire with a 9.82 ERA, and the local data shows 9 hits allowed in 3.7 innings in his last start plus 22 hits allowed over his last 18 innings. Rogers Centre is a dome, the local park factor is favorable, and the Rangers have been scoring early in this Toronto series.",
+      "con_thesis": "The con case is decisive for a single pick: Langford's availability is not clean. MLB lists him day-to-day with left hamstring tightness after he was scratched minutes before first pitch on June 27, and official lineups were still TBD during the morning review. That matters more than a normal injury note because a hamstring issue can mean no start, a late scratch, reduced running, or a quicker removal even if he appears in the lineup. His statistical profile also carries more stop-valve risk than Nimmo: four stop valves, a 66 safety score, elevated last-500 whiff and strikeout rates, and an 0-for-2 H2H record against Bieber. The model likes him for good reasons, but the contest cannot use a hitter who is not certain to take normal plate appearances.",
+      "committee_thesis": "Committee read: Langford is the runner-up and a possible real-time pivot only if the official lineup confirms him starting without restriction. The pro advocate has the better recent form and slightly higher learned probability, but the con advocate wins the morning decision because availability risk is not a small detail in a one-hit contest. The reviewer would include Langford on a two-pick card if active, but does not choose him as the single while the hamstring status is unresolved."
+    },
+    {
+      "rank": 2,
+      "player": "Brandon Nimmo",
+      "team": "TEX",
+      "opponent": "TOR",
+      "probable_pitcher": "Shane Bieber",
+      "pro_thesis": "Brandon Nimmo's pro case is the safer version of the same favorable game environment. He carries an 81.0% learned hit probability, the better local safety score at 86, fewer stop valves than Langford, and a projected 4.5 plate appearances in a dome game. His H2H record against Bieber is not loud at 1-for-4, but the quality markers are usable: no H2H strikeouts, a 98.8 mph H2H exit velocity, and a .360 H2H xBA in the local data. His broader rolling profile is steadier than the last-five line suggests, with a .307 last-75 average and .280 last-25 average, and RotoWire recently noted a productive June stretch with extra-base impact. Bieber's current starter profile gives Nimmo a clear path if Texas can force traffic again.",
+      "con_thesis": "The con case is that Nimmo is not the cleanest pure batting-average play. He is hitting .263 on the season, only 4-for-21 over his last five games, and the local handedness filters still create three stop valves, including sub-threshold long-window average and a left-handed hitter split issue. RotoWire's current expected lineup places him fifth rather than in the premium top-two slot, so he may give away a fraction of plate appearance volume compared with a healthy Langford. Bieber also has a stronger historical reputation than his early 2026 ERA, and the local split against left-handed hitters is not generous. Nimmo is the safer pick, but not an automatic one.",
+      "committee_thesis": "Committee read: Nimmo is the single pick because his risk is normal baseball risk, while Langford's risk starts with whether he can play normally. The pro advocate has enough model and contact support to justify the choice, especially in the same favorable pitcher/park context. The con advocate correctly flags the recent five-game dip and lower lineup slot, but those concerns are more manageable than an unresolved hamstring scratch. The reviewer selects Nimmo as the best morning decision and would only reconsider if official lineup news later makes Langford fully available and pushes Nimmo down or out of the lineup."
+    }
+  ]
+}

@@ -75,8 +75,13 @@ class StopValveConfig:
     pitcher_hpi_200_min: float = 0.875
     pitcher_hpi_season_min: float = 0.875
     pitcher_hits_last_18_ip_min: int = 10
+    pitcher_dominant_start_ip_min: float = 6.0
+    pitcher_dominant_start_strikeouts_min: int = 8
+    pitcher_dominant_start_hits_max: int = 3
+    pitcher_dominant_start_walks_max: int = 2
     pitcher_stuff_plus_max: float = 95.0
     hitter_both_hands_min: float = 0.265
+    hitter_both_hands_season_pa_min: int = 50
     hitter_matchup_hand_min: float = 0.270
     pitcher_split_opp_ba_min: float = 0.245
     strict_missing_stop_data: bool = False

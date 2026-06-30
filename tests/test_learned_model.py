@@ -25,6 +25,7 @@ def _write_candidates(path: Path) -> None:
         "result_hits",
         "result_ab",
         "result_pa",
+        "result_status",
     ]
     rows = []
     for idx in range(8):
@@ -50,6 +51,7 @@ def _write_candidates(path: Path) -> None:
                 "result_hits": hit,
                 "result_ab": "4",
                 "result_pa": "4",
+                "result_status": "Game Over",
             }
         )
     with path.open("w", newline="", encoding="utf-8") as f:
@@ -82,3 +84,7 @@ def test_train_and_score_learned_model(tmp_path):
     assert len(records) == 2
     assert records[0]["learned_rank"] == "1"
     assert 0.0 <= float(records[0]["learned_hit_probability"]) <= 1.0
+    assert records[0]["result_status"] == "final"
+    with predictions.open(newline="", encoding="utf-8") as f:
+        prediction_row = next(csv.DictReader(f))
+    assert prediction_row["result_status"] == "final"

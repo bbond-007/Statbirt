@@ -13,6 +13,11 @@
           <p class="eyebrow">Statbirt Daily Board</p>
           <h1>Bob's Top 10 Hit Picks</h1>
           <p id="board-subtitle" class="subtitle">Loading model output...</p>
+          <nav class="dashboard-switcher" aria-label="Dashboard views">
+            <a href="index.html" aria-current="page">Bob score board</a>
+            <a href="learned.html">Learned shortlist</a>
+            <a href="data/selection_strategy_report.html">6-19-26 Strategy Report</a>
+          </nav>
         </div>
         <div class="status-panel" aria-label="Board status">
           <div class="status-orbit">
@@ -65,6 +70,7 @@
         <div class="row-header" aria-hidden="true">
           <span>Rank</span>
           <span>Player</span>
+          <span>H2H</span>
           <span>Status</span>
           <span>Score</span>
           <span>Key Factors</span>
@@ -81,6 +87,7 @@
         <div class="player-cell">
           <div class="player-line">
             <strong class="player-name"></strong>
+            <span class="season-ba"></span>
             <span class="pick-badge"></span>
           </div>
           <div class="matchup-line"></div>
@@ -89,6 +96,7 @@
           <div class="game-detail-line"></div>
           <div class="game-status-line"></div>
         </div>
+        <div class="h2h-cell"></div>
         <div class="status-cell"></div>
         <div class="score-cell">
           <strong></strong>
@@ -99,6 +107,6 @@
       </article>
     </template>
 
-    <script src="app.js?v=20260506-hot-streak"></script>
+    <script src="app.js?v=20260619-strategy"></script>
   </body>
 </html>

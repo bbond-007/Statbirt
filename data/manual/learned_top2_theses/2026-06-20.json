@@ -1,0 +1,91 @@
+{
+  "date": "2026-06-20",
+  "target": "learned_rank_top_2",
+  "committee_pick": "Byron Buxton",
+  "committee_summary": "The committee sides with Byron Buxton by a narrow but clear margin. Hoerner has the cleaner contact-specific matchup: strong left-handed split, excellent 5-for-15 history versus Patrick Corbin, low whiff/K history in that matchup, and fewer model stop valves. That makes him a legitimate safety challenger. But the cold recent form and .238 season baseline make his case more dependent on the Corbin/lefty angle carrying the entire thesis. Buxton has more swing-and-miss fragility, but he also owns the higher learned hit probability, stronger expected plate-appearance count, better current form, better season average, a favorable dome/park context, and an opposing starter showing broader hittability indicators. For a one-hitter contest, the extra PA expectation plus hotter bat outweigh the whiff-risk discount. Hoerner is the steadier contact archetype; Buxton is the better total hit-probability play.",
+  "workflow_notes": [
+    "Staged the learned model raw top 2 for the active dashboard date.",
+    "Reviewed local model context, H2H, stop valves, expected PA, lineup slot, recent form, handedness splits, starter profile, and bullpen context.",
+    "Checked current free public sources for probable pitchers, lineup status, injury notes, venue/weather context, and public player summaries.",
+    "Used pro, con, and reviewer committee roles before choosing the single hitter."
+  ],
+  "source_notes": [
+    {
+      "label": "MLB D-backs Probable Pitchers",
+      "url": "https://www.mlb.com/dbacks/roster/probable-pitchers",
+      "note": "Confirmed Twins at D-backs probable starter context with Zac Gallen listed for Chase Field."
+    },
+    {
+      "label": "MLB Cubs Probable Pitchers",
+      "url": "https://www.mlb.com/cubs/roster/probable-pitchers",
+      "note": "Confirmed Blue Jays at Cubs probable starter context with Patrick Corbin listed at Wrigley Field."
+    },
+    {
+      "label": "MLB Twins Starting Lineups",
+      "url": "https://www.mlb.com/twins/roster/starting-lineups",
+      "note": "Checked official Twins lineup status; today's lineup was still listed as TBD at review time."
+    },
+    {
+      "label": "MLB Blue Jays Starting Lineups",
+      "url": "https://www.mlb.com/bluejays/roster/starting-lineups",
+      "note": "Checked official Cubs/Blue Jays lineup status; today's lineup was still listed as TBD at review time."
+    },
+    {
+      "label": "RotoWire Daily Lineups",
+      "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+      "note": "Cross-checked expected lineups, projected batting order, game weather, and dome context."
+    },
+    {
+      "label": "ESPN Twins-Diamondbacks Preview",
+      "url": "https://www.espn.com/mlb/preview?gameId=401815838",
+      "note": "Reviewed public game preview, probable pitchers, Buxton season summary, venue, and injury list context."
+    },
+    {
+      "label": "ESPN Blue Jays-Cubs Game Page",
+      "url": "https://www.espn.com/mlb/game/_/gameId/401815833/blue-jays-cubs",
+      "note": "Reviewed public game page for Corbin's season line, Wrigley context, and injury report."
+    },
+    {
+      "label": "Baseball Savant: Byron Buxton",
+      "url": "https://baseballsavant.mlb.com/savant-player/byron-buxton-621439",
+      "note": "Reviewed Buxton's public 2026 standard batting summary."
+    },
+    {
+      "label": "Baseball Savant: Nico Hoerner",
+      "url": "https://baseballsavant.mlb.com/savant-player/nico-hoerner-663538",
+      "note": "Reviewed Hoerner's public 2026 standard batting summary."
+    },
+    {
+      "label": "MLB StatsAPI Twins-D-backs Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/825068/feed/live",
+      "note": "Verified official game, venue, probable pitcher, and that the official batting order had not posted yet."
+    },
+    {
+      "label": "MLB StatsAPI Blue Jays-Cubs Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/824665/feed/live",
+      "note": "Verified official game, venue, probable pitcher, and that the official batting order had not posted yet."
+    }
+  ],
+  "players": [
+    {
+      "rank": 1,
+      "player": "Byron Buxton",
+      "team": "MIN",
+      "opponent": "ARI",
+      "probable_pitcher": "Zac Gallen",
+      "pro_thesis": "Byron Buxton is the strongest pure hit thesis because the opportunity and contact context both line up. He is projected to bat second for Minnesota at Chase Field, giving him an expected 4.7 plate appearances in a dome with a 108 park hit factor. The season line supports the model: .273 average, 73 hits in 267 at-bats, and a .318 mark over his last five games. He has stayed steady against right-handed pitching at .271 this season and .270 over the larger 1500-sample view. Zac Gallen adds a hittable matchup, carrying a 5.35 ERA, 1.229 HPI, 32 hits allowed over his last 18 innings, and an 87 Stuff+ profile.",
+      "con_thesis": "Buxton's hit case carries real swing-and-miss fragility despite the strong learned probability. The model's own stop valves are crowded: both season and last-500 whiff rates clear 25%, K rates clear 22%, and his longer BA windows sit below .270, so one-hit safety depends on contact volume more than pure bat-to-ball reliability. Against RHP he is solid but not overwhelming at .271 season and .264 last-500, and the tiny Gallen history is only 1-for-3 with elevated whiff/K markers. Gallen's headline ERA is attackable, but the pitcher-hand BA filters did not open the green light, and Arizona's bullpen profile is restrictive at .228 opponent BA and .841 HPI. With lineups still unofficial, any PA reduction would matter.",
+      "committee_thesis": "Buxton is the committee pick because his case has the strongest blend of model confidence, opportunity, current form, and run environment. The 0.7551 learned hit probability leads the pair, and the expected 4.7 plate appearances from the projected two-hole gives him more paths to a single. His .273 season average, .318 last-five form, and steady .271 mark versus right-handed pitching support the selection. Zac Gallen's 5.35 ERA, 87 Stuff+, 1.229 HPI, and 32 hits allowed over his last 18 innings make the matchup hittable despite Buxton's real whiff/K risk."
+    },
+    {
+      "rank": 2,
+      "player": "Nico Hoerner",
+      "team": "CHC",
+      "opponent": "TOR",
+      "probable_pitcher": "Patrick Corbin",
+      "pro_thesis": "Nico Hoerner's pro case is built on matchup specificity and lineup leverage. RotoWire now expects him second for the Cubs, a major plate-appearance boost from the earlier projection, and the model still gives him a 0.7352 learned hit probability with an elite 89 safety score. The season average is modest at .238, but his lefty split is the key: .294 versus LHP this year and .341 across the larger 500/1500 lefty sample. Patrick Corbin is a favorable contact target with a 4.57 ERA, 1.48 WHIP, 70 hits allowed in 61 innings, and seven hits allowed in 3.7 innings last start. Hoerner also owns a 5-for-15 history against him.",
+      "con_thesis": "Hoerner's biggest con is that the current form is materially weaker than the surface matchup. Even with Patrick Corbin's 1.48 WHIP and Hoerner's strong LHP split, the bat arrives cold: 4-for-24 over the last five games, .160 over the last 25 AB, and .200 over the last 75 AB. His full-season line is only .238/.315/.332, so the single-hit case leans heavily on handedness rather than overall batting quality. The stop valve also flags that he is not a stable .265-or-better hitter across pitcher-hand windows, mainly because the broader righty-facing profile drags down reliability. Lineups are still unofficial, and Toronto's bullpen is not soft enough to erase the recent-contact risk.",
+      "committee_thesis": "Hoerner is a strong runner-up because the matchup is highly specific and contact-friendly. His .294 season mark versus left-handed pitching, larger-sample .341 lefty profile, and 5-for-15 history against Patrick Corbin with very low whiff/K indicators create a clean one-hit path. Corbin's 1.48 WHIP, 70 hits allowed in 61 innings, and recent seven-hit outing further strengthen the case. The committee does not dismiss Hoerner, especially if he bats second, but his .238 season average and cold recent stretch make his thesis more matchup-dependent than Buxton's broader probability profile."
+    }
+  ]
+}

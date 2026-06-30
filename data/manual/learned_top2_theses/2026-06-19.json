@@ -1,0 +1,66 @@
+{
+  "date": "2026-06-19",
+  "target": "learned_rank_top_2",
+  "committee_pick": "Bryan Reynolds",
+  "committee_summary": "Bryan Reynolds is the committee pick because his case is broader and cleaner than Ryan O'Hearn's despite both carrying five stop valves. Reynolds owns the higher learned probability, slightly stronger projected volume, a premium No. 3 lineup slot, better season and recent batting form, stronger overall Statcast quality, and a wider pitch-matchup path against Kyle Freeland with edges across the four-seam, cutter, and sinker at Coors Field. The walk, whiff, K-rate, H2H, and HiPA concerns keep this from being automatic, but Reynolds has more independent ways to reach a hit through opportunity, contact authority, park context, and pitch fit. O'Hearn is a credible runner-up with excellent recent production and cleanup leverage, but his same-side matchup, lower season PA/G, narrower pitch-edge profile, substitution risk, and slightly weaker expected-contact indicators make his path more fragile for a single-hit decision.",
+  "workflow_notes": [
+    "Start with the learned model raw top 2 for the active dashboard date.",
+    "Review local model context, H2H, stop valves, expected PA, lineup slot, recent form, and quality-of-contact data.",
+    "Check free public context for probable pitchers, pitch-level matchup shape, recent game/news notes, weather/venue, and bullpen or lineup fragility.",
+    "Have one advocate write the pro case, one advocate write the con case, and one reviewer choose the single hitter with the best one-hit profile."
+  ],
+  "source_notes": [
+    {
+      "label": "MLB Probable Pitchers",
+      "url": "https://www.mlb.com/rockies/roster/probable-pitchers",
+      "note": "Confirmed the Pirates at Rockies probable starter context for Kyle Freeland."
+    },
+    {
+      "label": "PlainText Sports Game Page",
+      "url": "https://plaintextsports.com/mlb/2026-06-19/pit-col",
+      "note": "Cross-checked game time and Freeland's public season line."
+    },
+    {
+      "label": "RunsLeft Pitch Matchups",
+      "url": "https://runsleft.com/games/2026-06-19/pirates-at-rockies",
+      "note": "Reviewed pitch-level batter edges for Reynolds and O'Hearn against Freeland."
+    },
+    {
+      "label": "Recent Game Recap",
+      "url": "https://fieldlevelmedia.com/mlb/mlb-roundup-ryan-ohearns-six-rbi-effort-powers-pirates-past-as/",
+      "note": "Reviewed recent Pirates offensive context and O'Hearn's big prior game."
+    },
+    {
+      "label": "Bryan Reynolds Savant",
+      "url": "https://baseballsavant.mlb.com/savant-player/bryan-reynolds-668804",
+      "note": "Reviewed quality-of-contact indicators."
+    },
+    {
+      "label": "Ryan O'Hearn Savant",
+      "url": "https://baseballsavant.mlb.com/savant-player/ryan-o-hearn-656811",
+      "note": "Reviewed quality-of-contact indicators."
+    }
+  ],
+  "players": [
+    {
+      "rank": 1,
+      "player": "Bryan Reynolds",
+      "team": "PIT",
+      "opponent": "COL",
+      "probable_pitcher": "Kyle Freeland",
+      "pro_thesis": "Bryan Reynolds is the stronger pro-side hit pick because the learned model is already putting him at the top of the board at 0.7939, and the surrounding context gives that number a very playable shape: he is projected for 4.6 PA, hitting third, in Pirates at Rockies at Coors Field against Kyle Freeland, a left-hander listed today with a 1-7 record and 7.98 ERA. The matchup is not just park-boosted; the pitch-level context points directly toward Reynolds' bat path translating, with meaningful edges against Freeland's four-seam, cutter, and sinker. That matters because Reynolds' current form and quality of contact are both doing real work here: a .284 season BA, .500 last-5 BA, strong exit velocity, strong hard-hit rate, a strong xwOBA profile, and a double-digit barrel rate all support the idea that he is not merely a volume pick. The H2H line is modest at 3-for-14 and the stop-valve profile is real, especially with the elevated walk, whiff, K, and HiPA concerns, but the pro case is that Reynolds has multiple independent paths to a hit today: elite lineup position, near-max plate appearance expectation, strong current contact form, strong Statcast indicators, pitch-shape edges, and the most forgiving hitting environment on the slate. The intangible is also positive: Pittsburgh just produced broad offensive output in the prior game, Reynolds drove in two runs within that surge, and he enters this spot as a central lineup piece rather than a passenger.",
+      "con_thesis": "Reynolds has the best model case on the board, but the con case starts with how many ways a strong Coors setup can still turn into a hitless line: five stop valves, a 23.0% K rate, elevated season and recent walk markers, and a .228 HiPA-500 profile all say the at-bats are not as clean as the headline probability. Freeland's poor run prevention and 92 Stuff+ invite confidence, yet that can also create walk risk if Colorado works carefully around the No. 3 hitter rather than giving him damage pitches, especially with Reynolds already carrying BB and whiff hard-pass flags. The 3-for-14 H2H is small but not reassuring, and the last-5 .500 form is exactly the kind of heater that can regress in a one-game hit market. Coors boosts offense, but it can also inflate model comfort: a few deep counts, one well-hit ball caught in the spacious outfield, and an early bullpen turn against less favorable shapes could leave Reynolds with volume but no single clean hit.",
+      "committee_thesis": "Committee read: Reynolds is the single-pick lean because his profile has more independent ways to get to one hit than O'Hearn's. The edge is not only the higher learned probability; it is the combination of rank, lineup slot, expected PA, wider pitch-type fit against Freeland, stronger overall Statcast indicators, and a central role in a Pirates offense that looked alive in the prior game. The stop valves are meaningful, particularly the walk and swing-miss warnings, so this is not a lock. But if the goal is one successful pick, Reynolds is the more resilient choice because he can win through volume, contact authority, park context, or pitch fit rather than needing one narrower path to hold."
+    },
+    {
+      "rank": 2,
+      "player": "Ryan O'Hearn",
+      "team": "PIT",
+      "opponent": "COL",
+      "probable_pitcher": "Kyle Freeland",
+      "pro_thesis": "Ryan O'Hearn's pro thesis rests on a blend of model confidence, lineup leverage, recent confidence, and a favorable run-scoring environment: the learned probability is a strong 0.7614, the Bob score is 62.49, and he is projected for 4.5 PA from the cleanup spot at Coors Field against Kyle Freeland. The left-on-left matchup can look uncomfortable at first glance, and the hard-pass list is not cosmetic, with PA/G, strikeout, H2H whiff, and H2H K concerns all present, but the pro side has enough concrete counterweight to keep him firmly inside the top two. O'Hearn is batting .290 on the season and .391 over his last five, and the pitch-by-pitch projection gives him meaningful batter edges against Freeland's four-seam and sinker. Those are important because they pair with legitimate contact authority: strong average exit velocity, hard-hit rate, wOBA, xwOBA, and barrel rate. The intangible case is unusually strong and fully grounded in today's context: O'Hearn is coming off a loud recent performance in which he homered, doubled, singled, and drove in a career-high six runs in a Pirates win, so the pick is not just chasing a spreadsheet edge but backing a hitter who has very recent evidence of timing, confidence, and run-production involvement.",
+      "con_thesis": "O'Hearn's surface case is attractive after the recent homer-double-single eruption, but this is a fragile hit profile for a daily top-two pick because the same-side lefty matchup, five stop valves, and playing-time volatility all matter more than the Coors/Freeland label suggests. His season PA/G is only 4.08 despite the projected 4.5 PA and cleanup slot, so one substitution, matchup pinch decision, or bullpen sequence can meaningfully shrink the runway. The K flags are real at 22.4% overall with season and last-500 hard-pass triggers, and the H2H sample is tiny at 0-for-3 but still carries whiff/K warning signs rather than comfort. Freeland's 7.98 ERA and low Stuff+ make this feel attackable, yet O'Hearn's pitch-edge case is narrower than Reynolds' and can collapse if Freeland avoids the lanes he handles or gets ground-ball contact. Add recent-performance regression after the big RBI game and park overconfidence, and the miss path is simple: fewer plate appearances than projected, a strikeout, a walk, and one loud Coors out instead of a hit.",
+      "committee_thesis": "Committee read: O'Hearn is a credible runner-up because his current form, cleanup slot, and Coors/Freeland setup are all live, and the recent six-RBI game gives the case a real confidence signal. The committee still ranks him behind Reynolds because his path is more fragile: lower season PA/G, same-side handedness, narrower pitch-type edge, tiny but negative H2H indicators, and more substitution or bullpen-sequence risk. If choosing two hitters, O'Hearn belongs on the card. If choosing one, the committee would rather take the broader Reynolds profile than ask O'Hearn's narrower matchup case to carry the whole decision."
+    }
+  ]
+}

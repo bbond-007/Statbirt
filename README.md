@@ -18,7 +18,7 @@ As of May 6, 2026:
 - No separate `Statbirt_v2` rebuild has been needed so far.
 - `data/statbirt_candidates.csv` currently has 10,868 rows across 43 dates, spanning `2026-03-25` through `2026-05-06`.
 - 2026 historical backfill through `2026-05-05` is complete; `2026-05-06` is the active ungraded daily board.
-- `data/manual/stuff_plus.csv` contains 559 normalized 2026 FanGraphs Stuff+ rows refreshed from the FanGraphs leaderboard through the browser snapshot fallback.
+- `data/manual/stuff_plus.csv` contains 688 normalized 2026 FanGraphs Stuff+ rows refreshed from the FanGraphs leaderboard through the browser snapshot fallback on 2026-06-16.
 - `pitcher_stuff_plus` is populated from `data/manual/stuff_plus.csv` during daily runs. After refreshing Stuff+, rerun the daily model to apply the newest values to candidate rows and dashboard exports.
 - The active dashboard export is `2026-05-06` with 29 displayed picks.
 - A parallel learned hit-probability model lives in `statbirt/learned_model.py`. It trains from labeled candidate/result rows and writes daily comparison predictions to `data/model_predictions.csv`.
@@ -38,6 +38,16 @@ data/statbirt_candidates.csv
 ```
 
 Daily runs upsert into the CSV instead of wiping it. Ungraded rows for the same date are replaced by the newest model output, while rows that already have postgame result columns filled in are preserved.
+
+## Daily Automation
+
+On the Desktop PC, Windows Task Scheduler runs this wrapper at 6:30 AM each day:
+
+```powershell
+X:\Coding\Statbirt\scripts\daily_morning.ps1
+```
+
+The scheduled task is named `Statbirt Daily Morning Run`. It runs the primary daily model, retrains/scores the learned model, then exports the dashboard. Each run writes a transcript log to `logs\daily-morning-*.log`.
 
 Use a concrete game date when backfilling. For example:
 
@@ -60,9 +70,11 @@ That fills:
 - `result_hits`
 - `result_ab`
 - `result_pa`
-- `result_status`
+- `result_status`: machine-readable row state, currently `final`, `pending`, `postponed`, `no_appearance`, or `unresolved`
 - `result_updated_at`
 - `notes`
+
+Rows with `result_status` of `postponed`, `no_appearance`, `pending`, or `unresolved` keep `result_hit` blank, so they are excluded from hit-rate summaries and learned-model training labels.
 
 Use `--refresh-filled` to recalculate rows that already have results, or `--dry-run` to see how many rows would change.
 
@@ -110,6 +122,12 @@ To rebuild the active dashboard and every saved date in the CSV:
 python3 -m statbirt.export_web --all-dates --limit 10
 ```
 
+To rebuild the learned-model shortlist dashboard from `data/model_predictions.csv`:
+
+```bash
+python3 -m statbirt.export_learned_web --all-dates --limit 5
+```
+
 Then serve the page locally:
 
 ```bash
@@ -117,7 +135,7 @@ cd path/to/Statbirt/web
 python3 -m http.server 8765
 ```
 
-Open `http://localhost:8765`. The dashboard shows the top scored candidates for the selected date and labels rows that clear every stop-valve as `Pickable`; blocked rows show `PASS`. The date dropdown is populated from `web/data/dashboard_index.json` and loads saved dashboards from `web/data/dashboards/YYYY-MM-DD.json`.
+Open `http://localhost:8765`. The dashboard shows the top scored candidates for the selected date and labels rows that clear every stop-valve as `Pickable`; blocked rows show `PASS`. The date dropdown is populated from `web/data/dashboard_index.json` and loads saved dashboards from `web/data/dashboards/YYYY-MM-DD.json`. The learned shortlist is linked near the top of the main dashboard and lives at `http://localhost:8765/learned.html`; its data comes from `web/data/learned_shortlist.json`, `web/data/learned_dashboard_index.json`, and `web/data/learned_dashboards/YYYY-MM-DD.json`.
 
 The Bullpen score bucket still follows the v2 instruction sheet and uses opposing bullpen H/IP. The dashboard also shows `Relief BA`, calculated from MLB boxscore relief pitching hits allowed divided by relief pitching at-bats allowed, as a companion caution signal.
 
@@ -164,10 +182,11 @@ The learned model is intentionally separate from the hand-weighted Bob score. It
 
 - pregame candidate columns become features
 - `result_hit` is the label
-- score components and Bob's final `score` are not used as model features
-- stop-valve reasons are converted into data-driven binary/count features
+- Bob's final `score` is included as one input feature
+- opportunity/contact/pitcher-vulnerability fields carry most of the learned signal
+- stop-valve reasons, team, and opponent are intentionally excluded from the v2 feature set
 
-The current local candidate history starts on April 26, 2026, so the first usable model is trained on the labeled 2026 rows we have collected so far. To include 2025 and deeper 2026 history, backfill candidate rows for those dates, update results, then retrain. The model tooling is built to absorb those rows as soon as they exist in `data/statbirt_candidates.csv`.
+The current local candidate history starts on March 18, 2025 and includes the 2026 season-to-date. To include deeper history, backfill candidate rows for those dates, update results, then retrain. The model tooling is built to absorb those rows as soon as they exist in `data/statbirt_candidates.csv`.
 
 Check current training coverage:
 
@@ -194,6 +213,12 @@ Train and score in one step:
 python3 -m statbirt.learned_model run --date latest --top 25
 ```
 
+Backtest experimental learned-model variants:
+
+```bash
+python3 scripts/backtest_learned_model_experiments.py --min-train-dates 30
+```
+
 Generated outputs:
 
 ```text
@@ -203,6 +228,12 @@ data/model_predictions.csv
 ```
 
 `data/model_predictions.csv` is upserted by date/player/game, so rerunning the learned model refreshes that day's rows while preserving prior dates for comparison against Bob's picks and eventual hit results.
+
+Export the learned shortlist dashboard after scoring predictions:
+
+```bash
+python3 -m statbirt.export_learned_web --all-dates --limit 5
+```
 
 ## Historical Backfill
 
@@ -272,6 +303,7 @@ Current hard-pass checks include:
 - hitter below .150 over last 25 AB
 - starter under .875 H/IP in last 200 IP or season
 - starter under 10 hits in last 18 IP
+- starter's most recent start was dominant: 6+ IP, 8+ strikeouts, 3 or fewer hits, and 2 or fewer walks
 - starter Stuff+ above 95
 - hitter L/R split requirements
 - starter same-handed opponent BA above .245 over both 50 and 200 IP windows
@@ -284,6 +316,7 @@ Most features come from MLB StatsAPI and Baseball Savant:
 - hitter PA/G from season boxscore usage
 - hitter BB, whiff, and K rates from Savant pitch-level data
 - starter recent hits per inning
+- starter most recent start innings, hits, strikeouts, and walks
 - current-season starter hits per inning
 - H2H plate appearances, whiff rate, K rate, exit velocity, and xBA
 - hitter rolling L/R split estimates
@@ -329,6 +362,8 @@ On April 27, 2026, the FanGraphs leaderboard's visible `Data Export` button appe
 
 On May 5, 2026, direct local API requests were Cloudflare-blocked, but the browser leaderboard still loaded. The page-size control was set to `Infinity`, then the visible 559-row Stuff+ table was extracted through the browser snapshot and merged into `data/manual/stuff_plus.csv`, preserving or resolving MLBAM IDs for every row. This visible leaderboard path gives whole-number Stuff+ values because that is how FanGraphs renders the table.
 
+On June 16, 2026, direct local API requests were still Cloudflare-blocked, but the browser leaderboard path worked again. The `Infinity` page-size table had 688 visible rows; all were written to `data/manual/stuff_plus.csv` with MLBAM IDs preserved from the prior file or resolved through MLB roster/search lookups.
+
 If the official export is blocked again, use the browser leaderboard/API route or recreate the normalized manual CSV with these columns:
 
 ```text
@@ -351,7 +386,7 @@ Some columns are intentionally blank until their source data is loaded:
 - `game_start_time_utc` and `venue_name` are written by new daily runs from the MLB schedule payload and are also backfilled into web dashboard exports when older CSV rows do not have them.
 - Result columns stay blank until `python3 -m statbirt.update_results` is run after games are final.
 
-The Savant-dependent AE-AN columns are:
+The Savant-dependent hitter plate-discipline and split columns include:
 
 ```text
 hitter_bb_rate_season
@@ -360,10 +395,27 @@ hitter_whiff_rate_season
 hitter_whiff_rate_500_pa
 hitter_k_rate_season
 hitter_k_rate_500_pa
+hitter_split_ba_season_vs_lhp
+hitter_split_ba_season_vs_rhp
+hitter_split_pa_season_vs_lhp
+hitter_split_pa_season_vs_rhp
 hitter_split_ba_500_vs_lhp
 hitter_split_ba_500_vs_rhp
 hitter_split_ba_1500_vs_lhp
 hitter_split_ba_1500_vs_rhp
+```
+
+The `.265 against both pitcher hands` stop valve can be cleared independently for LHP and RHP by any qualifying window:
+current-season BA with at least 50 PA against that hand, last-500 AB BA, or last-1500 AB BA. The separate `.270 against today's pitcher hand` stop valve still uses the last-500/last-1500 split for that day's probable starter hand.
+
+The dominant-start stop valve uses the probable starter's most recent prior start from MLB pitching game logs:
+
+```text
+pitcher_last_start_date
+pitcher_last_start_ip
+pitcher_last_start_hits
+pitcher_last_start_strikeouts
+pitcher_last_start_walks
 ```
 
 ## Files
@@ -378,6 +430,7 @@ hitter_split_ba_1500_vs_rhp
 - `statbirt/update_weather.py`: weather-only precipitation probability updater
 - `statbirt/update_bullpen.py`: bullpen relief BA/H-IP updater
 - `statbirt/export_web.py`: export top-pick JSON for the web dashboard
+- `statbirt/export_learned_web.py`: export learned-model shortlist JSON for the web dashboard
 - `statbirt/learned_model.py`: train and score the parallel learned hit-probability model
 - `statbirt/backfill.py`: historical regular-season candidate/result backfill helper
 - `statbirt/weather.py`: precipitation lookup via Open-Meteo
@@ -388,9 +441,11 @@ hitter_split_ba_1500_vs_rhp
 - `scripts/update_weather.py`: convenience wrapper for weather backfill
 - `scripts/update_bullpen.py`: convenience wrapper for bullpen relief backfill
 - `scripts/export_web.py`: convenience wrapper for web dashboard export
+- `scripts/export_learned_web.py`: convenience wrapper for learned dashboard export
 - `scripts/learned_model.py`: convenience wrapper for learned-model train/score commands
 - `scripts/backfill.py`: convenience wrapper for historical backfill
 - `web/index.html`: one-page Statbirt top-picks dashboard
+- `web/learned.html`: learned-model top-5 shortlist dashboard
 - `tests/test_scoring.py`: scoring and valve unit tests
 
 ## Data Caveats
@@ -437,6 +492,7 @@ Daily generated files still live on this machine and are rebuilt by the scripts.
 
 ```bash
 python3 -m statbirt.export_web --all-dates --limit 10
+python3 -m statbirt.export_learned_web --all-dates --limit 5
 ```
 
 Going forward, make a small commit after each meaningful project change. The commit history becomes the project memory that a future Codex session can inspect even if chat context is gone.

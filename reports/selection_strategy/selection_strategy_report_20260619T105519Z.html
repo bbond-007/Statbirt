@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Statbirt Selection Strategy Research</title>
+  <style>
+    :root { color-scheme: light; --bg:#f4f6f5; --surface:#fff; --ink:#17211f; --muted:#65716d; --line:#dce4e0; --good:#137b5f; --starter:#4169d8; }
+    body { margin:0; background:var(--bg); color:var(--ink); font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    main { width:min(1180px, calc(100vw - 32px)); margin:0 auto; padding:24px 0 44px; }
+    header, section { margin-bottom:16px; padding:18px; border:1px solid var(--line); border-radius:8px; background:var(--surface); }
+    h1 { margin:0; font-size:2rem; letter-spacing:0; }
+    h2 { margin:0 0 10px; font-size:1.08rem; }
+    p { margin:6px 0 0; color:var(--muted); line-height:1.45; }
+    .kpis { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:10px; margin-top:14px; }
+    .kpi { padding:12px; border:1px solid var(--line); border-radius:8px; background:#fbfcfc; }
+    .kpi span { display:block; color:var(--muted); font-size:.72rem; font-weight:800; text-transform:uppercase; }
+    .kpi strong { display:block; margin-top:4px; font-size:1.35rem; }
+    table { width:100%; border-collapse:collapse; font-size:.84rem; }
+    th, td { padding:8px 9px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+    th { background:#eef3f1; color:var(--muted); font-size:.7rem; text-transform:uppercase; }
+    tr:hover td { background:#fafbfb; }
+    .muted { color:var(--muted); }
+    .two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    ul { margin:8px 0 0; padding-left:18px; }
+    li { margin:4px 0; color:#30403c; }
+    @media (max-width: 820px) { .kpis, .two { grid-template-columns:1fr; } main { width:min(100vw - 20px, 760px); } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Statbirt Selection Strategy Research</h1>
+      <p>Generated 2026-06-19T10:55:19.699578+00:00 from X:\Coding\Statbirt\data\statbirt_candidates.csv. Only rows with explicit result_hit values of 1 or 0 are counted as decisions.</p>
+      <div class="kpis">
+        <div class="kpi"><span>Labeled decisions</span><strong>64,482</strong></div>
+        <div class="kpi"><span>Game days</span><strong>270</strong></div>
+        <div class="kpi"><span>Date range</span><strong>2025-03-18 to 2026-06-18</strong></div>
+        <div class="kpi"><span>Overall hit rate</span><strong>56.6%</strong></div>
+      </div>
+    </header>
+
+    <section>
+      <h2>Executive Read</h2>
+      <p>The best walk-forward daily selection policy in this run is <strong>Walk-forward probability top</strong>, with a top-1 hit rate of <strong>79.2%</strong> and a top-2 any-hit rate of <strong>97.7%</strong>.</p>
+      <p>The analysis is intentionally split between broad factor discovery and deployable daily policy testing. Factor tables show correlation/cohort signal across all candidate decisions; strategy tables show what would have happened using only prior dates to fit the daily model.</p>
+    </section>
+
+    <section>
+      <h2>Walk-Forward Daily Selection Strategies</h2>
+      <table><thead><tr><th>Strategy</th><th>Top-1 days</th><th>Top-1 hits</th><th>Top-1 rate</th><th>Top-1 max streak</th><th>Top-2 days</th><th>Top-2 any hit</th><th>Top-2 max streak</th></tr></thead><tbody><tr><td>Walk-forward probability top</td><td>231</td><td>183</td><td>79.2%</td><td>16</td><td>222</td><td>97.7%</td><td>70</td></tr><tr><td>Top-5 safety blend</td><td>229</td><td>184</td><td>80.3%</td><td>16</td><td>222</td><td>95.5%</td><td>72</td></tr><tr><td>Probability with volume floor</td><td>228</td><td>182</td><td>79.8%</td><td>16</td><td>220</td><td>95.0%</td><td>69</td></tr><tr><td>Top-8 safety blend with floor</td><td>228</td><td>180</td><td>78.9%</td><td>21</td><td>213</td><td>94.8%</td><td>44</td></tr><tr><td>Probability with volume + stop floor</td><td>228</td><td>178</td><td>78.1%</td><td>16</td><td>222</td><td>94.1%</td><td>71</td></tr><tr><td>Bob score with volume floor</td><td>230</td><td>177</td><td>77.0%</td><td>18</td><td>224</td><td>93.8%</td><td>43</td></tr></tbody></table>
+    </section>
+
+    <section>
+      <h2>Bob Score Ranges</h2>
+      <table><thead><tr><th>Score range</th><th>Decisions</th><th>Hits</th><th>Hit rate</th><th>Pickable</th><th>Publisher</th><th>Avg stops</th></tr></thead><tbody><tr><td>&lt;= 50</td><td>50310</td><td>27266</td><td>54.2%</td><td>0.0%</td><td>4.1%</td><td>9.3</td></tr><tr><td>50-55</td><td>7783</td><td>4889</td><td>62.8%</td><td>0.2%</td><td>12.4%</td><td>6.6</td></tr><tr><td>55-60</td><td>4102</td><td>2693</td><td>65.7%</td><td>0.6%</td><td>16.8%</td><td>5.8</td></tr><tr><td>60-65</td><td>1634</td><td>1147</td><td>70.2%</td><td>1.8%</td><td>19.9%</td><td>5.0</td></tr><tr><td>65-70</td><td>502</td><td>371</td><td>73.9%</td><td>3.6%</td><td>30.1%</td><td>4.5</td></tr><tr><td>70-75</td><td>128</td><td>87</td><td>68.0%</td><td>7.8%</td><td>42.2%</td><td>3.8</td></tr><tr><td>75-80</td><td>21</td><td>16</td><td>76.2%</td><td>9.5%</td><td>38.1%</td><td>3.5</td></tr><tr><td>&gt;= 80</td><td>2</td><td>2</td><td>100.0%</td><td>0.0%</td><td>0.0%</td><td>5.5</td></tr></tbody></table>
+    </section>
+
+    <div class="two">
+      <section>
+        <h2>Highest-Impact Binary Factors</h2>
+        <table><thead><tr><th>Factor</th><th>Yes decisions</th><th>Yes rate</th><th>No rate</th><th>Edge</th></tr></thead><tbody><tr><td>Pickable</td><td>99</td><td>72.7%</td><td>56.5%</td><td>+16.2 pts</td></tr><tr><td>No stop valves</td><td>99</td><td>72.7%</td><td>56.5%</td><td>+16.2 pts</td></tr><tr><td>Publisher / congregation</td><td>4245</td><td>70.1%</td><td>55.6%</td><td>+14.5 pts</td></tr><tr><td>Volume floor (PA/G and expected PA)</td><td>13778</td><td>65.9%</td><td>54.0%</td><td>+11.9 pts</td></tr><tr><td>K rate &lt;= 20%</td><td>23035</td><td>60.6%</td><td>54.3%</td><td>+6.4 pts</td></tr></tbody></table>
+      </section>
+      <section>
+        <h2>Strongest Numeric Cohorts</h2>
+        <table><thead><tr><th>Feature</th><th>Decisions</th><th>Corr</th><th>Bottom Q</th><th>Top Q</th><th>Top edge</th></tr></thead><tbody><tr><td>hitter_split_pa_season_vs_lhp</td><td>702</td><td>0.133</td><td>45.1%</td><td>68.6%</td><td>+23.5 pts</td></tr><tr><td>hitter_pa_per_game_season</td><td>63891</td><td>0.169</td><td>42.8%</td><td>65.4%</td><td>+22.7 pts</td></tr><tr><td>hitter_last_5_games_ab</td><td>63891</td><td>0.138</td><td>46.1%</td><td>64.6%</td><td>+18.5 pts</td></tr><tr><td>score</td><td>64482</td><td>0.130</td><td>47.3%</td><td>65.5%</td><td>+18.2 pts</td></tr><tr><td>hitter_ba_500_ab</td><td>64317</td><td>0.109</td><td>47.3%</td><td>64.2%</td><td>+16.8 pts</td></tr><tr><td>hitter_ba_2500_ab</td><td>64317</td><td>0.104</td><td>48.0%</td><td>64.0%</td><td>+16.1 pts</td></tr><tr><td>hitter_hipa_500_pa</td><td>64317</td><td>0.104</td><td>47.8%</td><td>63.5%</td><td>+15.7 pts</td></tr><tr><td>hitter_hipa_2500_pa</td><td>64317</td><td>0.100</td><td>48.0%</td><td>63.7%</td><td>+15.7 pts</td></tr></tbody></table>
+      </section>
+    </div>
+
+    <section>
+      <h2>Stop Valve Outcomes</h2>
+      <table><thead><tr><th>Stop valve</th><th>Decisions</th><th>Hits</th><th>Hit rate</th><th>Edge vs overall</th></tr></thead><tbody><tr><td>No stop valve</td><td>99</td><td>72</td><td>72.7%</td><td>+16.2 pts</td></tr><tr><td>Hitter last-500 PA BB rate over 12%</td><td>7747</td><td>4540</td><td>58.6%</td><td>+2.0 pts</td></tr><tr><td>Hitter is not at least .265 against both pitcher hands in season/500/1500 windows</td><td>562</td><td>323</td><td>57.5%</td><td>+0.9 pts</td></tr><tr><td>H2H K rate over 20%</td><td>17096</td><td>9825</td><td>57.5%</td><td>+0.9 pts</td></tr><tr><td>Opposing team may be using an opener</td><td>2034</td><td>1162</td><td>57.1%</td><td>+0.6 pts</td></tr><tr><td>H2H whiff rate over 25%</td><td>15260</td><td>8712</td><td>57.1%</td><td>+0.5 pts</td></tr><tr><td>Hitter season BB rate over 12%</td><td>13022</td><td>7401</td><td>56.8%</td><td>+0.3 pts</td></tr><tr><td>Hitter is playing in a doubleheader</td><td>1316</td><td>744</td><td>56.5%</td><td>-0.0 pts</td></tr><tr><td>Starter allowed fewer than 10 hits over last 18 IP</td><td>3446</td><td>1945</td><td>56.4%</td><td>-0.1 pts</td></tr><tr><td>Precipitation probability over 40%</td><td>1088</td><td>610</td><td>56.1%</td><td>-0.5 pts</td></tr><tr><td>Starter Stuff+ over 95</td><td>34663</td><td>19287</td><td>55.6%</td><td>-0.9 pts</td></tr><tr><td>Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows</td><td>42233</td><td>23402</td><td>55.4%</td><td>-1.1 pts</td></tr><tr><td>Hitter season whiff rate over 25%</td><td>30965</td><td>17100</td><td>55.2%</td><td>-1.3 pts</td></tr><tr><td>Hitter is not at least .265 against both pitcher hands in 500/1500 AB windows</td><td>54620</td><td>30160</td><td>55.2%</td><td>-1.3 pts</td></tr><tr><td>Hitter last-500 PA whiff rate over 25%</td><td>33029</td><td>18200</td><td>55.1%</td><td>-1.5 pts</td></tr><tr><td>Starter H/IP under .875 over last 200 innings</td><td>23233</td><td>12669</td><td>54.5%</td><td>-2.0 pts</td></tr><tr><td>Hitter is not at least .270 against today&#x27;s pitcher hand</td><td>46864</td><td>25434</td><td>54.3%</td><td>-2.3 pts</td></tr><tr><td>Hitter season PA/G under 4.2</td><td>49740</td><td>26961</td><td>54.2%</td><td>-2.4 pts</td></tr><tr><td>Hitter season K rate over 22%</td><td>31497</td><td>17056</td><td>54.2%</td><td>-2.4 pts</td></tr><tr><td>Hitter is below .270 over both long and last-500 AB windows</td><td>47593</td><td>25737</td><td>54.1%</td><td>-2.5 pts</td></tr><tr><td>Hitter last-500 PA K rate over 22%</td><td>34285</td><td>18481</td><td>53.9%</td><td>-2.7 pts</td></tr><tr><td>H2H PA below 2</td><td>29943</td><td>16114</td><td>53.8%</td><td>-2.7 pts</td></tr><tr><td>Starter season H/IP under .875</td><td>24132</td><td>12799</td><td>53.0%</td><td>-3.5 pts</td></tr><tr><td>Hitter BA under .150 over last 25 AB</td><td>8260</td><td>4252</td><td>51.5%</td><td>-5.1 pts</td></tr><tr><td>Starter&#x27;s most recent start was dominant (6+ IP, 8+ K, &lt;=3 H, &lt;=2 BB)</td><td>36</td><td>17</td><td>47.2%</td><td>-9.3 pts</td></tr></tbody></table>
+    </section>
+
+    <section>
+      <h2>Notes For Future Iteration</h2>
+      <ul>
+        <li>Training rows are limited to explicit 1/0 hit results; postponed, pending, unresolved, and blank no-decision rows are excluded from rate calculations.</li>
+        <li>The walk-forward model is refit for each date using only earlier labeled dates, then daily policies select from that date's candidate pool.</li>
+        <li>CSV copies of these tables are written next to this report so the cohorts can be sorted or filtered later.</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

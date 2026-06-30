@@ -1,0 +1,96 @@
+{
+  "date": "2026-06-23",
+  "target": "learned_rank_top_2",
+  "committee_pick": "Luis Arraez",
+  "committee_summary": "The committee pick is Luis Arraez because this is a one-hit contest, and his floor is cleaner than Ceddanne Rafaela's even though Rafaela owns the higher learned rank and a loud Coors matchup. Rafaela has real upside: a .281 season average, a .306 season split against left-handed pitching, a projected No. 2 lineup slot, Coors Field, and Sean Sullivan's 10.29 ERA with 11 hits allowed in 7 innings. But his case comes with five stop valves, no H2H history, a .200 last-five mark, a weaker long-window lefty split, and more swing-and-miss. Arraez counters with a 99 safety score, projected leadoff slot, .320 season average, .333 last-five form, .332 season split against right-handed pitching, extreme 4.0% strikeout rate, and only one stop valve. For a single pick, the committee prefers Arraez's contact reliability over Rafaela's environment-driven ceiling.",
+  "workflow_notes": [
+    "Staged the learned model raw top 2 for the active dashboard date.",
+    "Reviewed local model context, H2H, stop valves, expected PA, lineup slot, recent form, handedness splits, starter profile, and bullpen context.",
+    "Checked current free public sources for probable pitchers, lineup status, injury/news context, venue/weather context, and public player summaries.",
+    "Used pro, con, and reviewer committee roles before choosing the single hitter."
+  ],
+  "source_notes": [
+    {
+      "label": "MLB Starting Lineups",
+      "url": "https://www.mlb.com/starting-lineups",
+      "note": "Checked official June 23 lineup and probable-pitcher status for Red Sox-Rockies and Athletics-Giants; official batting orders were still TBD."
+    },
+    {
+      "label": "RotoWire Daily Lineups",
+      "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+      "note": "Cross-checked expected batting orders, weather, and probable starters; Rafaela was projected second and Arraez was projected leadoff."
+    },
+    {
+      "label": "Baseball Savant Game Preview: Red Sox at Rockies",
+      "url": "https://baseballsavant.mlb.com/preview?game_date=06%2F23%2F2026&game_pk=824340",
+      "note": "Reviewed the Statcast game preview for Boston at Colorado."
+    },
+    {
+      "label": "Baseball Savant Game Preview: Athletics at Giants",
+      "url": "https://baseballsavant.mlb.com/preview?game_date=06%2F23%2F2026&game_pk=823210",
+      "note": "Reviewed the Statcast game preview for Athletics at San Francisco."
+    },
+    {
+      "label": "Baseball Savant: Ceddanne Rafaela",
+      "url": "https://baseballsavant.mlb.com/savant-player/ceddanne-rafaela-678882",
+      "note": "Reviewed Rafaela's public 2026 standard batting summary."
+    },
+    {
+      "label": "Baseball Savant: Luis Arraez",
+      "url": "https://baseballsavant.mlb.com/savant-player/luis-arraez-650333",
+      "note": "Reviewed Arraez's public 2026 standard batting summary."
+    },
+    {
+      "label": "Baseball Savant: Sean Sullivan",
+      "url": "https://baseballsavant.mlb.com/savant-player/sean-sullivan-807743",
+      "note": "Reviewed Sullivan's public 2026 pitching summary."
+    },
+    {
+      "label": "Baseball Savant: Aaron Civale",
+      "url": "https://baseballsavant.mlb.com/savant-player/aaron-civale-650644",
+      "note": "Reviewed Civale's public 2026 pitching summary."
+    },
+    {
+      "label": "MLB StatsAPI Red Sox-Rockies Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/824340/feed/live",
+      "note": "Verified official game status, probable pitchers, and that official batting orders had not posted yet."
+    },
+    {
+      "label": "MLB StatsAPI Athletics-Giants Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/823210/feed/live",
+      "note": "Verified official game status, probable pitchers, and that official batting orders had not posted yet."
+    },
+    {
+      "label": "Athletics-Giants Injured List",
+      "url": "https://foxsportsradio1340.iheart.com/content/2026-06-22-athletics-vs-giants-series-injured-list-june-23-25/",
+      "note": "Reviewed listed Giants injuries and series context for the Athletics-Giants set."
+    },
+    {
+      "label": "RotoWire Red Sox-Rockies Game Page",
+      "url": "https://www.rotowire.com/baseball/box-score/rockies-vs-red-sox-2026-06-23-2941642",
+      "note": "Reviewed current series news after Boston's June 22 loss at Colorado."
+    }
+  ],
+  "players": [
+    {
+      "rank": 1,
+      "player": "Ceddanne Rafaela",
+      "team": "BOS",
+      "opponent": "COL",
+      "probable_pitcher": "Sean Sullivan",
+      "pro_thesis": "Ceddanne Rafaela has the loudest environment case of the two candidates. The learned model ranks him first at 76.8%, and the public lineup projection has him second at Coors Field, which pairs 4.7 expected plate appearances with the slate's best hit environment. He is batting .281 with a .332 OBP and .441 slugging line on the public Savant page, and his season split against left-handed pitching is .306 over 67 plate appearances. Sean Sullivan is the exact kind of starter a model should notice: a rookie lefty with a 10.29 ERA, 1.86 WHIP, 11 hits allowed in 7 innings, 73 Stuff+, and nine hits allowed in his most recent start. Colorado's bullpen also grades hittable locally.",
+      "con_thesis": "The con case is that Rafaela's upside comes with more miss risk than the headline setting suggests. He has no H2H history with Sullivan, so the direct matchup is untested, and five stop valves are attached to the profile. The long-window lefty split is much weaker than the current-season split, the last-500 whiff rate is over the stop-valve threshold, and the season PA/G flag says the plate-appearance projection may be slightly optimistic. Recent form is also softer than the season line: 4-for-20 over the last five games and .240 over the last 25 at-bats. Coors and Sullivan can cover a lot, but they do not remove the contact volatility.",
+      "committee_thesis": "Committee read: Rafaela is the runner-up and belongs on a two-pick card because Coors, projected No. 2 slot, the vulnerable Sullivan matchup, and his current-season lefty split all create a very live hit path. The committee still stops short of making him the single pick because the path leans heavily on environment and pitcher weakness. With no H2H sample, five stop valves, recent cold-ish form, and more swing-and-miss than Arraez, Rafaela is the higher-ceiling play but not the safest one-hit choice."
+    },
+    {
+      "rank": 4,
+      "player": "Luis Arraez",
+      "team": "SFG",
+      "opponent": "ATH",
+      "probable_pitcher": "Aaron Civale",
+      "pro_thesis": "Luis Arraez is the cleanest contest pick because his strengths map directly to the only goal: one hit. The learned probability is 75.0%, the reliability blend gives him a 99 safety score, and the public lineup projection has him leading off at Oracle Park. His 2026 Savant line is exactly what a single-hit profile should look like: .320 average, 95 hits in 297 at-bats, and a .357 OBP. The staged splits sharpen it further with a .332 season mark against right-handed pitching, .316 in the last-500 righty sample, and a microscopic 4.0% strikeout rate. Civale has a 4.91 ERA, 1.59 WHIP, and local recent-contact warning signs, including 35 hits over his last 18 innings.",
+      "con_thesis": "The con case is that Arraez is not the most explosive board candidate and the Civale matchup has some friction. The direct H2H record is only 6-for-27 with a .222 hit rate and .222 xBA, so the history is familiar but not especially kind. Civale also triggers the lone stop valve with 96 Stuff+, and Oracle Park is a far less friendly hit environment than Coors Field. Arraez's low-power, ball-in-play profile depends on singles finding grass rather than simply overpowering the matchup, and Athletics-Giants public context notes Civale has some career success in this specific series. The floor is high, but the park and H2H keep it from being automatic.",
+      "committee_thesis": "Committee read: Arraez is the single-pick choice because the committee is prioritizing repeatable one-hit traits over matchup spectacle. Rafaela has Coors and the softer starter, but Arraez owns the cleaner combination of lineup slot, season average, recent form, right-handed pitching split, ultra-low strikeout rate, 99 safety score, and only one stop valve. The H2H record against Civale is the main caution, but Arraez's contact base gives him more ways to survive an imperfect matchup. For one pick, the committee prefers the safer bat-to-ball floor."
+    }
+  ]
+}

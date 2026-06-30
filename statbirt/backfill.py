@@ -195,9 +195,11 @@ def backfill_dates(
     if update_results and dates:
         print("\nUpdating postgame results for candidate rows...", flush=True)
         result_summary = update_results_csv(output_csv, only_dates=set(dates))
+        postponed = result_summary.get("postponed", 0)
+        postponed_text = f", {postponed} postponed" if postponed else ""
         print(
             f"Results updater touched {result_summary['updated']} rows "
-            f"({result_summary['pending']} pending).",
+            f"({result_summary['pending']} pending{postponed_text}).",
             flush=True,
         )
 

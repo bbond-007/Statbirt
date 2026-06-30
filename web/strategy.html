@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Statbirt Selection Strategy</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell strategy-shell">
+      <header class="topbar">
+        <div class="title-block">
+          <p class="eyebrow">Statbirt Strategy</p>
+          <h1>Daily Pick Thesis</h1>
+          <p id="board-subtitle" class="subtitle">Loading strategy brief...</p>
+          <nav class="dashboard-switcher" aria-label="Dashboard views">
+            <a href="index.html">Bob score board</a>
+            <a href="learned.html">Learned shortlist</a>
+            <a href="strategy.html" aria-current="page">Strategy</a>
+          </nav>
+        </div>
+        <div class="status-panel" aria-label="Strategy status">
+          <div class="status-orbit learned-orbit">
+            <span id="selection-score-orbit">--</span>
+            <small>Score</small>
+          </div>
+          <div class="status-copy">
+            <p id="status-note">Waiting for strategy data</p>
+            <label class="date-picker" for="dashboard-date">
+              <span>Dashboard Date</span>
+              <select id="dashboard-date" disabled>
+                <option>Loading...</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </header>
+
+      <section class="summary-grid strategy-summary" aria-label="Strategy summary">
+        <article>
+          <span>Best Single</span>
+          <strong id="best-single">--</strong>
+        </article>
+        <article>
+          <span>Best Pair</span>
+          <strong id="best-pair">--</strong>
+        </article>
+        <article>
+          <span>Top-1 Backtest</span>
+          <strong id="top1-backtest">--</strong>
+        </article>
+        <article>
+          <span>Top-2 Backtest</span>
+          <strong id="top2-backtest">--</strong>
+        </article>
+        <article>
+          <span>Report Decisions</span>
+          <strong id="report-decisions">--</strong>
+        </article>
+      </section>
+
+      <section class="board strategy-board" aria-label="Daily selection strategy">
+        <div class="board-toolbar">
+          <div>
+            <h2>Recommended Card</h2>
+            <p id="strategy-headline">Waiting for the learned selection brief.</p>
+          </div>
+        </div>
+
+        <div id="strategy-recommendations" class="strategy-recommendations"></div>
+        <div id="strategy-cards" class="strategy-card-grid"></div>
+        <section id="research-panel" class="strategy-research" aria-label="Strategy research summary"></section>
+      </section>
+    </main>
+
+    <script src="strategy.js?v=20260619-results-stops"></script>
+  </body>
+</html>

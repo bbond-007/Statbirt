@@ -15,6 +15,36 @@ const factorOrder = [
   ["context", 2],
 ];
 
+const roofedBallparks = new Set([
+  "american family field",
+  "miller park",
+  "chase field",
+  "daikin park",
+  "minute maid park",
+  "globe life field",
+  "loandepot park",
+  "marlins park",
+  "rogers centre",
+  "skydome",
+  "t mobile park",
+  "safeco field",
+  "tropicana field",
+]);
+
+function normalizeVenueName(value) {
+  return String(value || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function isRoofedBallpark(pick) {
+  if (pick.roofed_ballpark === true) return true;
+  return roofedBallparks.has(normalizeVenueName(pick.venue_name));
+}
+
 function formatDate(value) {
   if (!value) return "Unknown date";
   const [year, month, day] = value.split("-").map(Number);
@@ -124,8 +154,15 @@ function formatTemperature(value) {
   return `${Math.round(parsed)}°F`;
 }
 
+function formatBattingAverage(value) {
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) return "--";
+  return parsed.toFixed(3).replace(/^0/, "");
+}
+
 function weatherDetail(pick) {
-  return `Rain: ${formatRainChance(pick.precip_probability)} · Temp: ${formatTemperature(pick.forecast_temperature_f)}`;
+  const weatherLabel = pick.weather_label || (isRoofedBallpark(pick) ? "Dome" : `Rain: ${formatRainChance(pick.precip_probability)}`);
+  return `${weatherLabel} · Temp: ${formatTemperature(pick.forecast_temperature_f)}`;
 }
 
 function postponedStatus(pick) {
@@ -144,6 +181,118 @@ function selectedFactors(pick) {
     });
 }
 
+let stopValveReturnFocus = null;
+
+function closeStopValveDialog() {
+  const dialog = document.getElementById("stop-valve-dialog");
+  if (!dialog || dialog.hidden) return;
+  dialog.hidden = true;
+  document.body.classList.remove("dialog-open");
+  if (stopValveReturnFocus) {
+    stopValveReturnFocus.focus();
+    stopValveReturnFocus = null;
+  }
+}
+
+function ensureStopValveDialog() {
+  let dialog = document.getElementById("stop-valve-dialog");
+  if (dialog) return dialog;
+
+  dialog = document.createElement("div");
+  dialog.id = "stop-valve-dialog";
+  dialog.className = "stop-dialog";
+  dialog.hidden = true;
+  dialog.setAttribute("role", "dialog");
+  dialog.setAttribute("aria-modal", "true");
+  dialog.setAttribute("aria-labelledby", "stop-dialog-title");
+
+  const panel = document.createElement("section");
+  panel.className = "stop-dialog-panel";
+
+  const header = document.createElement("div");
+  header.className = "stop-dialog-header";
+
+  const titleWrap = document.createElement("div");
+  const title = document.createElement("h2");
+  title.id = "stop-dialog-title";
+  const subtitle = document.createElement("p");
+  subtitle.className = "stop-dialog-subtitle";
+  titleWrap.append(title, subtitle);
+
+  const closeButton = document.createElement("button");
+  closeButton.type = "button";
+  closeButton.className = "stop-dialog-close";
+  closeButton.textContent = "\u00D7";
+  closeButton.setAttribute("aria-label", "Close stop valves");
+  closeButton.addEventListener("click", closeStopValveDialog);
+
+  const list = document.createElement("ul");
+  list.className = "stop-dialog-list";
+
+  header.append(titleWrap, closeButton);
+  panel.append(header, list);
+  dialog.append(panel);
+  document.body.append(dialog);
+
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) closeStopValveDialog();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeStopValveDialog();
+  });
+
+  return dialog;
+}
+
+function openStopValveDialog({ player, reasons, hasHardPass, trigger }) {
+  const dialog = ensureStopValveDialog();
+  stopValveReturnFocus = trigger || document.activeElement;
+
+  const title = dialog.querySelector("#stop-dialog-title");
+  const subtitle = dialog.querySelector(".stop-dialog-subtitle");
+  const list = dialog.querySelector(".stop-dialog-list");
+  const closeButton = dialog.querySelector(".stop-dialog-close");
+  const label = hasHardPass ? "Stop Valves" : "Watch Notes";
+
+  title.textContent = `${label}: ${player || "Candidate"}`;
+  subtitle.textContent = `${reasons.length} ${reasons.length === 1 ? "item" : "items"}`;
+  list.replaceChildren();
+
+  reasons.forEach((reason) => {
+    const item = document.createElement("li");
+    item.className = hasHardPass ? "hard" : "concern";
+    item.textContent = reason;
+    list.append(item);
+  });
+
+  dialog.hidden = false;
+  document.body.classList.add("dialog-open");
+  closeButton.focus();
+}
+
+function appendStopValveDetailsButton(container, pick, reasons, hasHardPass, tooltip) {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "risk-detail-button";
+  button.textContent = "View all";
+  button.title = tooltip;
+  button.setAttribute(
+    "aria-label",
+    `Show all ${hasHardPass ? "stop valves" : "watch notes"} for ${pick.player || "candidate"}`
+  );
+  button.addEventListener("click", (event) => {
+    event.stopPropagation();
+    openStopValveDialog({
+      player: pick.player,
+      reasons,
+      hasHardPass,
+      trigger: button,
+    });
+  });
+  container.append(button);
+}
+
 function renderPick(pick) {
   const template = document.getElementById("pick-template");
   const row = template.content.firstElementChild.cloneNode(true);
@@ -153,6 +302,8 @@ function renderPick(pick) {
 
   row.querySelector(".rank-cell").textContent = pick.rank;
   row.querySelector(".player-name").textContent = pick.player;
+  row.querySelector(".season-ba").textContent = `BA ${formatBattingAverage(pick.hitter_ba_season)}`;
+  row.querySelector(".h2h-cell").textContent = pick.h2h_record || "0-0";
   row.querySelector(".matchup-line").textContent = `${pick.team} vs ${pick.opponent} · ${pick.batter_stand} bat vs ${pick.pitcher_hand} arm`;
   row.querySelector(".pitcher-line").textContent = `Probable starter: ${pick.probable_pitcher}`;
   row.querySelector(".venue-line").textContent = `Ballpark: ${pick.venue_name || "TBD"}`;
@@ -210,9 +361,10 @@ function renderPick(pick) {
     const riskList = document.createElement("div");
     riskList.className = "risk-list";
     const tooltip = displayedReasons.join("\n");
+    const hasHardPass = hardPassReasons.length > 0;
     riskList.title = tooltip;
     const item = document.createElement("span");
-    item.className = hardPassReasons.length ? "risk-reason hard" : "risk-reason concern";
+    item.className = hasHardPass ? "risk-reason hard" : "risk-reason concern";
     item.textContent = displayedReasons[0];
     item.title = tooltip;
     riskList.append(item);
@@ -223,6 +375,7 @@ function renderPick(pick) {
       more.title = tooltip;
       riskList.append(more);
     }
+    appendStopValveDetailsButton(riskList, pick, displayedReasons, hasHardPass, tooltip);
     riskCell.append(riskList);
   } else {
     const riskText = document.createElement("span");

@@ -32,6 +32,9 @@ The dashboard reads generated JSON from:
 web/data/top_picks.json
 web/data/dashboard_index.json
 web/data/dashboards/YYYY-MM-DD.json
+web/data/learned_shortlist.json
+web/data/learned_dashboard_index.json
+web/data/learned_dashboards/YYYY-MM-DD.json
 ```
 
 ## Current Data State
@@ -45,7 +48,7 @@ As of this handoff:
 - `2026-05-06` is the current daily board and is not graded yet.
 - 2026 historical backfill through `2026-05-05` is complete.
 - The active dashboard is `2026-05-06` with 29 displayed picks.
-- `data/manual/stuff_plus.csv` has 559 FanGraphs Stuff+ rows updated `2026-05-05`.
+- `data/manual/stuff_plus.csv` has 688 FanGraphs Stuff+ rows updated `2026-06-16`.
 
 Check current coverage any time:
 
@@ -75,12 +78,14 @@ data/models/hit_probability_report.json
 
 Current model at handoff:
 
-- model version: `learned-logistic-v1-20260506T135927Z`
-- trained at: `2026-05-06T13:59:27Z`
-- labeled training rows: 9,742
-- training date range: `2026-03-25` through `2026-05-05`
-- validation AUC: 0.585
-- validation top-10 hit rate: 78.9%
+- model family: `learned-logistic-v2`
+- feature profile: opportunity/contact/pitcher-vulnerability features plus Bob `score`; no stop-valve reason, team, or opponent features
+- latest local model version: see `data/models/hit_probability_report.json`
+- latest local training rows: 35,363
+- latest local training date range: `2025-03-18` through `2026-05-10`
+- latest validation AUC: 0.609
+- latest validation top-10 hit rate: 75.8%
+- walk-forward backtest command: `python scripts/backtest_learned_model_experiments.py --min-train-dates 30`
 
 Score the latest daily candidate rows without retraining:
 
@@ -111,9 +116,18 @@ cd path/to/Statbirt
 python -m statbirt.cli --date YYYY-MM-DD --top 25 --skip-fangraphs-fetch
 python -m statbirt.learned_model score --date latest --top 25
 python -m statbirt.export_web --all-dates --limit 10
+python -m statbirt.export_learned_web --all-dates --limit 5
 ```
 
 Why `--skip-fangraphs-fetch`: direct FanGraphs API calls are often Cloudflare-blocked. The manual Stuff+ CSV is the reliable source unless it has just been refreshed.
+
+On the Desktop PC, this pregame sequence is automated by Windows Task Scheduler at 6:30 AM daily. The task is named `Statbirt Daily Morning Run` and runs:
+
+```powershell
+X:\Coding\Statbirt\scripts\daily_morning.ps1
+```
+
+Logs are written to `logs\daily-morning-*.log`.
 
 After all games are final:
 
@@ -122,13 +136,15 @@ cd path/to/Statbirt
 python -m statbirt.update_results
 python -m statbirt.learned_model run --date latest --top 25
 python -m statbirt.export_web --all-dates --limit 10
+python -m statbirt.export_learned_web --all-dates --limit 5
 ```
 
 Notes:
 
 - `update_results` fills `result_hit`, `result_hits`, `result_ab`, `result_pa`, `result_status`, and `result_updated_at`.
-- Postponed games remain ungraded and should not be counted as misses.
-- No-appearance rows keep `result_hit` blank with a no-appearance status.
+- `result_status` is machine-readable: `final`, `pending`, `postponed`, `no_appearance`, or `unresolved`.
+- Postponed and no-appearance games remain ungraded and should not be counted as misses.
+- No-appearance rows keep `result_hit` blank with `result_status=no_appearance`.
 
 ## Dashboard Hosting
 
@@ -228,6 +244,7 @@ That prevents Windows/share executable-bit changes from appearing as false Git d
 - `statbirt/scoring.py`: Bob model weights and stop valves
 - `statbirt/results.py`: postgame result updater
 - `statbirt/export_web.py`: dashboard JSON exporter
+- `statbirt/export_learned_web.py`: learned dashboard JSON exporter
 - `statbirt/learned_model.py`: learned model train/score/audit
 - `statbirt/backfill.py`: historical backfill helper
 - `web/`: dashboard frontend

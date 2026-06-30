@@ -1,0 +1,106 @@
+{
+  "date": "2026-06-26",
+  "target": "learned_rank_top_2",
+  "committee_pick": "Yandy Díaz",
+  "committee_summary": "The committee pick is Yandy Díaz because today is one of the cleaner splits between a primary single and a high-variance runner-up. Díaz owns the stronger selection score, the higher safety score, Publisher status, a projected leadoff role, a dome game, no stop valves, a 3-for-6 H2H record against Zac Gallen, and excellent current-year contact indicators. Gallen's public and local profile is also favorable: ESPN lists a 6.10 ERA, 1.63 WHIP, and 105 hits allowed in 79.2 innings, while the local feed shows a 12-hit last start and 36 hits allowed over his last 18 innings. James Wood has real reasons to stay on the two-pick card, especially the 3-for-3 H2H record, Camden Yards note, and high learned probability. But his single-pick case is dragged down by a .095 last-five average, a .120 last-25 mark, a lefty-lefty matchup against Trevor Rogers, a 31.6% recent K-rate signal, and 13 stop valves. The committee sees Díaz as the much steadier one-hit play.",
+  "workflow_notes": [
+    "Staged the learned model raw top 2 for the active dashboard date.",
+    "Reviewed local model context, H2H, stop valves, expected PA, lineup slot, recent form, handedness splits, starter profile, and bullpen context.",
+    "Checked current free public sources for probable pitchers, lineup status, injury/news context, venue/weather context, and public player summaries.",
+    "Used pro, con, and reviewer committee roles before choosing the single hitter."
+  ],
+  "source_notes": [
+    {
+      "label": "MLB Starting Lineups",
+      "url": "https://www.mlb.com/starting-lineups",
+      "note": "Checked the official daily lineup page; Nationals-Orioles and D-backs-Rays lineups were still TBD during the morning review, with Andrew Alvarez/Trevor Rogers and Zac Gallen/Nick Martinez listed as probables."
+    },
+    {
+      "label": "MLB StatsAPI D-backs-Rays Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/822962/feed/live",
+      "note": "Verified official scheduled status, venue, probable pitchers, and that official batting orders had not posted during the review."
+    },
+    {
+      "label": "MLB StatsAPI Nationals-Orioles Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/824824/feed/live",
+      "note": "Verified official scheduled status, venue, probable pitchers, and that official batting orders had not posted during the review."
+    },
+    {
+      "label": "RotoWire Daily Lineups",
+      "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+      "note": "Reviewed expected lineups, projected lineup slots, game weather, totals, and probable-starter context; Díaz and Wood were both projected leadoff."
+    },
+    {
+      "label": "ESPN Diamondbacks at Rays",
+      "url": "https://www.espn.com/mlb/game/_/gameId/401815906/diamondbacks-rays",
+      "note": "Reviewed game information, probable pitcher lines, Díaz's listed batting line, recent team results, and injury report context."
+    },
+    {
+      "label": "Rays Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/rays-injuries-and-roster-moves",
+      "note": "Checked the latest Rays injury page; Díaz was not listed among current injuries or transactions."
+    },
+    {
+      "label": "Nationals vs. Orioles Injury List",
+      "url": "https://iheartsportsdc.iheart.com/content/2026-06-25-nationals-vs-orioles-series-injured-list-june-26-28/",
+      "note": "Reviewed series injury context; James Wood was not listed, while C.J. Abrams was day-to-day for Washington."
+    },
+    {
+      "label": "FOX Sports Nationals-Orioles Preview",
+      "url": "https://www.foxsports.com/articles/mlb/nationals-aim-to-break-3game-losing-streak-play-the-orioles",
+      "note": "Reviewed the AP/Data Skrive preview for probable pitchers, team context, James Wood's top-performer note, recent team form, and injuries."
+    },
+    {
+      "label": "MLB Stories Nationals-Orioles Preview",
+      "url": "https://www.mlb.com/stories/game-preview/824824",
+      "note": "Reviewed the public game preview noting Wood's Camden Yards history and Trevor Rogers' history against Washington."
+    },
+    {
+      "label": "RotoWire Yandy Díaz Player Page",
+      "url": "https://www.rotowire.com/baseball/player/yandy-diaz-14205",
+      "note": "Reviewed Díaz's public season line, recent hit notes, lineup usage, and handedness/home splits."
+    },
+    {
+      "label": "RotoWire James Wood Player Page",
+      "url": "https://www.rotowire.com/baseball/player/james-wood-17334",
+      "note": "Reviewed Wood's public season line, recent news, lineup usage, handedness splits, and broader volatility profile."
+    },
+    {
+      "label": "Baseball Savant D-backs-Rays Preview",
+      "url": "https://baseballsavant.mlb.com/preview?game_date=06%2F26%2F2026&game_pk=822962",
+      "note": "Reviewed Statcast game-preview context for the D-backs-Rays matchup."
+    },
+    {
+      "label": "Baseball Savant Nationals-Orioles Preview",
+      "url": "https://baseballsavant.mlb.com/preview?game_date=06%2F26%2F2026&game_pk=824824",
+      "note": "Reviewed Statcast game-preview context for the Nationals-Orioles matchup."
+    },
+    {
+      "label": "MLB StatsAPI Recent Boxscores",
+      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1",
+      "note": "Checked recent public boxscore data for bullpen workload context across Arizona, Baltimore, Tampa Bay, and Washington."
+    }
+  ],
+  "players": [
+    {
+      "rank": 1,
+      "player": "Yandy Díaz",
+      "team": "TBR",
+      "opponent": "ARI",
+      "probable_pitcher": "Zac Gallen",
+      "pro_thesis": "Yandy Díaz has the kind of profile this workflow is trying to isolate for a single pick: high probability with very little structural friction. The learned model puts him at 73.4%, the selection blend grades him as today's primary play at 83.3, and the dashboard gives him a perfect 100 safety score with no stop valves. He is projected to hit leadoff, is a Publisher, and is playing in the Tropicana Field dome, which removes weather volatility. The hitter form is excellent: .331 season average, .328 over the last 500 at-bats, .373 over the last 75, .480 over the last 25, and 8-for-17 over the last five games. He also owns the exact contact profile we like for a hit chase, with low strikeout and whiff rates, strong right-on-right splits, and a useful 3-for-6 H2H mark against Zac Gallen with no H2H strikeouts or whiffs.",
+      "con_thesis": "The con case for Díaz is mostly about not treating clean as guaranteed. Official lineups were still TBD during the morning review, and the Rays have shown some willingness to rotate him through DH and rest patterns; the local context shows only three starts over the last five even though he played in five games. Gallen's season line is ugly, but he is still an established starter with enough command and mix to beat a hitter on a given night. The local inferred pitch-type matchup is solid rather than dominant at .249 BA and .302 xBA, and Tropicana Field is not a plus hit environment by park factor. There was also May injury history for Díaz, though current Rays injury sources do not show him as an active concern.",
+      "committee_thesis": "Committee read: Díaz is the single-pick choice because his case holds together from every angle that matters most for one hit. The pro advocate has model support, volume, contact, handedness, H2H, current form, and venue stability. The con advocate can point to normal baseball uncertainty and pending official lineup confirmation, but there is no major red flag comparable to Wood's stop-valve stack. The reviewer sees Díaz as the rare top-two candidate who is both the model's preferred single and the human-process pick."
+    },
+    {
+      "rank": 2,
+      "player": "James Wood",
+      "team": "WSN",
+      "opponent": "BAL",
+      "probable_pitcher": "Trevor Rogers",
+      "pro_thesis": "James Wood's pro case is the upside case, and it is not fake. The learned model still gives him a 72.7% hit probability, he projects for 4.8 plate appearances from the leadoff spot, and he has an eye-catching 3-for-3 H2H record against Trevor Rogers with no whiffs, no strikeouts, strong exit velocity, and a .659 xBA in the local matchup data. The broader public context also adds a little spice: MLB's preview notes that the Maryland native has hit well at Camden Yards, and RotoWire's recent notes describe him as an effective table-setter over a longer stretch. Camden Yards carries a positive local park factor, and the inferred pitch-type matchup is strong at .301 BA and .423 xBA with high coverage. If the direct matchup signal is real, Wood can beat the risk flags quickly.",
+      "con_thesis": "The con case is heavy enough to keep Wood out of the single-pick chair. He has 13 stop valves, a 56 safety score, a .095 last-five average, a .120 last-25 average, and a strikeout/whiff profile that is uncomfortable for a one-hit contest. The matchup is also lefty-lefty against Trevor Rogers, and the local data does not love that shape: Wood's season split against lefties is .236, Rogers has a 101 Stuff+ mark, and Rogers' recent starter indicators include a seven-inning, one-hit outing with six strikeouts in his last start. Public preview sources still list Rogers with a poor season ERA, but the current-form pitcher signal is materially better than the season headline. Add pending official lineup confirmation and possible rain in Baltimore, and Wood becomes volatile.",
+      "committee_thesis": "Committee read: Wood is the two-pick partner, not the single. The pro advocate is right that 3-for-3 H2H plus leadoff volume can win a day, and the model clearly still sees a hit path. The con advocate wins the single-pick argument because Wood's path relies on a small matchup sample overcoming a lot of present-tense risk: cold recent form, strikeout exposure, left-on-left split concerns, and a pitcher coming off a dominant start. The reviewer would not be shocked if Wood hits, but compared with Díaz he asks the user to accept too many ways for the plate appearances to go empty."
+    }
+  ]
+}

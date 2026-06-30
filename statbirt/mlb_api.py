@@ -21,7 +21,7 @@ from .utils import (
 MLB_API_BASE = "https://statsapi.mlb.com/api/v1"
 HEADERS = {"User-Agent": "Statbirt/0.1 (+https://statsapi.mlb.com)"}
 PLAY_LOG_CACHE_SCHEMA = 1
-PITCHER_LOG_CACHE_SCHEMA = 1
+PITCHER_LOG_CACHE_SCHEMA = 2
 RECENT_USAGE_CACHE_SCHEMA = 1
 BULLPEN_CACHE_SCHEMA = 1
 BULLPEN_STATS_CACHE_SCHEMA = 2
@@ -57,6 +57,8 @@ class PitcherGameEntry:
     game_pk: int | None
     innings: float
     hits: int
+    strikeouts: int
+    walks: int
     games_started: int
     games_pitched: int
 
@@ -98,6 +100,13 @@ class MLBClient:
     def teams(self, season: int) -> list[dict]:
         data = self.get("teams", {"sportId": 1, "season": season})
         return data.get("teams", []) if isinstance(data, dict) else []
+
+    def roster(self, team_id: int, *, roster_type: str = "fullSeason", season: int | None = None) -> list[dict]:
+        params = {"rosterType": roster_type}
+        if season is not None:
+            params["season"] = season
+        data = self.get(f"teams/{team_id}/roster", params)
+        return data.get("roster", []) if isinstance(data, dict) else []
 
     def people(self, person_ids, *, hydrate: str | None = None, batch_size: int = 50) -> dict[int, dict]:
         ids = []
@@ -427,6 +436,15 @@ def compute_hitter_windows(entries: list[HitterPlayEntry], *, target_date: date)
     prior = [entry for entry in entries if entry.game_date < target_date]
     prior.sort(key=lambda item: (item.game_date, item.game_pk or 0, item.at_bat_number), reverse=True)
 
+    def season_ba():
+        season_entries = [
+            entry for entry in prior
+            if entry.game_date.year == target_date.year and entry.is_at_bat
+        ]
+        hits = sum(entry.is_hit for entry in season_entries)
+        at_bats = len(season_entries)
+        return (hits / at_bats if at_bats else None), hits, at_bats
+
     def hipa(pa_window: int):
         used = prior[:pa_window]
         if not used:
@@ -466,6 +484,7 @@ def compute_hitter_windows(entries: list[HitterPlayEntry], *, target_date: date)
     hipa_2500, hits_2500_pa, sample_2500_pa = hipa(2500)
     hipa_500, hits_500_pa, sample_500_pa = hipa(500)
     hipa_75_ab, hits_75_ab_hipa, sample_75_ab_pa, sample_75_ab_for_hipa = hipa_through_ab_window(75)
+    ba_season, hits_season, sample_season = season_ba()
     ba_2500, hits_2500_ab, sample_2500_ab = ba(2500)
     ba_500, hits_500_ab, sample_500_ab = ba(500)
     ba_75, hits_75_ab, sample_75_ab = ba(75)
@@ -481,6 +500,9 @@ def compute_hitter_windows(entries: list[HitterPlayEntry], *, target_date: date)
         "hipa_75_ab_hits": hits_75_ab_hipa,
         "hipa_75_ab_pa_sample": sample_75_ab_pa,
         "hipa_75_ab_ab_sample": sample_75_ab_for_hipa,
+        "ba_season": ba_season,
+        "ba_season_hits": hits_season,
+        "ba_season_sample": sample_season,
         "ba_2500_ab": ba_2500,
         "ba_2500_hits": hits_2500_ab,
         "ba_2500_sample": sample_2500_ab,
@@ -510,6 +532,8 @@ def parse_pitcher_game_entries(person: dict) -> list[PitcherGameEntry]:
                     game_pk=parse_int((split.get("game") or {}).get("gamePk")),
                     innings=parse_mlb_innings(stat.get("inningsPitched")) or 0.0,
                     hits=parse_int(stat.get("hits")) or 0,
+                    strikeouts=parse_int(stat.get("strikeOuts")) or 0,
+                    walks=parse_int(stat.get("baseOnBalls")) or 0,
                     games_started=parse_int(stat.get("gamesStarted")) or 0,
                     games_pitched=parse_int(stat.get("gamesPitched")) or 0,
                 )
@@ -586,6 +610,29 @@ def pitcher_window_stats(entries: list[PitcherGameEntry], *, target_date: date, 
         "hits": hits,
         "hits_per_inning": safe_divide(hits, innings),
         "cutoff_date": cutoff,
+    }
+
+
+def pitcher_last_start_stats(entries: list[PitcherGameEntry], *, target_date: date) -> dict[str, float | int | date | None]:
+    prior_starts = [
+        entry for entry in entries
+        if entry.game_date < target_date and entry.games_started > 0
+    ]
+    if not prior_starts:
+        return {
+            "date": None,
+            "innings": None,
+            "hits": None,
+            "strikeouts": None,
+            "walks": None,
+        }
+    last_start = max(prior_starts, key=lambda item: (item.game_date, item.game_pk or 0))
+    return {
+        "date": last_start.game_date,
+        "innings": last_start.innings,
+        "hits": last_start.hits,
+        "strikeouts": last_start.strikeouts,
+        "walks": last_start.walks,
     }
 
 

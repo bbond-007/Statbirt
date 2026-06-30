@@ -19,6 +19,7 @@ from .mlb_api import (
     load_pitcher_game_logs,
     load_pitcher_season_context,
     load_recent_usage,
+    pitcher_last_start_stats,
     pitcher_window_stats,
     season_start_for,
 )
@@ -255,6 +256,7 @@ def build_daily_candidates(
         seasons_back=config.pitcher_game_log_seasons_back,
     )
     pitcher_windows = {}
+    pitcher_last_starts = {}
     for pitcher_id, logs in pitcher_game_logs.items():
         pitcher_windows[pitcher_id] = {
             18: pitcher_window_stats(logs, target_date=target_date, innings_window=18.0),
@@ -262,6 +264,7 @@ def build_daily_candidates(
             200: pitcher_window_stats(logs, target_date=target_date, innings_window=200.0),
             350: pitcher_window_stats(logs, target_date=target_date, innings_window=350.0),
         }
+        pitcher_last_starts[pitcher_id] = pitcher_last_start_stats(logs, target_date=target_date)
 
     if verbose:
         print("Loading Stuff+, sprint speed, bullpen, and park context...", flush=True)
@@ -374,6 +377,7 @@ def build_daily_candidates(
                 stand = projected_bat_side(bats, pitcher_hand)
                 hwin = hitter_windows.get(player_id, {})
                 pwin = pitcher_windows.get(pitcher_id, {}) if pitcher_id is not None else {}
+                last_start = pitcher_last_starts.get(pitcher_id, {}) if pitcher_id is not None else {}
                 split_windows = statcast_store.hitter_split_windows(player_id, target_date=target_date) if statcast_store else {}
                 hitter_discipline = (
                     statcast_store.hitter_plate_discipline(
@@ -466,6 +470,7 @@ def build_daily_candidates(
                         usage_logs.get(player_id, []),
                         target_date=target_date,
                     ),
+                    hitter_ba_season=hwin.get("ba_season"),
                     hitter_ba_2500_ab=hwin.get("ba_2500_ab"),
                     hitter_hipa_500_pa=hwin.get("hipa_500_pa"),
                     hitter_hipa_75_ab=hwin.get("hipa_75_ab"),
@@ -478,6 +483,10 @@ def build_daily_candidates(
                     hitter_whiff_rate_500_pa=hitter_discipline.get("whiff_rate_500_pa"),
                     hitter_k_rate_season=hitter_discipline.get("k_rate_season"),
                     hitter_k_rate_500_pa=hitter_discipline.get("k_rate_500_pa"),
+                    hitter_split_ba_season_vs_lhp=split_windows.get("ba_season_vs_lhp"),
+                    hitter_split_ba_season_vs_rhp=split_windows.get("ba_season_vs_rhp"),
+                    hitter_split_pa_season_vs_lhp=split_windows.get("pa_season_vs_lhp"),
+                    hitter_split_pa_season_vs_rhp=split_windows.get("pa_season_vs_rhp"),
                     hitter_split_ba_500_vs_lhp=split_windows.get("ba_500_vs_lhp"),
                     hitter_split_ba_500_vs_rhp=split_windows.get("ba_500_vs_rhp"),
                     hitter_split_ba_1500_vs_lhp=split_windows.get("ba_1500_vs_lhp"),
@@ -488,6 +497,11 @@ def build_daily_candidates(
                     pitcher_hpi_200=(pwin.get(200) or {}).get("hits_per_inning"),
                     pitcher_hpi_season=pctx.get("hits_per_inning"),
                     pitcher_hits_last_18_ip=(pwin.get(18) or {}).get("hits"),
+                    pitcher_last_start_date=last_start.get("date"),
+                    pitcher_last_start_ip=last_start.get("innings"),
+                    pitcher_last_start_hits=last_start.get("hits"),
+                    pitcher_last_start_strikeouts=last_start.get("strikeouts"),
+                    pitcher_last_start_walks=last_start.get("walks"),
                     pitcher_stuff_plus=lookup_stuff_plus(
                         player_id=pitcher_id,
                         player_name=pitcher_name,
@@ -495,6 +509,7 @@ def build_daily_candidates(
                         by_name=stuff_by_name,
                     ),
                     h2h_pa=h2h.pa if h2h else 0,
+                    h2h_hits=h2h.hits if h2h else 0,
                     h2h_hit_rate=h2h.hit_rate if h2h else None,
                     h2h_whiff_rate=h2h.whiff_rate if h2h else None,
                     h2h_k_rate=h2h.k_rate if h2h else None,
@@ -566,6 +581,7 @@ def scored_candidate_to_row(candidate: ScoredCandidate) -> dict[str, str]:
         "batter_stand": f.batter_stand,
         "hitter_hipa_2500_pa": format_float(f.hitter_hipa_2500_pa, 3),
         "hitter_pa_per_game_season": format_float(f.hitter_pa_per_game_season, 2),
+        "hitter_ba_season": format_float(f.hitter_ba_season, 3),
         "hitter_ba_2500_ab": format_float(f.hitter_ba_2500_ab, 3),
         "hitter_hipa_500_pa": format_float(f.hitter_hipa_500_pa, 3),
         "hitter_hipa_75_ab": format_float(f.hitter_hipa_75_ab, 3),
@@ -578,6 +594,10 @@ def scored_candidate_to_row(candidate: ScoredCandidate) -> dict[str, str]:
         "hitter_whiff_rate_500_pa": format_float(f.hitter_whiff_rate_500_pa, 3),
         "hitter_k_rate_season": format_float(f.hitter_k_rate_season, 3),
         "hitter_k_rate_500_pa": format_float(f.hitter_k_rate_500_pa, 3),
+        "hitter_split_ba_season_vs_lhp": format_float(f.hitter_split_ba_season_vs_lhp, 3),
+        "hitter_split_ba_season_vs_rhp": format_float(f.hitter_split_ba_season_vs_rhp, 3),
+        "hitter_split_pa_season_vs_lhp": "" if f.hitter_split_pa_season_vs_lhp is None else str(f.hitter_split_pa_season_vs_lhp),
+        "hitter_split_pa_season_vs_rhp": "" if f.hitter_split_pa_season_vs_rhp is None else str(f.hitter_split_pa_season_vs_rhp),
         "hitter_split_ba_500_vs_lhp": format_float(f.hitter_split_ba_500_vs_lhp, 3),
         "hitter_split_ba_500_vs_rhp": format_float(f.hitter_split_ba_500_vs_rhp, 3),
         "hitter_split_ba_1500_vs_lhp": format_float(f.hitter_split_ba_1500_vs_lhp, 3),
@@ -586,8 +606,14 @@ def scored_candidate_to_row(candidate: ScoredCandidate) -> dict[str, str]:
         "pitcher_hpi_200": format_float(f.pitcher_hpi_200, 3),
         "pitcher_hpi_season": format_float(f.pitcher_hpi_season, 3),
         "pitcher_hits_last_18_ip": "" if f.pitcher_hits_last_18_ip is None else str(f.pitcher_hits_last_18_ip),
+        "pitcher_last_start_date": "" if f.pitcher_last_start_date is None else f.pitcher_last_start_date.isoformat(),
+        "pitcher_last_start_ip": format_float(f.pitcher_last_start_ip, 1),
+        "pitcher_last_start_hits": "" if f.pitcher_last_start_hits is None else str(f.pitcher_last_start_hits),
+        "pitcher_last_start_strikeouts": "" if f.pitcher_last_start_strikeouts is None else str(f.pitcher_last_start_strikeouts),
+        "pitcher_last_start_walks": "" if f.pitcher_last_start_walks is None else str(f.pitcher_last_start_walks),
         "pitcher_stuff_plus": format_float(f.pitcher_stuff_plus, 1),
         "h2h_pa": str(f.h2h_pa),
+        "h2h_hits": str(f.h2h_hits),
         "h2h_hit_rate": format_float(f.h2h_hit_rate, 3),
         "h2h_whiff_rate": format_float(f.h2h_whiff_rate, 3),
         "h2h_k_rate": format_float(f.h2h_k_rate, 3),

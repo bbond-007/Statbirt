@@ -1,0 +1,791 @@
+{
+  "generated_at": "2026-06-24T13:01:41Z",
+  "date": "2026-06-24",
+  "requested_date": "2026-06-24",
+  "used_latest_fallback": false,
+  "target": "learned_rank_top_2",
+  "purpose": "Evidence staging only. ChatGPT/Codex should write the pro thesis, con thesis, and committee decision.",
+  "daily_timing": {
+    "morning_models_scheduled": "07:00 America/Chicago",
+    "recommended_stage_after": "08:00 America/Chicago",
+    "note": "The morning model scripts normally need about 45 minutes, so 8:00am Central gives them a buffer."
+  },
+  "workflow_prompt": "X:\\Coding\\Statbirt\\prompts\\learned_top2_thesis.md",
+  "expected_thesis_path": "X:\\Coding\\Statbirt\\data\\manual\\learned_top2_theses\\2026-06-24.json",
+  "dashboard_refresh_command": "py -3 -m statbirt.export_learned_web --date latest --limit 5",
+  "total_predictions_for_date": 515,
+  "injury_filtered_count": 68,
+  "selection_brief_from_local_metrics": {
+    "policy_version": "learned-selection-v1",
+    "headline": "Recommended single: Wilyer Abreu. Best two-pick card: Wilyer Abreu and Caleb Durbin.",
+    "recommended_single": {
+      "rank": 2,
+      "player": "Wilyer Abreu",
+      "team": "BOS",
+      "opponent": "COL",
+      "selection_score": 73.9,
+      "learned_hit_probability": 0.7412,
+      "pros": [
+        "High learned probability (74.1%).",
+        "Strong reliability score (90/100).",
+        "Projected for 4.6 PA.",
+        "Premium lineup slot (3)."
+      ],
+      "cons": [
+        "No H2H history against the probable starter.",
+        "HiPA 500 0.238."
+      ],
+      "confidence_label": "Strong",
+      "thesis": "Wilyer Abreu is a 73.9 selection-score play with a 74.1% learned hit probability, 4.6 expected PA, and a 90/100 reliability score. The positive case starts with high learned probability (74.1%); the main counterweight is no H2H history against the probable starter.",
+      "summary": "Wilyer Abreu grades as strong at 73.9 on the reliability blend.",
+      "recommendation": "Best 1",
+      "h2h_record": "0-0",
+      "safety_score": 90,
+      "bob_score": 68.56,
+      "expected_pa": "4.6",
+      "lineup_slot": "3.0",
+      "hitter_ba_season": "0.279",
+      "probable_pitcher": "Kyle Freeland",
+      "pickable": false,
+      "stop_valve_count": 3,
+      "hard_pass_reasons": [
+        "H2H PA below 2",
+        "Hitter is below .270 over both long and last-500 AB windows",
+        "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows"
+      ],
+      "concerns": [
+        "Missing H2H whiff rate",
+        "Missing H2H K rate"
+      ],
+      "result_hit": null,
+      "result_hits": null,
+      "result_ab": null,
+      "result_pa": null,
+      "result_status": "",
+      "game_state": "unknown",
+      "game_status": "",
+      "game_hits": null
+    },
+    "recommended_pair": [
+      {
+        "rank": 2,
+        "player": "Wilyer Abreu",
+        "team": "BOS",
+        "opponent": "COL",
+        "selection_score": 73.9,
+        "learned_hit_probability": 0.7412,
+        "pros": [
+          "High learned probability (74.1%).",
+          "Strong reliability score (90/100).",
+          "Projected for 4.6 PA.",
+          "Premium lineup slot (3)."
+        ],
+        "cons": [
+          "No H2H history against the probable starter.",
+          "HiPA 500 0.238."
+        ],
+        "confidence_label": "Strong",
+        "thesis": "Wilyer Abreu is a 73.9 selection-score play with a 74.1% learned hit probability, 4.6 expected PA, and a 90/100 reliability score. The positive case starts with high learned probability (74.1%); the main counterweight is no H2H history against the probable starter.",
+        "summary": "Wilyer Abreu grades as strong at 73.9 on the reliability blend.",
+        "recommendation": "Best 1",
+        "h2h_record": "0-0",
+        "safety_score": 90,
+        "bob_score": 68.56,
+        "expected_pa": "4.6",
+        "lineup_slot": "3.0",
+        "hitter_ba_season": "0.279",
+        "probable_pitcher": "Kyle Freeland",
+        "pickable": false,
+        "stop_valve_count": 3,
+        "hard_pass_reasons": [
+          "H2H PA below 2",
+          "Hitter is below .270 over both long and last-500 AB windows",
+          "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows"
+        ],
+        "concerns": [
+          "Missing H2H whiff rate",
+          "Missing H2H K rate"
+        ],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      },
+      {
+        "rank": 1,
+        "player": "Caleb Durbin",
+        "team": "BOS",
+        "opponent": "COL",
+        "selection_score": 59.9,
+        "learned_hit_probability": 0.769,
+        "pros": [
+          "High learned probability (76.9%).",
+          "Hot last-5 line (10-19).",
+          "Positive H2H record (1-3).",
+          "Expected PA 4.1."
+        ],
+        "cons": [
+          "Reliability score is only 50/100.",
+          "Current-season BA is .220.",
+          "Season PA/G 3.66.",
+          "4 stop valves."
+        ],
+        "confidence_label": "Watch",
+        "thesis": "Caleb Durbin is a 59.9 selection-score play with a 76.9% learned hit probability, 4.1 expected PA, and a 50/100 reliability score. The positive case starts with high learned probability (76.9%); the main counterweight is reliability score is only 50/100.",
+        "summary": "Caleb Durbin grades as watch at 59.9 on the reliability blend.",
+        "recommendation": "Best 2",
+        "h2h_record": "1-3",
+        "safety_score": 50,
+        "bob_score": 68.22,
+        "expected_pa": "4.1",
+        "lineup_slot": "6.0",
+        "hitter_ba_season": "0.220",
+        "probable_pitcher": "Kyle Freeland",
+        "pickable": false,
+        "stop_valve_count": 4,
+        "hard_pass_reasons": [
+          "Hitter is below .270 over both long and last-500 AB windows",
+          "Hitter season PA/G under 4.2",
+          "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows",
+          "Hitter is not at least .270 against today's pitcher hand"
+        ],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      }
+    ],
+    "items": [
+      {
+        "rank": 1,
+        "player": "Caleb Durbin",
+        "team": "BOS",
+        "opponent": "COL",
+        "selection_score": 59.9,
+        "learned_hit_probability": 0.769,
+        "pros": [
+          "High learned probability (76.9%).",
+          "Hot last-5 line (10-19).",
+          "Positive H2H record (1-3).",
+          "Expected PA 4.1."
+        ],
+        "cons": [
+          "Reliability score is only 50/100.",
+          "Current-season BA is .220.",
+          "Season PA/G 3.66.",
+          "4 stop valves."
+        ],
+        "confidence_label": "Watch",
+        "thesis": "Caleb Durbin is a 59.9 selection-score play with a 76.9% learned hit probability, 4.1 expected PA, and a 50/100 reliability score. The positive case starts with high learned probability (76.9%); the main counterweight is reliability score is only 50/100.",
+        "summary": "Caleb Durbin grades as watch at 59.9 on the reliability blend.",
+        "recommendation": "Best 2",
+        "h2h_record": "1-3",
+        "safety_score": 50,
+        "bob_score": 68.22,
+        "expected_pa": "4.1",
+        "lineup_slot": "6.0",
+        "hitter_ba_season": "0.220",
+        "probable_pitcher": "Kyle Freeland",
+        "pickable": false,
+        "stop_valve_count": 4,
+        "hard_pass_reasons": [
+          "Hitter is below .270 over both long and last-500 AB windows",
+          "Hitter season PA/G under 4.2",
+          "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows",
+          "Hitter is not at least .270 against today's pitcher hand"
+        ],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      },
+      {
+        "rank": 2,
+        "player": "Wilyer Abreu",
+        "team": "BOS",
+        "opponent": "COL",
+        "selection_score": 73.9,
+        "learned_hit_probability": 0.7412,
+        "pros": [
+          "High learned probability (74.1%).",
+          "Strong reliability score (90/100).",
+          "Projected for 4.6 PA.",
+          "Premium lineup slot (3)."
+        ],
+        "cons": [
+          "No H2H history against the probable starter.",
+          "HiPA 500 0.238."
+        ],
+        "confidence_label": "Strong",
+        "thesis": "Wilyer Abreu is a 73.9 selection-score play with a 74.1% learned hit probability, 4.6 expected PA, and a 90/100 reliability score. The positive case starts with high learned probability (74.1%); the main counterweight is no H2H history against the probable starter.",
+        "summary": "Wilyer Abreu grades as strong at 73.9 on the reliability blend.",
+        "recommendation": "Best 1",
+        "h2h_record": "0-0",
+        "safety_score": 90,
+        "bob_score": 68.56,
+        "expected_pa": "4.6",
+        "lineup_slot": "3.0",
+        "hitter_ba_season": "0.279",
+        "probable_pitcher": "Kyle Freeland",
+        "pickable": false,
+        "stop_valve_count": 3,
+        "hard_pass_reasons": [
+          "H2H PA below 2",
+          "Hitter is below .270 over both long and last-500 AB windows",
+          "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows"
+        ],
+        "concerns": [
+          "Missing H2H whiff rate",
+          "Missing H2H K rate"
+        ],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      }
+    ]
+  },
+  "players": [
+    {
+      "rank": 1,
+      "player": "Caleb Durbin",
+      "player_id": "702332",
+      "team": "BOS",
+      "opponent": "COL",
+      "dashboard_summary": {
+        "learned_hit_probability": 0.769,
+        "bob_score": 68.22,
+        "pickable": false,
+        "safety_score": 50,
+        "h2h_record": "1-3",
+        "expected_pa": "4.1",
+        "lineup_slot": "6.0",
+        "season_ba": "0.220",
+        "last_5_ba": "0.526",
+        "hot_streak": true,
+        "hot_streak_tooltip": "10-19",
+        "probable_pitcher": "Kyle Freeland",
+        "pitcher_hand": "L",
+        "batter_stand": "R",
+        "venue_name": "Coors Field",
+        "weather_label": "Rain: 12.0%",
+        "congregation_status": ""
+      },
+      "model_signals": [
+        "Expected PA 4.1",
+        "Lineup slot 6",
+        "K rate 13.2%",
+        "Stuff+ 92.0"
+      ],
+      "model_risks": [
+        "Season PA/G 3.66",
+        "4 stop valves",
+        "HiPA 500 0.216"
+      ],
+      "stop_valves": [
+        "Hitter is below .270 over both long and last-500 AB windows",
+        "Hitter season PA/G under 4.2",
+        "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows",
+        "Hitter is not at least .270 against today's pitcher hand"
+      ],
+      "watch_notes": [],
+      "field_context": {
+        "identity": {
+          "date": "2026-06-24",
+          "player": "Caleb Durbin",
+          "player_id": "702332",
+          "team": "BOS",
+          "team_id": "111",
+          "opponent": "COL",
+          "opponent_id": "115",
+          "game_pk": "824341"
+        },
+        "learned_model": {
+          "learned_rank": "1",
+          "learned_hit_probability": "0.7690",
+          "model_version": "learned-logistic-v2-20260624T120855Z",
+          "model_trained_at": "2026-06-24T12:08:55Z",
+          "bob_score": "68.22",
+          "score": "68.22",
+          "pickable": "N"
+        },
+        "game_context": {
+          "venue_name": "Coors Field",
+          "game_start_time_utc": "2026-06-24T19:10:00Z",
+          "road_game": "Y",
+          "division_matchup": "N",
+          "doubleheader": "N",
+          "confirmed_lineup": "N",
+          "lineup_slot": "6.0",
+          "expected_pa": "4.10",
+          "starts_last_5": "5"
+        },
+        "weather_park": {
+          "precip_probability": "12.0",
+          "forecast_temperature_f": "84.7",
+          "park_hit_factor": "118.0"
+        },
+        "hitter_form_contact": {
+          "hitter_ba_season": "0.220",
+          "hitter_hipa_2500_pa": "0.217",
+          "hitter_pa_per_game_season": "3.66",
+          "hitter_ba_2500_ab": "0.244",
+          "hitter_hipa_500_pa": "0.216",
+          "hitter_hipa_75_ab": "0.300",
+          "hitter_ba_75_ab": "0.320",
+          "hitter_ba_25_ab": "0.440",
+          "hitter_ba_500_ab": "0.254",
+          "hitter_last_5_games_played": "5",
+          "hitter_last_5_games_hits": "10",
+          "hitter_last_5_games_ab": "19",
+          "hitter_last_5_games_ba": "0.526",
+          "sprint_speed": "28.2"
+        },
+        "hitter_plate_discipline": {
+          "hitter_bb_rate_season": "0.056",
+          "hitter_bb_rate_500_pa": "0.054",
+          "hitter_whiff_rate_season": "0.159",
+          "hitter_whiff_rate_500_pa": "0.148",
+          "hitter_k_rate_season": "0.141",
+          "hitter_k_rate_500_pa": "0.132"
+        },
+        "hitter_handedness_splits": {
+          "batter_stand": "R",
+          "pitcher_hand": "L",
+          "hitter_split_ba_season_vs_lhp": "0.235",
+          "hitter_split_ba_season_vs_rhp": "0.216",
+          "hitter_split_pa_season_vs_lhp": "60",
+          "hitter_split_pa_season_vs_rhp": "189",
+          "hitter_split_ba_500_vs_lhp": "0.251",
+          "hitter_split_ba_500_vs_rhp": "0.242",
+          "hitter_split_ba_1500_vs_lhp": "0.251",
+          "hitter_split_ba_1500_vs_rhp": "0.254"
+        },
+        "probable_starter": {
+          "probable_pitcher": "Kyle Freeland",
+          "probable_pitcher_id": "607536",
+          "pitcher_hand": "L",
+          "pitcher_hpi_350": "1.211",
+          "pitcher_hpi_200": "1.229",
+          "pitcher_hpi_season": "1.333",
+          "pitcher_hits_last_18_ip": "21",
+          "pitcher_stuff_plus": "92.0",
+          "pitcher_lr_opp_ba": "0.296",
+          "pitcher_lr_opp_ba_50": "0.348",
+          "pitcher_lr_opp_ba_200": "0.304"
+        },
+        "probable_starter_last_start": {
+          "pitcher_last_start_date": "2026-06-19",
+          "pitcher_last_start_ip": "7.3",
+          "pitcher_last_start_hits": "4",
+          "pitcher_last_start_strikeouts": "8",
+          "pitcher_last_start_walks": "0"
+        },
+        "h2h": {
+          "h2h_pa": "3",
+          "h2h_hits": "1",
+          "h2h_hit_rate": "0.333",
+          "h2h_whiff_rate": "0.000",
+          "h2h_k_rate": "0.000",
+          "h2h_exit_velocity": "89.6",
+          "h2h_xba": "0.520"
+        },
+        "pitch_type_matchup": {
+          "inferred_pitch_type_ba": "0.515",
+          "inferred_pitch_type_xba": "0.363",
+          "inferred_pitch_type_coverage": "0.689"
+        },
+        "bullpen_context": {
+          "bullpen_hpi": "1.064",
+          "bullpen_opp_ba": "0.275"
+        },
+        "bob_score_components": {
+          "component_hitter.hipa_2500_pa": "52.77",
+          "component_hitter.pa_per_game_season": "0.00",
+          "component_hitter.hipa_500_pa": "46.00",
+          "component_hitter.hipa_75_ab": "100.00",
+          "component_starting_pitcher.hpi_350": "92.17",
+          "component_starting_pitcher.hpi_season": "100.00",
+          "component_starting_pitcher.stuff_plus": "65.71",
+          "component_h2h.direct": "86.65",
+          "component_h2h.pitcher_lr_opp_ba": "69.28",
+          "component_h2h.inferred_pitch_type": "100.00",
+          "component_bullpen.hpi_season": "69.71",
+          "component_other.road_game": "100.00",
+          "component_other.division_matchup": "0.00",
+          "component_other.sprint_speed": "67.27",
+          "component_other.park_hit_factor": "100.00",
+          "component_other.lineup_opportunity": "41.67"
+        },
+        "results": {}
+      },
+      "missing_relevant_fields": {
+        "results": [
+          "result_hit",
+          "result_hits",
+          "result_ab",
+          "result_pa",
+          "result_status",
+          "result_updated_at",
+          "notes"
+        ]
+      },
+      "source_targets": [
+        {
+          "label": "MLB probable pitchers",
+          "url": "https://www.mlb.com/probable-pitchers",
+          "why": "Verify the probable starter has not changed."
+        },
+        {
+          "label": "MLB starting lineups",
+          "url": "https://www.mlb.com/starting-lineups",
+          "why": "Check whether the hitter is confirmed in the lineup and whether the slot changed."
+        },
+        {
+          "label": "MLB injury report",
+          "url": "https://www.mlb.com/injury-report",
+          "why": "Check for late injury or availability notes."
+        },
+        {
+          "label": "RotoWire bullpen usage",
+          "url": "https://www.rotowire.com/baseball/bullpen-usage.php",
+          "why": "Look for bullpen fatigue or unavailable leverage arms."
+        },
+        {
+          "label": "RotoWire daily lineups",
+          "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+          "why": "Cross-check lineup and late-scratch risk."
+        },
+        {
+          "label": "MLB news",
+          "url": "https://www.mlb.com/news",
+          "why": "Search for current notes on Caleb Durbin, Kyle Freeland, BOS, and COL."
+        },
+        {
+          "label": "MLB live game feed",
+          "url": "https://statsapi.mlb.com/api/v1.1/game/824341/feed/live",
+          "why": "Verify official game, lineup, venue, and probable-pitcher context."
+        },
+        {
+          "label": "MLB boxscore endpoint",
+          "url": "https://statsapi.mlb.com/api/v1/game/824341/boxscore",
+          "why": "Useful after lineups post or for later result checks."
+        },
+        {
+          "label": "Baseball Savant: Caleb Durbin",
+          "url": "https://baseballsavant.mlb.com/savant-player/caleb-durbin-702332",
+          "why": "Review hitter quality of contact, rolling form, pitch-type strengths, and handedness context."
+        },
+        {
+          "label": "Baseball Savant: Kyle Freeland",
+          "url": "https://baseballsavant.mlb.com/savant-player/kyle-freeland-607536",
+          "why": "Review starter pitch mix, recent shape, contact allowed, and possible matchup fragility."
+        }
+      ],
+      "chatgpt_review_questions": [
+        "Has the probable starter or lineup changed since the morning run?",
+        "Do current news, beat notes, or injury reports create scratch, rest, or pinch-hit risk?",
+        "Does the hitter have a pitch-type or handedness edge that survives beyond the headline model probability?",
+        "Is the opposing bullpen likely to help or hurt the one-hit path if the starter exits early?",
+        "Is the recent form signal supported by contact quality, or does it look like short-sample noise?"
+      ]
+    },
+    {
+      "rank": 2,
+      "player": "Wilyer Abreu",
+      "player_id": "677800",
+      "team": "BOS",
+      "opponent": "COL",
+      "dashboard_summary": {
+        "learned_hit_probability": 0.7412,
+        "bob_score": 68.56,
+        "pickable": false,
+        "safety_score": 90,
+        "h2h_record": "0-0",
+        "expected_pa": "4.6",
+        "lineup_slot": "3.0",
+        "season_ba": "0.279",
+        "last_5_ba": "0.294",
+        "hot_streak": false,
+        "hot_streak_tooltip": "",
+        "probable_pitcher": "Kyle Freeland",
+        "pitcher_hand": "L",
+        "batter_stand": "L",
+        "venue_name": "Coors Field",
+        "weather_label": "Rain: 12.0%",
+        "congregation_status": ""
+      },
+      "model_signals": [
+        "Expected PA 4.6",
+        "Season PA/G 4.32",
+        "Lineup slot 3",
+        "3 stop valves",
+        "K rate 21.2%"
+      ],
+      "model_risks": [
+        "HiPA 500 0.238"
+      ],
+      "stop_valves": [
+        "H2H PA below 2",
+        "Hitter is below .270 over both long and last-500 AB windows",
+        "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows"
+      ],
+      "watch_notes": [
+        "Missing H2H whiff rate",
+        "Missing H2H K rate"
+      ],
+      "field_context": {
+        "identity": {
+          "date": "2026-06-24",
+          "player": "Wilyer Abreu",
+          "player_id": "677800",
+          "team": "BOS",
+          "team_id": "111",
+          "opponent": "COL",
+          "opponent_id": "115",
+          "game_pk": "824341"
+        },
+        "learned_model": {
+          "learned_rank": "2",
+          "learned_hit_probability": "0.7412",
+          "model_version": "learned-logistic-v2-20260624T120855Z",
+          "model_trained_at": "2026-06-24T12:08:55Z",
+          "bob_score": "68.56",
+          "score": "68.56",
+          "pickable": "N"
+        },
+        "game_context": {
+          "venue_name": "Coors Field",
+          "game_start_time_utc": "2026-06-24T19:10:00Z",
+          "road_game": "Y",
+          "division_matchup": "N",
+          "doubleheader": "N",
+          "confirmed_lineup": "N",
+          "lineup_slot": "3.0",
+          "expected_pa": "4.60",
+          "starts_last_5": "5"
+        },
+        "weather_park": {
+          "precip_probability": "12.0",
+          "forecast_temperature_f": "84.7",
+          "park_hit_factor": "117.0"
+        },
+        "hitter_form_contact": {
+          "hitter_ba_season": "0.279",
+          "hitter_hipa_2500_pa": "0.234",
+          "hitter_pa_per_game_season": "4.32",
+          "hitter_ba_2500_ab": "0.262",
+          "hitter_hipa_500_pa": "0.238",
+          "hitter_hipa_75_ab": "0.233",
+          "hitter_ba_75_ab": "0.267",
+          "hitter_ba_25_ab": "0.280",
+          "hitter_ba_500_ab": "0.260",
+          "hitter_last_5_games_played": "5",
+          "hitter_last_5_games_hits": "5",
+          "hitter_last_5_games_ab": "17",
+          "hitter_last_5_games_ba": "0.294",
+          "sprint_speed": "28.0"
+        },
+        "hitter_plate_discipline": {
+          "hitter_bb_rate_season": "0.092",
+          "hitter_bb_rate_500_pa": "0.092",
+          "hitter_whiff_rate_season": "0.223",
+          "hitter_whiff_rate_500_pa": "0.244",
+          "hitter_k_rate_season": "0.187",
+          "hitter_k_rate_500_pa": "0.212"
+        },
+        "hitter_handedness_splits": {
+          "batter_stand": "L",
+          "pitcher_hand": "L",
+          "hitter_split_ba_season_vs_lhp": "0.393",
+          "hitter_split_ba_season_vs_rhp": "0.231",
+          "hitter_split_pa_season_vs_lhp": "94",
+          "hitter_split_pa_season_vs_rhp": "232",
+          "hitter_split_ba_500_vs_lhp": "0.279",
+          "hitter_split_ba_500_vs_rhp": "0.226",
+          "hitter_split_ba_1500_vs_lhp": "0.279",
+          "hitter_split_ba_1500_vs_rhp": "0.241"
+        },
+        "probable_starter": {
+          "probable_pitcher": "Kyle Freeland",
+          "probable_pitcher_id": "607536",
+          "pitcher_hand": "L",
+          "pitcher_hpi_350": "1.211",
+          "pitcher_hpi_200": "1.229",
+          "pitcher_hpi_season": "1.333",
+          "pitcher_hits_last_18_ip": "21",
+          "pitcher_stuff_plus": "92.0",
+          "pitcher_lr_opp_ba": "0.271",
+          "pitcher_lr_opp_ba_50": "0.283",
+          "pitcher_lr_opp_ba_200": "0.285"
+        },
+        "probable_starter_last_start": {
+          "pitcher_last_start_date": "2026-06-19",
+          "pitcher_last_start_ip": "7.3",
+          "pitcher_last_start_hits": "4",
+          "pitcher_last_start_strikeouts": "8",
+          "pitcher_last_start_walks": "0"
+        },
+        "h2h": {
+          "h2h_pa": "0",
+          "h2h_hits": "0"
+        },
+        "pitch_type_matchup": {
+          "inferred_pitch_type_ba": "0.423",
+          "inferred_pitch_type_xba": "0.333",
+          "inferred_pitch_type_coverage": "0.871"
+        },
+        "bullpen_context": {
+          "bullpen_hpi": "1.064",
+          "bullpen_opp_ba": "0.275"
+        },
+        "bob_score_components": {
+          "component_hitter.hipa_2500_pa": "73.87",
+          "component_hitter.pa_per_game_season": "35.56",
+          "component_hitter.hipa_500_pa": "68.00",
+          "component_hitter.hipa_75_ab": "58.37",
+          "component_starting_pitcher.hpi_350": "92.17",
+          "component_starting_pitcher.hpi_season": "100.00",
+          "component_starting_pitcher.stuff_plus": "65.71",
+          "component_h2h.direct": "50.00",
+          "component_h2h.pitcher_lr_opp_ba": "45.95",
+          "component_h2h.inferred_pitch_type": "91.59",
+          "component_bullpen.hpi_season": "69.71",
+          "component_other.road_game": "100.00",
+          "component_other.division_matchup": "0.00",
+          "component_other.sprint_speed": "63.64",
+          "component_other.park_hit_factor": "100.00",
+          "component_other.lineup_opportunity": "83.33"
+        },
+        "results": {}
+      },
+      "missing_relevant_fields": {
+        "h2h": [
+          "h2h_hit_rate",
+          "h2h_whiff_rate",
+          "h2h_k_rate",
+          "h2h_exit_velocity",
+          "h2h_xba"
+        ],
+        "results": [
+          "result_hit",
+          "result_hits",
+          "result_ab",
+          "result_pa",
+          "result_status",
+          "result_updated_at",
+          "notes"
+        ]
+      },
+      "source_targets": [
+        {
+          "label": "MLB probable pitchers",
+          "url": "https://www.mlb.com/probable-pitchers",
+          "why": "Verify the probable starter has not changed."
+        },
+        {
+          "label": "MLB starting lineups",
+          "url": "https://www.mlb.com/starting-lineups",
+          "why": "Check whether the hitter is confirmed in the lineup and whether the slot changed."
+        },
+        {
+          "label": "MLB injury report",
+          "url": "https://www.mlb.com/injury-report",
+          "why": "Check for late injury or availability notes."
+        },
+        {
+          "label": "RotoWire bullpen usage",
+          "url": "https://www.rotowire.com/baseball/bullpen-usage.php",
+          "why": "Look for bullpen fatigue or unavailable leverage arms."
+        },
+        {
+          "label": "RotoWire daily lineups",
+          "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+          "why": "Cross-check lineup and late-scratch risk."
+        },
+        {
+          "label": "MLB news",
+          "url": "https://www.mlb.com/news",
+          "why": "Search for current notes on Wilyer Abreu, Kyle Freeland, BOS, and COL."
+        },
+        {
+          "label": "MLB live game feed",
+          "url": "https://statsapi.mlb.com/api/v1.1/game/824341/feed/live",
+          "why": "Verify official game, lineup, venue, and probable-pitcher context."
+        },
+        {
+          "label": "MLB boxscore endpoint",
+          "url": "https://statsapi.mlb.com/api/v1/game/824341/boxscore",
+          "why": "Useful after lineups post or for later result checks."
+        },
+        {
+          "label": "Baseball Savant: Wilyer Abreu",
+          "url": "https://baseballsavant.mlb.com/savant-player/wilyer-abreu-677800",
+          "why": "Review hitter quality of contact, rolling form, pitch-type strengths, and handedness context."
+        },
+        {
+          "label": "Baseball Savant: Kyle Freeland",
+          "url": "https://baseballsavant.mlb.com/savant-player/kyle-freeland-607536",
+          "why": "Review starter pitch mix, recent shape, contact allowed, and possible matchup fragility."
+        }
+      ],
+      "chatgpt_review_questions": [
+        "Has the probable starter or lineup changed since the morning run?",
+        "Do current news, beat notes, or injury reports create scratch, rest, or pinch-hit risk?",
+        "Does the hitter have a pitch-type or handedness edge that survives beyond the headline model probability?",
+        "Is the opposing bullpen likely to help or hurt the one-hit path if the starter exits early?",
+        "Is the recent form signal supported by contact quality, or does it look like short-sample noise?"
+      ]
+    }
+  ],
+  "chatgpt_committee_process": [
+    "Read this staged context and treat it as evidence, not as a thesis.",
+    "Browse current free sources for lineup, probable pitcher, injury/news, bullpen, and matchup updates.",
+    "Write a pro thesis and con thesis for each player.",
+    "Have a final reviewer compare the arguments and choose one single hitter.",
+    "Save the finished dashboard-ready JSON to expected_thesis_path, then refresh the learned dashboard export."
+  ],
+  "output_schema": {
+    "date": "2026-06-24",
+    "target": "learned_rank_top_2",
+    "committee_pick": "Player Name",
+    "committee_summary": "One paragraph explaining the single-pick decision.",
+    "source_notes": [
+      {
+        "label": "Source name",
+        "url": "https://...",
+        "note": "What was reviewed."
+      }
+    ],
+    "players": [
+      {
+        "rank": 1,
+        "player": "Player Name",
+        "team": "AAA",
+        "opponent": "BBB",
+        "probable_pitcher": "Pitcher Name",
+        "pro_thesis": "Dashboard-ready paragraph.",
+        "con_thesis": "Dashboard-ready paragraph.",
+        "committee_thesis": "Dashboard-ready paragraph."
+      }
+    ]
+  }
+}

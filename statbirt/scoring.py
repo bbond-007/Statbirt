@@ -217,6 +217,13 @@ def _split_ok(values: Iterable[float | None], threshold: float) -> bool | None:
     return False if seen else None
 
 
+def _eligible_season_split_ba(value, plate_appearances, min_plate_appearances: int) -> float | None:
+    parsed_pa = parse_float(plate_appearances)
+    if parsed_pa is None or parsed_pa < min_plate_appearances:
+        return None
+    return parse_float(value)
+
+
 def evaluate_stop_valves(features: CandidateFeatures, config: StopValveConfig | None = None) -> ValveResult:
     config = config or StopValveConfig()
     hard: list[str] = []
@@ -346,6 +353,25 @@ def evaluate_stop_valves(features: CandidateFeatures, config: StopValveConfig | 
     elif hits_last_18 < config.pitcher_hits_last_18_ip_min:
         hard.append("Starter allowed fewer than 10 hits over last 18 IP")
 
+    last_start_ip = parse_float(features.pitcher_last_start_ip)
+    last_start_hits = parse_float(features.pitcher_last_start_hits)
+    last_start_strikeouts = parse_float(features.pitcher_last_start_strikeouts)
+    last_start_walks = parse_float(features.pitcher_last_start_walks)
+    if (
+        last_start_ip is None
+        or last_start_hits is None
+        or last_start_strikeouts is None
+        or last_start_walks is None
+    ):
+        (hard if config.strict_missing_stop_data else concerns).append("Missing starter last-start dominance data")
+    elif (
+        last_start_ip >= config.pitcher_dominant_start_ip_min
+        and last_start_strikeouts >= config.pitcher_dominant_start_strikeouts_min
+        and last_start_hits <= config.pitcher_dominant_start_hits_max
+        and last_start_walks <= config.pitcher_dominant_start_walks_max
+    ):
+        hard.append("Starter's most recent start was dominant (6+ IP, 8+ K, <=3 H, <=2 BB)")
+
     _add_missing_or_hard(
         _missing_or_over(features.pitcher_stuff_plus, config.pitcher_stuff_plus_max),
         reason="Starter Stuff+ over 95",
@@ -356,15 +382,31 @@ def evaluate_stop_valves(features: CandidateFeatures, config: StopValveConfig | 
     )
 
     left_ok = _split_ok(
-        [features.hitter_split_ba_500_vs_lhp, features.hitter_split_ba_1500_vs_lhp],
+        [
+            _eligible_season_split_ba(
+                features.hitter_split_ba_season_vs_lhp,
+                features.hitter_split_pa_season_vs_lhp,
+                config.hitter_both_hands_season_pa_min,
+            ),
+            features.hitter_split_ba_500_vs_lhp,
+            features.hitter_split_ba_1500_vs_lhp,
+        ],
         config.hitter_both_hands_min,
     )
     right_ok = _split_ok(
-        [features.hitter_split_ba_500_vs_rhp, features.hitter_split_ba_1500_vs_rhp],
+        [
+            _eligible_season_split_ba(
+                features.hitter_split_ba_season_vs_rhp,
+                features.hitter_split_pa_season_vs_rhp,
+                config.hitter_both_hands_season_pa_min,
+            ),
+            features.hitter_split_ba_500_vs_rhp,
+            features.hitter_split_ba_1500_vs_rhp,
+        ],
         config.hitter_both_hands_min,
     )
     if left_ok is False or right_ok is False:
-        hard.append("Hitter is not at least .265 against both pitcher hands in 500/1500 AB windows")
+        hard.append("Hitter is not at least .265 against both pitcher hands in season/500/1500 windows")
     elif left_ok is None or right_ok is None:
         (hard if config.strict_missing_stop_data else concerns).append(
             "Missing hitter both-hands split stop-valve data"

@@ -7,7 +7,9 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 from .config import DEFAULT_OUTPUT_CSV
+from .injuries import current_injured_player_ids_for_rows, filter_injured_rows
 from .mlb_api import MLBClient, batting_plate_appearances, compute_bullpen_stats, parse_game_datetime, season_start_for
+from .results import normalize_row_result_status
 from .utils import normalize_name, parse_float, parse_int
 
 DEFAULT_WEB_DATA_DIR = Path(__file__).resolve().parents[1] / "web" / "data"
@@ -71,6 +73,26 @@ BUCKET_LABELS = {
     "bullpen": "Bullpen",
     "other": "Other",
 }
+
+ROOFED_BALLPARKS = frozenset(
+    normalize_name(name)
+    for name in (
+        "American Family Field",
+        "Miller Park",
+        "Chase Field",
+        "Daikin Park",
+        "Minute Maid Park",
+        "Globe Life Field",
+        "loanDepot park",
+        "LoanDepot Park",
+        "Marlins Park",
+        "Rogers Centre",
+        "SkyDome",
+        "T-Mobile Park",
+        "Safeco Field",
+        "Tropicana Field",
+    )
+)
 
 
 def load_congregation(path: Path = DEFAULT_CONGREGATION_CSV) -> dict[str, dict]:
@@ -140,6 +162,35 @@ def format_number(value: float | None, *, digits: int = 1) -> str:
     if value is None:
         return "N/A"
     return f"{value:.{digits}f}"
+
+
+def is_roofed_ballpark(venue_name: str | None) -> bool:
+    return normalize_name(venue_name or "") in ROOFED_BALLPARKS
+
+
+def weather_label_for(row: dict[str, str], venue_name: str | None) -> str:
+    if is_roofed_ballpark(venue_name):
+        return "Dome"
+    return f"Rain: {format_number(float_value(row, 'precip_probability'), digits=1)}%"
+
+
+def h2h_pa_for(row: dict[str, str]) -> int:
+    return parse_int(row.get("h2h_pa")) or 0
+
+
+def h2h_hits_for(row: dict[str, str]) -> int:
+    direct = parse_int(row.get("h2h_hits"))
+    if direct is not None:
+        return direct
+    h2h_pa = h2h_pa_for(row)
+    hit_rate = float_value(row, "h2h_hit_rate")
+    if h2h_pa <= 0 or hit_rate is None:
+        return 0
+    return max(0, int(round(hit_rate * h2h_pa)))
+
+
+def h2h_record_for(row: dict[str, str]) -> str:
+    return f"{h2h_hits_for(row)}-{h2h_pa_for(row)}"
 
 
 def format_datetime_utc(value: str | None) -> str:
@@ -343,6 +394,7 @@ def candidate_payload(
     bullpen_opp_ba = bullpen_opp_ba_for(row, bullpen_stats)
     venue_name = row.get("venue_name") or game_state.get("venue_name") or ""
     game_start_time_utc = row.get("game_start_time_utc") or game_state.get("game_start_time_utc") or ""
+    roofed_ballpark = is_roofed_ballpark(venue_name)
     congregation_record = congregation_record_for(row, congregation)
     last_5_games = parse_int(row.get("hitter_last_5_games_played")) or 0
     last_5_hits = parse_int(row.get("hitter_last_5_games_hits"))
@@ -366,12 +418,18 @@ def candidate_payload(
         "game_pk": row.get("game_pk") or "",
         "game_start_time_utc": game_start_time_utc,
         "venue_name": venue_name,
+        "roofed_ballpark": roofed_ballpark,
+        "weather_label": weather_label_for(row, venue_name),
         "congregation_status": (congregation_record or {}).get("status", ""),
         "congregation_member": congregation_record is not None,
         "hot_streak": hot_streak,
         "hot_streak_tooltip": f"{last_5_hits}-{last_5_ab}" if hot_streak else "",
         "hitter_last_5_games_played": last_5_games,
         "hitter_last_5_games_ba": format_rate(last_5_ba),
+        "hitter_ba_season": format_rate(float_value(row, "hitter_ba_season")),
+        "h2h_pa": h2h_pa_for(row),
+        "h2h_hits": h2h_hits_for(row),
+        "h2h_record": h2h_record_for(row),
         "pickable": str(row.get("pickable") or "").upper() == "Y",
         "score": round(score, 2),
         "probable_pitcher": row.get("probable_pitcher") or "TBD",
@@ -385,6 +443,7 @@ def candidate_payload(
         "game_state": state,
         "game_state_label": GAME_STATE_LABELS.get(state, GAME_STATE_LABELS["unknown"]),
         "game_status": game_state.get("status") or "",
+        "result_status": normalize_row_result_status(row),
         "game_hits": game_state.get("hits"),
         "bullpen_opp_ba": format_rate(bullpen_opp_ba),
         "hard_pass_reasons": hard_pass_reasons,
@@ -462,6 +521,11 @@ def select_dashboard_rows(
     return output
 
 
+def filter_h2h_history_rows(rows: list[dict[str, str]]) -> tuple[list[dict[str, str]], int]:
+    filtered = [row for row in rows if h2h_pa_for(row) > 0]
+    return filtered, len(rows) - len(filtered)
+
+
 def write_json(path: Path, payload: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8") as f:
@@ -514,8 +578,12 @@ def export_web_payload(
     limit: int = 10,
     fallback_latest: bool = True,
     archive: bool = True,
+    filter_injured: bool = True,
+    injured_player_ids: set[int] | frozenset[int] | None = None,
+    candidate_rows: list[dict[str, str]] | None = None,
+    update_index: bool = True,
 ) -> dict:
-    rows = load_rows(candidates_csv)
+    rows = candidate_rows if candidate_rows is not None else load_rows(candidates_csv)
     dates = available_dates(rows)
     requested_date = target_date or date.today().isoformat()
     selected = [row for row in rows if row.get("date") == requested_date]
@@ -523,6 +591,15 @@ def export_web_payload(
     if not selected and fallback_latest and dates:
         selected_date = dates[-1]
         selected = [row for row in rows if row.get("date") == selected_date]
+
+    if filter_injured:
+        if injured_player_ids is None:
+            injured_player_ids = current_injured_player_ids_for_rows(selected)
+        selected, injury_filtered_count = filter_injured_rows(selected, injured_player_ids)
+    else:
+        injury_filtered_count = 0
+
+    selected, h2h_filtered_count = filter_h2h_history_rows(selected)
 
     pickable = [row for row in selected if str(row.get("pickable") or "").upper() == "Y"]
     source_rows = selected
@@ -543,6 +620,8 @@ def export_web_payload(
         "used_latest_fallback": selected_date != requested_date,
         "total_candidates": len(selected),
         "pickable_count": len(pickable),
+        "injury_filtered_count": injury_filtered_count,
+        "h2h_filtered_count": h2h_filtered_count,
         "showing": "top_scored_candidates",
         "limit": limit,
         "congregation_count": congregation_shown,
@@ -555,7 +634,8 @@ def export_web_payload(
     if archive and payload.get("date"):
         archive_path = archive_dir / f"{payload['date']}.json"
         write_json(archive_path, payload)
-        update_dashboard_index(active_payload=payload, archive_dir=archive_dir, index_json=index_json)
+        if update_index:
+            update_dashboard_index(active_payload=payload, archive_dir=archive_dir, index_json=index_json)
     return payload
 
 
@@ -571,15 +651,20 @@ def parse_args():
     parser.add_argument("--limit", type=int, default=10)
     parser.add_argument("--no-archive", action="store_true")
     parser.add_argument("--no-fallback-latest", action="store_true")
+    parser.add_argument("--include-injured", action="store_true", help="Do not filter players currently listed as injured.")
     return parser.parse_args()
 
 
 def main():
     args = parse_args()
     candidates_csv = Path(args.candidates_csv)
+    candidate_rows = load_rows(candidates_csv)
     target_dates = [args.date]
     if args.all_dates:
-        target_dates = available_dates(load_rows(candidates_csv))
+        target_dates = available_dates(candidate_rows)
+    injured_player_ids = None
+    if not args.include_injured:
+        injured_player_ids = current_injured_player_ids_for_rows(candidate_rows)
     payloads = []
     for target_date in target_dates:
         payloads.append(
@@ -593,7 +678,17 @@ def main():
                 limit=args.limit,
                 fallback_latest=not args.no_fallback_latest,
                 archive=not args.no_archive,
+                filter_injured=not args.include_injured,
+                injured_player_ids=injured_player_ids,
+                candidate_rows=candidate_rows,
+                update_index=not args.all_dates,
             )
+        )
+    if args.all_dates and payloads and not args.no_archive:
+        update_dashboard_index(
+            active_payload=payloads[-1],
+            archive_dir=Path(args.archive_dir),
+            index_json=Path(args.index_json),
         )
     latest = payloads[-1] if payloads else {"picks": [], "date": ""}
     print(

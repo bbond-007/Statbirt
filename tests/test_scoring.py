@@ -8,14 +8,32 @@ import tempfile
 import pandas as pd
 
 from statbirt import export_web
+from statbirt import results as results_module
 from statbirt import update_bullpen as bullpen_update
 from statbirt import update_weather as weather_update
 from statbirt import weather
-from statbirt.export_web import candidate_payload
-from statbirt.mlb_api import BatterUsageEntry, get_games_for_date
+from statbirt.export_web import candidate_payload, is_roofed_ballpark
+from statbirt.mlb_api import (
+    BatterUsageEntry,
+    HitterPlayEntry,
+    compute_hitter_windows,
+    get_games_for_date,
+    parse_pitcher_game_entries,
+    pitcher_last_start_stats,
+)
 from statbirt.models import CandidateFeatures
-from statbirt.pipeline import recent_batting_summary
-from statbirt.results import has_result_data, upsert_candidate_rows
+from statbirt.pipeline import recent_batting_summary, scored_candidate_to_row
+from statbirt.results import (
+    RESULT_STATUS_FINAL,
+    RESULT_STATUS_NO_APPEARANCE,
+    RESULT_STATUS_PENDING,
+    RESULT_STATUS_POSTPONED,
+    has_result_data,
+    normalize_row_result_status,
+    result_status_for_game_status,
+    update_results_csv,
+    upsert_candidate_rows,
+)
 from statbirt.savant import StatcastFeatureStore
 from statbirt.scoring import evaluate_stop_valves, expected_pa_score, score_candidate, score_features
 
@@ -40,6 +58,7 @@ def base_features(**overrides):
         "same_division": True,
         "hitter_hipa_2500_pa": 0.230,
         "hitter_pa_per_game_season": 4.45,
+        "hitter_ba_season": 0.305,
         "hitter_ba_2500_ab": 0.295,
         "hitter_hipa_500_pa": 0.240,
         "hitter_hipa_75_ab": 0.260,
@@ -62,6 +81,11 @@ def base_features(**overrides):
         "pitcher_hpi_200": 0.940,
         "pitcher_hpi_season": 1.000,
         "pitcher_hits_last_18_ip": 18,
+        "pitcher_last_start_date": date(2026, 4, 20),
+        "pitcher_last_start_ip": 5.2,
+        "pitcher_last_start_hits": 5,
+        "pitcher_last_start_strikeouts": 7,
+        "pitcher_last_start_walks": 1,
         "pitcher_stuff_plus": 92.0,
         "h2h_pa": 4,
         "h2h_hit_rate": 0.300,
@@ -119,6 +143,66 @@ def test_recent_batting_summary_uses_last_five_games_played():
     assert summary["batting_average"] == 0.5
 
 
+def test_pitcher_game_log_parser_and_last_start_stats_include_strikeouts_and_walks():
+    person = {
+        "stats": [
+            {
+                "splits": [
+                    {
+                        "date": "2026-04-20",
+                        "game": {"gamePk": 10},
+                        "stat": {
+                            "inningsPitched": "1.0",
+                            "hits": "1",
+                            "strikeOuts": "2",
+                            "baseOnBalls": "0",
+                            "gamesStarted": "0",
+                            "gamesPitched": "1",
+                        },
+                    },
+                    {
+                        "date": "2026-04-21",
+                        "game": {"gamePk": 11},
+                        "stat": {
+                            "inningsPitched": "6.0",
+                            "hits": "3",
+                            "strikeOuts": "8",
+                            "baseOnBalls": "2",
+                            "gamesStarted": "1",
+                            "gamesPitched": "1",
+                        },
+                    },
+                    {
+                        "date": "2026-04-27",
+                        "game": {"gamePk": 12},
+                        "stat": {
+                            "inningsPitched": "7.0",
+                            "hits": "2",
+                            "strikeOuts": "10",
+                            "baseOnBalls": "1",
+                            "gamesStarted": "1",
+                            "gamesPitched": "1",
+                        },
+                    },
+                ]
+            }
+        ]
+    }
+
+    entries = parse_pitcher_game_entries(person)
+    last_start = pitcher_last_start_stats(entries, target_date=date(2026, 4, 26))
+
+    assert entries[1].strikeouts == 8
+    assert entries[1].walks == 2
+    assert last_start == {
+        "date": date(2026, 4, 21),
+        "innings": 6.0,
+        "hits": 3,
+        "strikeouts": 8,
+        "walks": 2,
+    }
+
+
 def test_good_candidate_is_pickable():
     result = evaluate_stop_valves(base_features())
     assert result.pickable
@@ -137,6 +221,44 @@ def test_pitcher_stuff_plus_stop_valve_is_hard():
     assert "Starter Stuff+ over 95" in result.hard_pass_reasons
 
 
+def test_dominant_start_stop_valve_requires_all_criteria():
+    result = evaluate_stop_valves(
+        base_features(
+            pitcher_last_start_ip=6.0,
+            pitcher_last_start_hits=3,
+            pitcher_last_start_strikeouts=8,
+            pitcher_last_start_walks=2,
+        )
+    )
+
+    assert not result.pickable
+    assert "Starter's most recent start was dominant (6+ IP, 8+ K, <=3 H, <=2 BB)" in result.hard_pass_reasons
+
+
+def test_dominant_start_stop_valve_does_not_trigger_on_near_miss():
+    result = evaluate_stop_valves(
+        base_features(
+            pitcher_last_start_ip=6.0,
+            pitcher_last_start_hits=4,
+            pitcher_last_start_strikeouts=8,
+            pitcher_last_start_walks=2,
+        )
+    )
+
+    assert result.pickable
+    assert "Starter's most recent start was dominant (6+ IP, 8+ K, <=3 H, <=2 BB)" not in result.hard_pass_reasons
+
+
+def test_candidate_row_includes_pitcher_last_start_fields():
+    row = scored_candidate_to_row(score_candidate(base_features()))
+
+    assert row["pitcher_last_start_date"] == "2026-04-20"
+    assert row["pitcher_last_start_ip"] == "5.2"
+    assert row["pitcher_last_start_hits"] == "5"
+    assert row["pitcher_last_start_strikeouts"] == "7"
+    assert row["pitcher_last_start_walks"] == "1"
+
+
 def test_hitter_pa_per_game_stop_valve_is_hard():
     result = evaluate_stop_valves(base_features(hitter_pa_per_game_season=4.1))
     assert not result.pickable
@@ -148,6 +270,59 @@ def test_hitter_discipline_stop_valves_are_hard():
     assert not result.pickable
     assert "Hitter last-500 PA BB rate over 12%" in result.hard_pass_reasons
     assert "Hitter season K rate over 22%" in result.hard_pass_reasons
+
+
+def test_both_hands_stop_valve_allows_different_qualified_windows_by_hand():
+    result = evaluate_stop_valves(
+        base_features(
+            hitter_split_ba_season_vs_lhp=0.300,
+            hitter_split_pa_season_vs_lhp=50,
+            hitter_split_ba_500_vs_lhp=0.260,
+            hitter_split_ba_1500_vs_lhp=0.260,
+            hitter_split_ba_season_vs_rhp=0.250,
+            hitter_split_pa_season_vs_rhp=70,
+            hitter_split_ba_500_vs_rhp=0.270,
+            hitter_split_ba_1500_vs_rhp=0.260,
+        )
+    )
+
+    assert result.pickable
+    assert "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows" not in result.hard_pass_reasons
+
+
+def test_both_hands_stop_valve_ignores_low_sample_current_season_split():
+    result = evaluate_stop_valves(
+        base_features(
+            hitter_split_ba_season_vs_lhp=0.400,
+            hitter_split_pa_season_vs_lhp=49,
+            hitter_split_ba_season_vs_rhp=0.400,
+            hitter_split_pa_season_vs_rhp=49,
+            hitter_split_ba_500_vs_lhp=0.260,
+            hitter_split_ba_1500_vs_lhp=0.260,
+            hitter_split_ba_500_vs_rhp=0.260,
+            hitter_split_ba_1500_vs_rhp=0.260,
+        )
+    )
+
+    assert not result.pickable
+    assert "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows" in result.hard_pass_reasons
+
+
+def test_matchup_hand_stop_valve_still_uses_270_from_500_or_1500_windows():
+    result = evaluate_stop_valves(
+        base_features(
+            pitcher_hand="R",
+            hitter_split_ba_season_vs_lhp=0.300,
+            hitter_split_pa_season_vs_lhp=60,
+            hitter_split_ba_season_vs_rhp=0.300,
+            hitter_split_pa_season_vs_rhp=60,
+            hitter_matchup_hand_ba_500=0.260,
+            hitter_matchup_hand_ba_1500=0.260,
+        )
+    )
+
+    assert not result.pickable
+    assert "Hitter is not at least .270 against today's pitcher hand" in result.hard_pass_reasons
 
 
 def test_score_candidate_preserves_score_even_when_not_pickable():
@@ -205,9 +380,88 @@ def test_h2h_uses_career_matchup_frame_without_polluting_pitcher_splits():
 
     h2h = store.h2h(10, 20)
     assert h2h.pa == 2
+    assert h2h.hits == 1
     assert h2h.k_rate == 0.5
     assert h2h.hit_rate == 0.5
     assert store.pitcher_split_opp_ba(20, "R") == 1.0
+
+
+def test_hitter_split_windows_include_pregame_current_season_pa_by_hand():
+    batter_rows = pd.DataFrame(
+        [
+            {
+                "game_date": "2026-06-10",
+                "game_pk": 1,
+                "at_bat_number": 1,
+                "pitch_number": 1,
+                "batter": 10,
+                "pitcher": 20,
+                "stand": "L",
+                "p_throws": "L",
+                "events": "single",
+                "description": "hit_into_play",
+            },
+            {
+                "game_date": "2026-06-11",
+                "game_pk": 2,
+                "at_bat_number": 1,
+                "pitch_number": 1,
+                "batter": 10,
+                "pitcher": 21,
+                "stand": "L",
+                "p_throws": "L",
+                "events": "walk",
+                "description": "ball",
+            },
+            {
+                "game_date": "2026-06-12",
+                "game_pk": 3,
+                "at_bat_number": 1,
+                "pitch_number": 1,
+                "batter": 10,
+                "pitcher": 22,
+                "stand": "L",
+                "p_throws": "L",
+                "events": "field_out",
+                "description": "hit_into_play",
+            },
+            {
+                "game_date": "2026-06-13",
+                "game_pk": 4,
+                "at_bat_number": 1,
+                "pitch_number": 1,
+                "batter": 10,
+                "pitcher": 23,
+                "stand": "L",
+                "p_throws": "R",
+                "events": "single",
+                "description": "hit_into_play",
+            },
+            {
+                "game_date": "2026-06-15",
+                "game_pk": 5,
+                "at_bat_number": 1,
+                "pitch_number": 1,
+                "batter": 10,
+                "pitcher": 24,
+                "stand": "L",
+                "p_throws": "L",
+                "events": "home_run",
+                "description": "hit_into_play",
+            },
+        ]
+    )
+    batter_rows["launch_speed"] = None
+    batter_rows["estimated_ba_using_speedangle"] = None
+
+    store = StatcastFeatureStore(batter_rows, pd.DataFrame())
+
+    splits = store.hitter_split_windows(10, target_date=date(2026, 6, 15))
+
+    assert splits["pa_season_vs_lhp"] == 3
+    assert splits["ba_season_vs_lhp"] == 0.5
+    assert splits["pa_season_vs_rhp"] == 1
+    assert splits["ba_season_vs_rhp"] == 1.0
 
 
 def test_candidate_upsert_preserves_existing_result_columns():
@@ -243,6 +497,71 @@ def test_candidate_upsert_preserves_existing_result_columns():
 def test_pending_result_status_is_not_treated_as_graded():
     assert not has_result_data({"result_status": "Scheduled"})
     assert has_result_data({"result_status": "Final", "result_hits": "0"})
+
+
+def test_result_status_values_are_machine_readable():
+    assert result_status_for_game_status("Postponed") == RESULT_STATUS_POSTPONED
+    assert result_status_for_game_status("Scheduled") == RESULT_STATUS_PENDING
+    assert normalize_row_result_status({"result_status": "Game Over", "result_hit": "0"}) == RESULT_STATUS_FINAL
+    assert (
+        normalize_row_result_status({"result_status": "Final - no appearance", "result_hit": ""})
+        == RESULT_STATUS_NO_APPEARANCE
+    )
+
+
+def test_results_updater_marks_postponed_rows_without_grading_them():
+    original_client = results_module.MLBClient
+
+    class FakeClient:
+        def schedule(self, start, end, hydrate=""):
+            return [
+                {
+                    "gamePk": 100,
+                    "status": {
+                        "abstractGameState": "Final",
+                        "detailedState": "Postponed",
+                    },
+                    "teams": {
+                        "away": {"team": {"id": 111}},
+                        "home": {"team": {"id": 147}},
+                    },
+                }
+            ]
+
+    results_module.MLBClient = FakeClient
+    try:
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "candidates.csv"
+            with path.open("w", newline="") as f:
+                writer = csv.DictWriter(
+                    f,
+                    fieldnames=["date", "player", "player_id", "team", "opponent", "game_pk", "score"],
+                )
+                writer.writeheader()
+                writer.writerow(
+                    {
+                        "date": "2026-04-26",
+                        "player": "Test Hitter",
+                        "player_id": "1",
+                        "team": "BOS",
+                        "opponent": "NYY",
+                        "game_pk": "100",
+                        "score": "60.00",
+                    }
+                )
+
+            summary = update_results_csv(path)
+            with path.open(newline="") as f:
+                row = next(csv.DictReader(f))
+    finally:
+        results_module.MLBClient = original_client
+
+    assert summary["updated"] == 1
+    assert summary["pending"] == 0
+    assert summary["postponed"] == 1
+    assert row["result_status"] == RESULT_STATUS_POSTPONED
+    assert row["result_hit"] == ""
+    assert row["result_hits"] == ""
 
 
 def test_candidate_upsert_replaces_ungraded_rows_for_same_date():
@@ -498,10 +817,13 @@ def test_web_candidate_payload_uses_weighted_bucket_points():
         "game_pk": "100",
         "pickable": "Y",
         "score": "25.00",
+        "result_status": "Game Over",
         "hitter_last_5_games_played": "5",
         "hitter_last_5_games_hits": "5",
         "hitter_last_5_games_ab": "10",
         "hitter_last_5_games_ba": "0.500",
+        "h2h_pa": "10",
+        "h2h_hits": "5",
         "precip_probability": "12.0",
         "forecast_temperature_f": "72.4",
         "park_hit_factor": "110.0",
@@ -528,15 +850,59 @@ def test_web_candidate_payload_uses_weighted_bucket_points():
     assert sum(bucket["points"] for bucket in payload["buckets"].values()) == 25.0
     assert payload["game_state"] == "hit"
     assert payload["game_state_label"] == "Hit recorded"
+    assert payload["result_status"] == RESULT_STATUS_FINAL
     assert payload["game_hits"] == 1
     assert payload["precip_probability"] == "12.0"
     assert payload["forecast_temperature_f"] == "72.4"
     assert payload["venue_name"] == "Fenway Park"
+    assert payload["roofed_ballpark"] is False
+    assert payload["weather_label"] == "Rain: 12.0%"
     assert payload["game_start_time_utc"] == "2026-04-27T23:10:00Z"
     assert payload["hot_streak"] is True
     assert payload["hot_streak_tooltip"] == "5-10"
+    assert payload["h2h_record"] == "5-10"
     assert "Rain" not in context_labels
     assert "Park BA" not in context_labels
+
+
+def test_roofed_ballpark_payload_uses_dome_weather_label():
+    row = {
+        "date": "2026-04-27",
+        "player": "Test Hitter",
+        "player_id": "1",
+        "team": "ARI",
+        "opponent": "LAD",
+        "game_pk": "100",
+        "pickable": "Y",
+        "score": "25.00",
+        "venue_name": "Chase Field",
+        "precip_probability": "88.0",
+        "forecast_temperature_f": "97.8",
+    }
+
+    payload = candidate_payload(row, 1)
+
+    assert is_roofed_ballpark("Chase Field") is True
+    assert is_roofed_ballpark("Daikin Park") is True
+    assert payload["roofed_ballpark"] is True
+    assert payload["weather_label"] == "Dome"
+    assert payload["precip_probability"] == "88.0"
+
+
+def test_compute_hitter_windows_includes_current_season_ba():
+    entries = [
+        HitterPlayEntry(date(2025, 9, 1), 1, 1, is_hit=1, is_at_bat=1),
+        HitterPlayEntry(date(2026, 4, 1), 2, 1, is_hit=1, is_at_bat=1),
+        HitterPlayEntry(date(2026, 4, 2), 3, 1, is_hit=0, is_at_bat=1),
+        HitterPlayEntry(date(2026, 4, 3), 4, 1, is_hit=1, is_at_bat=1),
+        HitterPlayEntry(date(2026, 4, 4), 5, 1, is_hit=1, is_at_bat=0),
+    ]
+
+    windows = compute_hitter_windows(entries, target_date=date(2026, 4, 5))
+
+    assert windows["ba_season"] == 2 / 3
+    assert windows["ba_season_hits"] == 2
+    assert windows["ba_season_sample"] == 3
 
 
 def test_web_candidate_payload_requires_five_games_for_hot_streak():
@@ -578,7 +944,7 @@ def test_web_export_includes_congregation_rows_beyond_limit():
         with tempfile.TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
             candidates = tmp_path / "candidates.csv"
-            fieldnames = ["date", "player", "player_id", "team", "opponent", "game_pk", "pickable", "score"]
+            fieldnames = ["date", "player", "player_id", "team", "opponent", "game_pk", "pickable", "score", "h2h_pa", "h2h_hits"]
             with candidates.open("w", newline="") as f:
                 writer = csv.DictWriter(f, fieldnames=fieldnames)
                 writer.writeheader()
@@ -593,6 +959,8 @@ def test_web_export_includes_congregation_rows_beyond_limit():
                             "game_pk": str(100 + idx),
                             "pickable": "N",
                             "score": f"{100 - idx:.2f}",
+                            "h2h_pa": str(idx),
+                            "h2h_hits": "1",
                         }
                     )
             congregation = tmp_path / "congregation.csv"
@@ -626,7 +994,18 @@ def test_web_export_archives_dated_dashboards_and_index():
             with candidates.open("w", newline="") as f:
                 writer = csv.DictWriter(
                     f,
-                    fieldnames=["date", "player", "player_id", "team", "opponent", "game_pk", "pickable", "score"],
+                    fieldnames=[
+                        "date",
+                        "player",
+                        "player_id",
+                        "team",
+                        "opponent",
+                        "game_pk",
+                        "pickable",
+                        "score",
+                        "h2h_pa",
+                        "h2h_hits",
+                    ],
                 )
                 writer.writeheader()
                 writer.writerow(
@@ -639,6 +1018,8 @@ def test_web_export_archives_dated_dashboards_and_index():
                         "game_pk": "100",
                         "pickable": "N",
                         "score": "51.00",
+                        "h2h_pa": "3",
+                        "h2h_hits": "1",
                     }
                 )
                 writer.writerow(
@@ -651,6 +1032,8 @@ def test_web_export_archives_dated_dashboards_and_index():
                         "game_pk": "101",
                         "pickable": "N",
                         "score": "61.00",
+                        "h2h_pa": "4",
+                        "h2h_hits": "2",
                     }
                 )
             out_json = tmp_path / "data" / "top_picks.json"

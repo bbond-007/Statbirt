@@ -18,5 +18,9 @@ data/models/
 web/data/top_picks.json
 web/data/dashboard_index.json
 web/data/dashboards/*.json
+web/data/learned_shortlist.json
+web/data/learned_dashboard_index.json
+web/data/learned_dashboards/*.json
 !web/data/.gitkeep
 !web/data/dashboards/.gitkeep
+!web/data/learned_dashboards/.gitkeep

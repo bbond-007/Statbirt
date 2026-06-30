@@ -48,6 +48,7 @@ class SeasonWindow:
 @dataclass(frozen=True)
 class H2HFeatures:
     pa: int = 0
+    hits: int = 0
     hit_rate: float | None = None
     whiff_rate: float | None = None
     k_rate: float | None = None
@@ -431,6 +432,7 @@ class StatcastFeatureStore:
         hits = int(pa["is_hit"].sum())
         return H2HFeatures(
             pa=int(len(pa)),
+            hits=hits,
             hit_rate=safe_divide(hits, len(pa)),
             whiff_rate=safe_divide(whiffs, swings) if swings else None,
             k_rate=safe_divide(int(pa["is_k"].sum()), len(pa)),
@@ -438,10 +440,14 @@ class StatcastFeatureStore:
             xba=_xba_mean(pa),
         )
 
-    def hitter_split_windows(self, batter_id: int, *, target_date: date) -> dict[str, float | None]:
+    def hitter_split_windows(self, batter_id: int, *, target_date: date) -> dict[str, float | int | None]:
         pa = self.batter_pa[self.batter_pa["batter"] == batter_id].copy()
         if pa.empty:
             return {
+                "ba_season_vs_lhp": None,
+                "ba_season_vs_rhp": None,
+                "pa_season_vs_lhp": None,
+                "pa_season_vs_rhp": None,
                 "ba_500_vs_lhp": None,
                 "ba_500_vs_rhp": None,
                 "ba_1500_vs_lhp": None,
@@ -459,7 +465,23 @@ class StatcastFeatureStore:
             at_bats = len(used)
             return safe_divide(int(used["is_hit"].sum()), at_bats)
 
+        season_years = pa["game_date"].map(lambda value: getattr(value, "year", None))
+
+        def season_split(hand: str):
+            subset = pa[(pa["p_throws"] == hand) & (season_years == target_date.year)]
+            plate_appearances = len(subset)
+            at_bats = int(subset["is_ab"].sum()) if plate_appearances else 0
+            hits = int(subset["is_hit"].sum()) if plate_appearances else 0
+            return safe_divide(hits, at_bats), plate_appearances or None
+
+        season_ba_lhp, season_pa_lhp = season_split("L")
+        season_ba_rhp, season_pa_rhp = season_split("R")
+
         return {
+            "ba_season_vs_lhp": season_ba_lhp,
+            "ba_season_vs_rhp": season_ba_rhp,
+            "pa_season_vs_lhp": season_pa_lhp,
+            "pa_season_vs_rhp": season_pa_rhp,
             "ba_500_vs_lhp": split_ba("L", 500),
             "ba_500_vs_rhp": split_ba("R", 500),
             "ba_1500_vs_lhp": split_ba("L", 1500),

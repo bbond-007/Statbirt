@@ -1,0 +1,81 @@
+{
+  "date": "2026-06-24",
+  "target": "learned_rank_top_2",
+  "committee_pick": "Wilyer Abreu",
+  "committee_summary": "The committee pick is Wilyer Abreu because both candidates share the same park and opposing starter, so the decision comes down to the hitter-specific floor. Caleb Durbin has the hotter short-term signal and the slightly higher learned probability, with a 10-for-19 last-five stretch and a small but positive 1-for-3 history against Kyle Freeland. But Wilyer Abreu owns the stronger full-season profile, the better projected lineup slot, the better reliability score, and the cleaner handedness case. He is batting .279 on the season, projected third by the current public lineup source, owns a .393 season split against left-handed pitching over 94 plate appearances, and carries a 90 safety score versus Durbin's 50. Durbin remains a live two-pick partner at Coors, but for a single hit selection the committee prefers Abreu's blend of volume, matchup quality, and lower structural risk.",
+  "workflow_notes": [
+    "Staged the learned model raw top 2 for the active dashboard date.",
+    "Reviewed local model context, H2H, stop valves, expected PA, lineup slot, recent form, handedness splits, starter profile, and bullpen context.",
+    "Checked current free public sources for probable pitchers, lineup status, injury/news context, venue/weather context, and public player summaries.",
+    "Used pro, con, and reviewer committee roles before choosing the single hitter."
+  ],
+  "source_notes": [
+    {
+      "label": "MLB Red Sox Starting Lineups",
+      "url": "https://www.mlb.com/redsox/roster/starting-lineups",
+      "note": "Checked the official Boston at Colorado page; today's lineup was still TBD, with Ranger Suarez and Kyle Freeland listed as probables."
+    },
+    {
+      "label": "RotoWire Daily Lineups",
+      "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+      "note": "Reviewed current expected lineup, weather, total, and probable-starter context; Abreu was projected third and Durbin lower in the order."
+    },
+    {
+      "label": "Baseball Savant Game Preview: Red Sox at Rockies",
+      "url": "https://baseballsavant.mlb.com/preview?game_date=06%2F24%2F2026&game_pk=824341",
+      "note": "Reviewed the Statcast game preview for Boston at Colorado."
+    },
+    {
+      "label": "Baseball Savant: Wilyer Abreu",
+      "url": "https://baseballsavant.mlb.com/savant-player/wilyer-abreu-677800",
+      "note": "Reviewed Abreu's public 2026 standard batting summary and season line."
+    },
+    {
+      "label": "Baseball Savant: Caleb Durbin",
+      "url": "https://baseballsavant.mlb.com/savant-player/caleb-durbin-702332",
+      "note": "Reviewed Durbin's public 2026 standard batting summary and season line."
+    },
+    {
+      "label": "Baseball Savant: Kyle Freeland",
+      "url": "https://baseballsavant.mlb.com/savant-player/kyle-freeland-607536",
+      "note": "Reviewed Freeland's public 2026 pitching summary."
+    },
+    {
+      "label": "MLB StatsAPI Red Sox-Rockies Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/824341/feed/live",
+      "note": "Verified official game status, probable pitchers, and that official batting orders had not posted yet."
+    },
+    {
+      "label": "ESPN Red Sox-Rockies June 23 Recap",
+      "url": "https://africa.espn.com/mlb/recap?gameId=401815878",
+      "note": "Reviewed the prior game recap noting Abreu's run production in Boston's June 23 win at Colorado."
+    },
+    {
+      "label": "RotoWire Caleb Durbin News",
+      "url": "https://www.rotowire.com/baseball/headlines/caleb-durbin-news-returns-to-lineup-1009818",
+      "note": "Reviewed recent Durbin availability/news context after his return to the lineup."
+    }
+  ],
+  "players": [
+    {
+      "rank": 1,
+      "player": "Caleb Durbin",
+      "team": "BOS",
+      "opponent": "COL",
+      "probable_pitcher": "Kyle Freeland",
+      "pro_thesis": "Caleb Durbin has the most electric recent-form case on the board. The learned model ranks him first at 76.9%, and the local data gives him a 10-for-19 last-five line, a .440 last-25 mark, a .320 last-75 mark, and a low-strikeout profile that fits a one-hit target better than his season average suggests. He also gets the same Coors Field boost as Abreu, with Kyle Freeland carrying a 7.36 ERA, 1.58 WHIP, and elevated local hit-per-inning indicators. The direct matchup is tiny but positive: 1-for-3, no whiffs, no strikeouts, and a .520 xBA. If the hot streak is real, Durbin is very live.",
+      "con_thesis": "The con case is that Durbin's hot streak has to overcome a lot of baseline drag. His full-season Savant line is .220/.275/.366, his season PA/G is only 3.66, and the current public lineup projection has him lower than Abreu rather than in a premium top-third slot. Four stop valves are attached, including season PA/G, long-window batting average, and today's pitcher-hand threshold. The left-handed pitching split is also not persuasive at .235 this season and .251 in the larger 500/1500 lefty windows. Freeland is vulnerable overall, but he just logged a strong 7.3-inning start with eight strikeouts and no walks, so Durbin's lower-order volume risk matters.",
+      "committee_thesis": "Committee read: Durbin is the runner-up because the model rank and current heater are hard to ignore, especially at Coors. He belongs on the two-pick card if the user wants to play both top candidates. The committee does not make him the single pick because too many pieces of the profile are short-sample dependent: the season average, PA/G, lineup slot, and lefty split all lag Abreu's. Durbin can absolutely hit today, but his path is less stable."
+    },
+    {
+      "rank": 2,
+      "player": "Wilyer Abreu",
+      "team": "BOS",
+      "opponent": "COL",
+      "probable_pitcher": "Kyle Freeland",
+      "pro_thesis": "Wilyer Abreu is the cleaner one-hit profile because his current context does not need as much explaining. He is projected third in the public lineup, carries a 74.1% learned probability, a 90 safety score, 4.6 expected plate appearances, and a .279/.344/.452 public Savant season line. The matchup split is the biggest separator: Abreu is hitting .393 against left-handed pitching this season over 94 plate appearances and .279 over the larger lefty sample, while Freeland is allowing strong local left-on-left damage and owns a 7.36 ERA with a 1.58 WHIP. Abreu also enters after producing in the prior game at Coors, which gives the thesis a useful timing signal.",
+      "con_thesis": "The con case for Abreu is that the direct matchup evidence is missing, and the stop valves are not empty noise. He has no H2H history against Freeland, the long-window batting average filters are below the preferred threshold, and the both-hands threshold still fails because the right-handed pitching side of the profile is weaker. His last-five line is solid but not blazing at 5-for-17, and the low-power hit path can still stall if Freeland sequences carefully or if Colorado turns to bullpen arms that do not match the lefty-starter shape. Abreu is the safer profile, but the no-H2H and broader split imbalance keep the pick from being automatic.",
+      "committee_thesis": "Committee read: Abreu is the single-pick choice because his advantages are more structural than Durbin's. Both hitters get Coors and Freeland, so the committee gives extra weight to lineup slot, handedness split, season quality, and reliability score. Abreu wins those categories while still keeping a strong learned probability and useful recent form. The missing H2H sample is a real caution, but it is less concerning than Durbin's lower lineup slot, weaker season baseline, and dependence on a very hot five-game window. Abreu is the steadier one-hit play."
+    }
+  ]
+}

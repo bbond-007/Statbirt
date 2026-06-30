@@ -1,0 +1,96 @@
+{
+  "date": "2026-06-21",
+  "target": "learned_rank_top_2",
+  "committee_pick": "Luis Arraez",
+  "committee_summary": "The committee pick is Luis Arraez because his one-hit case is both higher-confidence and more failure-resistant than Nick Gonzales's. Gonzales has a real path: Coors Field, Michael Lorenzen's 7.13 ERA and 1.85 WHIP, a strong .307 season split against right-handed pitching, and a Colorado bullpen that the local model treats as hittable. But Arraez brings the better contest skill set: an 80.2% learned probability, 99 safety score, .321 season average, .421 last-five mark, elite 4.0% strikeout rate, and a strong .332 split against right-handed pitching. Ryan Gusto is allowing substantial traffic, and Arraez already has a small but positive 2-for-3 H2H history with no whiffs or strikeouts. RotoWire's expected lineup has him second rather than first, which slightly trims the plate-appearance ceiling, but his bat-to-ball floor still makes him the cleaner single pick.",
+  "workflow_notes": [
+    "Staged the learned model raw top 2 for the active dashboard date.",
+    "Reviewed local model context, H2H, stop valves, expected PA, lineup slot, recent form, handedness splits, starter profile, and bullpen context.",
+    "Checked current free public sources for probable pitchers, lineup status, injury notes, venue/weather context, and public player summaries.",
+    "Used pro, con, and reviewer committee roles before choosing the single hitter."
+  ],
+  "source_notes": [
+    {
+      "label": "MLB Giants Probable Pitchers",
+      "url": "https://www.mlb.com/giants/roster/probable-pitchers",
+      "note": "Confirmed Giants at Marlins probable starter context with Logan Webb versus Ryan Gusto at loanDepot park."
+    },
+    {
+      "label": "MLB Rockies Probable Pitchers",
+      "url": "https://www.mlb.com/rockies/roster/probable-pitchers",
+      "note": "Confirmed Pirates at Rockies probable starter context with Jared Jones versus Michael Lorenzen at Coors Field."
+    },
+    {
+      "label": "RotoWire Daily Lineups",
+      "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+      "note": "Cross-checked expected lineups and saw Arraez projected second for San Francisco and Gonzales projected fifth for Pittsburgh."
+    },
+    {
+      "label": "ESPN Giants-Marlins Game Page",
+      "url": "https://www.espn.com/mlb/game/_/gameId/401815843/giants-marlins",
+      "note": "Reviewed probable pitchers, Gusto's public season line, loanDepot park context, Giants recent results, and injury report."
+    },
+    {
+      "label": "ESPN Pirates-Rockies Game Page",
+      "url": "https://www.espn.com/mlb/game/_/gameId/401815849/pirates-rockies",
+      "note": "Reviewed probable pitchers, Lorenzen's public season line, Coors Field context, team hitting stats, and injury report."
+    },
+    {
+      "label": "Baseball Savant: Luis Arraez",
+      "url": "https://baseballsavant.mlb.com/savant-player/luis-arraez-650333",
+      "note": "Reviewed Arraez's public 2026 standard batting summary and season contact profile."
+    },
+    {
+      "label": "Baseball Savant: Nick Gonzales",
+      "url": "https://baseballsavant.mlb.com/savant-player/nick-gonzales-693304",
+      "note": "Reviewed Gonzales's public 2026 standard batting summary."
+    },
+    {
+      "label": "Baseball Savant: Ryan Gusto",
+      "url": "https://baseballsavant.mlb.com/savant-player/ryan-gusto-687473",
+      "note": "Reviewed Gusto's public 2026 pitching summary."
+    },
+    {
+      "label": "Baseball Savant: Michael Lorenzen",
+      "url": "https://baseballsavant.mlb.com/savant-player/michael-lorenzen-547179",
+      "note": "Reviewed Lorenzen's public player page alongside MLB, ESPN, and local model pitching context."
+    },
+    {
+      "label": "MLB StatsAPI Giants-Marlins Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/823852/feed/live",
+      "note": "Verified official game status, venue, probable pitchers, and that the official batting order had not posted yet."
+    },
+    {
+      "label": "MLB StatsAPI Pirates-Rockies Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/824343/feed/live",
+      "note": "Verified official game status, venue, probable pitchers, and that the official batting order had not posted yet."
+    },
+    {
+      "label": "Pittsburgh Baseball Now Pirates-Rockies Recap",
+      "url": "https://pittsburghbaseballnow.com/pittsburgh-pirates-colorado-rockies-paul-skenes-interference/",
+      "note": "Reviewed current series context and confirmation of the Sunday Jones-Lorenzen matchup."
+    }
+  ],
+  "players": [
+    {
+      "rank": 1,
+      "player": "Luis Arraez",
+      "team": "SFG",
+      "opponent": "MIA",
+      "probable_pitcher": "Ryan Gusto",
+      "pro_thesis": "Luis Arraez is the cleanest one-hit profile on the slate because the model strength is supported by exactly the skills this contest needs. He carries an 80.2% learned hit probability, a 99 safety score, a .321 season average, and an 8-for-19 last-five stretch. The contact foundation is elite: a 4.0% season strikeout rate, 8.5% whiff rate, and only 13 strikeouts in 326 plate appearances on the public Savant line. Against right-handed pitching he is at .332 this season, and Ryan Gusto is giving up heavy traffic by both public line and local model indicators. Even if RotoWire's expected second lineup slot replaces the staged leadoff slot, Arraez still projects for premium volume with a very narrow swing-and-miss path.",
+      "con_thesis": "The con case for Arraez is not about the bat-to-ball skill; it is about whether the context is slightly less perfect than the model snapshot. Official lineups had not posted at review time, and RotoWire's expected order had him second rather than first, which trims a little expected plate-appearance edge. The lone stop valve is Ryan Gusto's 96 Stuff+, and Miami's bullpen profile is not inviting in the local data, with a .198 opponent average and low bullpen HPI. Arraez also depends on singles and balls finding space rather than power, so one or two well-placed grounders can erase a strong process day. Still, the downside is more nuisance than structural weakness.",
+      "committee_thesis": "Committee read: Arraez is the single-pick choice because his strengths attack the exact failure mode that ruins hit streak picks: empty plate appearances. The learned model, safety score, current average, recent form, right-handed pitching split, H2H contact, and extreme K avoidance all point the same direction. The lineup uncertainty and Gusto Stuff+ warning keep the pick from being automatic, and the Marlins bullpen could make later at-bats tougher, but Arraez has the most stable path to simply putting one ball safely into play."
+    },
+    {
+      "rank": 2,
+      "player": "Nick Gonzales",
+      "team": "PIT",
+      "opponent": "COL",
+      "probable_pitcher": "Michael Lorenzen",
+      "pro_thesis": "Nick Gonzales has a very real runner-up case because the environment and pitcher matchup are both loud. Coors Field carries the highest park hit factor in the staged data, and Michael Lorenzen is listed by MLB and ESPN at 2-8 with a 7.13 ERA, while ESPN shows a 1.85 WHIP and 106 hits allowed in 70.2 innings. Gonzales owns a .289 season average, a .307 season split against right-handed pitching, and the local model gives him a 75.8% learned hit probability with an 86 safety score. RotoWire's expected fifth slot is not ideal, but it places him behind on-base threats in a game with a high run environment and a vulnerable Colorado bullpen.",
+      "con_thesis": "Gonzales is dangerous, but his single-hit case is more volatile than Arraez's. The recent form is cold at 3-for-20 over his last five games, with a .200 last-25-AB marker and only a .150 last-five batting average in the staged context. He also carries three stop valves: season PA/G under 4.2, H2H strikeout rate over 20%, and the handedness-balance valve. The H2H line against Lorenzen is only 1-for-3, and the local xBA on that contact is .235, so the direct matchup is not as clean as the ballpark suggests. Coors can cover a lot of sins, but it cannot eliminate the risk of a shorter, colder, more strikeout-exposed profile.",
+      "committee_thesis": "Committee read: Gonzales belongs on the two-pick card, especially because Coors plus Lorenzen creates obvious hit upside. If the contest card allows two names, the environment makes him hard to ignore. For the single pick, though, the committee ranks him behind Arraez because his case leans more heavily on park and pitcher weakness than on the hitter's current contact stability. The recent cold stretch, lower projected lineup slot, three stop valves, and weaker H2H quality make his path less resilient."
+    }
+  ]
+}
