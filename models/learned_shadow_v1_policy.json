@@ -1,0 +1,32 @@
+{
+  "policy_version": "learned-shadow-v1",
+  "frozen_on": "2026-07-17",
+  "shadow_start_date": "2026-07-18",
+  "production_baseline": "learned-logistic-v2-20260717T120305Z",
+  "minimum_resolved_prospective_days": 50,
+  "automatic_promotion": false,
+  "training": {
+    "model": "two_stage_recency_weighted_logistic",
+    "recency_half_life_days": 180,
+    "l2": 0.04,
+    "calibration": "three_chronological_evaluation_blocks_plus_14_resolved_date_deployment_holdout"
+  },
+  "excluded_inputs": [
+    "calendar_month",
+    "day_of_week",
+    "raw_rain_probability",
+    "bob_score",
+    "missingness_indicators",
+    "unshrunk_surface_h2h"
+  ],
+  "frozen_hypothesis": "Within the production top five, separately track a policy that prefers opposing starter Stuff+ at or below 100.",
+  "promotion_metrics": [
+    "production_and_shadow_rank_one_hit_rate",
+    "production_and_shadow_top_two_any_hit_rate",
+    "longest_miss_streak",
+    "combined_probability_brier_score",
+    "appearance_probability_brier_score",
+    "performance_by_season_and_month"
+  ],
+  "promotion_rule": "After at least 50 fully resolved immutable pregame days, produce a human review. Do not promote automatically or retune thresholds during the collection window."
+}

@@ -14,3 +14,4 @@ date,player,probability,warnings,expected_pa,lineup_slot,ba_500,stuff_plus,stop_
 2026-07-09,Trea Turner,0.7406,five or more stop valves,4.8,1.0,0.276,91.0,6
 2026-07-10,Nico Hoerner,0.7925,"low expected PA, lineup slot 6+, 500-AB BA below .275",4.1,6.0,0.264,,4
 2026-07-14,Bobby Witt Jr.,0.8114,Stuff+ above 100,4.3,5.0,0.294,118.0,3
+2026-07-16,Francisco Lindor,0.6999,"500-AB BA below .275, Stuff+ above 100, five or more stop valves",4.6,3.4,0.252,107.0,6

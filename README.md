@@ -12,12 +12,13 @@ PROJECT_HANDOFF.md
 
 ## Current Status
 
-As of May 6, 2026:
+As of July 17, 2026:
 
 - The active shared project folder is `compy3600/Coding/Statbirt`; from this Mac it is mounted at `/Volumes/Coding/Statbirt`.
 - No separate `Statbirt_v2` rebuild has been needed so far.
-- `data/statbirt_candidates.csv` currently has 10,868 rows across 43 dates, spanning `2026-03-25` through `2026-05-06`.
-- 2026 historical backfill through `2026-05-05` is complete; `2026-05-06` is the active ungraded daily board.
+- `data/statbirt_candidates.csv` currently has 83,208 rows across 297 dates, spanning `2025-03-18` through `2026-07-17`.
+- The production learned baseline is frozen at `models/learned-logistic-v2-20260717T120305Z.json` for the shadow-model comparison.
+- The learned shadow experiment begins with the July 18 board and requires 50 fully resolved immutable pregame days before human promotion review.
 - `data/manual/stuff_plus.csv` contains 688 normalized 2026 FanGraphs Stuff+ rows refreshed from the FanGraphs leaderboard through the browser snapshot fallback on 2026-06-16.
 - `pitcher_stuff_plus` is populated from `data/manual/stuff_plus.csv` during daily runs. After refreshing Stuff+, rerun the daily model to apply the newest values to candidate rows and dashboard exports.
 - The active dashboard export is `2026-05-06` with 29 displayed picks.
@@ -41,13 +42,13 @@ Daily runs upsert into the CSV instead of wiping it. Ungraded rows for the same 
 
 ## Daily Automation
 
-On the Desktop PC, Windows Task Scheduler runs this wrapper at 6:30 AM each day:
+On the Desktop PC, Windows Task Scheduler runs this wrapper each morning:
 
 ```powershell
 X:\Coding\Statbirt\scripts\daily_morning.ps1
 ```
 
-The scheduled task is named `Statbirt Daily Morning Run`. It runs the primary daily model, retrains/scores the learned model, then exports the dashboard. Each run writes a transcript log to `logs\daily-morning-*.log`.
+The scheduled task is named `Statbirt Daily Morning Run`. It runs the primary daily model, scores the frozen production learned model, trains and scores the shadow model, writes an immutable pregame snapshot, audits the ledger, and exports both dashboards. Each run writes a transcript log to `logs\daily-morning-*.log`.
 
 Use a concrete game date when backfilling. For example:
 
@@ -77,6 +78,14 @@ That fills:
 Rows with `result_status` of `postponed`, `no_appearance`, `pending`, or `unresolved` keep `result_hit` blank, so they are excluded from hit-rate summaries and learned-model training labels.
 
 Use `--refresh-filled` to recalculate rows that already have results, or `--dry-run` to see how many rows would change.
+
+The nightly wrapper performs the full results and dashboard sequence:
+
+```powershell
+X:\Coding\Statbirt\scripts\daily_results.ps1
+```
+
+It updates results, joins them into the separate decision-result ledger, audits the immutable snapshot hashes, refreshes shadow promotion metrics, and exports both dashboards.
 
 ## Weather Backfill
 
@@ -221,6 +230,40 @@ Train and score in one step:
 ```bash
 python3 -m statbirt.learned_model run --date latest --top 25
 ```
+
+During the current 50-day shadow evaluation, the scheduled morning run does not retrain this production model. It scores the frozen artifact directly:
+
+```bash
+python3 -m statbirt.learned_model score --model models/learned-logistic-v2-20260717T120305Z.json --date latest --top 25
+```
+
+## Learned Shadow Experiment
+
+The shadow model preserves the production shortlist while testing the July 16 review recommendations. It models `P(appearance)` separately from `P(hit | appearance)`, applies recency weighting and a rolling 14-resolved-date calibration holdout, and reranks only the frozen production top five for dashboard comparison. Calendar fields, raw rain, Bob score, missingness proxies, and unshrunk H2H rates are excluded.
+
+Train and score the latest board without changing production order:
+
+```bash
+python3 -m statbirt.learned_shadow run --date latest
+```
+
+Create and audit the pregame evidence record:
+
+```bash
+python3 -m statbirt.prediction_ledger snapshot --run-id daily-morning-YYYYMMDD-HHMMSS --target-date latest
+python3 -m statbirt.prediction_ledger audit
+```
+
+After results are current:
+
+```bash
+python3 -m statbirt.prediction_ledger sync-results
+python3 -m statbirt.learned_shadow evaluate
+```
+
+Pregame decisions live in `data/decision_ledger/snapshots.csv`; results are joined into `data/decision_ledger/results.csv` without mutating those snapshots. The gate tracks production rank one, production top two, shadow rank one, the frozen Stuff+ preference, shadow top two, miss streaks, Brier/log loss, and month/season performance. Promotion is never automatic.
+
+New daily candidates also collect prospective-only evidence from free sources: rolling Statcast xBA/contact quality, bat tracking, pitch-arsenal shape and usage, three-day bullpen workload, team OAA, dated roster status, recent activations, and lineup provenance. Current leaderboards are archived with timestamps and hashes and are never substituted into historical dates.
 
 Backtest experimental learned-model variants:
 

@@ -81,6 +81,7 @@ def historical_lineups_for_date(client: MLBClient, target_day: date) -> dict[int
             if players_by_id:
                 output[team_id] = {
                     "confirmed": True,
+                    "source": "final_boxscore",
                     "players_by_id": players_by_id,
                     "players_by_name": players_by_name,
                 }

@@ -1,0 +1,11 @@
+{
+  "production_baseline": {
+    "model_version": "learned-logistic-v2-20260717T120305Z",
+    "trained_at": "2026-07-17T12:03:05Z",
+    "model_path": "models/learned-logistic-v2-20260717T120305Z.json",
+    "report_path": "models/learned-logistic-v2-20260717T120305Z-report.json",
+    "sha256": "127c10646922918ea711a354a11b99583401ab7cbe90191aa05e2a7c38a9e8e5",
+    "frozen_for_shadow_comparison_on": "2026-07-17",
+    "policy": "Do not overwrite this artifact or its historical production predictions during the 50-day shadow evaluation."
+  }
+}

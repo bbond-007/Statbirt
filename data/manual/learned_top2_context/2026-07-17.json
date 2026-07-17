@@ -1,0 +1,787 @@
+{
+  "generated_at": "2026-07-17T13:02:28Z",
+  "date": "2026-07-17",
+  "requested_date": "2026-07-17",
+  "used_latest_fallback": false,
+  "target": "learned_rank_top_2",
+  "purpose": "Evidence staging only. ChatGPT/Codex should write the pro thesis, con thesis, and committee decision.",
+  "daily_timing": {
+    "morning_models_scheduled": "07:00 America/Chicago",
+    "recommended_stage_after": "08:00 America/Chicago",
+    "note": "The morning model scripts normally need about 45 minutes, so 8:00am Central gives them a buffer."
+  },
+  "workflow_prompt": "X:\\Coding\\Statbirt\\prompts\\learned_top2_thesis.md",
+  "expected_thesis_path": "X:\\Coding\\Statbirt\\data\\manual\\learned_top2_theses\\2026-07-17.json",
+  "dashboard_refresh_command": "py -3 -m statbirt.export_learned_web --date latest --limit 5",
+  "total_predictions_for_date": 467,
+  "injury_filtered_count": 63,
+  "selection_brief_from_local_metrics": {
+    "policy_version": "learned-selection-v1",
+    "headline": "Recommended single: Fernando Tatis Jr. Best two-pick card: Fernando Tatis Jr. and Jacob Wilson.",
+    "recommended_single": {
+      "rank": 2,
+      "player": "Fernando Tatis Jr.",
+      "team": "SDP",
+      "opponent": "KCR",
+      "selection_score": 70.8,
+      "learned_hit_probability": 0.7089,
+      "pros": [
+        "Solid learned probability (70.9%).",
+        "Strong reliability score (82/100).",
+        "Projected for 4.8 PA.",
+        "Premium lineup slot (1)."
+      ],
+      "cons": [
+        "4 stop valves.",
+        "HiPA 500 0.254."
+      ],
+      "confidence_label": "Playable",
+      "thesis": "Fernando Tatis Jr. is a 70.8 selection-score play with a 70.9% learned hit probability, 4.8 expected PA, and a 82/100 reliability score. The positive case starts with solid learned probability (70.9%); the main counterweight is 4 stop valves.",
+      "summary": "Fernando Tatis Jr. grades as playable at 70.8 on the reliability blend.",
+      "recommendation": "Best 1",
+      "h2h_record": "2-6",
+      "safety_score": 82,
+      "bob_score": 62.89,
+      "expected_pa": "4.8",
+      "lineup_slot": "1.0",
+      "hitter_ba_season": "0.277",
+      "probable_pitcher": "Seth Lugo",
+      "pickable": false,
+      "stop_valve_count": 4,
+      "hard_pass_reasons": [
+        "Hitter season whiff rate over 25%",
+        "Hitter last-500 PA whiff rate over 25%",
+        "H2H K rate over 20%",
+        "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows"
+      ],
+      "concerns": [],
+      "result_hit": null,
+      "result_hits": null,
+      "result_ab": null,
+      "result_pa": null,
+      "result_status": "",
+      "game_state": "unknown",
+      "game_status": "",
+      "game_hits": null
+    },
+    "recommended_pair": [
+      {
+        "rank": 2,
+        "player": "Fernando Tatis Jr.",
+        "team": "SDP",
+        "opponent": "KCR",
+        "selection_score": 70.8,
+        "learned_hit_probability": 0.7089,
+        "pros": [
+          "Solid learned probability (70.9%).",
+          "Strong reliability score (82/100).",
+          "Projected for 4.8 PA.",
+          "Premium lineup slot (1)."
+        ],
+        "cons": [
+          "4 stop valves.",
+          "HiPA 500 0.254."
+        ],
+        "confidence_label": "Playable",
+        "thesis": "Fernando Tatis Jr. is a 70.8 selection-score play with a 70.9% learned hit probability, 4.8 expected PA, and a 82/100 reliability score. The positive case starts with solid learned probability (70.9%); the main counterweight is 4 stop valves.",
+        "summary": "Fernando Tatis Jr. grades as playable at 70.8 on the reliability blend.",
+        "recommendation": "Best 1",
+        "h2h_record": "2-6",
+        "safety_score": 82,
+        "bob_score": 62.89,
+        "expected_pa": "4.8",
+        "lineup_slot": "1.0",
+        "hitter_ba_season": "0.277",
+        "probable_pitcher": "Seth Lugo",
+        "pickable": false,
+        "stop_valve_count": 4,
+        "hard_pass_reasons": [
+          "Hitter season whiff rate over 25%",
+          "Hitter last-500 PA whiff rate over 25%",
+          "H2H K rate over 20%",
+          "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows"
+        ],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      },
+      {
+        "rank": 1,
+        "player": "Jacob Wilson",
+        "team": "ATH",
+        "opponent": "WSN",
+        "selection_score": 68.9,
+        "learned_hit_probability": 0.7097,
+        "pros": [
+          "Solid learned probability (71.0%).",
+          "Strong reliability score (86/100).",
+          "Projected for 4.6 PA.",
+          "Premium lineup slot (3)."
+        ],
+        "cons": [
+          "No H2H history against the probable starter.",
+          "HiPA 500 0.248.",
+          "Stuff+ 102.0."
+        ],
+        "confidence_label": "Playable",
+        "thesis": "Jacob Wilson is a 68.9 selection-score play with a 71.0% learned hit probability, 4.6 expected PA, and a 86/100 reliability score. The positive case starts with solid learned probability (71.0%); the main counterweight is no H2H history against the probable starter.",
+        "summary": "Jacob Wilson grades as playable at 68.9 on the reliability blend.",
+        "recommendation": "Best 2",
+        "h2h_record": "0-0",
+        "safety_score": 86,
+        "bob_score": 57.33,
+        "expected_pa": "4.6",
+        "lineup_slot": "3.0",
+        "hitter_ba_season": "0.281",
+        "probable_pitcher": "Cade Cavalli",
+        "pickable": false,
+        "stop_valve_count": 2,
+        "hard_pass_reasons": [
+          "H2H PA below 2",
+          "Starter Stuff+ over 95"
+        ],
+        "concerns": [
+          "Missing H2H whiff rate",
+          "Missing H2H K rate"
+        ],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      }
+    ],
+    "items": [
+      {
+        "rank": 1,
+        "player": "Jacob Wilson",
+        "team": "ATH",
+        "opponent": "WSN",
+        "selection_score": 68.9,
+        "learned_hit_probability": 0.7097,
+        "pros": [
+          "Solid learned probability (71.0%).",
+          "Strong reliability score (86/100).",
+          "Projected for 4.6 PA.",
+          "Premium lineup slot (3)."
+        ],
+        "cons": [
+          "No H2H history against the probable starter.",
+          "HiPA 500 0.248.",
+          "Stuff+ 102.0."
+        ],
+        "confidence_label": "Playable",
+        "thesis": "Jacob Wilson is a 68.9 selection-score play with a 71.0% learned hit probability, 4.6 expected PA, and a 86/100 reliability score. The positive case starts with solid learned probability (71.0%); the main counterweight is no H2H history against the probable starter.",
+        "summary": "Jacob Wilson grades as playable at 68.9 on the reliability blend.",
+        "recommendation": "Best 2",
+        "h2h_record": "0-0",
+        "safety_score": 86,
+        "bob_score": 57.33,
+        "expected_pa": "4.6",
+        "lineup_slot": "3.0",
+        "hitter_ba_season": "0.281",
+        "probable_pitcher": "Cade Cavalli",
+        "pickable": false,
+        "stop_valve_count": 2,
+        "hard_pass_reasons": [
+          "H2H PA below 2",
+          "Starter Stuff+ over 95"
+        ],
+        "concerns": [
+          "Missing H2H whiff rate",
+          "Missing H2H K rate"
+        ],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      },
+      {
+        "rank": 2,
+        "player": "Fernando Tatis Jr.",
+        "team": "SDP",
+        "opponent": "KCR",
+        "selection_score": 70.8,
+        "learned_hit_probability": 0.7089,
+        "pros": [
+          "Solid learned probability (70.9%).",
+          "Strong reliability score (82/100).",
+          "Projected for 4.8 PA.",
+          "Premium lineup slot (1)."
+        ],
+        "cons": [
+          "4 stop valves.",
+          "HiPA 500 0.254."
+        ],
+        "confidence_label": "Playable",
+        "thesis": "Fernando Tatis Jr. is a 70.8 selection-score play with a 70.9% learned hit probability, 4.8 expected PA, and a 82/100 reliability score. The positive case starts with solid learned probability (70.9%); the main counterweight is 4 stop valves.",
+        "summary": "Fernando Tatis Jr. grades as playable at 70.8 on the reliability blend.",
+        "recommendation": "Best 1",
+        "h2h_record": "2-6",
+        "safety_score": 82,
+        "bob_score": 62.89,
+        "expected_pa": "4.8",
+        "lineup_slot": "1.0",
+        "hitter_ba_season": "0.277",
+        "probable_pitcher": "Seth Lugo",
+        "pickable": false,
+        "stop_valve_count": 4,
+        "hard_pass_reasons": [
+          "Hitter season whiff rate over 25%",
+          "Hitter last-500 PA whiff rate over 25%",
+          "H2H K rate over 20%",
+          "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows"
+        ],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      }
+    ]
+  },
+  "players": [
+    {
+      "rank": 1,
+      "player": "Jacob Wilson",
+      "player_id": "805779",
+      "team": "ATH",
+      "opponent": "WSN",
+      "dashboard_summary": {
+        "learned_hit_probability": 0.7097,
+        "bob_score": 57.33,
+        "pickable": false,
+        "safety_score": 86,
+        "h2h_record": "0-0",
+        "expected_pa": "4.6",
+        "lineup_slot": "3.0",
+        "season_ba": "0.281",
+        "last_5_ba": "0.389",
+        "hot_streak": false,
+        "hot_streak_tooltip": "",
+        "probable_pitcher": "Cade Cavalli",
+        "pitcher_hand": "R",
+        "batter_stand": "R",
+        "venue_name": "Sutter Health Park",
+        "weather_label": "Rain: 0.0%",
+        "congregation_status": ""
+      },
+      "model_signals": [
+        "Expected PA 4.6",
+        "Season PA/G 4.23",
+        "Lineup slot 3",
+        "2 stop valves",
+        "K rate 10.0%"
+      ],
+      "model_risks": [
+        "HiPA 500 0.248",
+        "Stuff+ 102.0"
+      ],
+      "stop_valves": [
+        "H2H PA below 2",
+        "Starter Stuff+ over 95"
+      ],
+      "watch_notes": [
+        "Missing H2H whiff rate",
+        "Missing H2H K rate"
+      ],
+      "field_context": {
+        "identity": {
+          "date": "2026-07-17",
+          "player": "Jacob Wilson",
+          "player_id": "805779",
+          "team": "ATH",
+          "team_id": "133",
+          "opponent": "WSN",
+          "opponent_id": "120",
+          "game_pk": "824981"
+        },
+        "learned_model": {
+          "learned_rank": "1",
+          "learned_hit_probability": "0.7097",
+          "model_version": "learned-logistic-v2-20260717T120305Z",
+          "model_trained_at": "2026-07-17T12:03:05Z",
+          "bob_score": "57.33",
+          "score": "57.33",
+          "pickable": "N"
+        },
+        "game_context": {
+          "venue_name": "Sutter Health Park",
+          "game_start_time_utc": "2026-07-18T01:40:00Z",
+          "road_game": "N",
+          "division_matchup": "N",
+          "doubleheader": "N",
+          "confirmed_lineup": "N",
+          "lineup_slot": "3.0",
+          "expected_pa": "4.60",
+          "starts_last_5": "4"
+        },
+        "weather_park": {
+          "precip_probability": "0.0",
+          "forecast_temperature_f": "83.9"
+        },
+        "hitter_form_contact": {
+          "hitter_ba_season": "0.281",
+          "hitter_hipa_2500_pa": "0.275",
+          "hitter_pa_per_game_season": "4.23",
+          "hitter_ba_2500_ab": "0.296",
+          "hitter_hipa_500_pa": "0.248",
+          "hitter_hipa_75_ab": "0.232",
+          "hitter_ba_75_ab": "0.253",
+          "hitter_ba_25_ab": "0.320",
+          "hitter_ba_500_ab": "0.282",
+          "hitter_last_5_games_played": "5",
+          "hitter_last_5_games_hits": "7",
+          "hitter_last_5_games_ab": "18",
+          "hitter_last_5_games_ba": "0.389",
+          "sprint_speed": "27.1"
+        },
+        "hitter_plate_discipline": {
+          "hitter_bb_rate_season": "0.046",
+          "hitter_bb_rate_500_pa": "0.048",
+          "hitter_whiff_rate_season": "0.149",
+          "hitter_whiff_rate_500_pa": "0.124",
+          "hitter_k_rate_season": "0.114",
+          "hitter_k_rate_500_pa": "0.100"
+        },
+        "hitter_handedness_splits": {
+          "batter_stand": "R",
+          "pitcher_hand": "R",
+          "hitter_split_ba_season_vs_lhp": "0.254",
+          "hitter_split_ba_season_vs_rhp": "0.293",
+          "hitter_split_pa_season_vs_lhp": "73",
+          "hitter_split_pa_season_vs_rhp": "164",
+          "hitter_split_ba_500_vs_lhp": "0.308",
+          "hitter_split_ba_500_vs_rhp": "0.296",
+          "hitter_split_ba_1500_vs_lhp": "0.308",
+          "hitter_split_ba_1500_vs_rhp": "0.296"
+        },
+        "probable_starter": {
+          "probable_pitcher": "Cade Cavalli",
+          "probable_pitcher_id": "676917",
+          "pitcher_hand": "R",
+          "pitcher_hpi_350": "1.081",
+          "pitcher_hpi_200": "1.081",
+          "pitcher_hpi_season": "1.024",
+          "pitcher_hits_last_18_ip": "16",
+          "pitcher_stuff_plus": "102.0",
+          "pitcher_lr_opp_ba": "0.279",
+          "pitcher_lr_opp_ba_50": "0.246",
+          "pitcher_lr_opp_ba_200": "0.279"
+        },
+        "probable_starter_last_start": {
+          "pitcher_last_start_date": "2026-07-12",
+          "pitcher_last_start_ip": "6.0",
+          "pitcher_last_start_hits": "4",
+          "pitcher_last_start_strikeouts": "5",
+          "pitcher_last_start_walks": "1"
+        },
+        "h2h": {
+          "h2h_pa": "0",
+          "h2h_hits": "0"
+        },
+        "pitch_type_matchup": {
+          "inferred_pitch_type_ba": "0.366",
+          "inferred_pitch_type_xba": "0.308",
+          "inferred_pitch_type_coverage": "0.770"
+        },
+        "bullpen_context": {
+          "bullpen_hpi": "1.035",
+          "bullpen_opp_ba": "0.267"
+        },
+        "bob_score_components": {
+          "component_hitter.hipa_2500_pa": "100.00",
+          "component_hitter.pa_per_game_season": "25.79",
+          "component_hitter.hipa_500_pa": "78.00",
+          "component_hitter.hipa_75_ab": "57.80",
+          "component_starting_pitcher.hpi_350": "66.26",
+          "component_starting_pitcher.hpi_season": "54.73",
+          "component_starting_pitcher.stuff_plus": "37.14",
+          "component_h2h.direct": "50.00",
+          "component_h2h.pitcher_lr_opp_ba": "53.79",
+          "component_h2h.inferred_pitch_type": "84.04",
+          "component_bullpen.hpi_season": "63.35",
+          "component_other.road_game": "0.00",
+          "component_other.division_matchup": "0.00",
+          "component_other.sprint_speed": "47.27",
+          "component_other.park_hit_factor": "50.00",
+          "component_other.lineup_opportunity": "83.33"
+        },
+        "results": {}
+      },
+      "missing_relevant_fields": {
+        "weather_park": [
+          "park_hit_factor"
+        ],
+        "h2h": [
+          "h2h_hit_rate",
+          "h2h_whiff_rate",
+          "h2h_k_rate",
+          "h2h_exit_velocity",
+          "h2h_xba"
+        ],
+        "results": [
+          "result_hit",
+          "result_hits",
+          "result_ab",
+          "result_pa",
+          "result_status",
+          "result_updated_at",
+          "notes"
+        ]
+      },
+      "source_targets": [
+        {
+          "label": "MLB probable pitchers",
+          "url": "https://www.mlb.com/probable-pitchers",
+          "why": "Verify the probable starter has not changed."
+        },
+        {
+          "label": "MLB starting lineups",
+          "url": "https://www.mlb.com/starting-lineups",
+          "why": "Check whether the hitter is confirmed in the lineup and whether the slot changed."
+        },
+        {
+          "label": "MLB injury report",
+          "url": "https://www.mlb.com/injury-report",
+          "why": "Check for late injury or availability notes."
+        },
+        {
+          "label": "RotoWire bullpen usage",
+          "url": "https://www.rotowire.com/baseball/bullpen-usage.php",
+          "why": "Look for bullpen fatigue or unavailable leverage arms."
+        },
+        {
+          "label": "RotoWire daily lineups",
+          "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+          "why": "Cross-check lineup and late-scratch risk."
+        },
+        {
+          "label": "MLB news",
+          "url": "https://www.mlb.com/news",
+          "why": "Search for current notes on Jacob Wilson, Cade Cavalli, ATH, and WSN."
+        },
+        {
+          "label": "MLB live game feed",
+          "url": "https://statsapi.mlb.com/api/v1.1/game/824981/feed/live",
+          "why": "Verify official game, lineup, venue, and probable-pitcher context."
+        },
+        {
+          "label": "MLB boxscore endpoint",
+          "url": "https://statsapi.mlb.com/api/v1/game/824981/boxscore",
+          "why": "Useful after lineups post or for later result checks."
+        },
+        {
+          "label": "Baseball Savant: Jacob Wilson",
+          "url": "https://baseballsavant.mlb.com/savant-player/jacob-wilson-805779",
+          "why": "Review hitter quality of contact, rolling form, pitch-type strengths, and handedness context."
+        },
+        {
+          "label": "Baseball Savant: Cade Cavalli",
+          "url": "https://baseballsavant.mlb.com/savant-player/cade-cavalli-676917",
+          "why": "Review starter pitch mix, recent shape, contact allowed, and possible matchup fragility."
+        }
+      ],
+      "chatgpt_review_questions": [
+        "Has the probable starter or lineup changed since the morning run?",
+        "Do current news, beat notes, or injury reports create scratch, rest, or pinch-hit risk?",
+        "Does the hitter have a pitch-type or handedness edge that survives beyond the headline model probability?",
+        "Is the opposing bullpen likely to help or hurt the one-hit path if the starter exits early?",
+        "Is the recent form signal supported by contact quality, or does it look like short-sample noise?"
+      ]
+    },
+    {
+      "rank": 2,
+      "player": "Fernando Tatis Jr.",
+      "player_id": "665487",
+      "team": "SDP",
+      "opponent": "KCR",
+      "dashboard_summary": {
+        "learned_hit_probability": 0.7089,
+        "bob_score": 62.89,
+        "pickable": false,
+        "safety_score": 82,
+        "h2h_record": "2-6",
+        "expected_pa": "4.8",
+        "lineup_slot": "1.0",
+        "season_ba": "0.277",
+        "last_5_ba": "0.200",
+        "hot_streak": false,
+        "hot_streak_tooltip": "",
+        "probable_pitcher": "Seth Lugo",
+        "pitcher_hand": "R",
+        "batter_stand": "R",
+        "venue_name": "Kauffman Stadium",
+        "weather_label": "Rain: 4.0%",
+        "congregation_status": ""
+      },
+      "model_signals": [
+        "Expected PA 4.8",
+        "Season PA/G 4.38",
+        "Lineup slot 1",
+        "K rate 21.2%",
+        "Stuff+ 88.0"
+      ],
+      "model_risks": [
+        "4 stop valves",
+        "HiPA 500 0.254"
+      ],
+      "stop_valves": [
+        "Hitter season whiff rate over 25%",
+        "Hitter last-500 PA whiff rate over 25%",
+        "H2H K rate over 20%",
+        "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows"
+      ],
+      "watch_notes": [],
+      "field_context": {
+        "identity": {
+          "date": "2026-07-17",
+          "player": "Fernando Tatis Jr.",
+          "player_id": "665487",
+          "team": "SDP",
+          "team_id": "135",
+          "opponent": "KCR",
+          "opponent_id": "118",
+          "game_pk": "824090"
+        },
+        "learned_model": {
+          "learned_rank": "2",
+          "learned_hit_probability": "0.7089",
+          "model_version": "learned-logistic-v2-20260717T120305Z",
+          "model_trained_at": "2026-07-17T12:03:05Z",
+          "bob_score": "62.89",
+          "score": "62.89",
+          "pickable": "N"
+        },
+        "game_context": {
+          "venue_name": "Kauffman Stadium",
+          "game_start_time_utc": "2026-07-18T00:10:00Z",
+          "road_game": "Y",
+          "division_matchup": "N",
+          "doubleheader": "N",
+          "confirmed_lineup": "N",
+          "lineup_slot": "1.0",
+          "expected_pa": "4.80",
+          "starts_last_5": "5"
+        },
+        "weather_park": {
+          "precip_probability": "4.0",
+          "forecast_temperature_f": "88.9",
+          "park_hit_factor": "102.0"
+        },
+        "hitter_form_contact": {
+          "hitter_ba_season": "0.277",
+          "hitter_hipa_2500_pa": "0.240",
+          "hitter_pa_per_game_season": "4.38",
+          "hitter_ba_2500_ab": "0.271",
+          "hitter_hipa_500_pa": "0.254",
+          "hitter_hipa_75_ab": "0.220",
+          "hitter_ba_75_ab": "0.240",
+          "hitter_ba_25_ab": "0.200",
+          "hitter_ba_500_ab": "0.278",
+          "hitter_last_5_games_played": "5",
+          "hitter_last_5_games_hits": "4",
+          "hitter_last_5_games_ab": "20",
+          "hitter_last_5_games_ba": "0.200",
+          "sprint_speed": "28.3"
+        },
+        "hitter_plate_discipline": {
+          "hitter_bb_rate_season": "0.082",
+          "hitter_bb_rate_500_pa": "0.084",
+          "hitter_whiff_rate_season": "0.288",
+          "hitter_whiff_rate_500_pa": "0.288",
+          "hitter_k_rate_season": "0.209",
+          "hitter_k_rate_500_pa": "0.212"
+        },
+        "hitter_handedness_splits": {
+          "batter_stand": "R",
+          "pitcher_hand": "R",
+          "hitter_split_ba_season_vs_lhp": "0.300",
+          "hitter_split_ba_season_vs_rhp": "0.272",
+          "hitter_split_pa_season_vs_lhp": "78",
+          "hitter_split_pa_season_vs_rhp": "338",
+          "hitter_split_ba_500_vs_lhp": "0.261",
+          "hitter_split_ba_500_vs_rhp": "0.268",
+          "hitter_split_ba_1500_vs_lhp": "0.261",
+          "hitter_split_ba_1500_vs_rhp": "0.275"
+        },
+        "probable_starter": {
+          "probable_pitcher": "Seth Lugo",
+          "probable_pitcher_id": "607625",
+          "pitcher_hand": "R",
+          "pitcher_hpi_350": "0.961",
+          "pitcher_hpi_200": "1.044",
+          "pitcher_hpi_season": "1.108",
+          "pitcher_hits_last_18_ip": "29",
+          "pitcher_stuff_plus": "88.0",
+          "pitcher_lr_opp_ba": "0.219",
+          "pitcher_lr_opp_ba_50": "0.264",
+          "pitcher_lr_opp_ba_200": "0.223"
+        },
+        "probable_starter_last_start": {
+          "pitcher_last_start_date": "2026-07-12",
+          "pitcher_last_start_ip": "4.0",
+          "pitcher_last_start_hits": "4",
+          "pitcher_last_start_strikeouts": "6",
+          "pitcher_last_start_walks": "2"
+        },
+        "h2h": {
+          "h2h_pa": "6",
+          "h2h_hits": "2",
+          "h2h_hit_rate": "0.333",
+          "h2h_whiff_rate": "0.214",
+          "h2h_k_rate": "0.333",
+          "h2h_exit_velocity": "93.6",
+          "h2h_xba": "0.547"
+        },
+        "pitch_type_matchup": {
+          "inferred_pitch_type_ba": "0.334",
+          "inferred_pitch_type_xba": "0.408",
+          "inferred_pitch_type_coverage": "0.707"
+        },
+        "bullpen_context": {
+          "bullpen_hpi": "1.036",
+          "bullpen_opp_ba": "0.268"
+        },
+        "bob_score_components": {
+          "component_hitter.hipa_2500_pa": "80.75",
+          "component_hitter.pa_per_game_season": "42.11",
+          "component_hitter.hipa_500_pa": "84.00",
+          "component_hitter.hipa_75_ab": "49.67",
+          "component_starting_pitcher.hpi_350": "42.25",
+          "component_starting_pitcher.hpi_season": "71.66",
+          "component_starting_pitcher.stuff_plus": "77.14",
+          "component_h2h.direct": "65.60",
+          "component_h2h.pitcher_lr_opp_ba": "0.00",
+          "component_h2h.inferred_pitch_type": "93.55",
+          "component_bullpen.hpi_season": "63.64",
+          "component_other.road_game": "100.00",
+          "component_other.division_matchup": "0.00",
+          "component_other.sprint_speed": "69.09",
+          "component_other.park_hit_factor": "60.00",
+          "component_other.lineup_opportunity": "100.00"
+        },
+        "results": {}
+      },
+      "missing_relevant_fields": {
+        "results": [
+          "result_hit",
+          "result_hits",
+          "result_ab",
+          "result_pa",
+          "result_status",
+          "result_updated_at",
+          "notes"
+        ]
+      },
+      "source_targets": [
+        {
+          "label": "MLB probable pitchers",
+          "url": "https://www.mlb.com/probable-pitchers",
+          "why": "Verify the probable starter has not changed."
+        },
+        {
+          "label": "MLB starting lineups",
+          "url": "https://www.mlb.com/starting-lineups",
+          "why": "Check whether the hitter is confirmed in the lineup and whether the slot changed."
+        },
+        {
+          "label": "MLB injury report",
+          "url": "https://www.mlb.com/injury-report",
+          "why": "Check for late injury or availability notes."
+        },
+        {
+          "label": "RotoWire bullpen usage",
+          "url": "https://www.rotowire.com/baseball/bullpen-usage.php",
+          "why": "Look for bullpen fatigue or unavailable leverage arms."
+        },
+        {
+          "label": "RotoWire daily lineups",
+          "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+          "why": "Cross-check lineup and late-scratch risk."
+        },
+        {
+          "label": "MLB news",
+          "url": "https://www.mlb.com/news",
+          "why": "Search for current notes on Fernando Tatis Jr., Seth Lugo, SDP, and KCR."
+        },
+        {
+          "label": "MLB live game feed",
+          "url": "https://statsapi.mlb.com/api/v1.1/game/824090/feed/live",
+          "why": "Verify official game, lineup, venue, and probable-pitcher context."
+        },
+        {
+          "label": "MLB boxscore endpoint",
+          "url": "https://statsapi.mlb.com/api/v1/game/824090/boxscore",
+          "why": "Useful after lineups post or for later result checks."
+        },
+        {
+          "label": "Baseball Savant: Fernando Tatis Jr.",
+          "url": "https://baseballsavant.mlb.com/savant-player/fernando-tatis-jr-665487",
+          "why": "Review hitter quality of contact, rolling form, pitch-type strengths, and handedness context."
+        },
+        {
+          "label": "Baseball Savant: Seth Lugo",
+          "url": "https://baseballsavant.mlb.com/savant-player/seth-lugo-607625",
+          "why": "Review starter pitch mix, recent shape, contact allowed, and possible matchup fragility."
+        }
+      ],
+      "chatgpt_review_questions": [
+        "Has the probable starter or lineup changed since the morning run?",
+        "Do current news, beat notes, or injury reports create scratch, rest, or pinch-hit risk?",
+        "Does the hitter have a pitch-type or handedness edge that survives beyond the headline model probability?",
+        "Is the opposing bullpen likely to help or hurt the one-hit path if the starter exits early?",
+        "Is the recent form signal supported by contact quality, or does it look like short-sample noise?"
+      ]
+    }
+  ],
+  "chatgpt_committee_process": [
+    "Read this staged context and treat it as evidence, not as a thesis.",
+    "Browse current free sources for lineup, probable pitcher, injury/news, bullpen, and matchup updates.",
+    "Write a pro thesis and con thesis for each player.",
+    "Have a final reviewer compare the arguments and choose one single hitter.",
+    "Save the finished dashboard-ready JSON to expected_thesis_path, then refresh the learned dashboard export."
+  ],
+  "output_schema": {
+    "date": "2026-07-17",
+    "target": "learned_rank_top_2",
+    "committee_pick": "Player Name",
+    "committee_summary": "One paragraph explaining the single-pick decision.",
+    "source_notes": [
+      {
+        "label": "Source name",
+        "url": "https://...",
+        "note": "What was reviewed."
+      }
+    ],
+    "players": [
+      {
+        "rank": 1,
+        "player": "Player Name",
+        "team": "AAA",
+        "opponent": "BBB",
+        "probable_pitcher": "Pitcher Name",
+        "pro_thesis": "Dashboard-ready paragraph.",
+        "con_thesis": "Dashboard-ready paragraph.",
+        "committee_thesis": "Dashboard-ready paragraph."
+      }
+    ]
+  }
+}

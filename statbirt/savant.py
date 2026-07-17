@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from datetime import date
 import io
 import json
+import math
 import re
 import time
 from typing import Iterable
@@ -34,7 +35,7 @@ REQUEST_TIMEOUT_SECONDS = 90
 REQUEST_SLEEP_SECONDS = 0.08
 RETRYABLE_STATUS_CODES = {429, 500, 502, 503, 504}
 MAX_REQUEST_ATTEMPTS = 4
-MATCHUP_CACHE_SCHEMA = 3
+MATCHUP_CACHE_SCHEMA = 4
 
 
 @dataclass(frozen=True)
@@ -60,6 +61,8 @@ class H2HFeatures:
 class InferredPitchTypeFeatures:
     ba: float | None = None
     xba: float | None = None
+    contact_rate: float | None = None
+    shape_distance: float | None = None
     coverage: float = 0.0
 
 
@@ -331,7 +334,14 @@ def prepare_pitch_data(frame: pd.DataFrame) -> pd.DataFrame:
         "events",
         "description",
         "launch_speed",
+        "launch_angle",
+        "launch_speed_angle",
         "estimated_ba_using_speedangle",
+        "bat_speed",
+        "swing_length",
+        "release_speed",
+        "pfx_x",
+        "pfx_z",
         "season_window",
         "season_weight",
         "is_hit",
@@ -347,6 +357,20 @@ def prepare_pitch_data(frame: pd.DataFrame) -> pd.DataFrame:
             return cleaned[column]
         return pd.Series([default_value] * len(cleaned), index=cleaned.index)
 
+    for optional_numeric in (
+        "launch_speed",
+        "launch_angle",
+        "launch_speed_angle",
+        "estimated_ba_using_speedangle",
+        "bat_speed",
+        "swing_length",
+        "release_speed",
+        "pfx_x",
+        "pfx_z",
+    ):
+        if optional_numeric not in cleaned.columns:
+            cleaned[optional_numeric] = None
+
     _to_numeric(
         cleaned,
         [
@@ -356,7 +380,14 @@ def prepare_pitch_data(frame: pd.DataFrame) -> pd.DataFrame:
             "batter",
             "pitcher",
             "launch_speed",
+            "launch_angle",
+            "launch_speed_angle",
             "estimated_ba_using_speedangle",
+            "bat_speed",
+            "swing_length",
+            "release_speed",
+            "pfx_x",
+            "pfx_z",
             "season_window",
             "season_weight",
         ],
@@ -403,6 +434,11 @@ def _ev_mean(frame: pd.DataFrame) -> float | None:
     if values.empty:
         return None
     return float(values.mean())
+
+
+def _numeric_mean(frame: pd.DataFrame, column: str) -> float | None:
+    values = pd.to_numeric(frame.get(column), errors="coerce").dropna()
+    return float(values.mean()) if not values.empty else None
 
 
 class StatcastFeatureStore:
@@ -556,6 +592,137 @@ class StatcastFeatureStore:
             "k_rate_500_pa": recent_k,
         }
 
+    @staticmethod
+    def _contact_window(
+        frame: pd.DataFrame,
+        *,
+        bbe_window: int = 50,
+        hardest_ev50: bool = True,
+    ) -> dict[str, float | int | None]:
+        if frame.empty:
+            return {
+                "contact_xba": None,
+                "hard_hit_rate": None,
+                "sweet_spot_rate": None,
+                "ev50": None,
+                "bbe": 0,
+            }
+        batted = frame[pd.to_numeric(frame["launch_speed"], errors="coerce").notna()].copy()
+        batted = batted.sort_values(
+            ["game_date", "game_pk", "at_bat_number"],
+            ascending=False,
+        ).head(bbe_window)
+        if batted.empty:
+            return {
+                "contact_xba": None,
+                "hard_hit_rate": None,
+                "sweet_spot_rate": None,
+                "ev50": None,
+                "bbe": 0,
+            }
+        exit_velocity = pd.to_numeric(batted["launch_speed"], errors="coerce").dropna()
+        launch_angle = pd.to_numeric(batted["launch_angle"], errors="coerce").dropna()
+        hardest_count = max(1, int(math.ceil(len(exit_velocity) / 2.0)))
+        return {
+            "contact_xba": _xba_mean(batted),
+            "hard_hit_rate": float((exit_velocity >= 95.0).mean()) if not exit_velocity.empty else None,
+            "sweet_spot_rate": (
+                float(launch_angle.between(8.0, 32.0, inclusive="both").mean())
+                if not launch_angle.empty
+                else None
+            ),
+            "ev50": (
+                float(
+                    (
+                        exit_velocity.nlargest(hardest_count)
+                        if hardest_ev50
+                        else exit_velocity.nsmallest(hardest_count)
+                    ).mean()
+                )
+                if not exit_velocity.empty
+                else None
+            ),
+            "bbe": int(len(batted)),
+        }
+
+    @staticmethod
+    def _xba_pa_window(frame: pd.DataFrame, *, pa_window: int = 100) -> dict[str, float | int | None]:
+        if frame.empty:
+            return {"xba": None, "xba_denominator": 0}
+        recent = frame.sort_values(
+            ["game_date", "game_pk", "at_bat_number"],
+            ascending=False,
+        ).head(pa_window)
+        tracked = pd.to_numeric(recent["estimated_ba_using_speedangle"], errors="coerce").dropna()
+        strikeouts = int(recent["is_k"].sum())
+        denominator = int(len(tracked)) + strikeouts
+        return {
+            "xba": float(tracked.sum() / denominator) if denominator else None,
+            "xba_denominator": denominator,
+        }
+
+    @staticmethod
+    def _swing_window(frame: pd.DataFrame, *, swing_window: int = 50) -> dict[str, float | int | None]:
+        if frame.empty:
+            return {"bat_speed": None, "swing_length": None, "swings": 0}
+        swings = frame[
+            pd.to_numeric(frame["bat_speed"], errors="coerce").notna()
+            | pd.to_numeric(frame["swing_length"], errors="coerce").notna()
+        ].copy()
+        swings = swings.sort_values(
+            ["game_date", "game_pk", "at_bat_number", "pitch_number"],
+            ascending=False,
+        ).head(swing_window)
+        if swings.empty:
+            return {"bat_speed": None, "swing_length": None, "swings": 0}
+        bat_speed = pd.to_numeric(swings["bat_speed"], errors="coerce").dropna()
+        swing_length = pd.to_numeric(swings["swing_length"], errors="coerce").dropna()
+        return {
+            "bat_speed": float(bat_speed.mean()) if not bat_speed.empty else None,
+            "swing_length": float(swing_length.mean()) if not swing_length.empty else None,
+            "swings": int(len(swings)),
+        }
+
+    def hitter_contact_quality(
+        self,
+        batter_id: int,
+        *,
+        target_date: date,
+        bbe_window: int = 50,
+        swing_window: int = 50,
+    ) -> dict[str, float | int | None]:
+        pa = self.batter_pa[
+            (self.batter_pa["batter"] == batter_id) & (self.batter_pa["game_date"] < target_date)
+        ].copy()
+        pitches = self.batter_df[
+            (self.batter_df["batter"] == batter_id) & (self.batter_df["game_date"] < target_date)
+        ].copy()
+        return {
+            **self._contact_window(pa, bbe_window=bbe_window, hardest_ev50=True),
+            **self._xba_pa_window(pa, pa_window=100),
+            **self._swing_window(pitches, swing_window=swing_window),
+        }
+
+    def pitcher_contact_quality_allowed(
+        self,
+        pitcher_id: int | None,
+        *,
+        target_date: date,
+        bbe_window: int = 50,
+    ) -> dict[str, float | int | None]:
+        if pitcher_id is None:
+            return {
+                **self._contact_window(self.pitcher_pa.iloc[0:0], bbe_window=bbe_window, hardest_ev50=False),
+                **self._xba_pa_window(self.pitcher_pa.iloc[0:0], pa_window=100),
+            }
+        pa = self.pitcher_pa[
+            (self.pitcher_pa["pitcher"] == pitcher_id) & (self.pitcher_pa["game_date"] < target_date)
+        ].copy()
+        return {
+            **self._contact_window(pa, bbe_window=bbe_window, hardest_ev50=False),
+            **self._xba_pa_window(pa, pa_window=100),
+        }
+
     def pitcher_split_opp_ba(
         self,
         pitcher_id: int | None,
@@ -576,41 +743,83 @@ class StatcastFeatureStore:
             return None
         return safe_divide(int(subset["is_hit"].sum()), len(subset))
 
-    def _pitch_mix(self, pitcher_id: int | None, stand: str) -> dict[str, float]:
+    def _pitch_arsenal(
+        self,
+        pitcher_id: int | None,
+        stand: str,
+        *,
+        target_date: date,
+        pitch_window: int = 500,
+    ) -> dict[str, dict[str, float | None]]:
         if pitcher_id is None or self.pitcher_df.empty:
             return {}
         subset = self.pitcher_df[
             (self.pitcher_df["pitcher"] == pitcher_id)
             & (self.pitcher_df["stand"] == stand)
             & (self.pitcher_df["pitch_type"] != "UNK")
+            & (self.pitcher_df["game_date"] < target_date)
         ]
         if subset.empty:
             subset = self.pitcher_df[
                 (self.pitcher_df["pitcher"] == pitcher_id)
                 & (self.pitcher_df["pitch_type"] != "UNK")
+                & (self.pitcher_df["game_date"] < target_date)
             ]
         if subset.empty:
             return {}
+        subset = subset.sort_values(
+            ["game_date", "game_pk", "at_bat_number", "pitch_number"],
+            ascending=False,
+        ).head(pitch_window)
         counts = subset.groupby("pitch_type").size()
         total = float(counts.sum())
-        return {pitch_type: float(count / total) for pitch_type, count in counts.items() if total > 0}
+        output = {}
+        for pitch_type, count in counts.items():
+            pitch_rows = subset[subset["pitch_type"] == pitch_type]
+            output[pitch_type] = {
+                "usage": float(count / total),
+                "release_speed": _numeric_mean(pitch_rows, "release_speed"),
+                "pfx_x": _numeric_mean(pitch_rows, "pfx_x"),
+                "pfx_z": _numeric_mean(pitch_rows, "pfx_z"),
+            }
+        return output
 
-    def _hitter_pitch_type_rates(self, batter_id: int, pitcher_hand: str, pitch_type: str) -> tuple[float | None, float | None, int]:
+    def _hitter_pitch_type_rates(
+        self,
+        batter_id: int,
+        pitcher_hand: str,
+        pitch_type: str,
+        *,
+        target_date: date,
+    ) -> dict[str, float | int | None]:
         pa = self.batter_pa[
             (self.batter_pa["batter"] == batter_id)
             & (self.batter_pa["p_throws"] == pitcher_hand)
             & (self.batter_pa["pitch_type"] == pitch_type)
+            & (self.batter_pa["game_date"] < target_date)
         ].copy()
         if pa.empty:
-            pa = self.batter_pa[
-                (self.batter_pa["batter"] == batter_id)
-                & (self.batter_pa["p_throws"] == pitcher_hand)
-            ].copy()
-        if pa.empty:
-            return None, None, 0
+            return {"ba": None, "xba": None, "pa": 0, "contact_rate": None, "swings": 0}
         ab = pa[pa["is_ab"]]
         ba = safe_divide(int(ab["is_hit"].sum()), len(ab)) if not ab.empty else None
-        return ba, _xba_mean(pa), int(len(pa))
+        pitches = self.batter_df[
+            (self.batter_df["batter"] == batter_id)
+            & (self.batter_df["p_throws"] == pitcher_hand)
+            & (self.batter_df["pitch_type"] == pitch_type)
+            & (self.batter_df["game_date"] < target_date)
+        ].copy()
+        swings = int(pitches["description"].isin(SWING_DESCRIPTIONS).sum())
+        whiffs = int(pitches["description"].isin(WHIFF_DESCRIPTIONS).sum())
+        return {
+            "ba": ba,
+            "xba": _xba_mean(pa),
+            "pa": int(len(pa)),
+            "contact_rate": safe_divide(swings - whiffs, swings) if swings else None,
+            "swings": swings,
+            "release_speed": _numeric_mean(pitches, "release_speed"),
+            "pfx_x": _numeric_mean(pitches, "pfx_x"),
+            "pfx_z": _numeric_mean(pitches, "pfx_z"),
+        }
 
     def inferred_pitch_type(
         self,
@@ -619,26 +828,79 @@ class StatcastFeatureStore:
         pitcher_id: int | None,
         pitcher_hand: str,
         stand: str,
-        min_pitch_usage: float = 0.14,
+        target_date: date,
+        min_pitch_usage: float = 0.05,
     ) -> InferredPitchTypeFeatures:
-        mix = self._pitch_mix(pitcher_id, stand)
-        if not mix:
+        arsenal = self._pitch_arsenal(pitcher_id, stand, target_date=target_date)
+        if not arsenal:
             return InferredPitchTypeFeatures()
+        hand_pa = self.batter_pa[
+            (self.batter_pa["batter"] == batter_id)
+            & (self.batter_pa["p_throws"] == pitcher_hand)
+            & (self.batter_pa["game_date"] < target_date)
+        ]
+        hand_pitches = self.batter_df[
+            (self.batter_df["batter"] == batter_id)
+            & (self.batter_df["p_throws"] == pitcher_hand)
+            & (self.batter_df["game_date"] < target_date)
+        ]
+        hand_ab = hand_pa[hand_pa["is_ab"]]
+        prior_ba = safe_divide(int(hand_ab["is_hit"].sum()), len(hand_ab)) if not hand_ab.empty else 0.250
+        prior_xba_value = _xba_mean(hand_pa)
+        prior_xba = 0.250 if prior_xba_value is None else prior_xba_value
+        prior_swings = int(hand_pitches["description"].isin(SWING_DESCRIPTIONS).sum())
+        prior_whiffs = int(hand_pitches["description"].isin(WHIFF_DESCRIPTIONS).sum())
+        prior_contact = safe_divide(prior_swings - prior_whiffs, prior_swings) if prior_swings else 0.75
         pairs_ba = []
         pairs_xba = []
+        pairs_contact = []
+        pairs_shape = []
         coverage = 0.0
-        for pitch_type, usage in mix.items():
+        for pitch_type, arsenal_row in arsenal.items():
+            usage = float(arsenal_row.get("usage") or 0.0)
             if usage < min_pitch_usage:
                 continue
-            ba, xba, sample = self._hitter_pitch_type_rates(batter_id, pitcher_hand, pitch_type)
-            if sample <= 0:
+            rates = self._hitter_pitch_type_rates(
+                batter_id,
+                pitcher_hand,
+                pitch_type,
+                target_date=target_date,
+            )
+            pa_sample = int(rates.get("pa") or 0)
+            if pa_sample <= 0:
                 continue
-            pairs_ba.append((ba, usage))
-            pairs_xba.append((xba, usage))
+            ba = rates.get("ba")
+            xba = rates.get("xba")
+            contact = rates.get("contact_rate")
+            swings = int(rates.get("swings") or 0)
+            shrunk_ba = ((float(ba) * pa_sample + prior_ba * 50.0) / (pa_sample + 50.0)) if ba is not None else prior_ba
+            shrunk_xba = (
+                (float(xba) * pa_sample + prior_xba * 50.0) / (pa_sample + 50.0)
+                if xba is not None
+                else prior_xba
+            )
+            shrunk_contact = (
+                (float(contact) * swings + prior_contact * 100.0) / (swings + 100.0)
+                if contact is not None
+                else prior_contact
+            )
+            pairs_ba.append((shrunk_ba, usage))
+            pairs_xba.append((shrunk_xba, usage))
+            pairs_contact.append((shrunk_contact, usage))
+            shape_values = []
+            for field, scale in (("release_speed", 3.0), ("pfx_x", 0.25), ("pfx_z", 0.25)):
+                thrown = parse_float(arsenal_row.get(field))
+                seen = parse_float(rates.get(field))
+                if thrown is not None and seen is not None:
+                    shape_values.append(((thrown - seen) / scale) ** 2)
+            if shape_values:
+                pairs_shape.append((math.sqrt(sum(shape_values)), usage))
             coverage += usage
         return InferredPitchTypeFeatures(
             ba=weighted_average(pairs_ba, default=None),
             xba=weighted_average(pairs_xba, default=None),
+            contact_rate=weighted_average(pairs_contact, default=None),
+            shape_distance=weighted_average(pairs_shape, default=None),
             coverage=clamp(coverage, 0.0, 1.0),
         )
 

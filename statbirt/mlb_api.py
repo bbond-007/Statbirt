@@ -24,7 +24,7 @@ PLAY_LOG_CACHE_SCHEMA = 1
 PITCHER_LOG_CACHE_SCHEMA = 2
 RECENT_USAGE_CACHE_SCHEMA = 1
 BULLPEN_CACHE_SCHEMA = 1
-BULLPEN_STATS_CACHE_SCHEMA = 2
+BULLPEN_STATS_CACHE_SCHEMA = 3
 VENUE_COORDINATE_OVERRIDES = {
     # MLB's venue endpoint includes city/country for this Mexico City venue, but not defaultCoordinates.
     5340: (19.403794, -99.085594),  # Estadio Alfredo Harp Helu
@@ -101,12 +101,32 @@ class MLBClient:
         data = self.get("teams", {"sportId": 1, "season": season})
         return data.get("teams", []) if isinstance(data, dict) else []
 
-    def roster(self, team_id: int, *, roster_type: str = "fullSeason", season: int | None = None) -> list[dict]:
+    def roster(
+        self,
+        team_id: int,
+        *,
+        roster_type: str = "fullSeason",
+        season: int | None = None,
+        roster_date: date | None = None,
+    ) -> list[dict]:
         params = {"rosterType": roster_type}
         if season is not None:
             params["season"] = season
+        if roster_date is not None:
+            params["date"] = roster_date.isoformat()
         data = self.get(f"teams/{team_id}/roster", params)
         return data.get("roster", []) if isinstance(data, dict) else []
+
+    def transactions(self, team_id: int, start: date, end: date) -> list[dict]:
+        data = self.get(
+            "transactions",
+            {
+                "teamId": team_id,
+                "startDate": start.isoformat(),
+                "endDate": end.isoformat(),
+            },
+        )
+        return data.get("transactions", []) if isinstance(data, dict) else []
 
     def people(self, person_ids, *, hydrate: str | None = None, batch_size: int = 50) -> dict[int, dict]:
         ids = []
@@ -232,6 +252,88 @@ def build_team_metadata(client: MLBClient, season: int) -> dict[int, dict]:
             "name": team.get("name") or "",
         }
     return output
+
+
+def load_roster_availability(
+    client: MLBClient,
+    team_ids: set[int],
+    *,
+    target_date: date,
+    lookback_days: int = 60,
+) -> tuple[dict[int, dict[str, object]], set[int]]:
+    cache_file = cache_path("roster_availability", f"{target_date.isoformat()}.pkl")
+    cached = load_pickle(cache_file)
+    requested_teams = sorted(set(team_ids))
+    if (
+        isinstance(cached, dict)
+        and cached.get("schema_version") == 1
+        and cached.get("team_ids") == requested_teams
+    ):
+        return cached.get("players") or {}, set(cached.get("covered_team_ids") or [])
+
+    output: dict[int, dict[str, object]] = {}
+    covered_team_ids: set[int] = set()
+    transaction_start = target_date - timedelta(days=max(1, lookback_days))
+    transaction_end = target_date - timedelta(days=1)
+    activation_words = ("activated", "recalled", "selected", "contract selected", "purchased")
+    for team_id in requested_teams:
+        try:
+            roster = client.roster(team_id, roster_type="active", roster_date=target_date)
+        except Exception:
+            roster = []
+        else:
+            if roster:
+                covered_team_ids.add(team_id)
+        try:
+            transactions = client.transactions(team_id, transaction_start, transaction_end)
+        except Exception:
+            transactions = []
+
+        latest_transaction: dict[int, dict] = {}
+        latest_activation: dict[int, date] = {}
+        for transaction in transactions:
+            player_id = parse_int((transaction.get("person") or {}).get("id"))
+            effective = canonical_date(transaction.get("effectiveDate") or transaction.get("date"))
+            if player_id is None or effective is None or effective >= target_date:
+                continue
+            previous = latest_transaction.get(player_id)
+            previous_date = canonical_date((previous or {}).get("effectiveDate") or (previous or {}).get("date"))
+            if previous is None or previous_date is None or effective >= previous_date:
+                latest_transaction[player_id] = transaction
+            description = str(transaction.get("description") or "").lower()
+            if any(word in description for word in activation_words):
+                latest_activation[player_id] = max(effective, latest_activation.get(player_id, effective))
+
+        for entry in roster:
+            player_id = parse_int((entry.get("person") or {}).get("id"))
+            if player_id is None:
+                continue
+            transaction = latest_transaction.get(player_id) or {}
+            activated_on = latest_activation.get(player_id)
+            output[player_id] = {
+                "active_roster": True,
+                "roster_status_code": str((entry.get("status") or {}).get("code") or "A"),
+                "last_transaction_type_code": str(transaction.get("typeCode") or ""),
+                "last_transaction_date": (
+                    canonical_date(transaction.get("effectiveDate") or transaction.get("date"))
+                    if transaction
+                    else None
+                ),
+                "days_since_activation": (
+                    (target_date - activated_on).days if activated_on is not None else None
+                ),
+            }
+
+    save_pickle(
+        cache_file,
+        {
+            "schema_version": 1,
+            "team_ids": requested_teams,
+            "covered_team_ids": sorted(covered_team_ids),
+            "players": output,
+        },
+    )
+    return output, covered_team_ids
 
 
 def batting_plate_appearances(stat: dict) -> int:
@@ -699,7 +801,18 @@ def compute_bullpen_stats(client: MLBClient, season_start: date, end: date, seas
     ):
         return cached.get("team_stats") or {}
 
-    team_totals = defaultdict(lambda: {"innings": 0.0, "hits": 0, "at_bats": 0})
+    team_totals = defaultdict(
+        lambda: {
+            "innings": 0.0,
+            "hits": 0,
+            "at_bats": 0,
+            "recent_pitches": 0,
+            "recent_appearances": 0,
+            "recent_relievers": set(),
+            "recent_by_pitcher": defaultdict(lambda: {"pitches": 0, "appearances": 0}),
+        }
+    )
+    recent_cutoff = end - timedelta(days=2)
     for game in client.schedule(season_start, end, hydrate=""):
         status = game.get("status") or {}
         if status.get("startTimeTBD") and parse_int(game.get("gameNumber")) and parse_int(game.get("gameNumber")) > 1:
@@ -707,6 +820,7 @@ def compute_bullpen_stats(client: MLBClient, season_start: date, end: date, seas
             # doubleheader placeholders, even when a boxscore feed exists.
             continue
         game_pk = parse_int(game.get("gamePk"))
+        game_date = canonical_date(game.get("officialDate") or game.get("gameDate"))
         if game_pk is None:
             continue
         try:
@@ -726,13 +840,28 @@ def compute_bullpen_stats(client: MLBClient, season_start: date, end: date, seas
                 innings = parse_mlb_innings(pitching.get("inningsPitched")) or 0.0
                 hits = parse_int(pitching.get("hits")) or 0
                 at_bats = parse_int(pitching.get("atBats")) or 0
+                pitches = parse_int(pitching.get("numberOfPitches")) or 0
                 team_totals[team_id]["innings"] += innings
                 team_totals[team_id]["hits"] += hits
                 team_totals[team_id]["at_bats"] += at_bats
+                if game_date is not None and game_date >= recent_cutoff:
+                    team_totals[team_id]["recent_pitches"] += pitches
+                    team_totals[team_id]["recent_appearances"] += 1
+                    team_totals[team_id]["recent_relievers"].add(pitcher_id)
+                    team_totals[team_id]["recent_by_pitcher"][pitcher_id]["pitches"] += pitches
+                    team_totals[team_id]["recent_by_pitcher"][pitcher_id]["appearances"] += 1
     team_stats = {
         team_id: {
             "hits_per_inning": safe_divide(values["hits"], values["innings"]),
             "opponent_batting_average": safe_divide(values["hits"], values["at_bats"]),
+            "pitches_last_3_days": values["recent_pitches"],
+            "relief_appearances_last_3_days": values["recent_appearances"],
+            "relievers_used_last_3_days": len(values["recent_relievers"]),
+            "high_workload_relievers_last_3_days": sum(
+                1
+                for workload in values["recent_by_pitcher"].values()
+                if workload["pitches"] >= 30 or workload["appearances"] >= 2
+            ),
         }
         for team_id, values in team_totals.items()
     }

@@ -36,8 +36,38 @@ try {
         -Arguments @("statbirt.cli", "--date", $Today, "--top", "25", "--skip-fangraphs-fetch")
 
     Invoke-StatbirtStep `
-        -Name "Learned hit-probability model" `
-        -Arguments @("statbirt.learned_model", "run", "--date", "latest", "--top", "25")
+        -Name "Frozen production learned model" `
+        -Arguments @(
+            "statbirt.learned_model",
+            "score",
+            "--model",
+            "models\learned-logistic-v2-20260717T120305Z.json",
+            "--date",
+            "latest",
+            "--top",
+            "25"
+        )
+
+    Invoke-StatbirtStep `
+        -Name "Learned shadow model" `
+        -Arguments @("statbirt.learned_shadow", "run", "--date", "latest")
+
+    Invoke-StatbirtStep `
+        -Name "Immutable pregame decision snapshot" `
+        -Arguments @(
+            "statbirt.prediction_ledger",
+            "snapshot",
+            "--run-id",
+            "daily-morning-$Stamp",
+            "--target-date",
+            "latest",
+            "--shadow-predictions",
+            "data\learned_shadow_predictions.csv"
+        )
+
+    Invoke-StatbirtStep `
+        -Name "Decision ledger audit" `
+        -Arguments @("statbirt.prediction_ledger", "audit")
 
     Invoke-StatbirtStep `
         -Name "Dashboard export" `

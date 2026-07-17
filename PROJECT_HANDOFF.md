@@ -1,6 +1,6 @@
 # Statbirt Project Handoff
 
-Last updated: 2026-05-06
+Last updated: 2026-07-17
 
 This file exists so Codex on the Desktop PC can pick up the Statbirt project without needing the original chat history.
 
@@ -15,10 +15,11 @@ When working from the Desktop PC, use the local Windows path that corresponds to
 
 ## What Statbirt Does
 
-Statbirt has two parallel approaches for MLB hitter hit-pick ranking:
+Statbirt has three parallel approaches for MLB hitter hit-pick ranking:
 
 1. Bob model: the original hand-weighted scoring model with stop valves.
 2. Learned model: a data-driven logistic model trained from historical candidate rows and `result_hit` labels.
+3. Learned shadow: a production-preserving two-stage experiment that models appearance separately and reranks the production top five.
 
 The daily candidate CSV is the common spine for both models:
 
@@ -41,13 +42,13 @@ web/data/learned_dashboards/YYYY-MM-DD.json
 
 As of this handoff:
 
-- `data/statbirt_candidates.csv` has 10,868 rows.
-- Candidate dates span `2026-03-25` through `2026-05-06`.
-- 43 candidate dates are present.
-- 9,742 rows are labeled with `result_hit`.
-- `2026-05-06` is the current daily board and is not graded yet.
-- 2026 historical backfill through `2026-05-05` is complete.
-- The active dashboard is `2026-05-06` with 29 displayed picks.
+- `data/statbirt_candidates.csv` has 83,208 rows.
+- Candidate dates span `2025-03-18` through `2026-07-17`.
+- 297 candidate dates are present.
+- 70,922 rows are labeled with `result_hit`.
+- The production learned baseline is frozen at `models/learned-logistic-v2-20260717T120305Z.json`.
+- The shadow policy starts clean prospective collection on `2026-07-18`; the July 17 prototype score was after first pitch and is not eligible evidence.
+- The promotion gate is 50 fully resolved pregame days and never promotes automatically.
 - `data/manual/stuff_plus.csv` has 688 FanGraphs Stuff+ rows updated `2026-06-16`.
 
 Check current coverage any time:
@@ -76,27 +77,35 @@ Latest local learned-model report:
 data/models/hit_probability_report.json
 ```
 
-Current model at handoff:
+Frozen production model for the shadow comparison:
 
 - model family: `learned-logistic-v2`
 - feature profile: opportunity/contact/pitcher-vulnerability features plus Bob `score`; no stop-valve reason, team, or opponent features
-- latest local model version: see `data/models/hit_probability_report.json`
-- latest local training rows: 35,363
-- latest local training date range: `2025-03-18` through `2026-05-10`
-- latest validation AUC: 0.609
-- latest validation top-10 hit rate: 75.8%
+- model version: `learned-logistic-v2-20260717T120305Z`
+- immutable artifact: `models/learned-logistic-v2-20260717T120305Z.json`
+- baseline manifest and checksum: `models/baseline_manifest.json`
 - walk-forward backtest command: `python scripts/backtest_learned_model_experiments.py --min-train-dates 30`
 
 Score the latest daily candidate rows without retraining:
 
 ```bash
-python -m statbirt.learned_model score --date latest --top 25
+python -m statbirt.learned_model score --model models/learned-logistic-v2-20260717T120305Z.json --date latest --top 25
 ```
 
-Retrain from all labeled rows, then score the latest date:
+Retraining remains available for research, but do not replace the production artifact during the 50-day gate:
 
 ```bash
 python -m statbirt.learned_model run --date latest --top 25
+```
+
+Shadow outputs and evidence:
+
+```text
+data/models/learned_shadow_model.json
+data/models/learned_shadow_report.json
+data/learned_shadow_predictions.csv
+data/decision_ledger/snapshots.csv
+data/decision_ledger/results.csv
 ```
 
 Learned-model outputs are local/generated:
@@ -114,7 +123,10 @@ Use this before games start, after probable pitchers/lineups are reasonable:
 ```bash
 cd path/to/Statbirt
 python -m statbirt.cli --date YYYY-MM-DD --top 25 --skip-fangraphs-fetch
-python -m statbirt.learned_model score --date latest --top 25
+python -m statbirt.learned_model score --model models/learned-logistic-v2-20260717T120305Z.json --date latest --top 25
+python -m statbirt.learned_shadow run --date latest
+python -m statbirt.prediction_ledger snapshot --run-id daily-morning-YYYYMMDD-HHMMSS --target-date latest
+python -m statbirt.prediction_ledger audit
 python -m statbirt.export_web --all-dates --limit 10
 python -m statbirt.export_learned_web --all-dates --limit 5
 ```
@@ -129,14 +141,10 @@ X:\Coding\Statbirt\scripts\daily_morning.ps1
 
 Logs are written to `logs\daily-morning-*.log`.
 
-After all games are final:
+After all games are final, use the wrapper:
 
-```bash
-cd path/to/Statbirt
-python -m statbirt.update_results
-python -m statbirt.learned_model run --date latest --top 25
-python -m statbirt.export_web --all-dates --limit 10
-python -m statbirt.export_learned_web --all-dates --limit 5
+```powershell
+X:\Coding\Statbirt\scripts\daily_results.ps1
 ```
 
 Notes:
@@ -145,6 +153,8 @@ Notes:
 - `result_status` is machine-readable: `final`, `pending`, `postponed`, `no_appearance`, or `unresolved`.
 - Postponed and no-appearance games remain ungraded and should not be counted as misses.
 - No-appearance rows keep `result_hit` blank with `result_status=no_appearance`.
+- Nightly results are joined to a separate ledger; immutable pregame rows are never rewritten.
+- `statbirt.learned_shadow evaluate` reads only immutable eligible snapshots and their joined results.
 
 ## Dashboard Hosting
 
@@ -246,7 +256,11 @@ That prevents Windows/share executable-bit changes from appearing as false Git d
 - `statbirt/export_web.py`: dashboard JSON exporter
 - `statbirt/export_learned_web.py`: learned dashboard JSON exporter
 - `statbirt/learned_model.py`: learned model train/score/audit
+- `statbirt/learned_shadow.py`: two-stage shadow train/score/promotion report
+- `statbirt/prediction_ledger.py`: immutable pregame snapshot and separate result ledger
+- `statbirt/savant_snapshots.py`: prospective bat-tracking and OAA archives
 - `statbirt/backfill.py`: historical backfill helper
+- `models/`: frozen production artifact, manifest, and shadow policy
 - `web/`: dashboard frontend
 - `data/manual/stuff_plus.csv`: manual Stuff+ source
 - `data/manual/congregation.csv`: curated Congregation list

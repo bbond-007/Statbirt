@@ -593,7 +593,32 @@ function renderPick(pick) {
   }
 
   row.querySelector(".prob-cell strong").textContent = percent(pick.learned_hit_probability);
-  row.querySelector(".prob-cell span").textContent = `Bob ${numberText(pick.bob_score ?? pick.score, 1)}`;
+  const shadowProbability = pick.shadow_combined_probability_calibrated == null
+    ? NaN
+    : Number(pick.shadow_combined_probability_calibrated);
+  const appearanceProbability = pick.appearance_probability == null ? NaN : Number(pick.appearance_probability);
+  if (pick.shadow_status === "stale") {
+    row.querySelector(".prob-cell span").textContent = "Shadow stale";
+    row.querySelector(".prob-cell span").title = "The shadow score does not match this production model run.";
+  } else if (Number.isFinite(shadowProbability)) {
+    const shadowRank = Number(pick.shadow_top5_rank);
+    const rankMark = {
+      leader: "#1",
+      up: "↑",
+      down: "↓",
+      unchanged: "=",
+    }[pick.shadow_rank_status] || "";
+    const rankText = Number.isFinite(shadowRank) ? ` · S#${shadowRank}${rankMark ? ` ${rankMark}` : ""}` : "";
+    const appearanceText = Number.isFinite(appearanceProbability)
+      ? ` · App ${percent(appearanceProbability, 0)}`
+      : "";
+    row.querySelector(".prob-cell span").textContent =
+      `Shadow ${percent(shadowProbability)}${rankText}${appearanceText}`;
+    row.querySelector(".prob-cell span").title =
+      "Evaluation only: calibrated from P(appearance) × P(hit given appearance).";
+  } else {
+    row.querySelector(".prob-cell span").textContent = `Bob ${numberText(pick.bob_score ?? pick.score, 1)}`;
+  }
 
   const factorCell = row.querySelector(".factor-cell");
   selectedFactors(pick).forEach((item) => factorCell.append(createFactorChip(item)));
@@ -616,6 +641,43 @@ function renderPick(pick) {
   }
 
   return row;
+}
+
+function renderShadowStatus(data) {
+  const panel = document.getElementById("shadow-status");
+  const promotion = data.shadow_promotion;
+  if (!panel || !promotion) {
+    if (panel) panel.hidden = true;
+    return;
+  }
+  panel.hidden = false;
+  const resolved = Number(promotion.resolved_days || 0);
+  const required = Number(promotion.minimum_resolved_days || 50);
+  const remaining = Math.max(0, required - resolved);
+  const shadowMetrics = promotion.metrics?.shadow_rank_one || {};
+  const topTwoMetrics = promotion.metrics?.shadow_top_two || {};
+  const hitRate = shadowMetrics.hit_rate == null ? NaN : Number(shadowMetrics.hit_rate);
+  const topTwoRate = topTwoMetrics.hit_rate == null ? NaN : Number(topTwoMetrics.hit_rate);
+  const brier = promotion.probability_metrics?.brier == null
+    ? NaN
+    : Number(promotion.probability_metrics.brier);
+  const missStreak = shadowMetrics.longest_miss_streak == null
+    ? null
+    : Number(shadowMetrics.longest_miss_streak);
+  setText(
+    "shadow-status-title",
+    promotion.eligible_for_promotion_review ? "Eligible for human promotion review" : "Collecting prospective evidence",
+  );
+  const metrics = [];
+  if (Number.isFinite(hitRate)) metrics.push(`rank-one ${percent(hitRate)}`);
+  if (Number.isFinite(topTwoRate)) metrics.push(`top-two ${percent(topTwoRate)}`);
+  if (Number.isFinite(missStreak)) metrics.push(`miss streak ${missStreak}`);
+  if (Number.isFinite(brier)) metrics.push(`Brier ${brier.toFixed(3)}`);
+  const metricsText = metrics.length ? ` · ${metrics.join(" · ")}` : "";
+  setText(
+    "shadow-status-detail",
+    `${resolved}/${required} resolved days${metricsText} · ${remaining} remaining · production order unchanged`,
+  );
 }
 
 function renderSummary(data) {
@@ -645,6 +707,7 @@ function renderSummary(data) {
 
 function renderBoard(data) {
   renderSummary(data);
+  renderShadowStatus(data);
   renderDailyBrief(data);
   const list = document.getElementById("picks");
   list.replaceChildren();

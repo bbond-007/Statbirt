@@ -12,6 +12,8 @@ data/cache/
 data/statbirt_candidates.csv
 data/model_predictions.csv
 data/models/
+data/learned_shadow_predictions.csv
+data/source_snapshots/
 
 # Generated dashboard exports. Rebuild with:
 # python3 -m statbirt.export_web --all-dates --limit 10

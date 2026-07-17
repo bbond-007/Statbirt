@@ -20,6 +20,10 @@ from .export_web import (
 )
 from .injuries import current_injured_player_ids_for_rows, filter_injured_rows
 from .learned_model import DEFAULT_PREDICTIONS_CSV
+from .learned_shadow import (
+    DEFAULT_PROMOTION_REPORT_JSON,
+    DEFAULT_SHADOW_PREDICTIONS_CSV,
+)
 from .learned_selection import build_selection_brief
 from .results import RESULT_STATUS_FINAL, RESULT_STATUS_POSTPONED, normalize_row_result_status
 from .utils import parse_float, parse_int
@@ -240,6 +244,9 @@ def build_pick_payload(
     rank: int,
     congregation: dict[str, dict] | None = None,
     game_states: dict[tuple[int, int], dict] | None = None,
+    shadow_prediction: dict[str, str] | None = None,
+    shadow_display_rank: int | None = None,
+    production_display_rank: int | None = None,
 ) -> dict:
     candidate = candidate_rows.get(row_identity(prediction), {})
     merged = merge_prediction_with_candidate(prediction, candidate)
@@ -266,6 +273,63 @@ def build_pick_payload(
     )
     apply_game_state_result(payload)
     payload.update(safety_profile(merged))
+    shadow_stale = False
+    if shadow_prediction:
+        shadow_production_probability = parse_float(shadow_prediction.get("production_probability"))
+        selected_production_probability = parse_float(prediction.get("learned_hit_probability"))
+        shadow_production_version = str(shadow_prediction.get("production_model_version") or "").strip()
+        selected_production_version = str(prediction.get("model_version") or "").strip()
+        if (
+            shadow_production_probability is not None
+            and selected_production_probability is not None
+            and abs(shadow_production_probability - selected_production_probability) > 0.00005
+        ):
+            shadow_stale = True
+        if shadow_production_version and shadow_production_version != selected_production_version:
+            shadow_stale = True
+    if shadow_prediction and not shadow_stale:
+        display_rank = shadow_display_rank or parse_int(shadow_prediction.get("shadow_top5_rank"))
+        production_position = production_display_rank or rank
+        if display_rank == 1:
+            rank_status = "leader"
+        elif display_rank is None:
+            rank_status = "unavailable"
+        elif display_rank < production_position:
+            rank_status = "up"
+        elif display_rank > production_position:
+            rank_status = "down"
+        else:
+            rank_status = "unchanged"
+        payload.update(
+            {
+                "appearance_probability": parse_float(shadow_prediction.get("appearance_probability")),
+                "hit_given_appearance_probability": parse_float(
+                    shadow_prediction.get("hit_given_appearance_probability")
+                ),
+                "shadow_combined_probability_raw": parse_float(
+                    shadow_prediction.get("combined_probability_raw")
+                ),
+                "shadow_combined_probability_calibrated": parse_float(
+                    shadow_prediction.get("combined_probability_calibrated")
+                ),
+                "shadow_rank": parse_int(shadow_prediction.get("shadow_rank")),
+                "shadow_top5_rank": display_rank,
+                "shadow_rank_status": rank_status,
+                "shadow_status": "available",
+                "stuff_preference_rank": parse_int(shadow_prediction.get("stuff_preference_rank")),
+                "shadow_model_version": shadow_prediction.get("model_version") or "",
+                "lineup_source": shadow_prediction.get("lineup_source") or merged.get("lineup_source") or "unknown",
+                "candidate_pool_source": (
+                    shadow_prediction.get("candidate_pool_source")
+                    or merged.get("candidate_pool_source")
+                    or "unknown"
+                ),
+            }
+        )
+    elif shadow_stale:
+        payload.update({"shadow_status": "stale", "shadow_rank_status": "unavailable"})
+    else:
+        payload.update({"shadow_status": "unavailable", "shadow_rank_status": "unavailable"})
     return payload
 
 
@@ -333,12 +397,21 @@ def export_learned_web_payload(
     filter_injured: bool = True,
     injured_player_ids: set[int] | frozenset[int] | None = None,
     top2_thesis_dir: Path = DEFAULT_LEARNED_TOP2_THESIS_DIR,
+    shadow_predictions_csv: Path = DEFAULT_SHADOW_PREDICTIONS_CSV,
+    shadow_promotion_json: Path = DEFAULT_PROMOTION_REPORT_JSON,
 ) -> dict:
     predictions = load_rows(predictions_csv)
     candidates = load_rows(candidates_csv)
     if filter_injured and injured_player_ids is None:
         injured_player_ids = current_injured_player_ids_for_rows(candidates)
     congregation = load_congregation(congregation_csv)
+    shadow_predictions = load_rows(shadow_predictions_csv) if shadow_predictions_csv.exists() else []
+    shadow_promotion = None
+    if shadow_promotion_json.exists():
+        try:
+            shadow_promotion = json.loads(shadow_promotion_json.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            shadow_promotion = None
     return export_learned_web_payload_from_rows(
         predictions_by_date=rows_by_date(predictions),
         candidates_by_date=rows_by_date(candidates),
@@ -354,6 +427,8 @@ def export_learned_web_payload(
         injured_player_ids=injured_player_ids,
         congregation=congregation,
         top2_thesis_dir=top2_thesis_dir,
+        shadow_predictions_by_date=rows_by_date(shadow_predictions),
+        shadow_promotion=shadow_promotion,
     )
 
 
@@ -373,6 +448,8 @@ def export_learned_web_payload_from_rows(
     injured_player_ids: set[int] | frozenset[int] | None = None,
     congregation: dict[str, dict] | None = None,
     top2_thesis_dir: Path = DEFAULT_LEARNED_TOP2_THESIS_DIR,
+    shadow_predictions_by_date: dict[str, list[dict[str, str]]] | None = None,
+    shadow_promotion: dict | None = None,
 ) -> dict:
     dates = sorted(predictions_by_date)
     if target_date == "latest":
@@ -395,7 +472,40 @@ def export_learned_web_payload_from_rows(
     if filter_injured:
         selected_candidates, _ = filter_injured_rows(selected_candidates, injured_player_ids or set())
     lookup = candidate_lookup(selected_candidates)
+    shadow_lookup = candidate_lookup((shadow_predictions_by_date or {}).get(selected_date, []))
     display_predictions = selected[:limit]
+    valid_shadow_rows = []
+    for display_position, prediction in enumerate(display_predictions, start=1):
+        shadow = shadow_lookup.get(row_identity(prediction))
+        if shadow is None:
+            continue
+        shadow_probability = parse_float(shadow.get("combined_probability_calibrated"))
+        if shadow_probability is None:
+            continue
+        expected_probability = parse_float(prediction.get("learned_hit_probability"))
+        stored_probability = parse_float(shadow.get("production_probability"))
+        if (
+            expected_probability is not None
+            and stored_probability is not None
+            and abs(expected_probability - stored_probability) > 0.00005
+        ):
+            continue
+        stored_version = str(shadow.get("production_model_version") or "").strip()
+        expected_version = str(prediction.get("model_version") or "").strip()
+        if stored_version and stored_version != expected_version:
+            continue
+        valid_shadow_rows.append((display_position, prediction, shadow, shadow_probability))
+    valid_shadow_rows.sort(
+        key=lambda item: (
+            -item[3],
+            prediction_rank(item[1]),
+            str(item[1].get("player_id") or ""),
+        )
+    )
+    shadow_display_ranks = {
+        row_identity(prediction): shadow_rank
+        for shadow_rank, (_, prediction, _, _) in enumerate(valid_shadow_rows, start=1)
+    }
     game_state_rows = [
         merge_prediction_with_candidate(prediction, lookup.get(row_identity(prediction), {}))
         for prediction in display_predictions
@@ -403,7 +513,16 @@ def export_learned_web_payload_from_rows(
     selected_day = date.fromisoformat(selected_date) if selected_date else None
     game_states = build_game_state_lookup(selected_day, game_state_rows) if needs_game_state_lookup(game_state_rows) else {}
     picks = [
-        build_pick_payload(prediction, lookup, rank, congregation, game_states)
+        build_pick_payload(
+            prediction,
+            lookup,
+            rank,
+            congregation,
+            game_states,
+            shadow_prediction=shadow_lookup.get(row_identity(prediction)),
+            shadow_display_rank=shadow_display_ranks.get(row_identity(prediction)),
+            production_display_rank=rank,
+        )
         for rank, prediction in enumerate(display_predictions, start=1)
     ]
     model_version = next((pick.get("model_version") for pick in picks if pick.get("model_version")), "")
@@ -426,6 +545,16 @@ def export_learned_web_payload_from_rows(
         **summary,
         "picks": picks,
     }
+    shadow_dates = sorted((shadow_predictions_by_date or {}).keys())
+    if shadow_promotion and shadow_dates and selected_date == shadow_dates[-1]:
+        payload["shadow_promotion"] = shadow_promotion
+    shadow_pick = next((pick for pick in picks if pick.get("shadow_status") == "available"), None)
+    if shadow_pick:
+        payload["shadow_model"] = {
+            "model_version": shadow_pick.get("shadow_model_version") or "",
+            "status": "evaluation_only",
+            "production_order_unchanged": True,
+        }
     if top2_thesis:
         payload["learned_top2_thesis"] = top2_thesis
     write_json(out_json, payload)
@@ -449,6 +578,8 @@ def parse_args():
     parser.add_argument("--all-dates", action="store_true", help="Export one learned dashboard JSON for every prediction date.")
     parser.add_argument("--limit", type=int, default=5)
     parser.add_argument("--top2-thesis-dir", default=str(DEFAULT_LEARNED_TOP2_THESIS_DIR))
+    parser.add_argument("--shadow-predictions-csv", default=str(DEFAULT_SHADOW_PREDICTIONS_CSV))
+    parser.add_argument("--shadow-promotion-json", default=str(DEFAULT_PROMOTION_REPORT_JSON))
     parser.add_argument("--no-archive", action="store_true")
     parser.add_argument("--no-fallback-latest", action="store_true")
     parser.add_argument("--include-injured", action="store_true", help="Do not filter players currently listed as injured.")
@@ -467,6 +598,16 @@ def main():
     prediction_rows_by_date = rows_by_date(prediction_rows)
     candidate_rows_by_date = rows_by_date(candidate_rows)
     congregation = load_congregation(Path(args.congregation_csv))
+    shadow_predictions_path = Path(args.shadow_predictions_csv)
+    shadow_prediction_rows = load_rows(shadow_predictions_path) if shadow_predictions_path.exists() else []
+    shadow_prediction_rows_by_date = rows_by_date(shadow_prediction_rows)
+    shadow_promotion = None
+    shadow_promotion_path = Path(args.shadow_promotion_json)
+    if shadow_promotion_path.exists():
+        try:
+            shadow_promotion = json.loads(shadow_promotion_path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            shadow_promotion = None
     target_dates = [args.date]
     if args.all_dates:
         target_dates = available_dates(prediction_rows)
@@ -489,6 +630,8 @@ def main():
                 injured_player_ids=injured_player_ids,
                 congregation=congregation,
                 top2_thesis_dir=Path(args.top2_thesis_dir),
+                shadow_predictions_by_date=shadow_prediction_rows_by_date,
+                shadow_promotion=shadow_promotion,
             )
         )
     if args.all_dates and payloads and not args.no_archive:

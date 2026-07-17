@@ -45,8 +45,16 @@ try {
         -Arguments $ResultArguments
 
     Invoke-StatbirtStep `
-        -Name "Learned prediction result refresh" `
-        -Arguments @("statbirt.learned_model", "score", "--date", "latest", "--top", "25")
+        -Name "Decision ledger result sync" `
+        -Arguments @("statbirt.prediction_ledger", "sync-results")
+
+    Invoke-StatbirtStep `
+        -Name "Decision ledger audit" `
+        -Arguments @("statbirt.prediction_ledger", "audit")
+
+    Invoke-StatbirtStep `
+        -Name "Learned shadow promotion metrics" `
+        -Arguments @("statbirt.learned_shadow", "evaluate")
 
     if ($MainAllDates) {
         $DashboardArguments = @("statbirt.export_web", "--all-dates", "--limit", "10")

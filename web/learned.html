@@ -61,6 +61,13 @@
       </section>
 
       <section class="board learned-board" aria-label="Learned model shortlist">
+        <aside id="shadow-status" class="shadow-status" hidden aria-live="polite">
+          <div>
+            <span>SHADOW EVALUATION</span>
+            <strong id="shadow-status-title">Collecting prospective evidence</strong>
+          </div>
+          <p id="shadow-status-detail"></p>
+        </aside>
         <div class="board-toolbar">
           <div>
             <h2>Shortlist Key Factors</h2>
@@ -73,7 +80,7 @@
           <span>Player</span>
           <span>H2H</span>
           <span>Status</span>
-          <span>Probability</span>
+          <span>Raw / Shadow</span>
           <span>Key Factors</span>
           <span>Stop Valves</span>
           <span>Result</span>
@@ -110,6 +117,6 @@
       </article>
     </template>
 
-    <script src="learned.js?v=20260620-thesis"></script>
+    <script src="learned.js?v=20260717-shadow"></script>
   </body>
 </html>

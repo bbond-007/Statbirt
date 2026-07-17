@@ -1,0 +1,81 @@
+{
+  "date": "2026-07-17",
+  "target": "learned_rank_top_2",
+  "committee_pick": "Jacob Wilson",
+  "committee_summary": "The committee selects Jacob Wilson as the hitter most likely to record a hit on July 17, conditional on lineup confirmation. Fernando Tatis Jr. owns the softer starting-pitcher matchup, but Wilson offers the more dependable one-hit path through a .281 season average, .293 mark against right-handed pitching, a 14.9% whiff rate, an 11.4% strikeout rate, and a 7-for-18 run over his last five games. Cade Cavalli's 102 Stuff+ and the complete lack of H2H history add uncertainty, yet those risks are less concrete than Tatis's 28.8% whiff rate, four stop valves, and 4-for-20 recent stretch. The official MLB feeds still list Cavalli and Seth Lugo, neither batting order was posted during review, and both opposing bullpens are fully rested. Wilson is the single if confirmed active; Tatis remains the second pick on a two-hitter card.",
+  "workflow_notes": [
+    "Staged the learned model raw top 2 for the active dashboard date.",
+    "Reviewed local model context, H2H, stop valves, expected PA, lineup slot, recent form, handedness splits, starter profile, park/weather, pitch-type matchup, and bullpen context.",
+    "Checked current free public sources for probable pitchers, lineup status, injury context, projected batting order, and bullpen workload.",
+    "Used separate pro, con, and reviewer committee roles before choosing the single hitter."
+  ],
+  "source_notes": [
+    {
+      "label": "MLB StatsAPI Nationals-Athletics Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/824981/feed/live",
+      "note": "Verified scheduled game status, Sutter Health Park, and Cade Cavalli as Washington's probable starter; the official batting orders were not posted during review."
+    },
+    {
+      "label": "MLB StatsAPI Padres-Royals Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/824090/feed/live",
+      "note": "Verified scheduled game status, Kauffman Stadium, and Seth Lugo as Kansas City's probable starter; the official batting orders were not posted during review."
+    },
+    {
+      "label": "MLB Starting Lineups",
+      "url": "https://www.mlb.com/starting-lineups",
+      "note": "Cross-checked the probable starters and confirmed that neither hitter had an official posted batting-order slot at review time."
+    },
+    {
+      "label": "MLB Injury Report",
+      "url": "https://www.mlb.com/injury-report",
+      "note": "Checked for current listings involving Wilson, Tatis, Cavalli, or Lugo; none appeared on the report during review."
+    },
+    {
+      "label": "RotoWire Bullpen Usage",
+      "url": "https://www.rotowire.com/baseball/bullpen-usage.php",
+      "note": "Washington and Kansas City relievers showed zero pitches over the previous three days, leaving both bullpens fully rested after the break."
+    },
+    {
+      "label": "RotoWire Athletics Batting Orders",
+      "url": "https://www.rotowire.com/baseball/batting-orders.php?team=ATH",
+      "note": "The Athletics lineup was not announced; the default right-handed-pitcher order kept Wilson in the upper part of the lineup."
+    },
+    {
+      "label": "RotoWire Padres Batting Orders",
+      "url": "https://www.rotowire.com/baseball/batting-orders.php?team=SD",
+      "note": "The Padres lineup was not announced; the default right-handed-pitcher order projected Tatis at leadoff."
+    },
+    {
+      "label": "Baseball Savant: Jacob Wilson",
+      "url": "https://baseballsavant.mlb.com/savant-player/jacob-wilson-805779",
+      "note": "Reviewed the Statcast player target alongside the staged contact, handedness, and pitch-type matchup fields."
+    },
+    {
+      "label": "Baseball Savant: Fernando Tatis Jr.",
+      "url": "https://baseballsavant.mlb.com/savant-player/fernando-tatis-jr-665487",
+      "note": "Reviewed the Statcast player target alongside the staged H2H contact quality and pitch-type matchup fields."
+    }
+  ],
+  "players": [
+    {
+      "rank": 1,
+      "player": "Jacob Wilson",
+      "team": "ATH",
+      "opponent": "WSN",
+      "probable_pitcher": "Cade Cavalli",
+      "pro_thesis": "Wilson's strongest case is his unusually stable bat-to-ball foundation. He is hitting .281 overall and .293 against right-handed pitching, with only a 14.9% whiff rate and 11.4% strikeout rate this season, and he enters 7-for-18 over his last five games. The projected pitch-type matchup is favorable at a .366 batting average and .308 xBA across 77% of Cavalli's expected arsenal. Cavalli has allowed 16 hits over his last 18 innings and carries only moderately above-average 102 Stuff+, while Washington's bullpen has allowed a .267 opponent average. Wilson is projected for 4.6 plate appearances in the upper part of the order, and the warm, dry conditions at Sutter Health Park should not interfere with the normal hit path.",
+      "con_thesis": "The warning case starts with uncertainty rather than a direct matchup failure: Wilson has never faced Cavalli, the official lineup is not posted, and Cavalli's 102 Stuff+ triggered one of Wilson's two stop valves. Wilson's 7-for-18 burst is stronger than his longer recent windows, including a .253 average over 75 at-bats and a .248 hit-per-appearance rate over 500 plate appearances. Cavalli's latest start was also solid, with six innings, four hits, and one walk allowed, and a fully rested Washington bullpen can protect him if he exits early. Wilson started only four of the last five games, so his projected 4.6 opportunities still require lineup confirmation, and the learned model's 71.0% probability should be treated as a ranking signal rather than a calibrated guarantee.",
+      "committee_thesis": "Committee read: Wilson is the single pick if he is confirmed in the lineup. The pro advocate wins the comparison because his contact and strikeout profile creates more repeatable routes to one hit than Tatis's higher-variance profile. Cavalli's Stuff+ and the absent H2H history keep this from being a risk-free choice, but Wilson's .293 right-on-right average and current 7-for-18 stretch make those uncertainties preferable to Tatis's multiple concrete contact warnings."
+    },
+    {
+      "rank": 2,
+      "player": "Fernando Tatis Jr.",
+      "team": "SDP",
+      "opponent": "KCR",
+      "probable_pitcher": "Seth Lugo",
+      "pro_thesis": "Tatis has the more attractive pitcher-matchup ceiling. He is batting .277 this season and .272 against right-handers, projects to lead off with 4.8 plate appearances, and is 2-for-6 against Lugo with a 93.6 mph H2H exit velocity and .547 xBA. His broader pitch-type matchup is also encouraging at a .334 batting average and .408 xBA across roughly 71% of Lugo's projected arsenal. Lugo's 88 Stuff+ is the softer starter profile in today's comparison, he has surrendered 29 hits over his last 18 innings, and he lasted only four innings in his latest start. Kauffman Stadium's 102 hit factor and Kansas City's .268 bullpen opponent average add modest support to Tatis's multiple-opportunity path.",
+      "con_thesis": "Tatis presents the clearer foreseeable miss profile. He triggers four stop valves, including season and last-500 whiff rates above 25%, an H2H strikeout-rate warning, and Lugo's longer-window suppression of right-handed hitters. Tatis owns a 28.8% whiff rate in both the season and 500-PA samples, approximately a 21% strikeout rate, and is only 4-for-20 over his last five games; his .200 average over 25 at-bats and .240 over 75 at-bats show that the contact lull extends beyond one game. The 2-for-6 H2H line is too small to outweigh two strikeouts, while Lugo has held right-handed hitters near .219-.223 over the broader windows. Kansas City's bullpen is fully rested, and Tatis's leadoff spot remains projected rather than confirmed.",
+      "committee_thesis": "Committee read: Tatis is the runner-up and remains a strong second pick. The pro advocate is right that Lugo's 88 Stuff+, the H2H xBA, the projected extra plate appearance, and the pitch-type fit produce the day's better matchup ceiling. The reviewer nevertheless gives Wilson the single because Tatis's whiff rate, four stop valves, and 4-for-20 recent run are independent failure indicators, not merely missing information."
+    }
+  ]
+}

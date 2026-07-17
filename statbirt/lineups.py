@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from datetime import datetime, timezone
 import re
 
 from bs4 import BeautifulSoup
@@ -35,8 +36,9 @@ def _parse_lineup_list(team_list):
     return bool(player_items), players_by_id, players_by_name
 
 
-def parse_confirmed_lineups_html(html: str) -> dict[int, dict]:
+def parse_confirmed_lineups_html(html: str, *, observed_at_utc: str | None = None) -> dict[int, dict]:
     output = {}
+    observed_at_utc = observed_at_utc or datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
     soup = BeautifulSoup(html, "html.parser")
     for matchup in soup.select("div.starting-lineups__matchup"):
         team_links = matchup.select("div.starting-lineups__team-names a.starting-lineups__team-name--link")
@@ -55,6 +57,8 @@ def parse_confirmed_lineups_html(html: str) -> dict[int, dict]:
             confirmed, players_by_id, players_by_name = _parse_lineup_list(team_list)
             output[team_id] = {
                 "confirmed": confirmed,
+                "source": "official" if confirmed else "unconfirmed",
+                "observed_at_utc": observed_at_utc,
                 "players_by_id": players_by_id,
                 "players_by_name": players_by_name,
             }
@@ -67,5 +71,5 @@ def fetch_confirmed_lineups() -> dict[int, dict]:
         response.raise_for_status()
     except Exception:
         return {}
-    return parse_confirmed_lineups_html(response.text)
-
+    observed_at = datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
+    return parse_confirmed_lineups_html(response.text, observed_at_utc=observed_at)

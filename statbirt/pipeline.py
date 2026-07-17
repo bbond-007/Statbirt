@@ -19,6 +19,7 @@ from .mlb_api import (
     load_pitcher_game_logs,
     load_pitcher_season_context,
     load_recent_usage,
+    load_roster_availability,
     pitcher_last_start_stats,
     pitcher_window_stats,
     season_start_for,
@@ -36,6 +37,7 @@ from .savant import (
     select_park_hit_factor,
 )
 from .scoring import score_candidate
+from .savant_snapshots import load_bat_tracking_snapshot, load_oaa_snapshot
 from .utils import format_float, normalize_name, parse_float, parse_int, safe_divide, team_abbr
 from .weather import fetch_weather_forecast
 
@@ -118,20 +120,26 @@ def _lineup_slot_for(
     usage_logs: dict[int, list],
     target_date: date,
     config: PipelineConfig,
-) -> tuple[bool, float | None, int]:
+) -> tuple[bool, float | None, int, str, str]:
     lineup = confirmed_lineups.get(team_id, {})
     if lineup.get("confirmed"):
         slot = (lineup.get("players_by_id") or {}).get(player_id)
         if slot is None:
             slot = (lineup.get("players_by_name") or {}).get(normalize_name(player_name))
-        return True, float(slot) if slot is not None else None, 0
+        return (
+            True,
+            float(slot) if slot is not None else None,
+            0,
+            str(lineup.get("source") or "official"),
+            str(lineup.get("observed_at_utc") or ""),
+        )
     summary = recent_usage_summary(
         usage_logs.get(player_id, []),
         target_date=target_date,
         recent_games=config.recent_usage_games,
     )
     slot = summary.get("lineup_slot")
-    return False, float(slot) if slot is not None else None, int(summary.get("starts") or 0)
+    return False, float(slot) if slot is not None else None, int(summary.get("starts") or 0), "recent_usage", ""
 
 
 def _build_statcast_windows(target_date: date, season_start: date, years: int) -> list[SeasonWindow]:
@@ -193,10 +201,31 @@ def build_daily_candidates(
         return [], ["No MLB games found for target date"]
 
     team_metadata = build_team_metadata(client, season)
+    bat_tracking = {}
+    oaa_by_team = {}
+    source_metadata = []
+    try:
+        bat_tracking, bat_metadata = load_bat_tracking_snapshot(target_date)
+        if bat_metadata.get("snapshot_id"):
+            source_metadata.append(bat_metadata)
+    except Exception as exc:
+        warnings.append(f"Savant bat-tracking snapshot failed: {type(exc).__name__}: {exc}")
+    try:
+        oaa_by_team, oaa_metadata = load_oaa_snapshot(target_date, team_metadata)
+        if oaa_metadata.get("snapshot_id"):
+            source_metadata.append(oaa_metadata)
+    except Exception as exc:
+        warnings.append(f"Savant OAA snapshot failed: {type(exc).__name__}: {exc}")
     team_game_counts = defaultdict(int)
     for game in games:
         team_game_counts[game.away_id] += 1
         team_game_counts[game.home_id] += 1
+    playing_team_ids = {team_id for game in games for team_id in (game.away_id, game.home_id)}
+    roster_availability, roster_covered_teams = load_roster_availability(
+        client,
+        playing_team_ids,
+        target_date=target_date,
+    )
 
     if verbose:
         print("Fetching confirmed lineups...", flush=True)
@@ -355,7 +384,7 @@ def build_daily_candidates(
             )
             for player_id in team_candidates:
                 player_name = player_names.get(player_id) or hitter_people.get(player_id, {}).get("name") or f"Player {player_id}"
-                confirmed, lineup_slot, starts_last_5 = _lineup_slot_for(
+                confirmed, lineup_slot, starts_last_5, lineup_source, lineup_observed_at = _lineup_slot_for(
                     team_id=team_id,
                     player_id=player_id,
                     player_name=player_name,
@@ -388,6 +417,16 @@ def build_daily_candidates(
                     if statcast_store
                     else {}
                 )
+                hitter_contact = (
+                    statcast_store.hitter_contact_quality(player_id, target_date=target_date)
+                    if statcast_store
+                    else {}
+                )
+                pitcher_contact = (
+                    statcast_store.pitcher_contact_quality_allowed(pitcher_id, target_date=target_date)
+                    if statcast_store
+                    else {}
+                )
                 h2h = statcast_store.h2h(player_id, pitcher_id) if statcast_store else None
                 inferred = (
                     statcast_store.inferred_pitch_type(
@@ -395,6 +434,7 @@ def build_daily_candidates(
                         pitcher_id=pitcher_id,
                         pitcher_hand=pitcher_hand,
                         stand=stand,
+                        target_date=target_date,
                     )
                     if statcast_store
                     else None
@@ -430,6 +470,16 @@ def build_daily_candidates(
                     target_date=target_date,
                     games=5,
                 )
+                bat_tracking_row = bat_tracking.get(player_id, {})
+                opponent_oaa = oaa_by_team.get(context["opponent_id"], {})
+                roster_row = roster_availability.get(player_id)
+                feature_snapshot_ids = [str(item.get("snapshot_id")) for item in source_metadata if item.get("snapshot_id")]
+                feature_source_hashes = [str(item.get("source_hash")) for item in source_metadata if item.get("source_hash")]
+                source_max_dates = [
+                    str(item.get("source_max_game_date"))
+                    for item in source_metadata
+                    if item.get("source_max_game_date")
+                ]
 
                 features = CandidateFeatures(
                     target_date=target_date,
@@ -444,6 +494,28 @@ def build_daily_candidates(
                     game_start_time_utc=game.game_datetime_utc,
                     venue_name=game.venue_name,
                     confirmed_lineup=confirmed,
+                    lineup_source=lineup_source,
+                    lineup_observed_at_utc=lineup_observed_at,
+                    candidate_pool_source=(
+                        "official_lineup"
+                        if lineup_source == "official"
+                        else "final_boxscore"
+                        if lineup_source == "final_boxscore"
+                        else "recent_usage"
+                    ),
+                    active_roster=(
+                        True
+                        if roster_row is not None
+                        else False
+                        if team_id in roster_covered_teams
+                        else None
+                    ),
+                    roster_status_code=str((roster_row or {}).get("roster_status_code") or ""),
+                    last_transaction_type_code=str(
+                        (roster_row or {}).get("last_transaction_type_code") or ""
+                    ),
+                    last_transaction_date=(roster_row or {}).get("last_transaction_date"),
+                    days_since_activation=(roster_row or {}).get("days_since_activation"),
                     lineup_slot=lineup_slot,
                     starts_last_5=starts_last_5,
                     hitter_last_5_games_played=int(last_5_batting.get("games") or 0),
@@ -483,6 +555,22 @@ def build_daily_candidates(
                     hitter_whiff_rate_500_pa=hitter_discipline.get("whiff_rate_500_pa"),
                     hitter_k_rate_season=hitter_discipline.get("k_rate_season"),
                     hitter_k_rate_500_pa=hitter_discipline.get("k_rate_500_pa"),
+                    hitter_xba_100_pa=hitter_contact.get("xba"),
+                    hitter_xba_denominator_100_pa=hitter_contact.get("xba_denominator"),
+                    hitter_contact_xba_50_bbe=hitter_contact.get("contact_xba"),
+                    hitter_hard_hit_rate_50_bbe=hitter_contact.get("hard_hit_rate"),
+                    hitter_sweet_spot_rate_50_bbe=hitter_contact.get("sweet_spot_rate"),
+                    hitter_ev50_50_bbe=hitter_contact.get("ev50"),
+                    hitter_contact_bbe_50=hitter_contact.get("bbe"),
+                    hitter_bat_speed_50_swings=hitter_contact.get("bat_speed"),
+                    hitter_swing_length_50_swings=hitter_contact.get("swing_length"),
+                    hitter_tracked_swings_50=hitter_contact.get("swings"),
+                    hitter_competitive_swings_season=bat_tracking_row.get("competitive_swings"),
+                    hitter_competitive_contact_rate_season=bat_tracking_row.get("competitive_contact_rate"),
+                    hitter_avg_bat_speed_season=bat_tracking_row.get("avg_bat_speed"),
+                    hitter_avg_swing_length_season=bat_tracking_row.get("avg_swing_length"),
+                    hitter_squared_up_per_contact_season=bat_tracking_row.get("squared_up_per_contact"),
+                    hitter_blast_per_contact_season=bat_tracking_row.get("blast_per_contact"),
                     hitter_split_ba_season_vs_lhp=split_windows.get("ba_season_vs_lhp"),
                     hitter_split_ba_season_vs_rhp=split_windows.get("ba_season_vs_rhp"),
                     hitter_split_pa_season_vs_lhp=split_windows.get("pa_season_vs_lhp"),
@@ -508,6 +596,13 @@ def build_daily_candidates(
                         by_id=stuff_by_id,
                         by_name=stuff_by_name,
                     ),
+                    pitcher_xba_allowed_100_bf=pitcher_contact.get("xba"),
+                    pitcher_xba_denominator_100_bf=pitcher_contact.get("xba_denominator"),
+                    pitcher_contact_xba_allowed_50_bbe=pitcher_contact.get("contact_xba"),
+                    pitcher_hard_hit_rate_allowed_50_bbe=pitcher_contact.get("hard_hit_rate"),
+                    pitcher_sweet_spot_rate_allowed_50_bbe=pitcher_contact.get("sweet_spot_rate"),
+                    pitcher_ev50_allowed_50_bbe=pitcher_contact.get("ev50"),
+                    pitcher_contact_bbe_50=pitcher_contact.get("bbe"),
                     h2h_pa=h2h.pa if h2h else 0,
                     h2h_hits=h2h.hits if h2h else 0,
                     h2h_hit_rate=h2h.hit_rate if h2h else None,
@@ -520,9 +615,27 @@ def build_daily_candidates(
                     pitcher_lr_opp_ba_200=pitcher_lr_opp_ba_200,
                     inferred_pitch_type_ba=inferred.ba if inferred else None,
                     inferred_pitch_type_xba=inferred.xba if inferred else None,
+                    inferred_pitch_type_contact_rate=inferred.contact_rate if inferred else None,
+                    inferred_pitch_type_shape_distance=inferred.shape_distance if inferred else None,
                     inferred_pitch_type_coverage=inferred.coverage if inferred else None,
                     bullpen_hpi=(bullpen_stats.get(context["opponent_id"]) or {}).get("hits_per_inning"),
                     bullpen_opp_ba=(bullpen_stats.get(context["opponent_id"]) or {}).get("opponent_batting_average"),
+                    bullpen_pitches_3d=(bullpen_stats.get(context["opponent_id"]) or {}).get("pitches_last_3_days"),
+                    bullpen_relief_appearances_3d=(bullpen_stats.get(context["opponent_id"]) or {}).get(
+                        "relief_appearances_last_3_days"
+                    ),
+                    bullpen_relievers_used_3d=(bullpen_stats.get(context["opponent_id"]) or {}).get(
+                        "relievers_used_last_3_days"
+                    ),
+                    bullpen_high_workload_relievers_3d=(bullpen_stats.get(context["opponent_id"]) or {}).get(
+                        "high_workload_relievers_last_3_days"
+                    ),
+                    opponent_team_oaa=opponent_oaa.get("team_oaa"),
+                    opponent_infield_oaa=opponent_oaa.get("infield_oaa"),
+                    opponent_outfield_oaa=opponent_oaa.get("outfield_oaa"),
+                    feature_snapshot_id="|".join(feature_snapshot_ids),
+                    feature_source_hash="|".join(feature_source_hashes),
+                    feature_source_max_game_date=max(source_max_dates, default=""),
                     sprint_speed=sprint_speeds.get(player_id),
                     park_hit_factor=park_hit_factor,
                     expected_pa=expected_pa_from_lineup_slot(lineup_slot),
@@ -563,6 +676,14 @@ def scored_candidate_to_row(candidate: ScoredCandidate) -> dict[str, str]:
         "hard_pass_reasons": " | ".join(candidate.valve_result.hard_pass_reasons),
         "concerns": " | ".join(candidate.valve_result.concerns),
         "confirmed_lineup": "Y" if f.confirmed_lineup else "N",
+        "lineup_source": f.lineup_source,
+        "lineup_observed_at_utc": f.lineup_observed_at_utc,
+        "candidate_pool_source": f.candidate_pool_source,
+        "active_roster": "" if f.active_roster is None else "Y" if f.active_roster else "N",
+        "roster_status_code": f.roster_status_code,
+        "last_transaction_type_code": f.last_transaction_type_code,
+        "last_transaction_date": f.last_transaction_date.isoformat() if f.last_transaction_date else "",
+        "days_since_activation": "" if f.days_since_activation is None else str(f.days_since_activation),
         "lineup_slot": format_float(f.lineup_slot, 1),
         "expected_pa": format_float(f.expected_pa, 2),
         "starts_last_5": str(f.starts_last_5),
@@ -594,6 +715,30 @@ def scored_candidate_to_row(candidate: ScoredCandidate) -> dict[str, str]:
         "hitter_whiff_rate_500_pa": format_float(f.hitter_whiff_rate_500_pa, 3),
         "hitter_k_rate_season": format_float(f.hitter_k_rate_season, 3),
         "hitter_k_rate_500_pa": format_float(f.hitter_k_rate_500_pa, 3),
+        "hitter_xba_100_pa": format_float(f.hitter_xba_100_pa, 3),
+        "hitter_xba_denominator_100_pa": (
+            "" if f.hitter_xba_denominator_100_pa is None else str(f.hitter_xba_denominator_100_pa)
+        ),
+        "hitter_contact_xba_50_bbe": format_float(f.hitter_contact_xba_50_bbe, 3),
+        "hitter_hard_hit_rate_50_bbe": format_float(f.hitter_hard_hit_rate_50_bbe, 3),
+        "hitter_sweet_spot_rate_50_bbe": format_float(f.hitter_sweet_spot_rate_50_bbe, 3),
+        "hitter_ev50_50_bbe": format_float(f.hitter_ev50_50_bbe, 1),
+        "hitter_contact_bbe_50": "" if f.hitter_contact_bbe_50 is None else str(f.hitter_contact_bbe_50),
+        "hitter_bat_speed_50_swings": format_float(f.hitter_bat_speed_50_swings, 1),
+        "hitter_swing_length_50_swings": format_float(f.hitter_swing_length_50_swings, 1),
+        "hitter_tracked_swings_50": "" if f.hitter_tracked_swings_50 is None else str(f.hitter_tracked_swings_50),
+        "hitter_competitive_swings_season": (
+            "" if f.hitter_competitive_swings_season is None else str(f.hitter_competitive_swings_season)
+        ),
+        "hitter_competitive_contact_rate_season": format_float(
+            f.hitter_competitive_contact_rate_season, 3
+        ),
+        "hitter_avg_bat_speed_season": format_float(f.hitter_avg_bat_speed_season, 1),
+        "hitter_avg_swing_length_season": format_float(f.hitter_avg_swing_length_season, 1),
+        "hitter_squared_up_per_contact_season": format_float(
+            f.hitter_squared_up_per_contact_season, 3
+        ),
+        "hitter_blast_per_contact_season": format_float(f.hitter_blast_per_contact_season, 3),
         "hitter_split_ba_season_vs_lhp": format_float(f.hitter_split_ba_season_vs_lhp, 3),
         "hitter_split_ba_season_vs_rhp": format_float(f.hitter_split_ba_season_vs_rhp, 3),
         "hitter_split_pa_season_vs_lhp": "" if f.hitter_split_pa_season_vs_lhp is None else str(f.hitter_split_pa_season_vs_lhp),
@@ -612,6 +757,15 @@ def scored_candidate_to_row(candidate: ScoredCandidate) -> dict[str, str]:
         "pitcher_last_start_strikeouts": "" if f.pitcher_last_start_strikeouts is None else str(f.pitcher_last_start_strikeouts),
         "pitcher_last_start_walks": "" if f.pitcher_last_start_walks is None else str(f.pitcher_last_start_walks),
         "pitcher_stuff_plus": format_float(f.pitcher_stuff_plus, 1),
+        "pitcher_xba_allowed_100_bf": format_float(f.pitcher_xba_allowed_100_bf, 3),
+        "pitcher_xba_denominator_100_bf": (
+            "" if f.pitcher_xba_denominator_100_bf is None else str(f.pitcher_xba_denominator_100_bf)
+        ),
+        "pitcher_contact_xba_allowed_50_bbe": format_float(f.pitcher_contact_xba_allowed_50_bbe, 3),
+        "pitcher_hard_hit_rate_allowed_50_bbe": format_float(f.pitcher_hard_hit_rate_allowed_50_bbe, 3),
+        "pitcher_sweet_spot_rate_allowed_50_bbe": format_float(f.pitcher_sweet_spot_rate_allowed_50_bbe, 3),
+        "pitcher_ev50_allowed_50_bbe": format_float(f.pitcher_ev50_allowed_50_bbe, 1),
+        "pitcher_contact_bbe_50": "" if f.pitcher_contact_bbe_50 is None else str(f.pitcher_contact_bbe_50),
         "h2h_pa": str(f.h2h_pa),
         "h2h_hits": str(f.h2h_hits),
         "h2h_hit_rate": format_float(f.h2h_hit_rate, 3),
@@ -624,9 +778,27 @@ def scored_candidate_to_row(candidate: ScoredCandidate) -> dict[str, str]:
         "pitcher_lr_opp_ba_200": format_float(f.pitcher_lr_opp_ba_200, 3),
         "inferred_pitch_type_ba": format_float(f.inferred_pitch_type_ba, 3),
         "inferred_pitch_type_xba": format_float(f.inferred_pitch_type_xba, 3),
+        "inferred_pitch_type_contact_rate": format_float(f.inferred_pitch_type_contact_rate, 3),
+        "inferred_pitch_type_shape_distance": format_float(f.inferred_pitch_type_shape_distance, 3),
         "inferred_pitch_type_coverage": format_float(f.inferred_pitch_type_coverage, 3),
         "bullpen_hpi": format_float(f.bullpen_hpi, 3),
         "bullpen_opp_ba": format_float(f.bullpen_opp_ba, 3),
+        "bullpen_pitches_3d": "" if f.bullpen_pitches_3d is None else str(f.bullpen_pitches_3d),
+        "bullpen_relief_appearances_3d": (
+            "" if f.bullpen_relief_appearances_3d is None else str(f.bullpen_relief_appearances_3d)
+        ),
+        "bullpen_relievers_used_3d": (
+            "" if f.bullpen_relievers_used_3d is None else str(f.bullpen_relievers_used_3d)
+        ),
+        "bullpen_high_workload_relievers_3d": (
+            "" if f.bullpen_high_workload_relievers_3d is None else str(f.bullpen_high_workload_relievers_3d)
+        ),
+        "opponent_team_oaa": format_float(f.opponent_team_oaa, 1),
+        "opponent_infield_oaa": format_float(f.opponent_infield_oaa, 1),
+        "opponent_outfield_oaa": format_float(f.opponent_outfield_oaa, 1),
+        "feature_snapshot_id": f.feature_snapshot_id,
+        "feature_source_hash": f.feature_source_hash,
+        "feature_source_max_game_date": f.feature_source_max_game_date,
         "sprint_speed": format_float(f.sprint_speed, 1),
         "park_hit_factor": format_float(f.park_hit_factor, 1),
     }

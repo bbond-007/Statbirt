@@ -1,7 +1,11 @@
 import csv
 import json
 
-from statbirt.export_learned_web import build_pick_payload, export_learned_web_payload
+from statbirt.export_learned_web import (
+    build_pick_payload,
+    export_learned_web_payload,
+    export_learned_web_payload_from_rows,
+)
 from statbirt.export_web import export_web_payload
 from statbirt.injuries import is_injured_status
 
@@ -471,3 +475,75 @@ def test_export_learned_web_filters_currently_injured_players(tmp_path):
     assert payload["injury_filtered_count"] == 1
     assert payload["total_predictions"] == 1
     assert [pick["player"] for pick in payload["picks"]] == ["Healthy Hitter"]
+
+
+def test_shadow_join_preserves_production_order_and_rejects_stale_rows(tmp_path):
+    day = "2026-07-18"
+    predictions = [
+        {
+            "date": day,
+            "player": "Production One",
+            "player_id": "1",
+            "team": "AAA",
+            "opponent": "BBB",
+            "game_pk": "100",
+            "learned_rank": "1",
+            "learned_hit_probability": "0.80",
+            "model_version": "frozen-production",
+            "result_status": "final",
+            "result_hit": "1",
+        },
+        {
+            "date": day,
+            "player": "Production Two",
+            "player_id": "2",
+            "team": "AAA",
+            "opponent": "BBB",
+            "game_pk": "100",
+            "learned_rank": "2",
+            "learned_hit_probability": "0.70",
+            "model_version": "frozen-production",
+            "result_status": "final",
+            "result_hit": "0",
+        },
+    ]
+    candidates = [
+        {**item, "score": "70", "pickable": "Y", "hard_pass_reasons": ""}
+        for item in predictions
+    ]
+    shadow = [
+        {
+            **{field: predictions[0][field] for field in ("date", "player", "player_id", "team", "opponent", "game_pk")},
+            "production_probability": "0.60",
+            "production_model_version": "frozen-production",
+            "combined_probability_calibrated": "0.40",
+            "model_version": "shadow-v1",
+        },
+        {
+            **{field: predictions[1][field] for field in ("date", "player", "player_id", "team", "opponent", "game_pk")},
+            "production_probability": "0.70",
+            "production_model_version": "frozen-production",
+            "combined_probability_calibrated": "0.90",
+            "appearance_probability": "0.95",
+            "hit_given_appearance_probability": "0.94",
+            "model_version": "shadow-v1",
+        },
+    ]
+
+    payload = export_learned_web_payload_from_rows(
+        predictions_by_date={day: predictions},
+        candidates_by_date={day: candidates},
+        shadow_predictions_by_date={day: shadow},
+        out_json=tmp_path / "payload.json",
+        target_date=day,
+        limit=2,
+        archive=False,
+        update_index=False,
+        filter_injured=False,
+    )
+
+    assert [pick["player"] for pick in payload["picks"]] == ["Production One", "Production Two"]
+    assert payload["picks"][0]["shadow_status"] == "stale"
+    assert payload["picks"][1]["shadow_status"] == "available"
+    assert payload["picks"][1]["shadow_top5_rank"] == 1
+    assert payload["shadow_model"]["production_order_unchanged"] is True

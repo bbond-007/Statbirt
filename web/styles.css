@@ -33,13 +33,18 @@ body {
 }
 
 .app-shell {
-  width: min(1500px, calc(100vw - 36px));
+  width: min(1500px, calc(100% - 36px));
   min-height: 100vh;
   margin: 0 auto;
   padding: 18px 0;
   display: grid;
   grid-template-rows: auto auto minmax(0, 1fr);
   gap: 14px;
+}
+
+.app-shell > * {
+  width: 100%;
+  min-width: 0;
 }
 
 .topbar {
@@ -344,7 +349,8 @@ h1 {
 
 .learned-row-header,
 .learned-row {
-  grid-template-columns: 52px minmax(260px, 1.3fr) 70px 100px 110px minmax(260px, 1.65fr) minmax(190px, 0.95fr) minmax(120px, 0.7fr);
+  grid-template-columns: 48px minmax(220px, 1.3fr) 64px 90px 104px minmax(220px, 1.65fr) minmax(150px, 0.95fr) minmax(90px, 0.7fr);
+  gap: 10px;
 }
 
 .learned-row.result-hit {
@@ -1362,13 +1368,51 @@ body.dialog-open {
   outline: none;
 }
 
+.shadow-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(65, 105, 216, 0.2);
+  background: #f4f7ff;
+}
+
+.shadow-status[hidden] {
+  display: none;
+}
+
+.shadow-status div {
+  display: grid;
+  gap: 2px;
+}
+
+.shadow-status span {
+  color: var(--starter);
+  font-size: 0.64rem;
+  font-weight: 900;
+}
+
+.shadow-status strong {
+  font-size: 0.86rem;
+  letter-spacing: 0;
+}
+
+.shadow-status p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-align: right;
+}
+
 .research-metrics {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 @media (max-width: 1120px) {
   .app-shell {
-    width: min(100vw - 24px, 980px);
+    width: min(calc(100% - 24px), 980px);
     min-height: auto;
   }
 
@@ -1461,7 +1505,7 @@ body.dialog-open {
 
 @media (max-width: 720px) {
   .app-shell {
-    width: min(100vw - 16px, 620px);
+    width: min(calc(100% - 16px), 620px);
     padding: 8px 0;
   }
 
@@ -1469,6 +1513,16 @@ body.dialog-open {
   .board-toolbar {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .shadow-status {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .shadow-status p {
+    text-align: left;
   }
 
   .status-panel {
