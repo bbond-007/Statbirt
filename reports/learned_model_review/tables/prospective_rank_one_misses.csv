@@ -1,0 +1,16 @@
+date,player,probability,warnings,expected_pa,lineup_slot,ba_500,stuff_plus,stop_count
+2026-05-18,Luis Arraez,0.7741,No simple pregame warning from the tested set,4.7,2.0,0.312,89.0,0
+2026-05-21,Ildemaro Vargas,0.7365,500-AB BA below .275,4.5,3.6,0.272,94.0,1
+2026-05-28,Kevin McGonigle,0.725,No simple pregame warning from the tested set,4.7,1.6,0.297,,4
+2026-05-30,Luis Arraez,0.7419,No simple pregame warning from the tested set,4.6,3.2,0.314,94.0,0
+2026-06-06,Sam Antonacci,0.7349,low season PA/game,4.7,2.5,0.286,99.0,4
+2026-06-15,Fernando Tatis Jr.,0.7305,"Stuff+ above 100, five or more stop valves",4.8,1.0,0.276,102.0,6
+2026-06-17,Otto Lopez,0.7422,Stuff+ above 100,4.7,2.0,0.3,101.0,2
+2026-06-18,Bo Bichette,0.7548,Stuff+ above 100,4.7,2.0,0.302,107.0,2
+2026-06-24,Caleb Durbin,0.769,"low expected PA, lineup slot 6+, low season PA/game, 500-AB BA below .275",4.1,6.0,0.254,92.0,4
+2026-06-27,Byron Buxton,0.7761,"500-AB BA below .275, 500-PA K rate above 22%, five or more stop valves",4.7,2.0,0.266,88.0,7
+2026-07-01,Xavier Edwards,0.8019,No simple pregame warning from the tested set,4.6,2.8,0.288,92.0,1
+2026-07-05,Luis Arraez,0.8105,No simple pregame warning from the tested set,4.7,1.5,0.316,88.0,0
+2026-07-09,Trea Turner,0.7406,five or more stop valves,4.8,1.0,0.276,91.0,6
+2026-07-10,Nico Hoerner,0.7925,"low expected PA, lineup slot 6+, 500-AB BA below .275",4.1,6.0,0.264,,4
+2026-07-14,Bobby Witt Jr.,0.8114,Stuff+ above 100,4.3,5.0,0.294,118.0,3

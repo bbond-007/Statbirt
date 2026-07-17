@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Statbirt Learned Model Review - 2026-07-16</title>
+    <style>
+      :root { color-scheme: light; --ink:#17212b; --muted:#5d6975; --line:#d8dee5; --soft:#f4f6f8; --green:#17643d; --green-bg:#e8f4ed; --amber:#855a00; --amber-bg:#fff3d6; --red:#9a302c; --red-bg:#fae9e7; --blue:#245a86; }
+      * { box-sizing:border-box; }
+      body { margin:0; background:#eef1f4; color:var(--ink); font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif; letter-spacing:0; }
+      main { width:min(1180px,calc(100% - 32px)); margin:24px auto 48px; background:white; border:1px solid var(--line); }
+      header { padding:30px 34px 26px; border-bottom:1px solid var(--line); }
+      .eyebrow { margin:0 0 6px; color:var(--blue); font-size:12px; font-weight:800; text-transform:uppercase; }
+      h1 { margin:0; font-size:clamp(28px,4vw,44px); line-height:1.08; }
+      header p { max-width:850px; margin:12px 0 0; color:var(--muted); }
+      nav { display:flex; flex-wrap:wrap; gap:8px 16px; margin-top:18px; }
+      a { color:var(--blue); }
+      section { padding:26px 34px; border-bottom:1px solid var(--line); }
+      h2 { margin:0 0 8px; font-size:23px; }
+      h3 { margin:24px 0 8px; font-size:17px; }
+      p { margin:8px 0 12px; }
+      .lede { font-size:17px; max-width:920px; }
+      .metrics { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin-top:18px; }
+      .metric { min-height:124px; padding:16px; border:1px solid var(--line); border-top:4px solid var(--blue); }
+      .metric span,.metric small { display:block; color:var(--muted); }
+      .metric strong { display:block; margin:4px 0; font-size:28px; line-height:1.1; }
+      .callout { margin:16px 0; padding:15px 17px; border-left:5px solid var(--amber); background:var(--amber-bg); }
+      .good { border-left-color:var(--green); background:var(--green-bg); }
+      .risk { border-left-color:var(--red); background:var(--red-bg); }
+      .grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+      .panel { padding:18px; border:1px solid var(--line); }
+      .panel h3 { margin-top:0; }
+      ul,ol { padding-left:22px; }
+      li { margin:7px 0; }
+      .table-wrap { width:100%; overflow-x:auto; border:1px solid var(--line); margin:12px 0 20px; }
+      table { width:100%; min-width:720px; border-collapse:collapse; font-size:13px; }
+      th,td { padding:9px 10px; text-align:left; vertical-align:top; border-bottom:1px solid var(--line); }
+      th { background:var(--soft); font-size:12px; white-space:nowrap; }
+      tr:last-child td { border-bottom:0; }
+      .muted,small { color:var(--muted); }
+      footer { padding:20px 34px; color:var(--muted); font-size:13px; overflow-wrap:anywhere; word-break:break-word; }
+      code { font-family:ui-monospace,SFMono-Regular,Consolas,monospace; }
+      @media (max-width:850px) { .metrics,.grid { grid-template-columns:1fr 1fr; } }
+      @media (max-width:560px) { main { width:100%; margin:0; border-left:0; border-right:0; } header,section,footer { padding-left:18px; padding-right:18px; } .metrics,.grid { grid-template-columns:1fr; } .metric { min-height:0; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">Statbirt research archive</p>
+        <h1>Learned Model Review</h1>
+        <p>2026-07-16 | Candidate history through 2026-07-16 | A performance, calibration, and feature-weight audit focused on choosing one or two hitters per day.</p>
+        <nav><a href="../index.html">Bob score board</a><a href="../learned.html">Learned shortlist</a><a href="selection_strategy_report.html">6-19-26 Strategy Report</a></nav>
+      </header>
+
+      <section>
+        <h2>Executive verdict</h2>
+        <p class="lede"><strong>The learned model is useful as a shortlist generator, but its upper probability values and rank order should not currently be treated as literal confidence.</strong> The clean prospective record is materially lower than the backfilled historical headline, and recent results show that stable hitter quality and opposing Stuff+ are doing more work inside the top five than small differences in learned probability.</p>
+        <div class="metrics">
+          <article class="metric"><span>Prospective rank-one</span><strong>38/53</strong><small>71.7%</small></article>
+          <article class="metric"><span>Prospective top-two any hit</span><strong>42/47</strong><small>89.4%</small></article>
+          <article class="metric"><span>Prospective top-five individuals</span><strong>177/253</strong><small>70.0%</small></article>
+          <article class="metric"><span>Recent-half rank-one</span><strong>16/26</strong><small>61.5%</small></article>
+        </div>
+        <div class="callout risk"><strong>Do not quote the old 97.7% as expected future accuracy.</strong> It came from chronological model fits on historical boards often constructed with final boxscore batting orders and some full-season context unavailable on the original date. The clean, logged pregame top-two record is 42/47 (89.4%).</div>
+        <div class="callout good"><strong>What remains encouraging:</strong> the prospective top five have produced 177 hits in 253 resolved selections (70.0%), and the top-two card has still found at least one hit on 42 of 47 fully resolved days.</div>
+      </section>
+
+      <section>
+        <h2>Evidence hierarchy</h2>
+        <div class="grid">
+          <article class="panel"><h3>Use for decisions</h3><ul><li>Predictions whose model training timestamp is before first pitch.</li><li>Chronological walk-forward comparisons.</li><li>Resolved appearances only; postponed and no-appearance rows remain ungraded.</li><li>Confidence intervals and recent-period splits.</li></ul></article>
+          <article class="panel"><h3>Use only for hypothesis generation</h3><ul><li>Historical predictions rescored by a model trained after those games.</li><li>Backfilled rows whose final batting order was used as a lineup proxy.</li><li>Backfilled full-season pitcher, park, or sprint context that was not bounded to the game date.</li><li>Small probability bands, mined cohorts, or Publisher status applied retrospectively.</li></ul></article>
+        </div>
+        <div class="callout risk"><strong>Point-in-time limitation:</strong> 2025 backfills use the final boxscore lineup by default. The current pipeline also obtains some pitcher season context without a historical date bound, while season park factors and sprint speed can contain later-season information. These fields must be rebuilt point-in-time before historical rates can be called fully leakage-safe.</div>
+        <div class="callout"><strong>Target limitation:</strong> 10,695 no-appearance rows are intentionally ungraded and excluded from training. The saved probability therefore behaves more like P(hit | the hitter appears) than the morning decision's P(hit). A two-stage appearance model, multiplied by hit-given-appearance probability, would align training with the actual pre-lineup choice.</div>
+        <h3>Production holdout metrics</h3>
+        <p>The current model's date-based 80/20 validation slice contains 14960 labeled rows. These metrics describe broad discrimination among players later known to have appeared, not the full morning candidate board or the daily single-pick problem.</p>
+        <div class="table-wrap"><table><thead><tr><th>Rows</th><th>Base hit rate</th><th>ROC AUC</th><th>Brier</th><th>Log loss</th><th>Top-10 hit rate</th></tr></thead><tbody><tr><td>14960</td><td>55.7%</td><td>0.613</td><td>0.237</td><td>0.667</td><td>70.8%</td></tr></tbody></table></div>
+      </section>
+
+      <section>
+        <h2>Prediction archive health</h2>
+        <p>The saved prediction CSV is useful but is not yet an immutable decision ledger. Its upsert replaces matching player/game keys without deleting obsolete rows from the same date.</p>
+        <div class="table-wrap"><table><thead><tr><th>Check</th><th>Count</th><th>Treatment</th></tr></thead><tbody><tr><td>Prediction rows with no current candidate match</td><td>225</td><td>Stale or superseded prediction keys</td></tr><tr><td>Dates excluded for invalid or duplicate ranks</td><td>0</td><td>None</td></tr><tr><td>Prediction results lagging candidate results</td><td>1571</td><td>Candidate CSV used as the authoritative label</td></tr><tr><td>Candidate no-appearance rows</td><td>10695</td><td>Kept ungraded, per project policy</td></tr></tbody></table></div>
+        <div class="callout"><strong>Infrastructure recommendation:</strong> write one immutable pregame snapshot per run with a cutoff timestamp, candidate-pool source, lineup provenance, model version, ranks, and probabilities. Join results into a separate ledger instead of mutating the prediction rows.</div>
+      </section>
+
+      <section>
+        <h2>Prospective performance</h2>
+        <p>This is the most important table in the report. A prediction qualifies only when its saved model timestamp precedes that game's first pitch (or, where first-pitch time is unavailable, is no later than the game date).</p>
+        <div class="table-wrap"><table><thead><tr><th>Population</th><th>Hits</th><th>Decisions</th><th>Hit rate</th><th>Wilson 95% interval</th></tr></thead><tbody><tr><td>Rank 1</td><td>38</td><td>53</td><td>71.7%</td><td>58.4% to 82.0%</td></tr><tr><td>Ranks 1-2, individual</td><td>69</td><td>105</td><td>65.7%</td><td>56.2% to 74.1%</td></tr><tr><td>Ranks 1-5, individual</td><td>177</td><td>253</td><td>70.0%</td><td>64.0% to 75.3%</td></tr><tr><td>Ranks 1-10, individual</td><td>344</td><td>499</td><td>68.9%</td><td>64.7% to 72.8%</td></tr></tbody></table></div>
+        <h3>Rank-one drift check</h3>
+        <div class="table-wrap"><table><thead><tr><th>Period</th><th>Resolved dates</th><th>Hits</th><th>Decisions</th><th>Hit rate</th></tr></thead><tbody><tr><td>Earlier prospective dates</td><td>29</td><td>22</td><td>27</td><td>81.5%</td></tr><tr><td>Recent prospective dates</td><td>30</td><td>16</td><td>26</td><td>61.5%</td></tr></tbody></table></div>
+      </section>
+
+      <section>
+        <h2>Calibration</h2>
+        <p>Probabilities are reasonably ordered through 70-75%, then become overconfident. In the 75-80% band, the prospective record is 53/81 (65.4%); at 80% and above the sample is smaller still. The correct response is calibration and reranking, not another hard stop valve.</p>
+        <div class="table-wrap"><table><thead><tr><th>Predicted band</th><th>Hits</th><th>Decisions</th><th>Average prediction</th><th>Observed hit rate</th><th>Observed minus predicted</th></tr></thead><tbody><tr><td>Below 55%</td><td>3246</td><td>6927</td><td>46.2%</td><td>46.9%</td><td>+0.7 pp</td></tr><tr><td>55-60%</td><td>1629</td><td>2765</td><td>57.5%</td><td>58.9%</td><td>+1.4 pp</td></tr><tr><td>60-65%</td><td>1790</td><td>2801</td><td>62.4%</td><td>63.9%</td><td>+1.5 pp</td></tr><tr><td>65-70%</td><td>1215</td><td>1811</td><td>67.1%</td><td>67.1%</td><td>-0.0 pp</td></tr><tr><td>70-75%</td><td>388</td><td>554</td><td>71.8%</td><td>70.0%</td><td>-1.8 pp</td></tr><tr><td>75-80%</td><td>53</td><td>81</td><td>76.8%</td><td>65.4%</td><td>-11.4 pp</td></tr><tr><td>80% and above</td><td>8</td><td>14</td><td>82.9%</td><td>57.1%</td><td>-25.8 pp</td></tr></tbody></table></div>
+      </section>
+
+      <section>
+        <h2>What separated top-five hits from misses</h2>
+        <p>These are prospective associations within the learned top five. They answer the useful question, "Once the model has found five plausible hitters, what helps order them?" They do not prove causality.</p>
+        <h3>Largest numeric separations</h3>
+        <div class="table-wrap"><table><thead><tr><th>Feature</th><th>Hit mean</th><th>Miss mean</th><th>Standardized difference</th><th>Hit rows</th><th>Miss rows</th></tr></thead><tbody><tr><td>500-AB batting average</td><td>0.283</td><td>0.273</td><td>0.44</td><td>177</td><td>76</td></tr><tr><td>Season BA vs today&#x27;s pitcher hand</td><td>0.291</td><td>0.277</td><td>0.35</td><td>76</td><td>42</td></tr><tr><td>Starter Stuff+</td><td>92.605</td><td>95.267</td><td>-0.34</td><td>152</td><td>60</td></tr><tr><td>500-PA hits per PA</td><td>0.251</td><td>0.244</td><td>0.31</td><td>177</td><td>76</td></tr><tr><td>Lineup slot</td><td>2.346</td><td>2.779</td><td>-0.30</td><td>177</td><td>76</td></tr><tr><td>Expected PA</td><td>4.651</td><td>4.597</td><td>0.27</td><td>177</td><td>76</td></tr><tr><td>Current-season batting average</td><td>0.283</td><td>0.275</td><td>0.26</td><td>177</td><td>76</td></tr><tr><td>Bob score</td><td>60.155</td><td>58.469</td><td>0.22</td><td>177</td><td>76</td></tr><tr><td>Starter season H/IP</td><td>1.296</td><td>1.363</td><td>-0.17</td><td>170</td><td>74</td></tr><tr><td>H2H xBA</td><td>0.352</td><td>0.380</td><td>-0.16</td><td>144</td><td>63</td></tr><tr><td>Last-five AB</td><td>20.588</td><td>20.276</td><td>0.15</td><td>177</td><td>76</td></tr><tr><td>Learned probability</td><td>0.743</td><td>0.747</td><td>-0.14</td><td>177</td><td>76</td></tr></tbody></table></div>
+        <h3>Readable threshold checks</h3>
+        <div class="table-wrap"><table><thead><tr><th>Factor</th><th>Yes hits</th><th>Yes decisions</th><th>Yes hit rate</th><th>No hit rate</th><th>Edge</th></tr></thead><tbody><tr><td>500-AB batting average at least .275</td><td>111</td><td>142</td><td>78.2%</td><td>59.5%</td><td>+18.7 pp</td></tr><tr><td>Starter Stuff+ at most 100</td><td>130</td><td>175</td><td>74.3%</td><td>60.3%</td><td>+14.0 pp</td></tr><tr><td>Batting in top five</td><td>166</td><td>235</td><td>70.6%</td><td>61.1%</td><td>+9.5 pp</td></tr><tr><td>Expected PA at least 4.2</td><td>169</td><td>240</td><td>70.4%</td><td>61.5%</td><td>+8.9 pp</td></tr><tr><td>Pitch-type matchup xBA at least .300</td><td>154</td><td>223</td><td>69.1%</td><td>76.7%</td><td>-7.6 pp</td></tr><tr><td>H2H xBA at least .275</td><td>102</td><td>151</td><td>67.5%</td><td>73.5%</td><td>-6.0 pp</td></tr></tbody></table></div>
+        <div class="callout"><strong>Current signal:</strong> 500-AB batting average and opposing Stuff+ are stronger separators than the small probability differences inside the top five. The learned probability itself is slightly higher on misses than hits in this prospective slice, which is the clearest evidence that a second-stage shortlist ranker deserves a shadow test.</div>
+      </section>
+
+      <section>
+        <h2>Could the rank-one misses have been foreseen?</h2>
+        <p>10 of 15 prospective rank-one misses carried at least one simple warning available before the game. This does not mean those picks were objectively wrong; even a true 75% event fails one time in four. It does show which warnings should be presented explicitly to the daily committee.</p>
+        <div class="table-wrap"><table><thead><tr><th>Date</th><th>Player</th><th>Probability</th><th>Pregame warnings</th><th>Expected PA</th><th>Lineup</th><th>500-AB BA</th><th>Stuff+</th><th>Stops</th></tr></thead><tbody><tr><td>2026-05-18</td><td>Luis Arraez</td><td>77.4%</td><td>No simple pregame warning from the tested set</td><td>4.70</td><td>2.00</td><td>0.312</td><td>89.00</td><td>0</td></tr><tr><td>2026-05-21</td><td>Ildemaro Vargas</td><td>73.7%</td><td>500-AB BA below .275</td><td>4.50</td><td>3.60</td><td>0.272</td><td>94.00</td><td>1</td></tr><tr><td>2026-05-28</td><td>Kevin McGonigle</td><td>72.5%</td><td>No simple pregame warning from the tested set</td><td>4.70</td><td>1.60</td><td>0.297</td><td>--</td><td>4</td></tr><tr><td>2026-05-30</td><td>Luis Arraez</td><td>74.2%</td><td>No simple pregame warning from the tested set</td><td>4.60</td><td>3.20</td><td>0.314</td><td>94.00</td><td>0</td></tr><tr><td>2026-06-06</td><td>Sam Antonacci</td><td>73.5%</td><td>low season PA/game</td><td>4.70</td><td>2.50</td><td>0.286</td><td>99.00</td><td>4</td></tr><tr><td>2026-06-15</td><td>Fernando Tatis Jr.</td><td>73.0%</td><td>Stuff+ above 100, five or more stop valves</td><td>4.80</td><td>1.00</td><td>0.276</td><td>102.00</td><td>6</td></tr><tr><td>2026-06-17</td><td>Otto Lopez</td><td>74.2%</td><td>Stuff+ above 100</td><td>4.70</td><td>2.00</td><td>0.300</td><td>101.00</td><td>2</td></tr><tr><td>2026-06-18</td><td>Bo Bichette</td><td>75.5%</td><td>Stuff+ above 100</td><td>4.70</td><td>2.00</td><td>0.302</td><td>107.00</td><td>2</td></tr><tr><td>2026-06-24</td><td>Caleb Durbin</td><td>76.9%</td><td>low expected PA, lineup slot 6+, low season PA/game, 500-AB BA below .275</td><td>4.10</td><td>6.00</td><td>0.254</td><td>92.00</td><td>4</td></tr><tr><td>2026-06-27</td><td>Byron Buxton</td><td>77.6%</td><td>500-AB BA below .275, 500-PA K rate above 22%, five or more stop valves</td><td>4.70</td><td>2.00</td><td>0.266</td><td>88.00</td><td>7</td></tr><tr><td>2026-07-01</td><td>Xavier Edwards</td><td>80.2%</td><td>No simple pregame warning from the tested set</td><td>4.60</td><td>2.80</td><td>0.288</td><td>92.00</td><td>1</td></tr><tr><td>2026-07-05</td><td>Luis Arraez</td><td>81.0%</td><td>No simple pregame warning from the tested set</td><td>4.70</td><td>1.50</td><td>0.316</td><td>88.00</td><td>0</td></tr><tr><td>2026-07-09</td><td>Trea Turner</td><td>74.1%</td><td>five or more stop valves</td><td>4.80</td><td>1.00</td><td>0.276</td><td>91.00</td><td>6</td></tr><tr><td>2026-07-10</td><td>Nico Hoerner</td><td>79.2%</td><td>low expected PA, lineup slot 6+, 500-AB BA below .275</td><td>4.10</td><td>6.00</td><td>0.264</td><td>--</td><td>4</td></tr><tr><td>2026-07-14</td><td>Bobby Witt Jr.</td><td>81.1%</td><td>Stuff+ above 100</td><td>4.30</td><td>5.00</td><td>0.294</td><td>118.00</td><td>3</td></tr></tbody></table></div>
+        <h3>Stop-valve context inside the top five</h3>
+        <p>Most individual stop valves are weak filters once a hitter has already reached the learned top five. Treat them as descriptive risk flags. The broad model should learn their continuous inputs rather than accumulate binary vetoes.</p>
+        <div class="table-wrap"><table><thead><tr><th>Stop valve</th><th>Hits</th><th>Decisions</th><th>Hit rate</th></tr></thead><tbody><tr><td>Precipitation probability over 40%</td><td>4</td><td>8</td><td>50.0%</td></tr><tr><td>Hitter is not at least .265 against both pitcher hands in season/500/1500 windows</td><td>28</td><td>51</td><td>54.9%</td></tr><tr><td>Hitter is below .270 over both long and last-500 AB windows</td><td>39</td><td>69</td><td>56.5%</td></tr><tr><td>Starter H/IP under .875 over last 200 innings</td><td>15</td><td>25</td><td>60.0%</td></tr><tr><td>Hitter is not at least .270 against today&#x27;s pitcher hand</td><td>50</td><td>79</td><td>63.3%</td></tr><tr><td>H2H whiff rate over 25%</td><td>35</td><td>55</td><td>63.6%</td></tr><tr><td>Opposing team may be using an opener</td><td>8</td><td>12</td><td>66.7%</td></tr><tr><td>Starter Stuff+ over 95</td><td>49</td><td>72</td><td>68.1%</td></tr><tr><td>H2H K rate over 20%</td><td>49</td><td>72</td><td>68.1%</td></tr><tr><td>Hitter season K rate over 22%</td><td>46</td><td>67</td><td>68.7%</td></tr><tr><td>Hitter season PA/G under 4.2</td><td>27</td><td>39</td><td>69.2%</td></tr><tr><td>H2H PA below 2</td><td>34</td><td>48</td><td>70.8%</td></tr><tr><td>Hitter is not at least .265 against both pitcher hands in 500/1500 AB windows</td><td>49</td><td>69</td><td>71.0%</td></tr><tr><td>Hitter last-500 PA whiff rate over 25%</td><td>53</td><td>74</td><td>71.6%</td></tr><tr><td>Hitter season whiff rate over 25%</td><td>54</td><td>74</td><td>73.0%</td></tr><tr><td>Hitter last-500 PA K rate over 22%</td><td>46</td><td>63</td><td>73.0%</td></tr><tr><td>Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows</td><td>62</td><td>81</td><td>76.5%</td></tr><tr><td>Hitter last-500 PA BB rate over 12%</td><td>40</td><td>51</td><td>78.4%</td></tr><tr><td>Hitter season BB rate over 12%</td><td>48</td><td>60</td><td>80.0%</td></tr><tr><td>Starter season H/IP under .875</td><td>8</td><td>10</td><td>80.0%</td></tr></tbody></table></div>
+      </section>
+
+      <section>
+        <h2>Prospective shadow rerankers</h2>
+        <p>These transparent rules keep the learned top five, then prefer the highest raw rank meeting a conventional quality floor. They are post-hoc hypotheses on a small sample, not production-ready policies. The recent-half column is included to expose whether a result is driven only by the early period.</p>
+        <div class="table-wrap"><table><thead><tr><th>Policy</th><th>Hits</th><th>Decisions</th><th>All prospective</th><th>Recent hits</th><th>Recent decisions</th><th>Recent hit rate</th></tr></thead><tbody><tr><td>Raw learned rank</td><td>38</td><td>53</td><td>71.7%</td><td>15</td><td>25</td><td>60.0%</td></tr><tr><td>Prefer 500-AB BA &gt;= .275</td><td>39</td><td>53</td><td>73.6%</td><td>17</td><td>26</td><td>65.4%</td></tr><tr><td>Prefer starter Stuff+ &lt;= 100</td><td>41</td><td>53</td><td>77.4%</td><td>19</td><td>25</td><td>76.0%</td></tr><tr><td>Prefer BA &gt;= .275 and Stuff+ &lt;= 100</td><td>40</td><td>52</td><td>76.9%</td><td>18</td><td>25</td><td>72.0%</td></tr></tbody></table></div>
+        <div class="callout good"><strong>Best forward hypothesis:</strong> within the learned top five, prefer a hitter facing starter Stuff+ at or below 100 when one is available. It improved this sample from 38/53 to 41/53 overall and from 15/25 to 19/25 in the recent half. Freeze that rule now and shadow-test it prospectively; do not tune the threshold again until the evaluation window closes.</div>
+      </section>
+
+      <section>
+        <h2>Walk-forward model experiments</h2>
+        <p>Each model is trained only on earlier dates and asked to select the next day's rank-one hitter. The evaluator now excludes an ungraded top pick without promoting the next hitter later known to have appeared. Historical lineup and full-season context still make absolute rates optimistic, but relative comparisons are useful because every variant sees the same boards.</p>
+        <div class="table-wrap"><table><thead><tr><th>Experiment</th><th>Description</th><th>Record</th><th>Success rate</th><th>Longest streak</th></tr></thead><tbody><tr><td>iteration_0_bob_score</td><td>Control: rank by the existing primary-model score.</td><td>190-61</td><td>75.7%</td><td>11</td></tr><tr><td>iteration_3_opportunity_contact</td><td>Trimmed logistic: opportunity, contact floor, pitcher vulnerability, and Bob score; includes non-stop booleans only.</td><td>193-58</td><td>76.9%</td><td>16</td></tr><tr><td>iteration_4_streak_safe_ranker</td><td>Hand-tuned high-floor ranker: opportunity/contact/pitcher vulnerability blend with only light stop penalties.</td><td>180-74</td><td>70.9%</td><td>10</td></tr><tr><td>iteration_5_indicator_ranker</td><td>Hand-tuned ranker using the strongest observed historical indicators, with no stop-valve inputs.</td><td>175-76</td><td>69.7%</td><td>11</td></tr></tbody></table></div>
+        <div class="callout good"><strong>Interpretation:</strong> the trimmed opportunity/contact model has been the strongest repeatable historical variant. Hand-tuned indicator rankers have not beaten logistic learning, and heavy stop-valve/category versions have tended to lose accuracy. Keep the continuous baseball variables; reduce brittle rules.</div>
+      </section>
+
+      <section>
+        <h2>Weighting diagnosis</h2>
+        <div class="grid">
+          <article class="panel"><h3>Likely overweight or unstable</h3><ul><li><strong>Upper raw probability:</strong> 75%+ predictions are not calibrated prospectively.</li><li><strong>Calendar and missingness proxies:</strong> month, day of week, rain, and missing park values should not influence a pick without a baseball mechanism.</li><li><strong>Correlated short-form fields:</strong> last-five games, AB, hits, and BA create unstable signs. Replace or supplement them with AB per game and contact-quality windows.</li><li><strong>Repeated opportunity scoring:</strong> PA/game, expected PA, lineup slot, Bob score, safety, discrete bonuses, and rank penalties overlap across model and selection policy.</li><li><strong>Bob score inside the learned model:</strong> useful, but it duplicates many underlying features and can preserve old hand weights.</li><li><strong>Surface H2H:</strong> tiny samples should be shrunk strongly toward pitch-type and platoon expectations.</li></ul></article>
+          <article class="panel"><h3>Likely underweighted</h3><ul><li><strong>Stable hitter contact skill:</strong> 500-AB BA and 500-PA K/whiff rates separate current top-five hits from misses.</li><li><strong>Current-season batting average:</strong> it now exists in the candidate table and separates prospective hits, but is absent from the production feature list. Use PA-shrunk season BA rather than a raw early-season rate.</li><li><strong>Starter quality at the shortlist stage:</strong> Stuff+ is more informative prospectively than its current coefficient rank suggests.</li><li><strong>Current-hand interactions:</strong> the model includes both LHP and RHP 500/1500 split values but neither current-season splits nor an explicit interaction selecting today's relevant hand.</li><li><strong>Appearance probability:</strong> lineup certainty and scratch/rest risk need a separate target before official lineups.</li><li><strong>Recency drift:</strong> the recent-half top-one record trails the earlier half, arguing for season or exponential time weights.</li><li><strong>Calibration:</strong> probabilities should be calibrated on held-out recent dates before display.</li></ul></article>
+        </div>
+      </section>
+
+      <section>
+        <h2>New free data worth adding</h2>
+        <ol>
+          <li><strong>Rolling Statcast contact quality:</strong> hitter xBA, hard-hit rate, sweet-spot rate, EV50, and the same contact allowed by the starter. This is the cleanest upgrade from outcome batting average to quality of contact.</li>
+          <li><strong>Bat-tracking quality:</strong> squared-up rate, blasts, competitive-swing contact, bat speed, and swing length. Squared-up contact is especially aligned with a one-hit target.</li>
+          <li><strong>Pitch-arsenal interaction:</strong> weight the hitter's xBA/contact rate against each pitch type by the probable starter's current usage, velocity, movement, and handedness, rather than using one aggregate inferred matchup.</li>
+          <li><strong>Bullpen availability:</strong> pitches thrown and leverage appearances over the prior three days, expected handedness mix, and team off-days. Season bullpen BA does not tell us which relievers are available tonight.</li>
+          <li><strong>Defense behind the pitcher:</strong> team and position-specific Outs Above Average. A single is partly a contact-quality event and partly whether the defense converts the ball.</li>
+          <li><strong>Lineup certainty and availability:</strong> official-lineup timestamp, injury return, rest-day risk, and role changes. Historical final lineups should remain a separate dataset flag, never silently mixed with morning projections.</li>
+        </ol>
+        <p class="muted">Primary free references: <a href="https://www.mlb.com/glossary/statcast/expected-batting-average">MLB xBA glossary</a>, <a href="https://baseballsavant.mlb.com/leaderboard/bat-tracking">Baseball Savant bat tracking</a>, <a href="https://baseballsavant.mlb.com/expected_statistics">Baseball Savant expected statistics</a>, and <a href="https://www.mlb.com/glossary/statcast/outs-above-average">MLB Outs Above Average glossary</a>.</p>
+      </section>
+
+      <section>
+        <h2>Recommended next model cycle</h2>
+        <ol>
+          <li>Freeze the current production learned model as the baseline; do not overwrite its historical predictions.</li>
+          <li>Add a <strong>data provenance field</strong> for official, projected, recent-usage, or final-boxscore lineup source.</li>
+          <li>Model <strong>P(appearance)</strong> separately, then multiply it by P(hit | appearance) for morning rankings.</li>
+          <li>Build a shadow top-five reranker using stable hitter quality, Stuff+, current-hand interaction, lineup opportunity, and a small stop-count penalty. Train only on earlier dates.</li>
+          <li>Remove calendar fields and raw rain from the candidate model; retain weather only through game/park context where it has a plausible mechanism.</li>
+          <li>Fit a recent-date probability calibrator and show calibrated probability beside, not in place of, the raw score during evaluation.</li>
+          <li>Require at least 50 prospective resolved days before promotion, with predeclared metrics: rank-one hit rate, top-two any-hit rate, longest miss streak, Brier score, and performance by season/month.</li>
+        </ol>
+        <div class="callout"><strong>Decision today:</strong> keep using the learned top five and the daily committee. For the single pick, treat raw ranks one and two as candidates, then explicitly compare 500-AB contact skill, K/whiff rate, lineup opportunity, opposing Stuff+, availability, and current news. Do not automatically choose the higher displayed probability when the gap is small.</div>
+      </section>
+
+      <footer>Generated by <code>py -3 -m statbirt.learned_review</code>. Source rows: 82,741 candidates, 82,966 saved predictions, 14,953 resolved prospective predictions. Backtest source: X:\Coding\Statbirt\logs\model_backtests\learned_model_backtest_20260717T041228Z.json.</footer>
+    </main>
+  </body>
+</html>

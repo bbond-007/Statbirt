@@ -128,6 +128,15 @@ To rebuild the learned-model shortlist dashboard from `data/model_predictions.cs
 python3 -m statbirt.export_learned_web --all-dates --limit 5
 ```
 
+To rebuild the dated learned-model performance review after running the walk-forward experiments:
+
+```bash
+python3 scripts/backtest_learned_model_experiments.py --min-train-dates 30
+python3 -m statbirt.learned_review
+```
+
+The review separates truly pregame saved predictions from retrospective historical scores, audits calibration and top-five miss indicators, and publishes `web/data/learned_model_review.html`. Both dashboards link to the dated report near the top.
+
 Then serve the page locally:
 
 ```bash

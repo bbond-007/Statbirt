@@ -298,7 +298,7 @@ def build_selection_brief(picks: list[dict]) -> dict:
 
 def _is_evaluable(pick: dict) -> bool:
     status = str(pick.get("result_status") or "").strip().lower()
-    return status in {"final", "no_appearance"}
+    return status == "final"
 
 
 def _is_hit(pick: dict) -> bool:
@@ -308,6 +308,30 @@ def _is_hit(pick: dict) -> bool:
     if value == "1":
         return True
     return _int(pick.get("result_hits")) > 0
+
+
+def _timestamp(value: object) -> datetime | None:
+    text = str(value or "").strip()
+    if not text:
+        return None
+    try:
+        parsed = datetime.fromisoformat(text.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return parsed.astimezone(timezone.utc)
+
+
+def prediction_is_pregame(prediction: dict, candidate: dict) -> bool:
+    trained = _timestamp(prediction.get("model_trained_at"))
+    first_pitch = _timestamp(candidate.get("game_start_time_utc"))
+    if trained is None:
+        return False
+    if first_pitch is not None:
+        return trained <= first_pitch
+    game_date = str(candidate.get("date") or prediction.get("date") or "").strip()
+    return bool(game_date) and trained.date().isoformat() <= game_date
 
 
 def _longest_streak(values: list[bool]) -> int:
@@ -387,6 +411,7 @@ def run_backtest(
         rows_by_date,
         sort_predictions,
     )
+    from .export_web import row_identity
 
     prediction_rows = load_rows(predictions_csv)
     candidate_rows = load_rows(candidates_csv)
@@ -397,9 +422,14 @@ def run_backtest(
     for date_key, rows in predictions_by_date.items():
         selected_candidates = candidates_by_date.get(date_key, [])
         lookup = candidate_lookup(selected_candidates)
+        eligible_predictions = []
+        for prediction in rows:
+            candidate = lookup.get(row_identity(prediction))
+            if candidate and prediction_is_pregame(prediction, candidate):
+                eligible_predictions.append(prediction)
         picks_by_date[date_key] = [
             build_pick_payload(prediction, lookup, rank)
-            for rank, prediction in enumerate(sort_predictions(rows)[:limit], start=1)
+            for rank, prediction in enumerate(sort_predictions(eligible_predictions)[:limit], start=1)
         ]
 
     payload = backtest_pick_payloads(picks_by_date)

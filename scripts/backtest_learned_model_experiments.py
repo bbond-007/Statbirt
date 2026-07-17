@@ -425,8 +425,7 @@ def evaluate_experiment(df: pd.DataFrame, experiment: Experiment, *, min_train_d
             continue
         train_idx = df.index[(df["date"].isin(train_dates)) & df["label"].notna()].to_numpy()
         test_idx = df.index[df["date"].eq(date_value)].to_numpy()
-        graded_test_idx = df.index[df["date"].eq(date_value) & df["label"].notna()].to_numpy()
-        if len(train_idx) == 0 or len(graded_test_idx) == 0:
+        if len(train_idx) == 0 or len(test_idx) == 0:
             continue
 
         if builder is not None and experiment.matrix_spec is not None:
@@ -454,10 +453,10 @@ def evaluate_experiment(df: pd.DataFrame, experiment: Experiment, *, min_train_d
         raw_label = raw_top.get("label")
         if pd.isna(raw_label):
             raw_ungraded_count += 1
+            continue
 
-        graded_rows = test_rows[test_rows["label"].notna()]
-        pick = graded_rows.iloc[0]
-        label = int(pick["label"])
+        pick = raw_top
+        label = int(raw_label)
         labels.append(label)
         daily.append(
             {
@@ -559,6 +558,11 @@ def main() -> None:
     parser.add_argument("--candidates", default=str(DEFAULT_CANDIDATES))
     parser.add_argument("--out-dir", default=str(DEFAULT_OUT_DIR))
     parser.add_argument("--min-train-dates", type=int, default=30)
+    parser.add_argument(
+        "--experiments",
+        default="",
+        help="Optional comma-separated experiment names; defaults to the full suite.",
+    )
     args = parser.parse_args()
 
     df = prepare_dataframe(Path(args.candidates))
@@ -667,6 +671,14 @@ def main() -> None:
             ),
         ),
     ]
+
+    if args.experiments:
+        requested = {value.strip() for value in args.experiments.split(",") if value.strip()}
+        known = {experiment.name for experiment in experiments}
+        unknown = sorted(requested - known)
+        if unknown:
+            raise ValueError(f"Unknown experiment name(s): {', '.join(unknown)}")
+        experiments = [experiment for experiment in experiments if experiment.name in requested]
 
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)

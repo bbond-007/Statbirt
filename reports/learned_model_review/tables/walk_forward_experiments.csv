@@ -1,0 +1,5 @@
+name,description,evaluated_dates,wins,losses,daily_success_rate,max_success_streak,ending_success_streak,raw_ungraded_top_count
+iteration_0_bob_score,Control: rank by the existing primary-model score.,251,190,61,0.7569721115537849,11,0,14
+iteration_3_opportunity_contact,"Trimmed logistic: opportunity, contact floor, pitcher vulnerability, and Bob score; includes non-stop booleans only.",251,193,58,0.7689243027888446,16,0,14
+iteration_4_streak_safe_ranker,Hand-tuned high-floor ranker: opportunity/contact/pitcher vulnerability blend with only light stop penalties.,254,180,74,0.7086614173228346,10,0,11
+iteration_5_indicator_ranker,"Hand-tuned ranker using the strongest observed historical indicators, with no stop-valve inputs.",251,175,76,0.6972111553784861,11,4,14

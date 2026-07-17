@@ -1,0 +1,21 @@
+reason,decisions,hits,misses,hit_rate
+Precipitation probability over 40%,8,4,4,0.5
+Hitter is not at least .265 against both pitcher hands in season/500/1500 windows,51,28,23,0.5490196078431373
+Hitter is below .270 over both long and last-500 AB windows,69,39,30,0.5652173913043478
+Starter H/IP under .875 over last 200 innings,25,15,10,0.6
+Hitter is not at least .270 against today's pitcher hand,79,50,29,0.6329113924050633
+H2H whiff rate over 25%,55,35,20,0.6363636363636364
+Opposing team may be using an opener,12,8,4,0.6666666666666666
+Starter Stuff+ over 95,72,49,23,0.6805555555555556
+H2H K rate over 20%,72,49,23,0.6805555555555556
+Hitter season K rate over 22%,67,46,21,0.6865671641791045
+Hitter season PA/G under 4.2,39,27,12,0.6923076923076923
+H2H PA below 2,48,34,14,0.7083333333333334
+Hitter is not at least .265 against both pitcher hands in 500/1500 AB windows,69,49,20,0.7101449275362319
+Hitter last-500 PA whiff rate over 25%,74,53,21,0.7162162162162162
+Hitter season whiff rate over 25%,74,54,20,0.7297297297297297
+Hitter last-500 PA K rate over 22%,63,46,17,0.7301587301587301
+Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows,81,62,19,0.7654320987654321
+Hitter last-500 PA BB rate over 12%,51,40,11,0.7843137254901961
+Hitter season BB rate over 12%,60,48,12,0.8
+Starter season H/IP under .875,10,8,2,0.8

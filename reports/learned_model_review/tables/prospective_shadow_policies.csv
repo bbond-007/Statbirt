@@ -1,0 +1,5 @@
+policy,hits,decisions,hit_rate,recent_hits,recent_decisions,recent_hit_rate
+Raw learned rank,38,53,0.7169811320754716,15,25,0.6
+Prefer 500-AB BA >= .275,39,53,0.7358490566037735,17,26,0.6538461538461539
+Prefer starter Stuff+ <= 100,41,53,0.7735849056603774,19,25,0.76
+Prefer BA >= .275 and Stuff+ <= 100,40,52,0.7692307692307693,18,25,0.72

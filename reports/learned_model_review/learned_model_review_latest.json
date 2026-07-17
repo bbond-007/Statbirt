@@ -1,0 +1,1740 @@
+{
+  "generated_at": "2026-07-17T04:13:42.882645+00:00",
+  "report_date": "2026-07-16",
+  "source_candidates": "X:\\Coding\\Statbirt\\data\\statbirt_candidates.csv",
+  "source_predictions": "X:\\Coding\\Statbirt\\data\\model_predictions.csv",
+  "candidate_rows": 82741,
+  "prediction_rows": 82966,
+  "data_date_min": "2025-03-18",
+  "data_date_max": "2026-07-16",
+  "production_model": {
+    "model_version": "learned-logistic-v2-20260716T113432Z",
+    "trained_at": "2026-07-16T11:34:32Z",
+    "available_candidate_rows": 82741,
+    "labeled_training_rows": 70907,
+    "training_date_min": "2025-03-18",
+    "training_date_max": "2026-07-14",
+    "training_metrics": {
+      "rows": 70907,
+      "hit_rate": 0.564584596725288,
+      "accuracy_0_50": 0.60412935253219,
+      "log_loss": 0.6633927732616379,
+      "brier": 0.2354074141725677,
+      "roc_auc": 0.6170722613389202,
+      "top_10_hit_rate": 0.7264406779661017
+    },
+    "validation_metrics": {
+      "rows": 14960,
+      "hit_rate": 0.5566176470588236,
+      "accuracy_0_50": 0.5977941176470588,
+      "log_loss": 0.6674943087130608,
+      "brier": 0.237344743026126,
+      "roc_auc": 0.6133695348854094,
+      "top_10_hit_rate": 0.7084745762711865
+    },
+    "feature_weights": {
+      "positive": [
+        {
+          "feature": "num__hitter_pa_per_game_season",
+          "weight": 0.17530954390404882
+        },
+        {
+          "feature": "num__pitcher_hpi_season",
+          "weight": 0.09454034129980503
+        },
+        {
+          "feature": "num__hitter_last_5_games_ab",
+          "weight": 0.08629485730091697
+        },
+        {
+          "feature": "num__score",
+          "weight": 0.06405879610786676
+        },
+        {
+          "feature": "num__park_hit_factor",
+          "weight": 0.0445142254164643
+        },
+        {
+          "feature": "num__forecast_temperature_f",
+          "weight": 0.03317612103910222
+        },
+        {
+          "feature": "num__hitter_last_5_games_hits",
+          "weight": 0.033145731336261655
+        },
+        {
+          "feature": "num__inferred_pitch_type_xba",
+          "weight": 0.03288520480840933
+        },
+        {
+          "feature": "missing__park_hit_factor",
+          "weight": 0.029047624850269415
+        },
+        {
+          "feature": "num__pitcher_lr_opp_ba",
+          "weight": 0.023384816259170285
+        },
+        {
+          "feature": "bool__confirmed_lineup",
+          "weight": 0.021840451203137167
+        },
+        {
+          "feature": "num__inferred_pitch_type_ba",
+          "weight": 0.021051654324995225
+        },
+        {
+          "feature": "num__hitter_ba_75_ab",
+          "weight": 0.01297086746129718
+        },
+        {
+          "feature": "num__precip_probability",
+          "weight": 0.012466730678711482
+        },
+        {
+          "feature": "num__expected_pa",
+          "weight": 0.011990401298024762
+        },
+        {
+          "feature": "num__hitter_hipa_75_ab",
+          "weight": 0.011916459360385925
+        },
+        {
+          "feature": "num__h2h_hit_rate",
+          "weight": 0.009376134081636883
+        },
+        {
+          "feature": "missing__pitcher_hpi_350",
+          "weight": 0.00921528609259479
+        },
+        {
+          "feature": "missing__pitcher_hpi_200",
+          "weight": 0.00921528609259479
+        },
+        {
+          "feature": "num__pitcher_lr_opp_ba_200",
+          "weight": 0.00785048018009978
+        }
+      ],
+      "negative": [
+        {
+          "feature": "num__hitter_k_rate_500_pa",
+          "weight": -0.03738774028230958
+        },
+        {
+          "feature": "num__hitter_last_5_games_played",
+          "weight": -0.034530516693059614
+        },
+        {
+          "feature": "missing__sprint_speed",
+          "weight": -0.03199844654922409
+        },
+        {
+          "feature": "num__pitcher_hits_last_18_ip",
+          "weight": -0.02264940053951181
+        },
+        {
+          "feature": "missing__h2h_xba",
+          "weight": -0.02113664751562485
+        },
+        {
+          "feature": "num__game_month",
+          "weight": -0.019891072835203392
+        },
+        {
+          "feature": "num__lineup_slot",
+          "weight": -0.019251364822858785
+        },
+        {
+          "feature": "num__hitter_k_rate_season",
+          "weight": -0.01913896825794135
+        },
+        {
+          "feature": "num__pitcher_hpi_200",
+          "weight": -0.018292313563747217
+        },
+        {
+          "feature": "missing__inferred_pitch_type_xba",
+          "weight": -0.017765161545977064
+        },
+        {
+          "feature": "missing__hitter_bb_rate_500_pa",
+          "weight": -0.01760536119692971
+        },
+        {
+          "feature": "missing__hitter_whiff_rate_500_pa",
+          "weight": -0.01760536119692971
+        },
+        {
+          "feature": "missing__hitter_k_rate_500_pa",
+          "weight": -0.01760536119692971
+        },
+        {
+          "feature": "bool__division_matchup",
+          "weight": -0.01591909310222102
+        },
+        {
+          "feature": "missing__hitter_whiff_rate_season",
+          "weight": -0.014198012483726718
+        },
+        {
+          "feature": "missing__hitter_bb_rate_season",
+          "weight": -0.013820383945451988
+        },
+        {
+          "feature": "missing__hitter_k_rate_season",
+          "weight": -0.013820383945451988
+        },
+        {
+          "feature": "num__pitcher_hpi_350",
+          "weight": -0.013430816670995764
+        },
+        {
+          "feature": "missing__h2h_hit_rate",
+          "weight": -0.012150613653734389
+        },
+        {
+          "feature": "num__game_day_of_week",
+          "weight": -0.011720433029865985
+        }
+      ]
+    },
+    "numeric_correlations": [
+      {
+        "feature": "hitter_pa_per_game_season",
+        "correlation": 0.16938483773586804,
+        "rows": 70316
+      },
+      {
+        "feature": "hitter_last_5_games_ab",
+        "correlation": 0.13885736498694934,
+        "rows": 70316
+      },
+      {
+        "feature": "score",
+        "correlation": 0.13030996425942906,
+        "rows": 70907
+      },
+      {
+        "feature": "hitter_ba_500_ab",
+        "correlation": 0.10991619372171524,
+        "rows": 70742
+      },
+      {
+        "feature": "hitter_ba_2500_ab",
+        "correlation": 0.10582174212125273,
+        "rows": 70742
+      },
+      {
+        "feature": "lineup_slot",
+        "correlation": -0.10533231531663613,
+        "rows": 70907
+      },
+      {
+        "feature": "expected_pa",
+        "correlation": 0.10476091144834053,
+        "rows": 70907
+      },
+      {
+        "feature": "hitter_hipa_500_pa",
+        "correlation": 0.10424892557713857,
+        "rows": 70742
+      },
+      {
+        "feature": "hitter_last_5_games_hits",
+        "correlation": 0.10273267769789873,
+        "rows": 70316
+      },
+      {
+        "feature": "hitter_hipa_2500_pa",
+        "correlation": 0.10130122595892214,
+        "rows": 70742
+      },
+      {
+        "feature": "hitter_split_ba_1500_vs_rhp",
+        "correlation": 0.09382545401221988,
+        "rows": 70786
+      },
+      {
+        "feature": "hitter_split_ba_500_vs_rhp",
+        "correlation": 0.09373572091580931,
+        "rows": 70786
+      },
+      {
+        "feature": "hitter_ba_75_ab",
+        "correlation": 0.09051334937473757,
+        "rows": 70742
+      },
+      {
+        "feature": "hitter_hipa_75_ab",
+        "correlation": 0.08764596032169768,
+        "rows": 70742
+      },
+      {
+        "feature": "hitter_k_rate_500_pa",
+        "correlation": -0.08252703408452865,
+        "rows": 70801
+      },
+      {
+        "feature": "inferred_pitch_type_ba",
+        "correlation": 0.0731088744419714,
+        "rows": 69564
+      },
+      {
+        "feature": "hitter_k_rate_season",
+        "correlation": -0.06851220590636423,
+        "rows": 70271
+      },
+      {
+        "feature": "pitcher_hpi_season",
+        "correlation": 0.0636746998117884,
+        "rows": 69890
+      },
+      {
+        "feature": "hitter_ba_25_ab",
+        "correlation": 0.062925202427179,
+        "rows": 70742
+      },
+      {
+        "feature": "hitter_split_ba_500_vs_lhp",
+        "correlation": 0.060327271259752,
+        "rows": 70670
+      },
+      {
+        "feature": "hitter_split_ba_1500_vs_lhp",
+        "correlation": 0.06032561626095921,
+        "rows": 70670
+      },
+      {
+        "feature": "hitter_whiff_rate_500_pa",
+        "correlation": -0.05814189710056997,
+        "rows": 70801
+      },
+      {
+        "feature": "hitter_last_5_games_ba",
+        "correlation": 0.0567590876944833,
+        "rows": 70301
+      },
+      {
+        "feature": "inferred_pitch_type_xba",
+        "correlation": 0.052962191062695424,
+        "rows": 69342
+      },
+      {
+        "feature": "hitter_whiff_rate_season",
+        "correlation": -0.04913520735929863,
+        "rows": 70264
+      },
+      {
+        "feature": "h2h_pa",
+        "correlation": 0.04335644456338178,
+        "rows": 70907
+      },
+      {
+        "feature": "park_hit_factor",
+        "correlation": 0.03701735908843005,
+        "rows": 67095
+      },
+      {
+        "feature": "pitcher_lr_opp_ba",
+        "correlation": 0.036822939361400096,
+        "rows": 69795
+      },
+      {
+        "feature": "pitcher_lr_opp_ba_200",
+        "correlation": 0.03368433448384588,
+        "rows": 69795
+      },
+      {
+        "feature": "hitter_last_5_games_played",
+        "correlation": 0.03101565625149856,
+        "rows": 70907
+      }
+    ],
+    "stop_reason_hit_rates": [
+      {
+        "reason": "Hitter BA under .150 over last 25 AB",
+        "rows": 8939,
+        "hit_rate": 0.5128090390423985
+      },
+      {
+        "reason": "Starter season H/IP under .875",
+        "rows": 26682,
+        "hit_rate": 0.531294505659246
+      },
+      {
+        "reason": "Hitter last-500 PA K rate over 22%",
+        "rows": 37561,
+        "hit_rate": 0.5380847155294055
+      },
+      {
+        "reason": "H2H PA below 2",
+        "rows": 33041,
+        "hit_rate": 0.5381193063163948
+      },
+      {
+        "reason": "Hitter season K rate over 22%",
+        "rows": 34621,
+        "hit_rate": 0.5398457583547558
+      },
+      {
+        "reason": "Hitter is below .270 over both long and last-500 AB windows",
+        "rows": 52366,
+        "hit_rate": 0.5403315128136578
+      },
+      {
+        "reason": "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows",
+        "rows": 5824,
+        "hit_rate": 0.5403502747252747
+      },
+      {
+        "reason": "Hitter season PA/G under 4.2",
+        "rows": 54360,
+        "hit_rate": 0.5404893303899927
+      },
+      {
+        "reason": "Hitter is not at least .270 against today's pitcher hand",
+        "rows": 51653,
+        "hit_rate": 0.5416142334423945
+      },
+      {
+        "reason": "Starter H/IP under .875 over last 200 innings",
+        "rows": 25550,
+        "hit_rate": 0.5446575342465754
+      },
+      {
+        "reason": "Hitter last-500 PA whiff rate over 25%",
+        "rows": 36185,
+        "hit_rate": 0.5489291142738704
+      },
+      {
+        "reason": "Hitter season whiff rate over 25%",
+        "rows": 34012,
+        "hit_rate": 0.5497765494531341
+      },
+      {
+        "reason": "Hitter is not at least .265 against both pitcher hands in 500/1500 AB windows",
+        "rows": 54620,
+        "hit_rate": 0.5521786891248627
+      },
+      {
+        "reason": "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows",
+        "rows": 46330,
+        "hit_rate": 0.5536153680120872
+      },
+      {
+        "reason": "Starter Stuff+ over 95",
+        "rows": 38662,
+        "hit_rate": 0.5552739123687341
+      },
+      {
+        "reason": "Hitter is playing in a doubleheader",
+        "rows": 1436,
+        "hit_rate": 0.557799442896936
+      },
+      {
+        "reason": "Precipitation probability over 40%",
+        "rows": 1143,
+        "hit_rate": 0.5599300087489064
+      },
+      {
+        "reason": "Starter allowed fewer than 10 hits over last 18 IP",
+        "rows": 3759,
+        "hit_rate": 0.5610534716679968
+      },
+      {
+        "reason": "Hitter season BB rate over 12%",
+        "rows": 14195,
+        "hit_rate": 0.5666079605494893
+      },
+      {
+        "reason": "Starter's most recent start was dominant (6+ IP, 8+ K, <=3 H, <=2 BB)",
+        "rows": 301,
+        "hit_rate": 0.5681063122923588
+      },
+      {
+        "reason": "H2H whiff rate over 25%",
+        "rows": 16765,
+        "hit_rate": 0.5683268714583954
+      },
+      {
+        "reason": "Opposing team may be using an opener",
+        "rows": 2477,
+        "hit_rate": 0.5692369802180056
+      },
+      {
+        "reason": "H2H K rate over 20%",
+        "rows": 18781,
+        "hit_rate": 0.5730791757627389
+      },
+      {
+        "reason": "Hitter last-500 PA BB rate over 12%",
+        "rows": 8483,
+        "hit_rate": 0.5848166922079453
+      },
+      {
+        "reason": "No stop valve",
+        "rows": 113,
+        "hit_rate": 0.7079646017699115
+      }
+    ]
+  },
+  "backtest_path": "X:\\Coding\\Statbirt\\logs\\model_backtests\\learned_model_backtest_20260717T041228Z.json",
+  "walk_forward_backtest": {
+    "generated_at": "2026-07-17T04:12:28.507339+00:00",
+    "candidates": "X:\\Coding\\Statbirt\\data\\statbirt_candidates.csv",
+    "min_train_dates": 30,
+    "rows": 82741,
+    "labeled_rows": 70907,
+    "labeled_dates": 295,
+    "date_min": "2025-03-18",
+    "date_max": "2026-07-16",
+    "summaries": [
+      {
+        "name": "iteration_0_bob_score",
+        "description": "Control: rank by the existing primary-model score.",
+        "evaluated_dates": 251,
+        "wins": 190,
+        "losses": 61,
+        "daily_success_rate": 0.7569721115537849,
+        "max_success_streak": 11,
+        "ending_success_streak": 0,
+        "raw_ungraded_top_count": 14
+      },
+      {
+        "name": "iteration_3_opportunity_contact",
+        "description": "Trimmed logistic: opportunity, contact floor, pitcher vulnerability, and Bob score; includes non-stop booleans only.",
+        "evaluated_dates": 251,
+        "wins": 193,
+        "losses": 58,
+        "daily_success_rate": 0.7689243027888446,
+        "max_success_streak": 16,
+        "ending_success_streak": 0,
+        "raw_ungraded_top_count": 14
+      },
+      {
+        "name": "iteration_4_streak_safe_ranker",
+        "description": "Hand-tuned high-floor ranker: opportunity/contact/pitcher vulnerability blend with only light stop penalties.",
+        "evaluated_dates": 254,
+        "wins": 180,
+        "losses": 74,
+        "daily_success_rate": 0.7086614173228346,
+        "max_success_streak": 10,
+        "ending_success_streak": 0,
+        "raw_ungraded_top_count": 11
+      },
+      {
+        "name": "iteration_5_indicator_ranker",
+        "description": "Hand-tuned ranker using the strongest observed historical indicators, with no stop-valve inputs.",
+        "evaluated_dates": 251,
+        "wins": 175,
+        "losses": 76,
+        "daily_success_rate": 0.6972111553784861,
+        "max_success_streak": 11,
+        "ending_success_streak": 4,
+        "raw_ungraded_top_count": 14
+      }
+    ],
+    "top_univariate_indicators": [
+      {
+        "feature": "hitter_pa_per_game_season",
+        "rows": 70316,
+        "correlation": 0.16938483773586804,
+        "bottom_bin_hit_rate": 0.42613994536667366,
+        "top_bin_hit_rate": 0.6522891211541293,
+        "top_minus_bottom": 0.22614917578745564
+      },
+      {
+        "feature": "hitter_last_5_games_ab",
+        "rows": 70316,
+        "correlation": 0.13885736498694934,
+        "bottom_bin_hit_rate": 0.45978914831373846,
+        "top_bin_hit_rate": 0.6455142231947484,
+        "top_minus_bottom": 0.18572507488100992
+      },
+      {
+        "feature": "score",
+        "rows": 70907,
+        "correlation": 0.13030996425942906,
+        "bottom_bin_hit_rate": 0.47110234000563855,
+        "top_bin_hit_rate": 0.6530669866591374,
+        "top_minus_bottom": 0.18196464665349887
+      },
+      {
+        "feature": "hitter_ba_500_ab",
+        "rows": 70742,
+        "correlation": 0.10991619372171524,
+        "bottom_bin_hit_rate": 0.47164913239513595,
+        "top_bin_hit_rate": 0.6388710711994868,
+        "top_minus_bottom": 0.16722193880435088
+      },
+      {
+        "feature": "hitter_ba_2500_ab",
+        "rows": 70742,
+        "correlation": 0.10582174212125273,
+        "bottom_bin_hit_rate": 0.47720071635211464,
+        "top_bin_hit_rate": 0.6389278594107657,
+        "top_minus_bottom": 0.16172714305865105
+      },
+      {
+        "feature": "hitter_hipa_500_pa",
+        "rows": 70742,
+        "correlation": 0.10424892557713857,
+        "bottom_bin_hit_rate": 0.47651006711409394,
+        "top_bin_hit_rate": 0.6329189309908434,
+        "top_minus_bottom": 0.15640886387674946
+      },
+      {
+        "feature": "component_hitter.hipa_500_pa",
+        "rows": 70907,
+        "correlation": 0.11156807828109559,
+        "bottom_bin_hit_rate": 0.4765081817543367,
+        "top_bin_hit_rate": 0.6327000148434021,
+        "top_minus_bottom": 0.15619183308906542
+      },
+      {
+        "feature": "component_hitter.hipa_2500_pa",
+        "rows": 70907,
+        "correlation": 0.11331071203611089,
+        "bottom_bin_hit_rate": 0.4789874488788605,
+        "top_bin_hit_rate": 0.6345637109319757,
+        "top_minus_bottom": 0.1555762620531152
+      },
+      {
+        "feature": "hitter_split_ba_1500_vs_rhp",
+        "rows": 70786,
+        "correlation": 0.09382545401221988,
+        "bottom_bin_hit_rate": 0.4704843948594831,
+        "top_bin_hit_rate": 0.625136691696435,
+        "top_minus_bottom": 0.15465229683695192
+      },
+      {
+        "feature": "hitter_hipa_2500_pa",
+        "rows": 70742,
+        "correlation": 0.10130122595892214,
+        "bottom_bin_hit_rate": 0.4818952752725804,
+        "top_bin_hit_rate": 0.6359910581222057,
+        "top_minus_bottom": 0.15409578284962527
+      },
+      {
+        "feature": "hitter_split_ba_500_vs_rhp",
+        "rows": 70786,
+        "correlation": 0.09373572091580931,
+        "bottom_bin_hit_rate": 0.4734665264633719,
+        "top_bin_hit_rate": 0.6266827103858013,
+        "top_minus_bottom": 0.15321618392242936
+      },
+      {
+        "feature": "hitter_last_5_games_hits",
+        "rows": 70316,
+        "correlation": 0.10273267769789873,
+        "bottom_bin_hit_rate": 0.492752802627109,
+        "top_bin_hit_rate": 0.635048231511254,
+        "top_minus_bottom": 0.14229542888414498
+      },
+      {
+        "feature": "expected_pa",
+        "rows": 70907,
+        "correlation": 0.10476091144834053,
+        "bottom_bin_hit_rate": 0.48983698933387,
+        "top_bin_hit_rate": 0.6318033252806594,
+        "top_minus_bottom": 0.14196633594678942
+      },
+      {
+        "feature": "component_other.lineup_opportunity",
+        "rows": 70907,
+        "correlation": 0.10476137145035194,
+        "bottom_bin_hit_rate": 0.48983698933387,
+        "top_bin_hit_rate": 0.6318033252806594,
+        "top_minus_bottom": 0.14196633594678942
+      },
+      {
+        "feature": "lineup_slot",
+        "rows": 70907,
+        "correlation": -0.10533231531663613,
+        "bottom_bin_hit_rate": 0.628768182137587,
+        "top_bin_hit_rate": 0.4905018429259994,
+        "top_minus_bottom": -0.1382663392115876
+      },
+      {
+        "feature": "component_h2h.inferred_pitch_type",
+        "rows": 70907,
+        "correlation": 0.09262553178151046,
+        "bottom_bin_hit_rate": 0.48755552421913556,
+        "top_bin_hit_rate": 0.6138271604938271,
+        "top_minus_bottom": 0.12627163627469157
+      },
+      {
+        "feature": "hitter_hipa_75_ab",
+        "rows": 70742,
+        "correlation": 0.08764596032169768,
+        "bottom_bin_hit_rate": 0.4986541514252191,
+        "top_bin_hit_rate": 0.6240225890529973,
+        "top_minus_bottom": 0.12536843762777822
+      },
+      {
+        "feature": "component_hitter.hipa_75_ab",
+        "rows": 70907,
+        "correlation": 0.08768401015861947,
+        "bottom_bin_hit_rate": 0.4986541514252191,
+        "top_bin_hit_rate": 0.6240225890529973,
+        "top_minus_bottom": 0.12536843762777822
+      },
+      {
+        "feature": "inferred_pitch_type_ba",
+        "rows": 69564,
+        "correlation": 0.0731088744419714,
+        "bottom_bin_hit_rate": 0.48441043083900226,
+        "top_bin_hit_rate": 0.6063245736036893,
+        "top_minus_bottom": 0.12191414276468704
+      },
+      {
+        "feature": "hitter_ba_75_ab",
+        "rows": 70742,
+        "correlation": 0.09051334937473757,
+        "bottom_bin_hit_rate": 0.5063004846526656,
+        "top_bin_hit_rate": 0.6276704916503405,
+        "top_minus_bottom": 0.12137000699767486
+      },
+      {
+        "feature": "hitter_k_rate_500_pa",
+        "rows": 70801,
+        "correlation": -0.08252703408452865,
+        "bottom_bin_hit_rate": 0.6208277703604806,
+        "top_bin_hit_rate": 0.5009183385137045,
+        "top_minus_bottom": -0.11990943184677616
+      },
+      {
+        "feature": "hitter_split_ba_1500_vs_lhp",
+        "rows": 70670,
+        "correlation": 0.06032561626095921,
+        "bottom_bin_hit_rate": 0.4987555309734513,
+        "top_bin_hit_rate": 0.599524529933002,
+        "top_minus_bottom": 0.10076899895955066
+      },
+      {
+        "feature": "hitter_split_ba_500_vs_lhp",
+        "rows": 70670,
+        "correlation": 0.060327271259752,
+        "bottom_bin_hit_rate": 0.4987555309734513,
+        "top_bin_hit_rate": 0.5994956772334294,
+        "top_minus_bottom": 0.10074014625997812
+      },
+      {
+        "feature": "hitter_k_rate_season",
+        "rows": 70271,
+        "correlation": -0.06851220590636423,
+        "bottom_bin_hit_rate": 0.6025883175935642,
+        "top_bin_hit_rate": 0.5031141367323291,
+        "top_minus_bottom": -0.09947418086123516
+      },
+      {
+        "feature": "component_hitter.pa_per_game_season",
+        "rows": 70907,
+        "correlation": 0.09413074681954096,
+        "bottom_bin_hit_rate": 0.5449801674746585,
+        "top_bin_hit_rate": 0.6429981666901706,
+        "top_minus_bottom": 0.09801799921551213
+      }
+    ],
+    "stop_reason_hit_rates": [
+      {
+        "reason": "No stop valve",
+        "rows": 113,
+        "hit_rate": 0.7079646017699115
+      },
+      {
+        "reason": "Hitter last-500 PA BB rate over 12%",
+        "rows": 8483,
+        "hit_rate": 0.5848166922079453
+      },
+      {
+        "reason": "H2H K rate over 20%",
+        "rows": 18781,
+        "hit_rate": 0.5730791757627389
+      },
+      {
+        "reason": "Opposing team may be using an opener",
+        "rows": 2477,
+        "hit_rate": 0.5692369802180056
+      },
+      {
+        "reason": "H2H whiff rate over 25%",
+        "rows": 16765,
+        "hit_rate": 0.5683268714583954
+      },
+      {
+        "reason": "Starter's most recent start was dominant (6+ IP, 8+ K, <=3 H, <=2 BB)",
+        "rows": 301,
+        "hit_rate": 0.5681063122923588
+      },
+      {
+        "reason": "Hitter season BB rate over 12%",
+        "rows": 14195,
+        "hit_rate": 0.5666079605494893
+      },
+      {
+        "reason": "Starter allowed fewer than 10 hits over last 18 IP",
+        "rows": 3759,
+        "hit_rate": 0.5610534716679968
+      },
+      {
+        "reason": "Precipitation probability over 40%",
+        "rows": 1143,
+        "hit_rate": 0.5599300087489064
+      },
+      {
+        "reason": "Hitter is playing in a doubleheader",
+        "rows": 1436,
+        "hit_rate": 0.557799442896936
+      },
+      {
+        "reason": "Starter Stuff+ over 95",
+        "rows": 38662,
+        "hit_rate": 0.5552739123687341
+      },
+      {
+        "reason": "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows",
+        "rows": 46330,
+        "hit_rate": 0.5536153680120872
+      },
+      {
+        "reason": "Hitter is not at least .265 against both pitcher hands in 500/1500 AB windows",
+        "rows": 54620,
+        "hit_rate": 0.5521786891248627
+      },
+      {
+        "reason": "Hitter season whiff rate over 25%",
+        "rows": 34012,
+        "hit_rate": 0.5497765494531341
+      },
+      {
+        "reason": "Hitter last-500 PA whiff rate over 25%",
+        "rows": 36185,
+        "hit_rate": 0.5489291142738704
+      },
+      {
+        "reason": "Starter H/IP under .875 over last 200 innings",
+        "rows": 25550,
+        "hit_rate": 0.5446575342465754
+      },
+      {
+        "reason": "Hitter is not at least .270 against today's pitcher hand",
+        "rows": 51653,
+        "hit_rate": 0.5416142334423945
+      },
+      {
+        "reason": "Hitter season PA/G under 4.2",
+        "rows": 54360,
+        "hit_rate": 0.5404893303899927
+      },
+      {
+        "reason": "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows",
+        "rows": 5824,
+        "hit_rate": 0.5403502747252747
+      },
+      {
+        "reason": "Hitter is below .270 over both long and last-500 AB windows",
+        "rows": 52366,
+        "hit_rate": 0.5403315128136578
+      },
+      {
+        "reason": "Hitter season K rate over 22%",
+        "rows": 34621,
+        "hit_rate": 0.5398457583547558
+      },
+      {
+        "reason": "H2H PA below 2",
+        "rows": 33041,
+        "hit_rate": 0.5381193063163948
+      },
+      {
+        "reason": "Hitter last-500 PA K rate over 22%",
+        "rows": 37561,
+        "hit_rate": 0.5380847155294055
+      },
+      {
+        "reason": "Starter season H/IP under .875",
+        "rows": 26682,
+        "hit_rate": 0.531294505659246
+      },
+      {
+        "reason": "Hitter BA under .150 over last 25 AB",
+        "rows": 8939,
+        "hit_rate": 0.5128090390423985
+      }
+    ]
+  },
+  "data_quality": {
+    "orphan_prediction_rows": 225,
+    "invalid_rank_dates": [],
+    "prediction_result_lag_rows": 1571,
+    "candidate_no_appearance_rows": 10695
+  },
+  "prospective": {
+    "rows": 24322,
+    "resolved_rows": 14953,
+    "date_min": "2026-05-15",
+    "date_max": "2026-07-16",
+    "overall_metrics": {
+      "decisions": 14953,
+      "hits": 8329,
+      "misses": 6624,
+      "hit_rate": 0.5570119708419715,
+      "wilson_low": 0.549036373490305,
+      "wilson_high": 0.5649582816379541,
+      "brier": 0.2368916479081121,
+      "log_loss": 0.6666017961686012,
+      "roc_auc": 0.6138148177632079
+    },
+    "ranked_summary": {
+      "top_1_individual": {
+        "decisions": 53,
+        "hits": 38,
+        "misses": 15,
+        "hit_rate": 0.7169811320754716,
+        "wilson_low": 0.5842945799989226,
+        "wilson_high": 0.8203386463704966,
+        "brier": 0.20509021584905662,
+        "log_loss": 0.6017358226409125,
+        "roc_auc": 0.5219298245614035
+      },
+      "top_2_individual": {
+        "decisions": 105,
+        "hits": 69,
+        "misses": 36,
+        "hit_rate": 0.6571428571428571,
+        "wilson_low": 0.5622487220894159,
+        "wilson_high": 0.7409441747441476,
+        "brier": 0.23694779352380954,
+        "log_loss": 0.6731425028767943,
+        "roc_auc": 0.47020933977455714
+      },
+      "top_5_individual": {
+        "decisions": 253,
+        "hits": 177,
+        "misses": 76,
+        "hit_rate": 0.6996047430830039,
+        "wilson_low": 0.640474229154023,
+        "wilson_high": 0.7527642493479018,
+        "brier": 0.2147465091304348,
+        "log_loss": 0.6240118248412388,
+        "roc_auc": 0.4700044603033006
+      },
+      "top_10_individual": {
+        "decisions": 499,
+        "hits": 344,
+        "misses": 155,
+        "hit_rate": 0.6893787575150301,
+        "wilson_low": 0.6474591995263953,
+        "wilson_high": 0.7284046908120333,
+        "brier": 0.21738522034068136,
+        "log_loss": 0.6285712163684932,
+        "roc_auc": 0.493970367591898
+      },
+      "top_2_cards": {
+        "decisions": 47,
+        "any_hits": 42,
+        "any_hit_rate": 0.8936170212765957,
+        "both_hits": 19,
+        "both_hit_rate": 0.40425531914893614,
+        "any_hit_max_streak": 14
+      },
+      "top_1_by_era": [
+        {
+          "period": "Earlier prospective dates",
+          "dates": 29,
+          "decisions": 27,
+          "hits": 22,
+          "misses": 5,
+          "hit_rate": 0.8148148148148148,
+          "wilson_low": 0.6330094349480825,
+          "wilson_high": 0.9181941342571468,
+          "brier": 0.14846035555555556,
+          "log_loss": 0.4718048213700577,
+          "roc_auc": 0.7363636363636363
+        },
+        {
+          "period": "Recent prospective dates",
+          "dates": 30,
+          "decisions": 26,
+          "hits": 16,
+          "misses": 10,
+          "hit_rate": 0.6153846153846154,
+          "wilson_low": 0.42534520039420076,
+          "wilson_high": 0.7757164048816557,
+          "brier": 0.2638981476923077,
+          "log_loss": 0.7366641701144926,
+          "roc_auc": 0.434375
+        }
+      ]
+    },
+    "calibration": [
+      {
+        "probability_band": "Below 55%",
+        "decisions": 6927,
+        "hits": 3246,
+        "misses": 3681,
+        "average_probability": 0.46165543525335645,
+        "observed_hit_rate": 0.4686011260285838,
+        "calibration_gap": 0.006945690775227331,
+        "wilson_low": 0.45687021582356807,
+        "wilson_high": 0.48036684352576126
+      },
+      {
+        "probability_band": "55-60%",
+        "decisions": 2765,
+        "hits": 1629,
+        "misses": 1136,
+        "average_probability": 0.5748109222423146,
+        "observed_hit_rate": 0.5891500904159132,
+        "calibration_gap": 0.014339168173598593,
+        "wilson_low": 0.5707002398056316,
+        "wilson_high": 0.607352560325658
+      },
+      {
+        "probability_band": "60-65%",
+        "decisions": 2801,
+        "hits": 1790,
+        "misses": 1011,
+        "average_probability": 0.6244212067118886,
+        "observed_hit_rate": 0.6390574794716173,
+        "calibration_gap": 0.014636272759728675,
+        "wilson_low": 0.6210917678670966,
+        "wilson_high": 0.6566422760090354
+      },
+      {
+        "probability_band": "65-70%",
+        "decisions": 1811,
+        "hits": 1215,
+        "misses": 596,
+        "average_probability": 0.6709238542241854,
+        "observed_hit_rate": 0.6709000552181116,
+        "calibration_gap": -2.3799006073854656e-05,
+        "wilson_low": 0.648916575198664,
+        "wilson_high": 0.6921600234422313
+      },
+      {
+        "probability_band": "70-75%",
+        "decisions": 554,
+        "hits": 388,
+        "misses": 166,
+        "average_probability": 0.7182884476534295,
+        "observed_hit_rate": 0.7003610108303249,
+        "calibration_gap": -0.017927436823104603,
+        "wilson_low": 0.6609406791522063,
+        "wilson_high": 0.7370217531941801
+      },
+      {
+        "probability_band": "75-80%",
+        "decisions": 81,
+        "hits": 53,
+        "misses": 28,
+        "average_probability": 0.7681432098765432,
+        "observed_hit_rate": 0.654320987654321,
+        "calibration_gap": -0.11382222222222216,
+        "wilson_low": 0.5458917196718802,
+        "wilson_high": 0.7487750475743764
+      },
+      {
+        "probability_band": "80% and above",
+        "decisions": 14,
+        "hits": 8,
+        "misses": 6,
+        "average_probability": 0.8293428571428573,
+        "observed_hit_rate": 0.5714285714285714,
+        "calibration_gap": -0.2579142857142859,
+        "wilson_low": 0.32590266902869364,
+        "wilson_high": 0.7861949006959947
+      }
+    ],
+    "numeric_signals": [
+      {
+        "feature": "hitter_ba_500_ab",
+        "label": "500-AB batting average",
+        "hit_mean": 0.282819209039548,
+        "miss_mean": 0.2726447368421053,
+        "standardized_difference": 0.4442196791573118,
+        "hit_rows": 177,
+        "miss_rows": 76
+      },
+      {
+        "feature": "hitter_ba_current_hand_season",
+        "label": "Season BA vs today's pitcher hand",
+        "hit_mean": 0.2909473684210526,
+        "miss_mean": 0.2766904761904762,
+        "standardized_difference": 0.3519224102559624,
+        "hit_rows": 76,
+        "miss_rows": 42
+      },
+      {
+        "feature": "pitcher_stuff_plus",
+        "label": "Starter Stuff+",
+        "hit_mean": 92.60526315789474,
+        "miss_mean": 95.26666666666667,
+        "standardized_difference": -0.33935995830740984,
+        "hit_rows": 152,
+        "miss_rows": 60
+      },
+      {
+        "feature": "hitter_hipa_500_pa",
+        "label": "500-PA hits per PA",
+        "hit_mean": 0.25144067796610164,
+        "miss_mean": 0.24369736842105275,
+        "standardized_difference": 0.31324185183451453,
+        "hit_rows": 177,
+        "miss_rows": 76
+      },
+      {
+        "feature": "lineup_slot",
+        "label": "Lineup slot",
+        "hit_mean": 2.3457627118644067,
+        "miss_mean": 2.7789473684210524,
+        "standardized_difference": -0.295687007204302,
+        "hit_rows": 177,
+        "miss_rows": 76
+      },
+      {
+        "feature": "expected_pa",
+        "label": "Expected PA",
+        "hit_mean": 4.650847457627119,
+        "miss_mean": 4.597368421052632,
+        "standardized_difference": 0.27434290976750275,
+        "hit_rows": 177,
+        "miss_rows": 76
+      },
+      {
+        "feature": "hitter_ba_season",
+        "label": "Current-season batting average",
+        "hit_mean": 0.28282485875706215,
+        "miss_mean": 0.2745263157894737,
+        "standardized_difference": 0.2609561915434777,
+        "hit_rows": 177,
+        "miss_rows": 76
+      },
+      {
+        "feature": "score",
+        "label": "Bob score",
+        "hit_mean": 60.15474576271186,
+        "miss_mean": 58.4692105263158,
+        "standardized_difference": 0.22277397170674687,
+        "hit_rows": 177,
+        "miss_rows": 76
+      },
+      {
+        "feature": "pitcher_hpi_season",
+        "label": "Starter season H/IP",
+        "hit_mean": 1.2960470588235293,
+        "miss_mean": 1.3630675675675676,
+        "standardized_difference": -0.16622146947766425,
+        "hit_rows": 170,
+        "miss_rows": 74
+      },
+      {
+        "feature": "h2h_xba",
+        "label": "H2H xBA",
+        "hit_mean": 0.35181250000000003,
+        "miss_mean": 0.3795079365079365,
+        "standardized_difference": -0.16244713104917552,
+        "hit_rows": 144,
+        "miss_rows": 63
+      },
+      {
+        "feature": "hitter_last_5_games_ab",
+        "label": "Last-five AB",
+        "hit_mean": 20.587570621468927,
+        "miss_mean": 20.276315789473685,
+        "standardized_difference": 0.1464223750257066,
+        "hit_rows": 177,
+        "miss_rows": 76
+      },
+      {
+        "feature": "learned_hit_probability",
+        "label": "Learned probability",
+        "hit_mean": 0.7431853107344635,
+        "miss_mean": 0.7472171052631579,
+        "standardized_difference": -0.13532568152549393,
+        "hit_rows": 177,
+        "miss_rows": 76
+      },
+      {
+        "feature": "hitter_ba_current_hand_500",
+        "label": "500-window BA vs today's pitcher hand",
+        "hit_mean": 0.28344632768361583,
+        "miss_mean": 0.2797236842105263,
+        "standardized_difference": 0.1300499529527599,
+        "hit_rows": 177,
+        "miss_rows": 76
+      },
+      {
+        "feature": "hitter_last_5_games_ba",
+        "label": "Last-five BA",
+        "hit_mean": 0.32435028248587566,
+        "miss_mean": 0.3118552631578947,
+        "standardized_difference": 0.11666754771089852,
+        "hit_rows": 177,
+        "miss_rows": 76
+      },
+      {
+        "feature": "stop_count",
+        "label": "Stop-valve count",
+        "hit_mean": 4.231638418079096,
+        "miss_mean": 4.5,
+        "standardized_difference": -0.09436100426150747,
+        "hit_rows": 177,
+        "miss_rows": 76
+      },
+      {
+        "feature": "hitter_ba_current_hand_1500",
+        "label": "1500-window BA vs today's pitcher hand",
+        "hit_mean": 0.28272881355932206,
+        "miss_mean": 0.2800921052631578,
+        "standardized_difference": 0.09414371599947437,
+        "hit_rows": 177,
+        "miss_rows": 76
+      },
+      {
+        "feature": "park_hit_factor",
+        "label": "Park hit factor",
+        "hit_mean": 105.35,
+        "miss_mean": 104.73611111111111,
+        "standardized_difference": 0.08910026403876188,
+        "hit_rows": 160,
+        "miss_rows": 72
+      },
+      {
+        "feature": "hitter_pa_per_game_season",
+        "label": "Season PA per game",
+        "hit_mean": 4.36367231638418,
+        "miss_mean": 4.345131578947368,
+        "standardized_difference": 0.08442205665413546,
+        "hit_rows": 177,
+        "miss_rows": 76
+      },
+      {
+        "feature": "hitter_pa_current_hand_season",
+        "label": "Season PA vs today's pitcher hand",
+        "hit_mean": 193.0921052631579,
+        "miss_mean": 187.02380952380952,
+        "standardized_difference": 0.07715282405734898,
+        "hit_rows": 76,
+        "miss_rows": 42
+      },
+      {
+        "feature": "h2h_pa",
+        "label": "H2H plate appearances",
+        "hit_mean": 6.903954802259887,
+        "miss_mean": 7.368421052631579,
+        "standardized_difference": -0.05887380489180579,
+        "hit_rows": 177,
+        "miss_rows": 76
+      },
+      {
+        "feature": "inferred_pitch_type_xba",
+        "label": "Pitch-type matchup xBA",
+        "hit_mean": 0.3504058823529411,
+        "miss_mean": 0.34795945945945944,
+        "standardized_difference": 0.05470903558328602,
+        "hit_rows": 170,
+        "miss_rows": 74
+      },
+      {
+        "feature": "hitter_whiff_rate_500_pa",
+        "label": "500-PA whiff rate",
+        "hit_mean": 0.21212429378531078,
+        "miss_mean": 0.20847368421052634,
+        "standardized_difference": 0.0499488909364005,
+        "hit_rows": 177,
+        "miss_rows": 76
+      },
+      {
+        "feature": "bullpen_opp_ba",
+        "label": "Bullpen opponent BA",
+        "hit_mean": 0.24746857142857145,
+        "miss_mean": 0.24676712328767123,
+        "standardized_difference": 0.034131620385403134,
+        "hit_rows": 175,
+        "miss_rows": 73
+      },
+      {
+        "feature": "hitter_k_rate_500_pa",
+        "label": "500-PA strikeout rate",
+        "hit_mean": 0.17071751412429378,
+        "miss_mean": 0.169671052631579,
+        "standardized_difference": 0.015357202194747921,
+        "hit_rows": 177,
+        "miss_rows": 76
+      },
+      {
+        "feature": "pitcher_lr_opp_ba",
+        "label": "Starter BA allowed to hitter hand",
+        "hit_mean": 0.2656,
+        "miss_mean": 0.26547297297297295,
+        "standardized_difference": 0.003678757951537571,
+        "hit_rows": 170,
+        "miss_rows": 74
+      }
+    ],
+    "threshold_signals": [
+      {
+        "factor": "500-AB batting average at least .275",
+        "yes_decisions": 142,
+        "yes_hits": 111,
+        "yes_hit_rate": 0.7816901408450704,
+        "no_decisions": 111,
+        "no_hits": 66,
+        "no_hit_rate": 0.5945945945945946,
+        "edge": 0.18709554625047575
+      },
+      {
+        "factor": "Starter Stuff+ at most 100",
+        "yes_decisions": 175,
+        "yes_hits": 130,
+        "yes_hit_rate": 0.7428571428571429,
+        "no_decisions": 78,
+        "no_hits": 47,
+        "no_hit_rate": 0.6025641025641025,
+        "edge": 0.14029304029304035
+      },
+      {
+        "factor": "Batting in top five",
+        "yes_decisions": 235,
+        "yes_hits": 166,
+        "yes_hit_rate": 0.7063829787234043,
+        "no_decisions": 18,
+        "no_hits": 11,
+        "no_hit_rate": 0.6111111111111112,
+        "edge": 0.09527186761229312
+      },
+      {
+        "factor": "Expected PA at least 4.2",
+        "yes_decisions": 240,
+        "yes_hits": 169,
+        "yes_hit_rate": 0.7041666666666667,
+        "no_decisions": 13,
+        "no_hits": 8,
+        "no_hit_rate": 0.6153846153846154,
+        "edge": 0.0887820512820513
+      },
+      {
+        "factor": "Pitch-type matchup xBA at least .300",
+        "yes_decisions": 223,
+        "yes_hits": 154,
+        "yes_hit_rate": 0.6905829596412556,
+        "no_decisions": 30,
+        "no_hits": 23,
+        "no_hit_rate": 0.7666666666666667,
+        "edge": -0.07608370702541112
+      },
+      {
+        "factor": "H2H xBA at least .275",
+        "yes_decisions": 151,
+        "yes_hits": 102,
+        "yes_hit_rate": 0.6754966887417219,
+        "no_decisions": 102,
+        "no_hits": 75,
+        "no_hit_rate": 0.7352941176470589,
+        "edge": -0.05979742890533701
+      },
+      {
+        "factor": "Four or fewer stop valves",
+        "yes_decisions": 143,
+        "yes_hits": 103,
+        "yes_hit_rate": 0.7202797202797203,
+        "no_decisions": 110,
+        "no_hits": 74,
+        "no_hit_rate": 0.6727272727272727,
+        "edge": 0.047552447552447585
+      },
+      {
+        "factor": "500-PA K rate at most 20%",
+        "yes_decisions": 162,
+        "yes_hits": 115,
+        "yes_hit_rate": 0.7098765432098766,
+        "no_decisions": 91,
+        "no_hits": 62,
+        "no_hit_rate": 0.6813186813186813,
+        "edge": 0.028557861891195246
+      },
+      {
+        "factor": "Starter season H/IP at least 1.00",
+        "yes_decisions": 200,
+        "yes_hits": 139,
+        "yes_hit_rate": 0.695,
+        "no_decisions": 53,
+        "no_hits": 38,
+        "no_hit_rate": 0.7169811320754716,
+        "edge": -0.0219811320754717
+      },
+      {
+        "factor": "Season PA/game at least 4.2",
+        "yes_decisions": 215,
+        "yes_hits": 151,
+        "yes_hit_rate": 0.7023255813953488,
+        "no_decisions": 38,
+        "no_hits": 26,
+        "no_hit_rate": 0.6842105263157895,
+        "edge": 0.01811505507955935
+      },
+      {
+        "factor": "Confirmed official lineup",
+        "yes_decisions": 10,
+        "yes_hits": 7,
+        "yes_hit_rate": 0.7,
+        "no_decisions": 243,
+        "no_hits": 170,
+        "no_hit_rate": 0.6995884773662552,
+        "edge": 0.0004115226337447764
+      }
+    ],
+    "stop_reasons": [
+      {
+        "reason": "Precipitation probability over 40%",
+        "decisions": 8,
+        "hits": 4,
+        "misses": 4,
+        "hit_rate": 0.5
+      },
+      {
+        "reason": "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows",
+        "decisions": 51,
+        "hits": 28,
+        "misses": 23,
+        "hit_rate": 0.5490196078431373
+      },
+      {
+        "reason": "Hitter is below .270 over both long and last-500 AB windows",
+        "decisions": 69,
+        "hits": 39,
+        "misses": 30,
+        "hit_rate": 0.5652173913043478
+      },
+      {
+        "reason": "Starter H/IP under .875 over last 200 innings",
+        "decisions": 25,
+        "hits": 15,
+        "misses": 10,
+        "hit_rate": 0.6
+      },
+      {
+        "reason": "Hitter is not at least .270 against today's pitcher hand",
+        "decisions": 79,
+        "hits": 50,
+        "misses": 29,
+        "hit_rate": 0.6329113924050633
+      },
+      {
+        "reason": "H2H whiff rate over 25%",
+        "decisions": 55,
+        "hits": 35,
+        "misses": 20,
+        "hit_rate": 0.6363636363636364
+      },
+      {
+        "reason": "Opposing team may be using an opener",
+        "decisions": 12,
+        "hits": 8,
+        "misses": 4,
+        "hit_rate": 0.6666666666666666
+      },
+      {
+        "reason": "Starter Stuff+ over 95",
+        "decisions": 72,
+        "hits": 49,
+        "misses": 23,
+        "hit_rate": 0.6805555555555556
+      },
+      {
+        "reason": "H2H K rate over 20%",
+        "decisions": 72,
+        "hits": 49,
+        "misses": 23,
+        "hit_rate": 0.6805555555555556
+      },
+      {
+        "reason": "Hitter season K rate over 22%",
+        "decisions": 67,
+        "hits": 46,
+        "misses": 21,
+        "hit_rate": 0.6865671641791045
+      },
+      {
+        "reason": "Hitter season PA/G under 4.2",
+        "decisions": 39,
+        "hits": 27,
+        "misses": 12,
+        "hit_rate": 0.6923076923076923
+      },
+      {
+        "reason": "H2H PA below 2",
+        "decisions": 48,
+        "hits": 34,
+        "misses": 14,
+        "hit_rate": 0.7083333333333334
+      },
+      {
+        "reason": "Hitter is not at least .265 against both pitcher hands in 500/1500 AB windows",
+        "decisions": 69,
+        "hits": 49,
+        "misses": 20,
+        "hit_rate": 0.7101449275362319
+      },
+      {
+        "reason": "Hitter last-500 PA whiff rate over 25%",
+        "decisions": 74,
+        "hits": 53,
+        "misses": 21,
+        "hit_rate": 0.7162162162162162
+      },
+      {
+        "reason": "Hitter season whiff rate over 25%",
+        "decisions": 74,
+        "hits": 54,
+        "misses": 20,
+        "hit_rate": 0.7297297297297297
+      },
+      {
+        "reason": "Hitter last-500 PA K rate over 22%",
+        "decisions": 63,
+        "hits": 46,
+        "misses": 17,
+        "hit_rate": 0.7301587301587301
+      },
+      {
+        "reason": "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows",
+        "decisions": 81,
+        "hits": 62,
+        "misses": 19,
+        "hit_rate": 0.7654320987654321
+      },
+      {
+        "reason": "Hitter last-500 PA BB rate over 12%",
+        "decisions": 51,
+        "hits": 40,
+        "misses": 11,
+        "hit_rate": 0.7843137254901961
+      },
+      {
+        "reason": "Hitter season BB rate over 12%",
+        "decisions": 60,
+        "hits": 48,
+        "misses": 12,
+        "hit_rate": 0.8
+      },
+      {
+        "reason": "Starter season H/IP under .875",
+        "decisions": 10,
+        "hits": 8,
+        "misses": 2,
+        "hit_rate": 0.8
+      }
+    ],
+    "rank_one_misses": [
+      {
+        "date": "2026-05-18",
+        "player": "Luis Arraez",
+        "probability": 0.7741,
+        "warnings": "No simple pregame warning from the tested set",
+        "expected_pa": 4.7,
+        "lineup_slot": 2.0,
+        "ba_500": 0.312,
+        "stuff_plus": 89.0,
+        "stop_count": 0
+      },
+      {
+        "date": "2026-05-21",
+        "player": "Ildemaro Vargas",
+        "probability": 0.7365,
+        "warnings": "500-AB BA below .275",
+        "expected_pa": 4.5,
+        "lineup_slot": 3.6,
+        "ba_500": 0.272,
+        "stuff_plus": 94.0,
+        "stop_count": 1
+      },
+      {
+        "date": "2026-05-28",
+        "player": "Kevin McGonigle",
+        "probability": 0.725,
+        "warnings": "No simple pregame warning from the tested set",
+        "expected_pa": 4.7,
+        "lineup_slot": 1.6,
+        "ba_500": 0.297,
+        "stuff_plus": NaN,
+        "stop_count": 4
+      },
+      {
+        "date": "2026-05-30",
+        "player": "Luis Arraez",
+        "probability": 0.7419,
+        "warnings": "No simple pregame warning from the tested set",
+        "expected_pa": 4.6,
+        "lineup_slot": 3.2,
+        "ba_500": 0.314,
+        "stuff_plus": 94.0,
+        "stop_count": 0
+      },
+      {
+        "date": "2026-06-06",
+        "player": "Sam Antonacci",
+        "probability": 0.7349,
+        "warnings": "low season PA/game",
+        "expected_pa": 4.7,
+        "lineup_slot": 2.5,
+        "ba_500": 0.286,
+        "stuff_plus": 99.0,
+        "stop_count": 4
+      },
+      {
+        "date": "2026-06-15",
+        "player": "Fernando Tatis Jr.",
+        "probability": 0.7305,
+        "warnings": "Stuff+ above 100, five or more stop valves",
+        "expected_pa": 4.8,
+        "lineup_slot": 1.0,
+        "ba_500": 0.276,
+        "stuff_plus": 102.0,
+        "stop_count": 6
+      },
+      {
+        "date": "2026-06-17",
+        "player": "Otto Lopez",
+        "probability": 0.7422,
+        "warnings": "Stuff+ above 100",
+        "expected_pa": 4.7,
+        "lineup_slot": 2.0,
+        "ba_500": 0.3,
+        "stuff_plus": 101.0,
+        "stop_count": 2
+      },
+      {
+        "date": "2026-06-18",
+        "player": "Bo Bichette",
+        "probability": 0.7548,
+        "warnings": "Stuff+ above 100",
+        "expected_pa": 4.7,
+        "lineup_slot": 2.0,
+        "ba_500": 0.302,
+        "stuff_plus": 107.0,
+        "stop_count": 2
+      },
+      {
+        "date": "2026-06-24",
+        "player": "Caleb Durbin",
+        "probability": 0.769,
+        "warnings": "low expected PA, lineup slot 6+, low season PA/game, 500-AB BA below .275",
+        "expected_pa": 4.1,
+        "lineup_slot": 6.0,
+        "ba_500": 0.254,
+        "stuff_plus": 92.0,
+        "stop_count": 4
+      },
+      {
+        "date": "2026-06-27",
+        "player": "Byron Buxton",
+        "probability": 0.7761,
+        "warnings": "500-AB BA below .275, 500-PA K rate above 22%, five or more stop valves",
+        "expected_pa": 4.7,
+        "lineup_slot": 2.0,
+        "ba_500": 0.266,
+        "stuff_plus": 88.0,
+        "stop_count": 7
+      },
+      {
+        "date": "2026-07-01",
+        "player": "Xavier Edwards",
+        "probability": 0.8019,
+        "warnings": "No simple pregame warning from the tested set",
+        "expected_pa": 4.6,
+        "lineup_slot": 2.8,
+        "ba_500": 0.288,
+        "stuff_plus": 92.0,
+        "stop_count": 1
+      },
+      {
+        "date": "2026-07-05",
+        "player": "Luis Arraez",
+        "probability": 0.8105,
+        "warnings": "No simple pregame warning from the tested set",
+        "expected_pa": 4.7,
+        "lineup_slot": 1.5,
+        "ba_500": 0.316,
+        "stuff_plus": 88.0,
+        "stop_count": 0
+      },
+      {
+        "date": "2026-07-09",
+        "player": "Trea Turner",
+        "probability": 0.7406,
+        "warnings": "five or more stop valves",
+        "expected_pa": 4.8,
+        "lineup_slot": 1.0,
+        "ba_500": 0.276,
+        "stuff_plus": 91.0,
+        "stop_count": 6
+      },
+      {
+        "date": "2026-07-10",
+        "player": "Nico Hoerner",
+        "probability": 0.7925,
+        "warnings": "low expected PA, lineup slot 6+, 500-AB BA below .275",
+        "expected_pa": 4.1,
+        "lineup_slot": 6.0,
+        "ba_500": 0.264,
+        "stuff_plus": NaN,
+        "stop_count": 4
+      },
+      {
+        "date": "2026-07-14",
+        "player": "Bobby Witt Jr.",
+        "probability": 0.8114,
+        "warnings": "Stuff+ above 100",
+        "expected_pa": 4.3,
+        "lineup_slot": 5.0,
+        "ba_500": 0.294,
+        "stuff_plus": 118.0,
+        "stop_count": 3
+      }
+    ],
+    "shadow_policies": [
+      {
+        "policy": "Raw learned rank",
+        "hits": 38,
+        "decisions": 53,
+        "hit_rate": 0.7169811320754716,
+        "recent_hits": 15,
+        "recent_decisions": 25,
+        "recent_hit_rate": 0.6
+      },
+      {
+        "policy": "Prefer 500-AB BA >= .275",
+        "hits": 39,
+        "decisions": 53,
+        "hit_rate": 0.7358490566037735,
+        "recent_hits": 17,
+        "recent_decisions": 26,
+        "recent_hit_rate": 0.6538461538461539
+      },
+      {
+        "policy": "Prefer starter Stuff+ <= 100",
+        "hits": 41,
+        "decisions": 53,
+        "hit_rate": 0.7735849056603774,
+        "recent_hits": 19,
+        "recent_decisions": 25,
+        "recent_hit_rate": 0.76
+      },
+      {
+        "policy": "Prefer BA >= .275 and Stuff+ <= 100",
+        "hits": 40,
+        "decisions": 52,
+        "hit_rate": 0.7692307692307693,
+        "recent_hits": 18,
+        "recent_decisions": 25,
+        "recent_hit_rate": 0.72
+      }
+    ]
+  },
+  "report_html": "X:\\Coding\\Statbirt\\reports\\learned_model_review\\learned_model_review_20260717T041340Z.html",
+  "latest_html": "X:\\Coding\\Statbirt\\reports\\learned_model_review_latest.html",
+  "web_report_html": "X:\\Coding\\Statbirt\\web\\data\\learned_model_review.html"
+}
