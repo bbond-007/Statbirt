@@ -1,0 +1,91 @@
+{
+  "date": "2026-07-05",
+  "target": "learned_rank_top_2",
+  "committee_pick": "Luis Arraez",
+  "committee_summary": "The committee pick is Luis Arraez because he has the stronger one-hit profile when the two San Francisco options are compared inside the same park and starter context. Casey Schmitt benefits from the same Coors Field environment, the same vulnerable Tanner Gordon matchup, and a projected top-two lineup role, so he is a legitimate second-card hitter. The single-pick decision still leans Arraez because his profile is built on repeated contact rather than power variance: 81.0% learned probability, 86.4 selection score, 100 safety score, Publisher status, .330 season average, 9-for-21 over his last five games, zero stop valves, and elite strikeout/whiff suppression. Schmitt has real upside, especially in Coors, but the cold 4-for-21 last-five line, four stop valves, weaker right-on-right split, elevated H2H whiff signal, and non-pickable main-dashboard status create too many ways for the single-pick path to get noisy. Official lineups were still not posted during review, so the late lineup check remains mandatory; with the current evidence, Arraez is the preferred single and Schmitt is the two-pick partner.",
+  "workflow_notes": [
+    "Staged the learned model raw top 2 for the active dashboard date.",
+    "Reviewed local model context, H2H, stop valves, expected PA, lineup slot, recent form, handedness splits, starter profile, park/weather, and bullpen context.",
+    "Checked current free public sources for probable pitchers, lineup status, injury/news context, weather/park context, player notes, and recent bullpen workload.",
+    "Used pro, con, and reviewer committee roles before choosing the single hitter."
+  ],
+  "source_notes": [
+    {
+      "label": "MLB Giants Starting Lineups",
+      "url": "https://www.mlb.com/giants/roster/starting-lineups",
+      "note": "Checked the official Giants-Rockies page; today's lineup was still TBD during review, with Tyler Mahle and Tanner Gordon listed as probable starters at Coors Field."
+    },
+    {
+      "label": "MLB StatsAPI Giants-Rockies Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/824333/feed/live",
+      "note": "Verified scheduled preview status, Coors Field venue, Tyler Mahle vs. Tanner Gordon probable starters, and no official batting orders posted during review."
+    },
+    {
+      "label": "RotoWire Daily Lineups",
+      "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+      "note": "Reviewed expected lineup context; RotoWire projected Arraez first and Schmitt second for San Francisco against Tanner Gordon, with the lineup marked expected rather than official."
+    },
+    {
+      "label": "RotoGrinders MLB Lineups",
+      "url": "https://rotogrinders.com/lineups/mlb",
+      "note": "Cross-checked public projection context; RotoGrinders listed the Giants lineup as not released and projected Arraez first and Schmitt second."
+    },
+    {
+      "label": "Giants Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/giants-injuries-and-roster-moves",
+      "note": "Checked the official Giants injury page; Arraez and Schmitt were not listed as current injury items."
+    },
+    {
+      "label": "Rockies Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/rockies-injuries-and-roster-moves",
+      "note": "Checked the official Rockies injury page; Tanner Gordon was not listed as a current injury item, while other Rockies pitching injuries help explain rotation fragility."
+    },
+    {
+      "label": "RotoWire Luis Arraez News",
+      "url": "https://www.rotowire.com/baseball/player/luis-arraez-14053",
+      "note": "Reviewed Arraez's public player page, including his .330 season average, strong right-handed-pitcher split, and recent 17-for-41 stretch noted on June 30."
+    },
+    {
+      "label": "RotoWire Casey Schmitt News",
+      "url": "https://www.rotowire.com/baseball/player/casey-schmitt-16734",
+      "note": "Reviewed Schmitt's public player page, including his .283 season average, .261 split against right-handed pitchers, power indicators, and better road production."
+    },
+    {
+      "label": "RotoWire Tanner Gordon News",
+      "url": "https://www.rotowire.com/baseball/player/tanner-gordon-18754",
+      "note": "Reviewed Gordon's public pitching profile and recent note that he carries a 6.69 ERA and 1.59 WHIP after being hit hard in his return from the injured list."
+    },
+    {
+      "label": "Baseball Savant Game Preview",
+      "url": "https://baseballsavant.mlb.com/preview?game_date=2026-07-05&game_pk=824333",
+      "note": "Reviewed the Statcast game preview for Giants-Rockies matchup context at Coors Field."
+    },
+    {
+      "label": "Recent MLB Boxscores via StatsAPI",
+      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1",
+      "note": "Checked recent public boxscore data for San Francisco and Colorado bullpen workload; Colorado used Gabriel Hughes for 53 pitches on July 3, then Juan Mejia, Jordan Romano, and Antonio Senzatela on July 4."
+    }
+  ],
+  "players": [
+    {
+      "rank": 1,
+      "player": "Luis Arraez",
+      "team": "SFG",
+      "opponent": "COL",
+      "probable_pitcher": "Tanner Gordon",
+      "pro_thesis": "Luis Arraez has the cleanest single-hit case on the board because almost every useful signal points in the same direction. The learned model gives him an 81.0% hit probability and an 86.4 selection score, while the dashboard profile adds a 100 safety score, Publisher status, zero stop valves, 4.7 expected plate appearances, and a projected first or second lineup slot. His contact floor is exactly what this contest wants: .330 on the season, .335 against right-handed pitching, 9-for-21 over his last five games, a last-25-at-bat average of .440, and strikeout/whiff rates that are barely visible compared with normal MLB risk. The matchup also helps. Tanner Gordon is right-handed, has allowed 33 hits over his last 18 local innings, owns an 88 Stuff+ mark in the local data, and public sources list him with a 6.69 ERA and 1.59 WHIP. Put that contact profile in Coors Field, with Colorado's bullpen also grading as hit-friendly, and Arraez has the best repeatable one-hit path.",
+      "con_thesis": "The case against Arraez is not that the profile is weak; it is that the margin for a single-hit contest can be thinner than the numbers make it feel. The official lineup had not posted during review, so his projected lineup slot still has to be confirmed before lock. His direct history against Gordon is not exciting at 1-for-10, even if the H2H sample is small and the whiff/k indicators inside it are cleaner than the hit line. Arraez also tends to win through singles and controlled contact rather than loud damage, so he can hit the ball well enough and still lose a result to defensive positioning or normal batted-ball variance. If the Rockies use Gordon carefully and get early bullpen length from rested right-handed relievers, Arraez remains favored but not automatic.",
+      "committee_thesis": "Committee read: Arraez is the single pick. The pro advocate wins because the profile is broad, stable, and directly tied to the actual contest goal: put one ball somewhere grass can find it. The con advocate identifies real issues, especially the 1-for-10 H2H line and lineup-posting risk, but those are narrower than Schmitt's four-stop-valve profile. The reviewer prefers Arraez because his advantage is not just the top model probability; it is the combination of contact skill, current form, clean stop-valve board, projected volume, Coors Field, and a vulnerable starter."
+    },
+    {
+      "rank": 2,
+      "player": "Casey Schmitt",
+      "team": "SFG",
+      "opponent": "COL",
+      "probable_pitcher": "Tanner Gordon",
+      "pro_thesis": "Casey Schmitt is a credible two-pick partner because the environment and lineup context are unusually strong. He shares the same Coors Field setup and Tanner Gordon matchup as Arraez, and both RotoWire and RotoGrinders projected him second while the official lineup was still pending. The learned model still gives him a strong 75.3% hit probability, a 72.5 selection score, 4.6 expected plate appearances, and an 82 safety score. His season line is playable at .283 with real extra-base impact, and public splits show a much stronger road profile than home profile this year, which matters because this is a road game in the league's friendliest hit park. The local data also likes Gordon as a target for right-handed bats: Schmitt gets a .333 pitcher allowed-average split in the long local view, Gordon's last start included nine hits in five innings, and Colorado's bullpen has enough recent workload that the game may not require Schmitt to beat only the starter.",
+      "con_thesis": "The con case is substantial enough to keep Schmitt behind Arraez for the single. The main dashboard marked him non-pickable, and the reasons are not cosmetic: four stop valves, below-threshold long and last-500 hit indicators, a 44.4% H2H whiff rate in the local matchup sample, failure to clear the updated handedness stop valve, and failure to clear today's-pitcher-hand threshold. His recent form is also colder than Arraez's at 4-for-21 over the last five games, and his .261 season average against right-handed pitchers leaves less margin when the pick needs only a hit but cannot tolerate strikeout-heavy at-bats. He has more power than Arraez, but power is not the contest objective; the swing-and-miss and stop-valve stack make him the riskier single even in a great ballpark.",
+      "committee_thesis": "Committee read: Schmitt is the runner-up and the correct second hitter if using a two-pick card. The pro advocate has a good argument because Coors, projected lineup spot, Gordon's hittability, and Schmitt's road/power profile create a real upside path. The con advocate wins the single-pick comparison because Schmitt's strengths depend more on contact quality and park amplification, while Arraez's strengths depend on avoiding empty plate appearances. The reviewer would keep Schmitt attached to Arraez for coverage, but would not move him ahead of Arraez unless the official lineup unexpectedly scratches or buries Arraez."
+    }
+  ]
+}

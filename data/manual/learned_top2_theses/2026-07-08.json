@@ -1,0 +1,96 @@
+{
+  "date": "2026-07-08",
+  "target": "learned_rank_top_2",
+  "committee_pick": "Otto Lopez",
+  "committee_summary": "The committee pick is Otto Lopez because his case has the stronger full safety stack even though Liam Hicks has a real leadoff-volume argument. Both hitters face the same difficult starter in George Kirby, the same dome setting at loanDepot park, and the same Seattle bullpen context, so the decision mostly comes down to which Marlins hitter has the cleaner one-hit profile. Hicks is hot, projects first against a right-hander, and owns a strong 2026 split against right-handed pitching, but he also carries five stop valves, no direct H2H history, a lower learned probability, a much lower selection score, a 70 safety score, and long-window hit indicators that the model still distrusts. Lopez has his own matchup friction against Kirby, especially the 0-for-3 H2H line and Stuff+ flag, but the larger profile is sturdier: 74.7% learned probability, 76.8 selection score, 95 safety score, Publisher status, .343 season average, .312 average against right-handed pitching, 12-for-24 over his last five games, 4.7 expected plate appearances, and a stronger overall season/contact track record. Official MLB and StatsAPI lineups were still TBD during review; public projection sources had Hicks first and Lopez third. With the morning evidence available, Lopez is the better single and Hicks is the correct two-pick partner.",
+  "workflow_notes": [
+    "Staged the learned model raw top 2 for the active dashboard date.",
+    "Reviewed local model context, H2H, stop valves, expected PA, lineup slot, recent form, handedness splits, starter profile, dome context, and bullpen context.",
+    "Checked current free public sources for probable pitchers, lineup status, injury/news context, Statcast preview, recent player notes, and bullpen workload.",
+    "Used pro, con, and reviewer committee roles before choosing the single hitter."
+  ],
+  "source_notes": [
+    {
+      "label": "MLB Marlins Starting Lineups",
+      "url": "https://www.mlb.com/marlins/roster/starting-lineups",
+      "note": "Checked the official Mariners-Marlins page; today's lineup was still TBD during review, with George Kirby and Tyler Phillips listed as probable starters at loanDepot park."
+    },
+    {
+      "label": "MLB StatsAPI Mariners-Marlins Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/823848/feed/live",
+      "note": "Verified scheduled preview status, loanDepot park venue, George Kirby vs. Tyler Phillips probable starters, and no official batting orders posted during review."
+    },
+    {
+      "label": "RotoWire Daily Lineups",
+      "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+      "note": "Reviewed expected lineup context; RotoWire projected Liam Hicks first and Otto Lopez third for Miami against George Kirby, with the lineup marked expected rather than official."
+    },
+    {
+      "label": "RotoGrinders MLB Lineups",
+      "url": "https://rotogrinders.com/lineups/mlb",
+      "note": "Cross-checked public projection context; RotoGrinders listed the Marlins lineup as not released and projected Hicks first and Lopez third."
+    },
+    {
+      "label": "Marlins Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/marlins-injuries-and-roster-moves",
+      "note": "Checked the official Marlins injury page; Lopez was not listed as a current injury item, and Hicks was listed as reinstated from the injured list on June 30 rather than currently injured."
+    },
+    {
+      "label": "Mariners Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/mariners-injuries-and-roster-moves",
+      "note": "Checked the official Mariners injury page; George Kirby was not listed as a current injury item."
+    },
+    {
+      "label": "RotoWire Otto Lopez News",
+      "url": "https://www.rotowire.com/baseball/player/otto-lopez-15753",
+      "note": "Reviewed Lopez's current public player page, including his .343 season average, hot early-July news item, and strong 2026 split against right-handed pitching."
+    },
+    {
+      "label": "RotoWire Liam Hicks News",
+      "url": "https://www.rotowire.com/baseball/player/liam-hicks-19754",
+      "note": "Reviewed Hicks' current public player page, including his .295 season average, July 4 three-hit note after returning from the injured list, and strong 2026 split against right-handed pitching."
+    },
+    {
+      "label": "RotoWire George Kirby News",
+      "url": "https://www.rotowire.com/baseball/player/george-kirby-16057",
+      "note": "Reviewed Kirby's public pitcher page, including his 7-7 record, 3.81 ERA, 1.32 WHIP, 91:24 K:BB, and June 29 eight-inning win."
+    },
+    {
+      "label": "Baseball Savant Mariners-Marlins Preview",
+      "url": "https://baseballsavant.mlb.com/preview?game_date=07%2F08%2F2026&game_pk=823848",
+      "note": "Reviewed the Statcast game preview for the Mariners-Marlins matchup."
+    },
+    {
+      "label": "Lookout Landing Series Preview",
+      "url": "https://www.lookoutlanding.com/seattle-mariners-game-information/145828/series-preview-seattle-mariners-at-miami-marlins-july-2026",
+      "note": "Reviewed matchup context noting Miami's strong June offense and the Lopez/Hicks/Edwards contact-oriented core, while also grading Seattle's rotation and bullpen as strengths."
+    },
+    {
+      "label": "Recent MLB Boxscores via StatsAPI",
+      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1",
+      "note": "Checked recent public boxscore data for Miami and Seattle bullpen workload, plus prior-game usage for Hicks and Lopez. On July 7, Hicks went 3-for-5 and Lopez went 1-for-5."
+    }
+  ],
+  "players": [
+    {
+      "rank": 1,
+      "player": "Otto Lopez",
+      "team": "MIA",
+      "opponent": "SEA",
+      "probable_pitcher": "George Kirby",
+      "pro_thesis": "Otto Lopez is the better single-pick profile because the broad evidence says his hit skill is the more stable bet, even in a difficult George Kirby matchup. The learned model ranks him first at 74.7%, and the selection layer gives him a major edge over Hicks: 76.8 selection score, 95 safety score, Publisher status, 4.7 expected plate appearances, and a projected upper-order role. His hitter form is excellent and not just one-game noise: .343 on the season, .322 over his last 500 at-bats, .360 over his last 75 at-bats, .480 over his last 25 at-bats, 12-for-24 over his last five games, and .312 against right-handed pitching in 2026. Lopez also keeps enough bat-to-ball skill to survive Kirby's profile, with low walk waste, manageable strikeout/whiff rates, and a local pitch-type matchup of .298 BA / .336 xBA over very high coverage. Public sources back up the form, with RotoWire noting a recent stretch of multiple three-hit games and extra-base production. If Miami gets any early traffic against Kirby, Lopez's combination of contact and lineup context gives him the cleanest one-hit path.",
+      "con_thesis": "The con case is that Lopez is not facing a soft target. Kirby is a real stopper, with a 3.81 ERA, 1.32 WHIP, 91:24 K:BB, 102 Stuff+ locally, and a recent eight-inning win over the Angels. Lopez also has three specific stop valves: Kirby's Stuff+ over 95, a 0-for-3 direct H2H line, and ugly H2H whiff/K rates in that tiny sample. Public projection sources also put Lopez third rather than first, so Hicks may have one more plate appearance if the projected lineup holds. Finally, the Seattle bullpen is not a clear rescue path if Kirby exits after six or seven innings; local bullpen HPI and opponent average both grade as pitcher-friendly. Lopez is the best Marlins hitter in the top-two view, but this is a quality-opponent pick, not a free square.",
+      "committee_thesis": "Committee read: Lopez is the single pick because his overall reliability stack is stronger than Hicks' leadoff argument. The pro advocate has the better full-season and recent-form case: higher learned probability, much higher selection score, Publisher status, elite season average, strong right-handed-pitcher split, and the hottest last-five profile on the board. The con advocate is right that Kirby and the H2H sample are uncomfortable, but those risks also apply to Hicks, who adds more stop valves and less model confidence. The reviewer chooses Lopez, pending official lineup confirmation."
+    },
+    {
+      "rank": 2,
+      "player": "Liam Hicks",
+      "team": "MIA",
+      "opponent": "SEA",
+      "probable_pitcher": "George Kirby",
+      "pro_thesis": "Liam Hicks has a credible upset case because his best arguments are practical, not decorative. RotoWire and RotoGrinders both project him first against George Kirby, and that potential leadoff volume matters in a one-hit contest. He also has a sharp current contact profile: .295 season average, .316 against right-handed pitching, 10-for-23 over his last five games, 3-for-5 last night, very low strikeout and whiff rates, and a .314 inferred pitch-type BA against Kirby's mix. Public RotoWire context says Hicks has been hot since returning from the injured list and has primarily batted leadoff versus right-handed pitchers, which lines up with today's projected role. The Lookout Landing preview also grouped Hicks with Lopez and Xavier Edwards as part of Miami's contact-oriented offensive core. If the official lineup confirms Hicks first, his volume and platoon split give him a serious route to being the better single.",
+      "con_thesis": "The con case is that Hicks asks the committee to trust shorter and narrower evidence against the best starter in this comparison. His learned probability is lower at 71.7%, his selection score drops to 63.5, his safety score is only 70, and he carries five stop valves: no H2H history, H2H PA below 2, long/last-500 hit indicators below the main threshold, season PA/G under 4.2, Kirby's Stuff+ over 95, and a handedness-wide threshold issue. He is hot now, but the model still sees a weaker long-window hit foundation than Lopez, and Kirby's command/quality can punish hitters who need the current-form signal to carry the whole thesis. Hicks also recently returned from a back issue, and while he is not currently listed as injured, that background keeps late lineup confirmation important. He is an excellent two-pick partner, but the total risk stack is heavier than Lopez's.",
+      "committee_thesis": "Committee read: Hicks is the runner-up because the leadoff and platoon arguments are real but not enough to overcome the lower safety profile. The pro advocate makes the best possible case: projected first, hot since returning, low strikeout profile, strong righty split, and immediate 3-for-5 form. The con advocate wins the single-pick comparison because five stop valves, no H2H, lower learned confidence, lower selection score, and weaker long-window hit indicators are a lot to carry against Kirby. The reviewer keeps Hicks as the second card pick and chooses Lopez as the single."
+    }
+  ]
+}

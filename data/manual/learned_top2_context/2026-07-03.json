@@ -1,0 +1,769 @@
+{
+  "generated_at": "2026-07-03T13:01:59Z",
+  "date": "2026-07-03",
+  "requested_date": "2026-07-03",
+  "used_latest_fallback": false,
+  "target": "learned_rank_top_2",
+  "purpose": "Evidence staging only. ChatGPT/Codex should write the pro thesis, con thesis, and committee decision.",
+  "daily_timing": {
+    "morning_models_scheduled": "07:00 America/Chicago",
+    "recommended_stage_after": "08:00 America/Chicago",
+    "note": "The morning model scripts normally need about 45 minutes, so 8:00am Central gives them a buffer."
+  },
+  "workflow_prompt": "X:\\Coding\\Statbirt\\prompts\\learned_top2_thesis.md",
+  "expected_thesis_path": "X:\\Coding\\Statbirt\\data\\manual\\learned_top2_theses\\2026-07-03.json",
+  "dashboard_refresh_command": "py -3 -m statbirt.export_learned_web --date latest --limit 5",
+  "total_predictions_for_date": 436,
+  "injury_filtered_count": 49,
+  "selection_brief_from_local_metrics": {
+    "policy_version": "learned-selection-v1",
+    "headline": "Recommended single: Luis Arraez. Best two-pick card: Luis Arraez and Gunnar Henderson.",
+    "recommended_single": {
+      "rank": 1,
+      "player": "Luis Arraez",
+      "team": "SFG",
+      "opponent": "COL",
+      "selection_score": 86.2,
+      "learned_hit_probability": 0.7661,
+      "pros": [
+        "High learned probability (76.6%).",
+        "Strong reliability score (100/100).",
+        "Projected for 4.8 PA.",
+        "Premium lineup slot (1)."
+      ],
+      "cons": [
+        "Starter season H/IP under .875."
+      ],
+      "confidence_label": "Primary",
+      "thesis": "Luis Arraez is a 86.2 selection-score play with a 76.6% learned hit probability, 4.8 expected PA, and a 100/100 reliability score. The positive case starts with high learned probability (76.6%); the main counterweight is starter season H/IP under .875.",
+      "summary": "Luis Arraez grades as primary at 86.2 on the reliability blend.",
+      "recommendation": "Best 1",
+      "h2h_record": "3-10",
+      "safety_score": 100,
+      "bob_score": 70.48,
+      "expected_pa": "4.8",
+      "lineup_slot": "1.4",
+      "hitter_ba_season": "0.326",
+      "probable_pitcher": "Ryan Feltner",
+      "pickable": false,
+      "stop_valve_count": 2,
+      "hard_pass_reasons": [
+        "Starter season H/IP under .875",
+        "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows"
+      ],
+      "concerns": [],
+      "result_hit": null,
+      "result_hits": null,
+      "result_ab": null,
+      "result_pa": null,
+      "result_status": "",
+      "game_state": "unknown",
+      "game_status": "",
+      "game_hits": null
+    },
+    "recommended_pair": [
+      {
+        "rank": 1,
+        "player": "Luis Arraez",
+        "team": "SFG",
+        "opponent": "COL",
+        "selection_score": 86.2,
+        "learned_hit_probability": 0.7661,
+        "pros": [
+          "High learned probability (76.6%).",
+          "Strong reliability score (100/100).",
+          "Projected for 4.8 PA.",
+          "Premium lineup slot (1)."
+        ],
+        "cons": [
+          "Starter season H/IP under .875."
+        ],
+        "confidence_label": "Primary",
+        "thesis": "Luis Arraez is a 86.2 selection-score play with a 76.6% learned hit probability, 4.8 expected PA, and a 100/100 reliability score. The positive case starts with high learned probability (76.6%); the main counterweight is starter season H/IP under .875.",
+        "summary": "Luis Arraez grades as primary at 86.2 on the reliability blend.",
+        "recommendation": "Best 1",
+        "h2h_record": "3-10",
+        "safety_score": 100,
+        "bob_score": 70.48,
+        "expected_pa": "4.8",
+        "lineup_slot": "1.4",
+        "hitter_ba_season": "0.326",
+        "probable_pitcher": "Ryan Feltner",
+        "pickable": false,
+        "stop_valve_count": 2,
+        "hard_pass_reasons": [
+          "Starter season H/IP under .875",
+          "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows"
+        ],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      },
+      {
+        "rank": 2,
+        "player": "Gunnar Henderson",
+        "team": "BAL",
+        "opponent": "CIN",
+        "selection_score": 70.8,
+        "learned_hit_probability": 0.7638,
+        "pros": [
+          "High learned probability (76.4%).",
+          "Strong reliability score (82/100).",
+          "Projected for 4.8 PA.",
+          "Premium lineup slot (1)."
+        ],
+        "cons": [
+          "Current-season BA is .227.",
+          "5 stop valves.",
+          "HiPA 500 0.206."
+        ],
+        "confidence_label": "Playable",
+        "thesis": "Gunnar Henderson is a 70.8 selection-score play with a 76.4% learned hit probability, 4.8 expected PA, and a 82/100 reliability score. The positive case starts with high learned probability (76.4%); the main counterweight is current-season BA is .227.",
+        "summary": "Gunnar Henderson grades as playable at 70.8 on the reliability blend.",
+        "recommendation": "Best 2",
+        "h2h_record": "1-3",
+        "safety_score": 82,
+        "bob_score": 59.51,
+        "expected_pa": "4.8",
+        "lineup_slot": "1.4",
+        "hitter_ba_season": "0.227",
+        "probable_pitcher": "Brady Singer",
+        "pickable": false,
+        "stop_valve_count": 5,
+        "hard_pass_reasons": [
+          "Hitter is below .270 over both long and last-500 AB windows",
+          "Hitter season K rate over 22%",
+          "H2H whiff rate over 25%",
+          "H2H K rate over 20%",
+          "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows"
+        ],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      }
+    ],
+    "items": [
+      {
+        "rank": 1,
+        "player": "Luis Arraez",
+        "team": "SFG",
+        "opponent": "COL",
+        "selection_score": 86.2,
+        "learned_hit_probability": 0.7661,
+        "pros": [
+          "High learned probability (76.6%).",
+          "Strong reliability score (100/100).",
+          "Projected for 4.8 PA.",
+          "Premium lineup slot (1)."
+        ],
+        "cons": [
+          "Starter season H/IP under .875."
+        ],
+        "confidence_label": "Primary",
+        "thesis": "Luis Arraez is a 86.2 selection-score play with a 76.6% learned hit probability, 4.8 expected PA, and a 100/100 reliability score. The positive case starts with high learned probability (76.6%); the main counterweight is starter season H/IP under .875.",
+        "summary": "Luis Arraez grades as primary at 86.2 on the reliability blend.",
+        "recommendation": "Best 1",
+        "h2h_record": "3-10",
+        "safety_score": 100,
+        "bob_score": 70.48,
+        "expected_pa": "4.8",
+        "lineup_slot": "1.4",
+        "hitter_ba_season": "0.326",
+        "probable_pitcher": "Ryan Feltner",
+        "pickable": false,
+        "stop_valve_count": 2,
+        "hard_pass_reasons": [
+          "Starter season H/IP under .875",
+          "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows"
+        ],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      },
+      {
+        "rank": 2,
+        "player": "Gunnar Henderson",
+        "team": "BAL",
+        "opponent": "CIN",
+        "selection_score": 70.8,
+        "learned_hit_probability": 0.7638,
+        "pros": [
+          "High learned probability (76.4%).",
+          "Strong reliability score (82/100).",
+          "Projected for 4.8 PA.",
+          "Premium lineup slot (1)."
+        ],
+        "cons": [
+          "Current-season BA is .227.",
+          "5 stop valves.",
+          "HiPA 500 0.206."
+        ],
+        "confidence_label": "Playable",
+        "thesis": "Gunnar Henderson is a 70.8 selection-score play with a 76.4% learned hit probability, 4.8 expected PA, and a 82/100 reliability score. The positive case starts with high learned probability (76.4%); the main counterweight is current-season BA is .227.",
+        "summary": "Gunnar Henderson grades as playable at 70.8 on the reliability blend.",
+        "recommendation": "Best 2",
+        "h2h_record": "1-3",
+        "safety_score": 82,
+        "bob_score": 59.51,
+        "expected_pa": "4.8",
+        "lineup_slot": "1.4",
+        "hitter_ba_season": "0.227",
+        "probable_pitcher": "Brady Singer",
+        "pickable": false,
+        "stop_valve_count": 5,
+        "hard_pass_reasons": [
+          "Hitter is below .270 over both long and last-500 AB windows",
+          "Hitter season K rate over 22%",
+          "H2H whiff rate over 25%",
+          "H2H K rate over 20%",
+          "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows"
+        ],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      }
+    ]
+  },
+  "players": [
+    {
+      "rank": 1,
+      "player": "Luis Arraez",
+      "player_id": "650333",
+      "team": "SFG",
+      "opponent": "COL",
+      "dashboard_summary": {
+        "learned_hit_probability": 0.7661,
+        "bob_score": 70.48,
+        "pickable": false,
+        "safety_score": 100,
+        "h2h_record": "3-10",
+        "expected_pa": "4.8",
+        "lineup_slot": "1.4",
+        "season_ba": "0.326",
+        "last_5_ba": "0.400",
+        "hot_streak": true,
+        "hot_streak_tooltip": "8-20",
+        "probable_pitcher": "Ryan Feltner",
+        "pitcher_hand": "R",
+        "batter_stand": "L",
+        "venue_name": "Coors Field",
+        "weather_label": "Rain: 1.0%",
+        "congregation_status": "Publisher"
+      },
+      "model_signals": [
+        "Expected PA 4.8",
+        "Season PA/G 4.39",
+        "Lineup slot 1",
+        "2 stop valves",
+        "K rate 4.0%"
+      ],
+      "model_risks": [],
+      "stop_valves": [
+        "Starter season H/IP under .875",
+        "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows"
+      ],
+      "watch_notes": [],
+      "field_context": {
+        "identity": {
+          "date": "2026-07-03",
+          "player": "Luis Arraez",
+          "player_id": "650333",
+          "team": "SFG",
+          "team_id": "137",
+          "opponent": "COL",
+          "opponent_id": "115",
+          "game_pk": "824336"
+        },
+        "learned_model": {
+          "learned_rank": "1",
+          "learned_hit_probability": "0.7661",
+          "model_version": "learned-logistic-v2-20260703T120301Z",
+          "model_trained_at": "2026-07-03T12:03:01Z",
+          "bob_score": "70.48",
+          "score": "70.48",
+          "pickable": "N"
+        },
+        "game_context": {
+          "venue_name": "Coors Field",
+          "game_start_time_utc": "2026-07-04T00:10:00Z",
+          "road_game": "Y",
+          "division_matchup": "Y",
+          "doubleheader": "N",
+          "confirmed_lineup": "N",
+          "lineup_slot": "1.4",
+          "expected_pa": "4.80",
+          "starts_last_5": "5"
+        },
+        "weather_park": {
+          "precip_probability": "1.0",
+          "forecast_temperature_f": "89.4",
+          "park_hit_factor": "117.0"
+        },
+        "hitter_form_contact": {
+          "hitter_ba_season": "0.326",
+          "hitter_hipa_2500_pa": "0.294",
+          "hitter_pa_per_game_season": "4.39",
+          "hitter_ba_2500_ab": "0.316",
+          "hitter_hipa_500_pa": "0.288",
+          "hitter_hipa_75_ab": "0.305",
+          "hitter_ba_75_ab": "0.333",
+          "hitter_ba_25_ab": "0.400",
+          "hitter_ba_500_ab": "0.314",
+          "hitter_last_5_games_played": "5",
+          "hitter_last_5_games_hits": "8",
+          "hitter_last_5_games_ab": "20",
+          "hitter_last_5_games_ba": "0.400",
+          "sprint_speed": "26.5"
+        },
+        "hitter_plate_discipline": {
+          "hitter_bb_rate_season": "0.053",
+          "hitter_bb_rate_500_pa": "0.054",
+          "hitter_whiff_rate_season": "0.080",
+          "hitter_whiff_rate_500_pa": "0.075",
+          "hitter_k_rate_season": "0.036",
+          "hitter_k_rate_500_pa": "0.040"
+        },
+        "hitter_handedness_splits": {
+          "batter_stand": "L",
+          "pitcher_hand": "R",
+          "hitter_split_ba_season_vs_lhp": "0.303",
+          "hitter_split_ba_season_vs_rhp": "0.336",
+          "hitter_split_pa_season_vs_lhp": "111",
+          "hitter_split_pa_season_vs_rhp": "247",
+          "hitter_split_ba_500_vs_lhp": "0.275",
+          "hitter_split_ba_500_vs_rhp": "0.320",
+          "hitter_split_ba_1500_vs_lhp": "0.275",
+          "hitter_split_ba_1500_vs_rhp": "0.311"
+        },
+        "probable_starter": {
+          "probable_pitcher": "Ryan Feltner",
+          "probable_pitcher_id": "663372",
+          "pitcher_hand": "R",
+          "pitcher_hpi_350": "1.004",
+          "pitcher_hpi_200": "0.957",
+          "pitcher_hpi_season": "0.868",
+          "pitcher_hits_last_18_ip": "19",
+          "pitcher_stuff_plus": "91.0",
+          "pitcher_lr_opp_ba": "0.266",
+          "pitcher_lr_opp_ba_50": "0.205",
+          "pitcher_lr_opp_ba_200": "0.253"
+        },
+        "probable_starter_last_start": {
+          "pitcher_last_start_date": "2026-06-28",
+          "pitcher_last_start_ip": "6.0",
+          "pitcher_last_start_hits": "5",
+          "pitcher_last_start_strikeouts": "0",
+          "pitcher_last_start_walks": "0"
+        },
+        "h2h": {
+          "h2h_pa": "10",
+          "h2h_hits": "3",
+          "h2h_hit_rate": "0.300",
+          "h2h_whiff_rate": "0.059",
+          "h2h_k_rate": "0.000",
+          "h2h_exit_velocity": "89.7",
+          "h2h_xba": "0.285"
+        },
+        "pitch_type_matchup": {
+          "inferred_pitch_type_ba": "0.297",
+          "inferred_pitch_type_xba": "0.300",
+          "inferred_pitch_type_coverage": "0.846"
+        },
+        "bullpen_context": {
+          "bullpen_hpi": "1.074",
+          "bullpen_opp_ba": "0.276"
+        },
+        "bob_score_components": {
+          "component_hitter.hipa_2500_pa": "100.00",
+          "component_hitter.pa_per_game_season": "43.36",
+          "component_hitter.hipa_500_pa": "100.00",
+          "component_hitter.hipa_75_ab": "100.00",
+          "component_starting_pitcher.hpi_350": "50.76",
+          "component_starting_pitcher.hpi_season": "23.58",
+          "component_starting_pitcher.stuff_plus": "68.57",
+          "component_h2h.direct": "70.77",
+          "component_h2h.pitcher_lr_opp_ba": "41.61",
+          "component_h2h.inferred_pitch_type": "65.93",
+          "component_bullpen.hpi_season": "71.93",
+          "component_other.road_game": "100.00",
+          "component_other.division_matchup": "100.00",
+          "component_other.sprint_speed": "36.36",
+          "component_other.park_hit_factor": "100.00",
+          "component_other.lineup_opportunity": "100.00"
+        },
+        "results": {}
+      },
+      "missing_relevant_fields": {
+        "results": [
+          "result_hit",
+          "result_hits",
+          "result_ab",
+          "result_pa",
+          "result_status",
+          "result_updated_at",
+          "notes"
+        ]
+      },
+      "source_targets": [
+        {
+          "label": "MLB probable pitchers",
+          "url": "https://www.mlb.com/probable-pitchers",
+          "why": "Verify the probable starter has not changed."
+        },
+        {
+          "label": "MLB starting lineups",
+          "url": "https://www.mlb.com/starting-lineups",
+          "why": "Check whether the hitter is confirmed in the lineup and whether the slot changed."
+        },
+        {
+          "label": "MLB injury report",
+          "url": "https://www.mlb.com/injury-report",
+          "why": "Check for late injury or availability notes."
+        },
+        {
+          "label": "RotoWire bullpen usage",
+          "url": "https://www.rotowire.com/baseball/bullpen-usage.php",
+          "why": "Look for bullpen fatigue or unavailable leverage arms."
+        },
+        {
+          "label": "RotoWire daily lineups",
+          "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+          "why": "Cross-check lineup and late-scratch risk."
+        },
+        {
+          "label": "MLB news",
+          "url": "https://www.mlb.com/news",
+          "why": "Search for current notes on Luis Arraez, Ryan Feltner, SFG, and COL."
+        },
+        {
+          "label": "MLB live game feed",
+          "url": "https://statsapi.mlb.com/api/v1.1/game/824336/feed/live",
+          "why": "Verify official game, lineup, venue, and probable-pitcher context."
+        },
+        {
+          "label": "MLB boxscore endpoint",
+          "url": "https://statsapi.mlb.com/api/v1/game/824336/boxscore",
+          "why": "Useful after lineups post or for later result checks."
+        },
+        {
+          "label": "Baseball Savant: Luis Arraez",
+          "url": "https://baseballsavant.mlb.com/savant-player/luis-arraez-650333",
+          "why": "Review hitter quality of contact, rolling form, pitch-type strengths, and handedness context."
+        },
+        {
+          "label": "Baseball Savant: Ryan Feltner",
+          "url": "https://baseballsavant.mlb.com/savant-player/ryan-feltner-663372",
+          "why": "Review starter pitch mix, recent shape, contact allowed, and possible matchup fragility."
+        }
+      ],
+      "chatgpt_review_questions": [
+        "Has the probable starter or lineup changed since the morning run?",
+        "Do current news, beat notes, or injury reports create scratch, rest, or pinch-hit risk?",
+        "Does the hitter have a pitch-type or handedness edge that survives beyond the headline model probability?",
+        "Is the opposing bullpen likely to help or hurt the one-hit path if the starter exits early?",
+        "Is the recent form signal supported by contact quality, or does it look like short-sample noise?"
+      ]
+    },
+    {
+      "rank": 2,
+      "player": "Gunnar Henderson",
+      "player_id": "683002",
+      "team": "BAL",
+      "opponent": "CIN",
+      "dashboard_summary": {
+        "learned_hit_probability": 0.7638,
+        "bob_score": 59.51,
+        "pickable": false,
+        "safety_score": 82,
+        "h2h_record": "1-3",
+        "expected_pa": "4.8",
+        "lineup_slot": "1.4",
+        "season_ba": "0.227",
+        "last_5_ba": "0.286",
+        "hot_streak": false,
+        "hot_streak_tooltip": "",
+        "probable_pitcher": "Brady Singer",
+        "pitcher_hand": "R",
+        "batter_stand": "L",
+        "venue_name": "Great American Ball Park",
+        "weather_label": "Rain: 8.0%",
+        "congregation_status": ""
+      },
+      "model_signals": [
+        "Expected PA 4.8",
+        "Season PA/G 4.59",
+        "Lineup slot 1",
+        "K rate 21.6%",
+        "Stuff+ 91.0"
+      ],
+      "model_risks": [
+        "5 stop valves",
+        "HiPA 500 0.206"
+      ],
+      "stop_valves": [
+        "Hitter is below .270 over both long and last-500 AB windows",
+        "Hitter season K rate over 22%",
+        "H2H whiff rate over 25%",
+        "H2H K rate over 20%",
+        "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows"
+      ],
+      "watch_notes": [],
+      "field_context": {
+        "identity": {
+          "date": "2026-07-03",
+          "player": "Gunnar Henderson",
+          "player_id": "683002",
+          "team": "BAL",
+          "team_id": "110",
+          "opponent": "CIN",
+          "opponent_id": "113",
+          "game_pk": "824498"
+        },
+        "learned_model": {
+          "learned_rank": "2",
+          "learned_hit_probability": "0.7638",
+          "model_version": "learned-logistic-v2-20260703T120301Z",
+          "model_trained_at": "2026-07-03T12:03:01Z",
+          "bob_score": "59.51",
+          "score": "59.51",
+          "pickable": "N"
+        },
+        "game_context": {
+          "venue_name": "Great American Ball Park",
+          "game_start_time_utc": "2026-07-03T23:10:00Z",
+          "road_game": "Y",
+          "division_matchup": "N",
+          "doubleheader": "N",
+          "confirmed_lineup": "N",
+          "lineup_slot": "1.4",
+          "expected_pa": "4.80",
+          "starts_last_5": "5"
+        },
+        "weather_park": {
+          "precip_probability": "8.0",
+          "forecast_temperature_f": "98.8",
+          "park_hit_factor": "102.0"
+        },
+        "hitter_form_contact": {
+          "hitter_ba_season": "0.227",
+          "hitter_hipa_2500_pa": "0.233",
+          "hitter_pa_per_game_season": "4.59",
+          "hitter_ba_2500_ab": "0.263",
+          "hitter_hipa_500_pa": "0.206",
+          "hitter_hipa_75_ab": "0.221",
+          "hitter_ba_75_ab": "0.253",
+          "hitter_ba_25_ab": "0.240",
+          "hitter_ba_500_ab": "0.236",
+          "hitter_last_5_games_played": "5",
+          "hitter_last_5_games_hits": "6",
+          "hitter_last_5_games_ab": "21",
+          "hitter_last_5_games_ba": "0.286",
+          "sprint_speed": "27.8"
+        },
+        "hitter_plate_discipline": {
+          "hitter_bb_rate_season": "0.080",
+          "hitter_bb_rate_500_pa": "0.088",
+          "hitter_whiff_rate_season": "0.236",
+          "hitter_whiff_rate_500_pa": "0.237",
+          "hitter_k_rate_season": "0.228",
+          "hitter_k_rate_500_pa": "0.216"
+        },
+        "hitter_handedness_splits": {
+          "batter_stand": "L",
+          "pitcher_hand": "R",
+          "hitter_split_ba_season_vs_lhp": "0.214",
+          "hitter_split_ba_season_vs_rhp": "0.233",
+          "hitter_split_pa_season_vs_lhp": "114",
+          "hitter_split_pa_season_vs_rhp": "285",
+          "hitter_split_ba_500_vs_lhp": "0.246",
+          "hitter_split_ba_500_vs_rhp": "0.260",
+          "hitter_split_ba_1500_vs_lhp": "0.246",
+          "hitter_split_ba_1500_vs_rhp": "0.281"
+        },
+        "probable_starter": {
+          "probable_pitcher": "Brady Singer",
+          "probable_pitcher_id": "663903",
+          "pitcher_hand": "R",
+          "pitcher_hpi_350": "0.993",
+          "pitcher_hpi_200": "1.003",
+          "pitcher_hpi_season": "1.216",
+          "pitcher_hits_last_18_ip": "20",
+          "pitcher_stuff_plus": "91.0",
+          "pitcher_lr_opp_ba": "0.282",
+          "pitcher_lr_opp_ba_50": "0.296",
+          "pitcher_lr_opp_ba_200": "0.277"
+        },
+        "probable_starter_last_start": {
+          "pitcher_last_start_date": "2026-06-28",
+          "pitcher_last_start_ip": "4.3",
+          "pitcher_last_start_hits": "9",
+          "pitcher_last_start_strikeouts": "6",
+          "pitcher_last_start_walks": "0"
+        },
+        "h2h": {
+          "h2h_pa": "3",
+          "h2h_hits": "1",
+          "h2h_hit_rate": "0.333",
+          "h2h_whiff_rate": "0.500",
+          "h2h_k_rate": "0.333",
+          "h2h_exit_velocity": "98.9",
+          "h2h_xba": "0.415"
+        },
+        "pitch_type_matchup": {
+          "inferred_pitch_type_ba": "0.323",
+          "inferred_pitch_type_xba": "0.392",
+          "inferred_pitch_type_coverage": "0.742"
+        },
+        "bullpen_context": {
+          "bullpen_hpi": "0.900",
+          "bullpen_opp_ba": "0.238"
+        },
+        "bob_score_components": {
+          "component_hitter.hipa_2500_pa": "72.75",
+          "component_hitter.pa_per_game_season": "65.13",
+          "component_hitter.hipa_500_pa": "36.00",
+          "component_hitter.hipa_75_ab": "50.62",
+          "component_starting_pitcher.hpi_350": "48.50",
+          "component_starting_pitcher.hpi_season": "93.10",
+          "component_starting_pitcher.stuff_plus": "68.57",
+          "component_h2h.direct": "60.37",
+          "component_h2h.pitcher_lr_opp_ba": "56.17",
+          "component_h2h.inferred_pitch_type": "90.93",
+          "component_bullpen.hpi_season": "33.33",
+          "component_other.road_game": "100.00",
+          "component_other.division_matchup": "0.00",
+          "component_other.sprint_speed": "60.00",
+          "component_other.park_hit_factor": "60.00",
+          "component_other.lineup_opportunity": "100.00"
+        },
+        "results": {}
+      },
+      "missing_relevant_fields": {
+        "results": [
+          "result_hit",
+          "result_hits",
+          "result_ab",
+          "result_pa",
+          "result_status",
+          "result_updated_at",
+          "notes"
+        ]
+      },
+      "source_targets": [
+        {
+          "label": "MLB probable pitchers",
+          "url": "https://www.mlb.com/probable-pitchers",
+          "why": "Verify the probable starter has not changed."
+        },
+        {
+          "label": "MLB starting lineups",
+          "url": "https://www.mlb.com/starting-lineups",
+          "why": "Check whether the hitter is confirmed in the lineup and whether the slot changed."
+        },
+        {
+          "label": "MLB injury report",
+          "url": "https://www.mlb.com/injury-report",
+          "why": "Check for late injury or availability notes."
+        },
+        {
+          "label": "RotoWire bullpen usage",
+          "url": "https://www.rotowire.com/baseball/bullpen-usage.php",
+          "why": "Look for bullpen fatigue or unavailable leverage arms."
+        },
+        {
+          "label": "RotoWire daily lineups",
+          "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+          "why": "Cross-check lineup and late-scratch risk."
+        },
+        {
+          "label": "MLB news",
+          "url": "https://www.mlb.com/news",
+          "why": "Search for current notes on Gunnar Henderson, Brady Singer, BAL, and CIN."
+        },
+        {
+          "label": "MLB live game feed",
+          "url": "https://statsapi.mlb.com/api/v1.1/game/824498/feed/live",
+          "why": "Verify official game, lineup, venue, and probable-pitcher context."
+        },
+        {
+          "label": "MLB boxscore endpoint",
+          "url": "https://statsapi.mlb.com/api/v1/game/824498/boxscore",
+          "why": "Useful after lineups post or for later result checks."
+        },
+        {
+          "label": "Baseball Savant: Gunnar Henderson",
+          "url": "https://baseballsavant.mlb.com/savant-player/gunnar-henderson-683002",
+          "why": "Review hitter quality of contact, rolling form, pitch-type strengths, and handedness context."
+        },
+        {
+          "label": "Baseball Savant: Brady Singer",
+          "url": "https://baseballsavant.mlb.com/savant-player/brady-singer-663903",
+          "why": "Review starter pitch mix, recent shape, contact allowed, and possible matchup fragility."
+        }
+      ],
+      "chatgpt_review_questions": [
+        "Has the probable starter or lineup changed since the morning run?",
+        "Do current news, beat notes, or injury reports create scratch, rest, or pinch-hit risk?",
+        "Does the hitter have a pitch-type or handedness edge that survives beyond the headline model probability?",
+        "Is the opposing bullpen likely to help or hurt the one-hit path if the starter exits early?",
+        "Is the recent form signal supported by contact quality, or does it look like short-sample noise?"
+      ]
+    }
+  ],
+  "chatgpt_committee_process": [
+    "Read this staged context and treat it as evidence, not as a thesis.",
+    "Browse current free sources for lineup, probable pitcher, injury/news, bullpen, and matchup updates.",
+    "Write a pro thesis and con thesis for each player.",
+    "Have a final reviewer compare the arguments and choose one single hitter.",
+    "Save the finished dashboard-ready JSON to expected_thesis_path, then refresh the learned dashboard export."
+  ],
+  "output_schema": {
+    "date": "2026-07-03",
+    "target": "learned_rank_top_2",
+    "committee_pick": "Player Name",
+    "committee_summary": "One paragraph explaining the single-pick decision.",
+    "source_notes": [
+      {
+        "label": "Source name",
+        "url": "https://...",
+        "note": "What was reviewed."
+      }
+    ],
+    "players": [
+      {
+        "rank": 1,
+        "player": "Player Name",
+        "team": "AAA",
+        "opponent": "BBB",
+        "probable_pitcher": "Pitcher Name",
+        "pro_thesis": "Dashboard-ready paragraph.",
+        "con_thesis": "Dashboard-ready paragraph.",
+        "committee_thesis": "Dashboard-ready paragraph."
+      }
+    ]
+  }
+}

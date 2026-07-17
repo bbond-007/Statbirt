@@ -1,0 +1,96 @@
+{
+  "date": "2026-07-16",
+  "target": "learned_rank_top_2",
+  "committee_pick": "Bo Bichette",
+  "committee_summary": "The committee pick is Bo Bichette. Francisco Lindor has the higher raw learned probability and is coming off a 2-for-4 game with a home run before the break, but the rest of the decision stack points to Bichette. Bichette has the stronger selection score, higher safety score, Publisher status, fewer stop valves, better current and rolling right-handed-pitcher splits, and a stronger local H2H quality signal against Aaron Nola. Nola is still a difficult starter because of 107 Stuff+ and an eight-strikeout final start before the break, but his season profile is vulnerable at 5.75 ERA and 1.43 WHIP, and the staged pitcher-handedness fields are more favorable to right-handed bats. The main risk on Bichette is availability and role: RotoWire listed him day-to-day with leg/ankle soreness before the All-Star break, and official lineups were still TBD during review. If Bichette is confirmed in the lineup, he is the single; Lindor is the two-pick partner.",
+  "workflow_notes": [
+    "Staged the learned model raw top 2 for the active dashboard date.",
+    "Reviewed local model context, H2H, stop valves, expected PA, lineup slot, recent form, handedness splits, starter profile, park/weather, and bullpen context.",
+    "Checked current free public sources for probable pitchers, lineup status, injury/news context, recent player notes, Statcast preview target, and bullpen workload.",
+    "Used pro, con, and reviewer committee roles before choosing the single hitter."
+  ],
+  "source_notes": [
+    {
+      "label": "MLB StatsAPI Mets-Phillies Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/823440/feed/live",
+      "note": "Verified regular-season game type, scheduled preview status, Citizens Bank Park venue, Christian Scott vs. Aaron Nola probable starters, and no official batting orders posted during review."
+    },
+    {
+      "label": "MLB Mets Starting Lineups",
+      "url": "https://www.mlb.com/mets/roster/starting-lineups",
+      "note": "Checked the official Mets page; today's lineup was still TBD during review, with Christian Scott and Aaron Nola listed as probable starters. Recent past lineups showed Lindor batting third, while Bichette had been limited before the break."
+    },
+    {
+      "label": "MLB Phillies Starting Lineups",
+      "url": "https://www.mlb.com/phillies/roster/starting-lineups",
+      "note": "Checked the official Phillies page for the same game context and probable-pitcher confirmation."
+    },
+    {
+      "label": "RotoWire Mets Batting Orders",
+      "url": "https://www.rotowire.com/baseball/batting-orders.php?team=NYM",
+      "note": "Reviewed projected Mets batting order; RotoWire listed today's lineup as not yet announced and projected Bichette third and Lindor fourth versus right-handed pitching."
+    },
+    {
+      "label": "RotoWire Bo Bichette News",
+      "url": "https://www.rotowire.com/baseball/player/bo-bichette-14310",
+      "note": "Reviewed Bichette page; it listed him day-to-day with leg/ankle soreness, a .255 average, and a July 12 note that he was sitting before the break but likely to return to the starting nine afterward."
+    },
+    {
+      "label": "RotoWire Francisco Lindor News",
+      "url": "https://www.rotowire.com/baseball/player/francisco-lindor-12128",
+      "note": "Reviewed Lindor page; it listed a .216 average, 5 homers, 12 RBI, 22 runs, and 2 steals."
+    },
+    {
+      "label": "RotoWire Aaron Nola News",
+      "url": "https://www.rotowire.com/baseball/player/aaron-nola-13359",
+      "note": "Reviewed Nola page; it listed a 3-6 record, 5.75 ERA, 1.43 WHIP, 102 strikeouts, and a recent five-inning, eight-strikeout outing."
+    },
+    {
+      "label": "MLB Aaron Nola Player Page",
+      "url": "https://www.mlb.com/phillies/player/aaron-nola-605400",
+      "note": "Checked Nola's official MLB stat line: 19 games, 3-6 record, 5.75 ERA, 97 innings, 102 strikeouts, and 1.43 WHIP."
+    },
+    {
+      "label": "Baseball Savant Mets-Phillies Preview",
+      "url": "https://baseballsavant.mlb.com/preview?game_date=07%2F16%2F2026&game_pk=823440",
+      "note": "Reviewed the Statcast game preview target for the Mets-Phillies matchup and used staged local Statcast-derived fields for H2H and pitch-type matchup."
+    },
+    {
+      "label": "PickDawgz Mets-Phillies Preview",
+      "url": "https://pickdawgz.com/mlb-picks/mets-vs-phillies-prediction-7-16-2026-todays-mlb-picks/",
+      "note": "Reviewed public game preview noting Lindor's last-game production and Bichette's season power/RBI context."
+    },
+    {
+      "label": "Mets Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/mets-injuries-and-roster-moves",
+      "note": "Checked the official Mets injury page for late availability context."
+    },
+    {
+      "label": "Recent MLB Boxscores via StatsAPI",
+      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1",
+      "note": "Checked recent official boxscores for Lindor and Bichette usage/results plus recent Phillies bullpen workload."
+    }
+  ],
+  "players": [
+    {
+      "rank": 1,
+      "player": "Francisco Lindor",
+      "team": "NYM",
+      "opponent": "PHI",
+      "probable_pitcher": "Aaron Nola",
+      "pro_thesis": "Francisco Lindor's case starts with the model's raw rank and the possibility that the break reset a weak first half. He is the learned No. 1 at 70.0%, projects for 4.6 plate appearances, and is expected to hit in the upper-middle part of the Mets order. His last game before the break was also his best recent signal: 2-for-4 with a home run against Boston. The pitch-type matchup against Aaron Nola is the strongest part of his profile, with a staged .337 BA and .387 xBA over high coverage, and Nola's season line is vulnerable at 5.75 ERA and 1.43 WHIP. If Lindor's recent homer is the start of a second-half correction, this is the kind of matchup where a low season average can still produce one hit.",
+      "con_thesis": "The con case is that too many of Lindor's signals are negative for a single-pick contest. He is hitting .216 on the season, .211 against right-handed pitching this year, and only 4-for-19 over his last five played. He also has six stop valves, including weak long/last-500 average, H2H whiff and strikeout flags, a handedness-consistency flag, and a pitcher-allowed-average flag. His 8-for-45 H2H surface record against Nola is thin for contact confidence, and the staged H2H xBA is only .283 despite solid exit velocity. Lindor has upside, but the model rank is carrying more of the argument than the current hit profile is.",
+      "committee_thesis": "Committee read: Lindor is the runner-up. The pro advocate is right that his raw learned probability, recent home run, and pitch-type matchup keep him viable on a two-pick card. The con advocate wins the single-pick comparison because Lindor's season average, right-handed-pitcher split, H2H whiff/K risk, and six stop valves are too much friction. The reviewer keeps Lindor as the second pick, but prefers Bichette's cleaner reliability and matchup stack."
+    },
+    {
+      "rank": 2,
+      "player": "Bo Bichette",
+      "team": "NYM",
+      "opponent": "PHI",
+      "probable_pitcher": "Aaron Nola",
+      "pro_thesis": "Bo Bichette is the stronger single-pick thesis because his risk stack is narrower and his matchup indicators are more coherent. He has the higher selection score, higher safety score at 86/100, Publisher status, only two stop valves, and a better Bob score than Lindor. His rolling and long right-handed-pitcher splits are much better than the season headline suggests: .298 over the last-500 split and .282 over the 1500-window split against righties. The Nola matchup is not soft, but the local pitcher-handedness data is more favorable for Bichette's side, including .314 opponent average over the 50-IP window and .277 over the 200-IP window. His 4-for-18 H2H line is modest, but the .361 local H2H xBA and lower H2H whiff rate make it more usable than Lindor's H2H profile. If he is back in the lineup after the break, Bichette is the better one-hit path.",
+      "con_thesis": "The con case is availability and recent form. RotoWire still listed Bichette day-to-day with leg/ankle soreness, and he sat multiple games before the break, so the official lineup matters more for him than for Lindor. His last-five-game line is only 2-for-14, and his season average is .255, so this is not a hot-bat play. Aaron Nola also remains capable of missing bats: the staged data gives him 107 Stuff+, and his last start before the break included eight strikeouts over five innings. Bichette's H2H strikeout rate against Nola is over the stop-valve threshold, so the matchup has swing-and-miss risk even if the xBA is encouraging.",
+      "committee_thesis": "Committee read: Bichette is the single pick, conditional on lineup confirmation. The pro advocate has the cleaner total case: Publisher status, better safety score, fewer stop valves, stronger right-handed-pitcher split history, better H2H xBA, and more favorable pitcher-handedness indicators. The con advocate correctly flags the leg/ankle note and weak recent game log, so this is not a blind pick before lineups post. The reviewer chooses Bichette as the single if confirmed active; Lindor remains the two-pick partner."
+    }
+  ]
+}

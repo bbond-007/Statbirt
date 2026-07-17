@@ -1,0 +1,101 @@
+{
+  "date": "2026-07-01",
+  "target": "learned_rank_top_2",
+  "committee_pick": "Xavier Edwards",
+  "committee_summary": "The committee pick is Xavier Edwards by a narrow but defensible margin. Both Marlins have a strong one-hit path at Coors Field against Kyle Freeland, and public projection sources had both in the expected top two of the Miami order while official lineups were still TBD. Lopez has the stronger season average, a better projected lineup slot, excellent current-season production against left-handed pitching, and a perfect 100 safety score. Edwards wins the single-pick comparison because his current signal is hotter and more directly connected to today's starter: an 80.2% learned probability, 85.9 selection score, .304 season average, 10-for-22 last-five line, a public nine-game hitting streak after a four-hit game Tuesday, and a 2-for-4 H2H line with a .570 local xBA against Freeland. Lopez is the correct runner-up and a legitimate two-pick partner, but the 1-for-11 H2H record against Freeland plus his Tuesday rest day make Edwards the cleaner morning single until official lineups post.",
+  "workflow_notes": [
+    "Staged the learned model raw top 2 for the active dashboard date.",
+    "Reviewed local model context, H2H, stop valves, expected PA, lineup slot, recent form, handedness splits, starter profile, and bullpen context.",
+    "Checked current free public sources for probable pitchers, lineup status, injury/news context, weather/park context, Statcast context, and recent bullpen workload.",
+    "Used pro, con, and reviewer committee roles before choosing the single hitter."
+  ],
+  "source_notes": [
+    {
+      "label": "MLB Marlins Starting Lineups",
+      "url": "https://www.mlb.com/marlins/roster/starting-lineups",
+      "note": "Checked the official Marlins-Rockies page; today's lineups were still TBD during review, with Max Meyer and Kyle Freeland listed as probable starters at Coors Field."
+    },
+    {
+      "label": "MLB Probable Pitchers",
+      "url": "https://www.mlb.com/probable-pitchers",
+      "note": "Confirmed MLB's probable-pitcher listing for Marlins at Rockies: Max Meyer versus Kyle Freeland."
+    },
+    {
+      "label": "MLB StatsAPI Marlins-Rockies Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/824337/feed/live",
+      "note": "Verified scheduled status, Coors Field venue, MIA at COL game context, and no posted official batting orders during review."
+    },
+    {
+      "label": "RotoWire Daily Lineups",
+      "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+      "note": "Reviewed expected lineups and game context; RotoWire projected Otto Lopez and Xavier Edwards at the top of Miami's order against Freeland, with the lineup still expected rather than official."
+    },
+    {
+      "label": "RotoGrinders MLB Lineups",
+      "url": "https://rotogrinders.com/lineups/mlb",
+      "note": "Cross-checked public projection context; RotoGrinders listed Miami's lineup as not released and projected Lopez first and Edwards second."
+    },
+    {
+      "label": "Marlins Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/marlins-injuries-and-roster-moves",
+      "note": "Checked the official Marlins injury page; neither Edwards nor Lopez was listed as a current injury item."
+    },
+    {
+      "label": "RotoWire Xavier Edwards News",
+      "url": "https://www.rotowire.com/baseball/player/xavier-edwards-15430",
+      "note": "Reviewed Edwards' current-season line, recent four-hit game, and public note describing a nine-game hitting streak."
+    },
+    {
+      "label": "RotoWire Otto Lopez News",
+      "url": "https://www.rotowire.com/baseball/player/otto-lopez-15753",
+      "note": "Reviewed Lopez's current context, including the June 30 note that he was not in Tuesday's lineup."
+    },
+    {
+      "label": "RotoWire Kyle Freeland News",
+      "url": "https://www.rotowire.com/baseball/player/kyle-freeland-13369",
+      "note": "Reviewed Freeland's current 2026 pitching line and recent note after allowing six runs on 11 hits to Boston."
+    },
+    {
+      "label": "Baseball Savant Xavier Edwards",
+      "url": "https://baseballsavant.mlb.com/savant-player/xavier-edwards-669364",
+      "note": "Reviewed Statcast context for Edwards' contact profile, including low power but usable expected-average and contact indicators."
+    },
+    {
+      "label": "Baseball Savant Otto Lopez",
+      "url": "https://baseballsavant.mlb.com/savant-player/otto-lopez-672640",
+      "note": "Reviewed Statcast context for Lopez's stronger hard-hit and exit-velocity profile."
+    },
+    {
+      "label": "Baseball Savant Kyle Freeland",
+      "url": "https://baseballsavant.mlb.com/savant-player/kyle-freeland-607536",
+      "note": "Reviewed Statcast context for Freeland's contact allowed, including elevated hard-hit and expected-contact indicators."
+    },
+    {
+      "label": "Recent MLB Boxscores via StatsAPI",
+      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1",
+      "note": "Checked recent public boxscore data for Miami and Colorado bullpen workload; Colorado used multiple relievers heavily in the prior Marlins game."
+    }
+  ],
+  "players": [
+    {
+      "rank": 1,
+      "player": "Xavier Edwards",
+      "team": "MIA",
+      "opponent": "COL",
+      "probable_pitcher": "Kyle Freeland",
+      "pro_thesis": "Xavier Edwards has the best evidence stack for the single pick today. The learned model puts him first at 80.2% with an 85.9 selection score, 94 safety score, 4.6 expected plate appearances, and Publisher status. The hitter form is the loudest signal in the top two: .304 season average, 10-for-22 over his last five games, .440 over his last 25 at-bats, and a public RotoWire note after Tuesday's four-hit game describing a nine-game hitting streak. The matchup also works. Freeland is a left-handed starter with a 7.50 ERA, 1.61 WHIP, 25 hits allowed over his last 18 local innings, and a recent six-run, 11-hit start. Edwards has already gone 2-for-4 against him in the local H2H data with a .570 xBA, and Coors Field plus a taxed Colorado bullpen gives him multiple paths to one hit even if Freeland exits early.",
+      "con_thesis": "The con case is that Edwards is not risk-free despite the hot streak. His one stop valve is specific to this matchup: the local H2H strikeout rate is 25%, which is above the stop-valve threshold even though the sample is only four plate appearances. His broader long-window contact marker is weaker than Lopez's, with a 0.242 HiPA 500, and Baseball Savant/RotoWire context still describes a profile built more on speed, contact, and batting average than authoritative impact. Official lineups were still not posted during the morning review, so his expected top-two slot remains projected rather than confirmed. He also played a full high-output game Tuesday, while Lopez had the rest advantage.",
+      "committee_thesis": "Committee read: Edwards is the pick because the current-form and direct-Freeland evidence are stronger than the counterweights. The pro advocate has the model's top probability, the hotter bat, the 2-for-4 H2H, and the better recent public news. The con advocate correctly flags the H2H strikeout stop valve and softer long-window impact, but those issues are less damaging for a one-hit contest than Lopez's 1-for-11 H2H record. The reviewer chooses Edwards as the morning single, pending only late official-lineup confirmation."
+    },
+    {
+      "rank": 2,
+      "player": "Otto Lopez",
+      "team": "MIA",
+      "opponent": "COL",
+      "probable_pitcher": "Kyle Freeland",
+      "pro_thesis": "Otto Lopez is a strong runner-up and a credible two-pick partner. He carries a 79.5% learned hit probability, 82.9 selection score, perfect 100 safety score, .333 season average, .304 last-500 average, and excellent low-strikeout traits. His current-season split against left-handed pitching is the loudest single matchup edge in the top two at .449 over 82 plate appearances, and public lineup sources projected him first for Miami against Freeland. Statcast context also favors Lopez's contact authority relative to Edwards, with stronger average exit velocity and hard-hit indicators. Against a vulnerable Freeland profile at Coors Field, that combination gives Lopez a very real path to a single early plate appearance hit.",
+      "con_thesis": "The con case is matchup history and availability certainty. Lopez's H2H line against Freeland is only 1-for-11, and while the local contact quality is not empty, it does not support him as cleanly as Edwards' 2-for-4, .570 xBA H2H profile. He also carries one stop valve in the local export tied to today's pitcher hand, and RotoWire noted that he sat Tuesday, so the official lineup matters before treating the projected leadoff slot as locked. His recent five-game line is solid but not hot at 6-for-21, and he lacks Edwards' current nine-game streak signal. If the lineup posts with Lopez first and Edwards lower than expected, the gap narrows, but during the morning review he is the slightly less clean single.",
+      "committee_thesis": "Committee read: Lopez is the runner-up because his season quality is excellent but the specific Freeland comparison tilts toward Edwards. The pro advocate has a serious case: better season average, better lefty split, better safety score, better projected slot, and stronger batted-ball authority. The con advocate wins the single-pick comparison because Lopez's direct H2H record is thin, his Tuesday absence adds a little lineup-check requirement, and Edwards has the stronger current-form signal. The reviewer would use Lopez as the second hitter on a two-pick card."
+    }
+  ]
+}

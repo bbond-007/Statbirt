@@ -1,0 +1,111 @@
+{
+  "date": "2026-07-09",
+  "target": "learned_rank_top_2",
+  "committee_pick": "Taylor Ward",
+  "committee_summary": "The committee pick is Taylor Ward because his matchup-specific one-hit path is cleaner than Trea Turner's despite Turner's raw model edge. Turner has meaningful positives: he is the learned No. 1, a Publisher, projected leadoff, and has 4.8 expected plate appearances at Great American Ball Park. The problem is the risk stack around today's actual decision: he did not play on July 8, RotoWire noted he was out of the lineup, official lineups were still TBD during review, he is hitting .241 on the season, and the local model gives him six stop valves including whiff/K flags and a pitcher-allowed-average flag against Brady Singer. Ward is not as strong by model rank, but his specific setup is better for a hit: he is facing a left-handed starter he profiles well against, owns a .291 season split and .302 rolling split against lefties, went 2-for-4 last night, has a 1-for-3 H2H line with strong local xBA, and David Peterson brings a 6.75 ERA, 1.67 WHIP, and a poor recent start into Camden Yards. Rain in Baltimore and Ward's own five stop valves keep this from being clean, but the committee prefers the better active-form plus pitcher-vulnerability profile. Ward is the single; Turner is the two-pick partner pending official lineup confirmation.",
+  "workflow_notes": [
+    "Staged the learned model raw top 2 for the active dashboard date.",
+    "Reviewed local model context, H2H, stop valves, expected PA, lineup slot, recent form, handedness splits, starter profile, park/weather, and bullpen context.",
+    "Checked current free public sources for probable pitchers, lineup status, injury/news context, Statcast previews, recent game notes, and bullpen workload.",
+    "Used pro, con, and reviewer committee roles before choosing the single hitter."
+  ],
+  "source_notes": [
+    {
+      "label": "MLB Phillies Starting Lineups",
+      "url": "https://www.mlb.com/phillies/roster/starting-lineups",
+      "note": "Checked the official Phillies-Reds page; today's lineup was still TBD during review, with Jesus Luzardo and Brady Singer listed as probable starters. The July 8 past lineup showed Turner was not in the starting lineup."
+    },
+    {
+      "label": "MLB Orioles Starting Lineups",
+      "url": "https://www.mlb.com/orioles/roster/starting-lineups",
+      "note": "Checked the official Cubs-Orioles page; today's lineup was still TBD during review, and recent past lineups showed Ward regularly in the top third of Baltimore's order."
+    },
+    {
+      "label": "MLB StatsAPI Phillies-Reds Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/824494/feed/live",
+      "note": "Verified scheduled preview status, Great American Ball Park venue, Jesus Luzardo vs. Brady Singer probable starters, and no official batting orders posted during review."
+    },
+    {
+      "label": "MLB StatsAPI Cubs-Orioles Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/824816/feed/live",
+      "note": "Verified scheduled preview status, Camden Yards venue, David Peterson vs. Trevor Rogers probable starters, and no official batting orders posted during review."
+    },
+    {
+      "label": "RotoWire Daily Lineups",
+      "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+      "note": "Reviewed expected lineup context; RotoWire projected Turner first for Philadelphia and Ward first/third-area for Baltimore depending slate view, with both relevant lineups marked expected rather than official."
+    },
+    {
+      "label": "Phillies Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/phillies-injuries-and-roster-moves",
+      "note": "Checked the official Phillies injury page; Turner was not listed as a current injury item."
+    },
+    {
+      "label": "Orioles Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/orioles-injuries-and-roster-moves",
+      "note": "Checked the official Orioles injury page; Ward was not listed as a current injury item."
+    },
+    {
+      "label": "RotoWire Trea Turner News",
+      "url": "https://www.rotowire.com/baseball/player/trea-turner-13370",
+      "note": "Reviewed Turner page; RotoWire noted he was out of Wednesday's lineup against Cincinnati, making today's official lineup confirmation especially important."
+    },
+    {
+      "label": "RotoWire Taylor Ward News",
+      "url": "https://www.rotowire.com/baseball/player/taylor-ward-13858",
+      "note": "Reviewed Ward page; it listed a .254 season average and noted a late-June stretch where Ward produced multiple hits frequently and a .295/.380/.421 June line."
+    },
+    {
+      "label": "RotoWire Brady Singer News",
+      "url": "https://www.rotowire.com/baseball/player/brady-singer-13874",
+      "note": "Reviewed Singer page; it listed a 3-8 record, 5.03 ERA, and 1.54 WHIP, and recent news showed a five-walk start against Baltimore."
+    },
+    {
+      "label": "RotoWire David Peterson News",
+      "url": "https://www.rotowire.com/baseball/player/david-peterson-14778",
+      "note": "Reviewed Peterson page; it listed a 4-7 record, 6.75 ERA, 1.67 WHIP, and 68 strikeouts, with recent context that he may need to pitch well to hold a rotation spot."
+    },
+    {
+      "label": "Baseball Savant Phillies-Reds Preview",
+      "url": "https://baseballsavant.mlb.com/preview?game_date=07%2F09%2F2026&game_pk=824494",
+      "note": "Reviewed the Statcast preview for the Phillies-Reds matchup."
+    },
+    {
+      "label": "Baseball Savant Cubs-Orioles Preview",
+      "url": "https://baseballsavant.mlb.com/preview?game_date=07%2F09%2F2026&game_pk=824816",
+      "note": "Reviewed the Statcast preview for the Cubs-Orioles matchup."
+    },
+    {
+      "label": "PickDawgz Cubs-Orioles Preview",
+      "url": "https://pickdawgz.com/mlb-picks/chicago-cubs-vs-baltimore-orioles-prediction-7-9-2026-todays-mlb-picks/",
+      "note": "Reviewed public game preview noting Ward's .254 average/.734 OPS and Peterson's poor recent outing."
+    },
+    {
+      "label": "Recent MLB Boxscores via StatsAPI",
+      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1",
+      "note": "Checked recent public boxscore data for Phillies, Reds, Orioles, and Cubs bullpen workload, plus prior-game usage for Turner and Ward."
+    }
+  ],
+  "players": [
+    {
+      "rank": 1,
+      "player": "Trea Turner",
+      "team": "PHI",
+      "opponent": "CIN",
+      "probable_pitcher": "Brady Singer",
+      "pro_thesis": "Trea Turner has the stronger model-shell case. He is the learned No. 1 at 74.1%, carries Publisher status, projects as Philadelphia's leadoff hitter, and owns 4.8 expected plate appearances in a game with a strong run environment. The direct matchup is not empty either: Turner is 3-for-9 against Brady Singer with a .365 local H2H xBA, and Singer's public profile is vulnerable enough at 5.03 ERA and 1.54 WHIP. Great American Ball Park can reward speed/contact profiles as much as power profiles, and Turner still brings elite sprint speed plus enough rolling contact to support a one-hit path. If he is officially back in the lineup after sitting Wednesday, the volume and model edge make him a serious single-pick candidate.",
+      "con_thesis": "The con case is that Turner's risk stack is unusually loud for a raw No. 1. He did not start Wednesday, RotoWire listed him out of the lineup, and official Thursday lineups were still not posted during review, so there is an availability and role check that cannot be waved away. The hitter indicators are also not pristine: .241 season average, .259 against right-handed pitching this season, six stop valves, whiff/K flags in both season and H2H views, and a pitcher-allowed-average flag against Singer. Cincinnati's local bullpen context is also not friendly, grading as a lower-hit environment than the Cubs bullpen behind Peterson. Turner's upside is leadoff volume, but the contest needs one clean hit, and his current profile has more ways to turn plate appearances into empty contact or strikeouts.",
+      "committee_thesis": "Committee read: Turner is the runner-up, not the single, because the model edge is not large enough to overcome the availability and whiff-risk concerns. The pro advocate has a real argument from rank, Publisher status, leadoff volume, H2H xBA, and Singer's public ERA/WHIP. The con advocate wins the final comparison because the Wednesday absence, six stop valves, sub-.250 season average, and pitcher/bullpen hit-suppression flags create too many conditions to check. The reviewer keeps Turner on the two-pick card pending official lineup confirmation, but chooses Ward as the single."
+    },
+    {
+      "rank": 2,
+      "player": "Taylor Ward",
+      "team": "BAL",
+      "opponent": "CHC",
+      "probable_pitcher": "David Peterson",
+      "pro_thesis": "Taylor Ward is the better single-pick thesis because his matchup is cleaner and his current role/form are more actionable today. He faces left-hander David Peterson, and Ward's split against lefties is a strong fit: .291 this season and .302 in both the last-500 and 1500-window split views. He also went 2-for-4 with a walk and RBI last night, has a 6-for-18 last-five line, and owns a 1-for-3 H2H mark with a .509 local xBA against Peterson. The pitcher side is a major separator. Peterson carries a 6.75 ERA and 1.67 WHIP publicly, allowed heavy damage in his most recent local start, and the local model shows 29 hits allowed over his last 18 innings with soft Stuff+ and favorable right-handed-batter allowed averages. Camden Yards has weather risk, but if this game plays, Ward's right-on-left matchup is the most direct one-hit path in the top two.",
+      "con_thesis": "The con case is that Ward is not a clean model play. He ranks second, is not a Publisher, carries five stop valves, and owns weaker long-window hit indicators than Turner. His season average is only .254, his last-500 hit indicator is a low .210, and his walk-rate flags can create plate appearances that help real baseball but not a one-hit contest. Baltimore also had a quick turnaround after a high-scoring loss, and the forecast around Camden Yards carried meaningful rain risk during review. If Peterson avoids barrels or the game is delayed into less predictable bullpen usage, Ward can miss despite the good lefty split. The floor is lower than the best parts of the matchup suggest.",
+      "committee_thesis": "Committee read: Ward is the single pick because his specific matchup edge is stronger than Turner's general model edge. The pro advocate has the better pitcher-vulnerability case: Ward crushes the relevant handedness split, is coming off a two-hit game, has a positive H2H xBA, and faces the shakier starter by current ERA/WHIP, recent damage, and local hit indicators. The con advocate correctly flags the lower safety score and weather risk, but those are less severe than Turner's Wednesday absence plus six stop valves. The reviewer chooses Ward, with the practical caveat that official lineup and weather should be checked before lock."
+    }
+  ]
+}

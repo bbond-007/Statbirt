@@ -1,0 +1,86 @@
+{
+  "date": "2026-06-30",
+  "target": "learned_rank_top_2",
+  "committee_pick": "Otto Lopez",
+  "committee_summary": "The committee pick is Otto Lopez because this is a same-game, same-pitcher comparison and Lopez owns the cleaner version of the Coors Field thesis. Both Marlins benefit from the environment, Tanner Gordon's hittable profile, and Colorado's bullpen vulnerability, but Lopez separates on reliability: 79.7% learned probability, 88.0 selection score, 100 safety score, Publisher status, pickable status, zero stop valves, a .333 season average, low strikeout/whiff risk, and useful 1-for-3 H2H with no H2H strikeouts or whiffs. Xavier Edwards is a strong two-pick partner with a .297 season average, .350 last-five mark, excellent contact skill, switch-hitter flexibility, and the same Coors/Gordon setup. The reviewer still prefers Lopez because Edwards lacks H2H history, has the lone H2H stop valve, carries a lower score stack, and has some recent public context around thumb soreness and a June slump even though he appears active now. With official lineups still TBD, Lopez is the better morning single unless late lineup news materially changes his slot or availability.",
+  "workflow_notes": [
+    "Staged the learned model raw top 2 for the active dashboard date.",
+    "Reviewed local model context, H2H, stop valves, expected PA, lineup slot, recent form, handedness splits, starter profile, and bullpen context.",
+    "Checked current free public sources for probable pitchers, lineup status, injury/news context, venue/weather context, and public player summaries.",
+    "Used pro, con, and reviewer committee roles before choosing the single hitter."
+  ],
+  "source_notes": [
+    {
+      "label": "MLB Marlins Starting Lineups",
+      "url": "https://www.mlb.com/marlins/roster/starting-lineups",
+      "note": "Checked the official Marlins-Rockies page; today's lineups were still TBD during review, with Eury Perez and Tanner Gordon listed as probable starters."
+    },
+    {
+      "label": "MLB StatsAPI Marlins-Rockies Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/824338/feed/live",
+      "note": "Verified scheduled status, Coors Field venue, Eury Perez vs. Tanner Gordon probable starters, and no posted official batting orders during review."
+    },
+    {
+      "label": "RotoWire Daily Lineups",
+      "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+      "note": "Reviewed expected lineup, starter intel, and game context; RotoWire listed Gordon at 0-1 with a 6.37 ERA and projected Lopez ahead of Edwards."
+    },
+    {
+      "label": "RotoGrinders MLB Lineups",
+      "url": "https://rotogrinders.com/lineups/mlb",
+      "note": "Cross-checked public projected lineup context; the Marlins lineup was not officially released, but Lopez was projected second and Edwards fourth."
+    },
+    {
+      "label": "Baseball Savant Marlins-Rockies Preview",
+      "url": "https://baseballsavant.mlb.com/preview?game_date=06%2F30%2F2026&game_pk=824338",
+      "note": "Reviewed Statcast game-preview context for the Marlins-Rockies matchup and Rockies pitcher arsenal information."
+    },
+    {
+      "label": "Marlins Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/marlins-injuries-and-roster-moves",
+      "note": "Checked the official Marlins injury page; neither Lopez nor Edwards was listed as a current injury item."
+    },
+    {
+      "label": "RotoWire Otto Lopez News",
+      "url": "https://www.rotowire.com/baseball/player/otto-lopez-15753",
+      "note": "Reviewed Lopez's current season line, batting-order tendencies, handedness splits, and recent note on a six-game hit streak with three straight multi-hit games."
+    },
+    {
+      "label": "RotoWire Xavier Edwards News",
+      "url": "https://www.rotowire.com/baseball/player/xavier-edwards-15430",
+      "note": "Reviewed Edwards' player context and recent public notes around thumb soreness, return to the lineup, and prior June slump."
+    },
+    {
+      "label": "Purple Row Rockies-Marlins Recap",
+      "url": "https://www.purplerow.com/colorado-rockies-scores-standings/93706/bullpen-blows-it-as-rockies-fall-to-marlins-10-7",
+      "note": "Reviewed the prior game recap for Colorado bullpen context and confirmation that Tanner Gordon is returning from the injured list to start Tuesday."
+    },
+    {
+      "label": "Recent MLB Boxscores via StatsAPI",
+      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1",
+      "note": "Checked recent public boxscore data for Colorado and Miami bullpen workload context."
+    }
+  ],
+  "players": [
+    {
+      "rank": 1,
+      "player": "Otto Lopez",
+      "team": "MIA",
+      "opponent": "COL",
+      "probable_pitcher": "Tanner Gordon",
+      "pro_thesis": "Otto Lopez is the cleanest one-hit profile the committee has seen in a few days. He is the model's recommended single with a 79.7% learned probability, an 88.0 selection score, a 100 safety score, and no stop valves. The setting is ideal: Coors Field, minimal rain risk, a 118 local park hit factor, and Tanner Gordon listed by MLB/RotoWire at 0-1 with a 6.37 ERA. The local pitcher data reinforces the attack: Gordon has a 1.330 season HPI, 27 hits allowed over his last 18 innings, 88 Stuff+, and a last start of 3.0 innings with 6 hits allowed. Lopez also checks the hitter boxes: .333 season average, .304 last-500 average, .307 last-75 average, .280 last-25 average, very low strikeout risk, Publisher status, and a 1-for-3 H2H line with no whiffs or strikeouts and a .505 xBA.",
+      "con_thesis": "The con case is mostly about ordinary baseball variance rather than a structural problem. Official lineups were still TBD during the morning review, and public projection sources do not perfectly agree on the exact top-four order. Lopez's last-five average is solid rather than hot at .286, and he is not guaranteed the first or second lineup slot if Miami reshuffles around Liam Hicks or Jakob Marsee. Gordon is returning from the injured list, which creates a little uncertainty around pitch count and bullpen timing. There is also some risk that Lopez's biggest handedness edge is against lefties, while Gordon is right-handed. Still, the right-handed split remains useful enough, and none of these issues create a true red flag.",
+      "committee_thesis": "Committee read: Lopez is the single pick because he has the same environmental upside as Edwards with fewer conditions attached. The pro advocate has the stronger model stack, no stop valves, direct matchup contact, Coors, and a weak starter plus vulnerable bullpen. The con advocate can only point to lineup uncertainty and standard variance. The reviewer chooses Lopez because, if both Marlins start, he offers the better blend of probability, safety, contact, and matchup validation."
+    },
+    {
+      "rank": 2,
+      "player": "Xavier Edwards",
+      "team": "MIA",
+      "opponent": "COL",
+      "probable_pitcher": "Tanner Gordon",
+      "pro_thesis": "Xavier Edwards is a very legitimate two-pick partner. He carries a 75.5% learned probability, 94 safety score, Publisher status, 4.7 expected plate appearances, a .297 season average, and a .350 last-five mark. His profile is built for one-hit contests: low strikeout rate, low whiff rate, switch-hitter flexibility, .400 over the last 25 at-bats, and strong season and long-window splits against right-handed pitching. He also gets the same premium environment as Lopez: Coors Field, Tanner Gordon's hittable profile, and a Colorado bullpen that just leaked runs in the prior game. His inferred pitch-type matchup is solid at .306 BA and .315 xBA with excellent coverage.",
+      "con_thesis": "The con case is that Edwards is almost as appealing as Lopez in broad context but less complete in the specific checks. He has no H2H history against Gordon, which is his only stop valve, and his longer rolling contact markers are less impressive than his recent five-game line: .253 over the last 75 at-bats and a 0.238 HiPA 500 marker. Public RotoWire context from last week mentioned thumb soreness and a June slump before he returned to the lineup, so even though the official injury page does not list him now, there is a little more recent-body/context noise than with Lopez. Projection sources also put him around fourth in the order more often than second, which could slightly reduce plate appearance edge.",
+      "committee_thesis": "Committee read: Edwards is the runner-up because his case is strong but derivative of the same Coors/Gordon setup Lopez already owns more cleanly. The pro advocate is right that Edwards has enough contact skill and recent form to hit today. The con advocate wins the single-pick comparison because Edwards lacks H2H confirmation, carries one stop valve, has a lower score stack, and may sit a slot or two behind Lopez if public projections hold. The reviewer would keep Edwards as the clear second pick, not the best single."
+    }
+  ]
+}

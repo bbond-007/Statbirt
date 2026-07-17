@@ -1,0 +1,126 @@
+{
+  "date": "2026-07-12",
+  "target": "learned_rank_top_2",
+  "committee_pick": "Luis Arraez",
+  "committee_summary": "The committee pick is Luis Arraez. This is a repeat of the same core thesis from July 11, but the supporting evidence is even cleaner today: Arraez is the learned No. 1, a Publisher, pickable, 100/100 safety, zero stop valves, projected second, and carrying a .332 season average with a 9-for-20 last-five-game line. The matchup also fits the exact one-hit target. Michael Lorenzen is right-handed, has a 6.46 ERA and 1.78 WHIP on RotoWire, and the local data shows 23 hits allowed over his last 18 innings, poor hit prevention by both HPI and opponent-average indicators, and only 88 Stuff+. Arraez is 5-for-10 against Lorenzen with a .508 local H2H xBA and very low H2H whiff/K risk. Yandy Diaz is a legitimate two-pick partner because he leads off, is a Publisher, owns a .320 season average, and has strong recent form. The difference is that Yandy's opposing starter, Emerson Hancock, is in better form and creates three starter-driven stop valves. Arraez has the fewer conditions to satisfy and the better single-pick profile.",
+  "workflow_notes": [
+    "Staged the learned model raw top 2 for the active dashboard date.",
+    "Reviewed local model context, H2H, stop valves, expected PA, lineup slot, recent form, handedness splits, starter profile, park/weather, and bullpen context.",
+    "Checked current free public sources for probable pitchers, lineup status, injury/news context, recent player news, Statcast preview targets, and bullpen workload.",
+    "Used pro, con, and reviewer committee roles before choosing the single hitter."
+  ],
+  "source_notes": [
+    {
+      "label": "MLB StatsAPI Rockies-Giants Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/823199/feed/live",
+      "note": "Verified scheduled preview status, Oracle Park venue, Michael Lorenzen vs. Trevor McDonald probable starters, and no official batting orders posted during review."
+    },
+    {
+      "label": "MLB StatsAPI Mariners-Rays Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/822951/feed/live",
+      "note": "Verified scheduled preview status, Tropicana Field venue, Emerson Hancock vs. Ian Seymour probable starters, and no official batting orders posted during review."
+    },
+    {
+      "label": "MLB Giants Starting Lineups",
+      "url": "https://www.mlb.com/giants/roster/starting-lineups",
+      "note": "Checked the official Giants page; today's lineup was still TBD during review, while recent Giants lineups repeatedly showed Arraez batting second."
+    },
+    {
+      "label": "MLB Rays Starting Lineups",
+      "url": "https://www.mlb.com/rays/roster/starting-lineups",
+      "note": "Checked the official Rays page; today's lineup was still TBD during review, while recent Rays lineups repeatedly showed Yandy Diaz leading off."
+    },
+    {
+      "label": "RotoWire Daily Lineups",
+      "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+      "note": "Reviewed expected lineup context; RotoWire projected Arraez second for San Francisco and Yandy Diaz first for Tampa Bay, with both relevant lineups marked expected rather than official."
+    },
+    {
+      "label": "Giants Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/giants-injuries-and-roster-moves",
+      "note": "Checked the official Giants injury page; Arraez was not listed among current injury items, while unrelated Giants injuries and transactions were listed."
+    },
+    {
+      "label": "Rays Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/rays-injuries-and-roster-moves",
+      "note": "Checked the official Rays injury page for late availability context; Diaz was not listed as a current injury item during review."
+    },
+    {
+      "label": "Rockies Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/rockies-injuries-and-roster-moves",
+      "note": "Checked the official Rockies injury page for pitching-staff context; Lorenzen was not listed as a current injury item during review."
+    },
+    {
+      "label": "Mariners Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/mariners-injuries-and-roster-moves",
+      "note": "Checked the official Mariners injury page for pitching-staff context; Hancock was not listed as a current injury item during review."
+    },
+    {
+      "label": "RotoWire Luis Arraez News",
+      "url": "https://www.rotowire.com/baseball/player/luis-arraez-14053",
+      "note": "Reviewed Arraez's player page; it listed a .332 average and recent news noting a 3-for-4 game with a walk, stolen base, and his fourth multi-hit game in seven games."
+    },
+    {
+      "label": "RotoWire Yandy Diaz News",
+      "url": "https://www.rotowire.com/baseball/player/yandy-diaz-14205",
+      "note": "Reviewed Diaz's player page; it listed a .320 average and a July 7 note that he homered and drove in two runs after a short cold spell."
+    },
+    {
+      "label": "RotoWire Michael Lorenzen News",
+      "url": "https://www.rotowire.com/baseball/player/michael-lorenzen-11605",
+      "note": "Reviewed Lorenzen's player page; it listed a 3-9 record, 6.46 ERA, 1.78 WHIP, and recent note describing ongoing season struggles despite a steadier latest start."
+    },
+    {
+      "label": "RotoWire Emerson Hancock News",
+      "url": "https://www.rotowire.com/baseball/player/emerson-hancock-16670",
+      "note": "Reviewed Hancock's player page; it listed a 6-4 record, 3.23 ERA, 1.01 WHIP, and a July 5 seven-scoreless-inning start against Toronto."
+    },
+    {
+      "label": "Baseball Savant Rockies-Giants Preview",
+      "url": "https://baseballsavant.mlb.com/preview?game_date=07%2F12%2F2026&game_pk=823199",
+      "note": "Reviewed the Statcast preview target for the Rockies-Giants matchup and used the staged local Statcast-derived H2H and pitch-type fields."
+    },
+    {
+      "label": "Baseball Savant Mariners-Rays Preview",
+      "url": "https://baseballsavant.mlb.com/preview?game_date=07%2F12%2F2026&game_pk=822951",
+      "note": "Reviewed the Statcast preview target for the Mariners-Rays matchup and used the staged local Statcast-derived H2H and pitch-type fields."
+    },
+    {
+      "label": "DRaysBay Rays All-Star Context",
+      "url": "https://www.draysbay.com/rays/89688/four-rays-named-to-2026-all-star-game",
+      "note": "Reviewed Rays context noting Diaz's All-Star selection and high-level season production."
+    },
+    {
+      "label": "DRaysBay Mariners-Rays Recap",
+      "url": "https://www.draysbay.com/tampa-bay-rays-scores/89884/batting-3rd-playing-3rd-tampa-bay-6-seattle-1",
+      "note": "Reviewed the July 11 recap; it noted back-to-back doubles from Yandy Diaz and Jonathan Aranda in Tampa Bay's win."
+    },
+    {
+      "label": "Recent MLB Boxscores via StatsAPI",
+      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1",
+      "note": "Checked recent official boxscores for Arraez and Diaz usage/results plus recent Rockies and Mariners bullpen workload."
+    }
+  ],
+  "players": [
+    {
+      "rank": 1,
+      "player": "Luis Arraez",
+      "team": "SFG",
+      "opponent": "COL",
+      "probable_pitcher": "Michael Lorenzen",
+      "pro_thesis": "Luis Arraez is the best single-pick profile because the model, current form, matchup, and risk controls all point in the same direction. He is the learned No. 1 at 77.8%, a Publisher, pickable, 100/100 safety, and has zero stop valves. He projects second with 4.7 expected plate appearances, is hitting .332 on the season, and is 9-for-20 over his last five games. The contact foundation is exactly what this contest wants: 7.9% season whiff rate, 4.0% season strikeout rate, .333 against right-handed pitching this season, and .320 in the last-500 split against righties. The pitcher matchup is also favorable. Michael Lorenzen has a 6.46 ERA and 1.78 WHIP publicly, only 88 Stuff+ locally, 23 hits allowed over his last 18 innings, and poor hitter-hand opponent-average indicators. Arraez's direct H2H record is strong at 5-for-10 with a .508 xBA, making the one-hit path straightforward.",
+      "con_thesis": "The con case is mostly about pregame confirmation and ordinary baseball variance. Official lineups were still not posted during review, so Arraez still needs final confirmation in the lineup and ideally in the expected No. 2 slot. Oracle Park can mute damage, and Arraez's profile depends more on singles precision than power, so a few well-positioned defenders can erase good contact. Lorenzen's latest RotoWire note was not a total collapse; he gave Colorado six innings against the Dodgers and has enough veteran command to survive if the Giants chase early-count contact. The Rockies bullpen has also had a lighter immediate workload after Zach Agnos covered two innings Saturday. Still, these are situational cautions, not hard model objections.",
+      "committee_thesis": "Committee read: Arraez is the single pick. The pro advocate has the decisive evidence: no stop valves, elite contact, strong recent form, a favorable right-handed starter, a strong direct H2H record, and a local Rockies bullpen profile that helps the one-hit path if Lorenzen exits. The con advocate correctly flags lineup confirmation and Oracle Park batted-ball variance, but those risks are smaller than the pitcher-quality concerns attached to Yandy Diaz against Hancock. The reviewer chooses Arraez as the single and treats Diaz as the two-pick partner."
+    },
+    {
+      "rank": 2,
+      "player": "Yandy Diaz",
+      "team": "TBR",
+      "opponent": "SEA",
+      "probable_pitcher": "Emerson Hancock",
+      "pro_thesis": "Yandy Diaz is a strong two-pick candidate and a credible alternative single if Arraez is scratched. He is a Publisher, has a 72.4% learned probability, 95/100 safety, a projected leadoff spot, and 4.8 expected plate appearances. His season line is strong at .320, and the local form markers are solid: 8-for-22 over his last five games, .325 against right-handed pitching this season, and .328 in the last-500 split against righties. The H2H sample against Emerson Hancock is tiny but perfect at 2-for-2, with no H2H whiffs or strikeouts and a .365 xBA. The game is indoors, removing weather risk, and Tampa Bay's lineup has been productive around him. Recent Rays context also supports his role: he was named an All-Star and doubled in Saturday's win against Seattle.",
+      "con_thesis": "The con case is that Diaz's opposing starter is substantially less attackable than Arraez's. Emerson Hancock has a 3.23 ERA and 1.01 WHIP publicly, and RotoWire's latest note described seven scoreless innings with only two hits allowed against Toronto. The local model assigns Diaz three starter-driven stop valves: Hancock's season H/IP suppression, 101 Stuff+, and pitcher-allowed-average resistance. Hancock has allowed only 11 hits over his last 18 innings in the staged data, so even a good contact hitter can run into a low-hit starter environment. Diaz also had a short recent cold patch before rebounding, and his H2H edge is only two plate appearances. He is a high-quality play, but the pitcher side creates more friction than Arraez faces.",
+      "committee_thesis": "Committee read: Diaz is the runner-up. The pro advocate is right that leadoff volume, Publisher status, strong average, dome conditions, and a clean 2-for-2 H2H sample make him playable. The con advocate wins the single-pick comparison because Hancock's current form and starter stop valves introduce real hit-suppression risk. The reviewer keeps Diaz as the best second pick, but Arraez has the cleaner combination of hitter floor and opposing-pitcher vulnerability."
+    }
+  ]
+}

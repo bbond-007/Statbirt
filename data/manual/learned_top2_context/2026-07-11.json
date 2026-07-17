@@ -1,0 +1,754 @@
+{
+  "generated_at": "2026-07-11T13:02:34Z",
+  "date": "2026-07-11",
+  "requested_date": "2026-07-11",
+  "used_latest_fallback": false,
+  "target": "learned_rank_top_2",
+  "purpose": "Evidence staging only. ChatGPT/Codex should write the pro thesis, con thesis, and committee decision.",
+  "daily_timing": {
+    "morning_models_scheduled": "07:00 America/Chicago",
+    "recommended_stage_after": "08:00 America/Chicago",
+    "note": "The morning model scripts normally need about 45 minutes, so 8:00am Central gives them a buffer."
+  },
+  "workflow_prompt": "X:\\Coding\\Statbirt\\prompts\\learned_top2_thesis.md",
+  "expected_thesis_path": "X:\\Coding\\Statbirt\\data\\manual\\learned_top2_theses\\2026-07-11.json",
+  "dashboard_refresh_command": "py -3 -m statbirt.export_learned_web --date latest --limit 5",
+  "total_predictions_for_date": 538,
+  "injury_filtered_count": 62,
+  "selection_brief_from_local_metrics": {
+    "policy_version": "learned-selection-v1",
+    "headline": "Recommended single: Luis Arraez. Best two-pick card: Luis Arraez and Bobby Witt Jr.",
+    "recommended_single": {
+      "rank": 1,
+      "player": "Luis Arraez",
+      "team": "SFG",
+      "opponent": "COL",
+      "selection_score": 87.0,
+      "learned_hit_probability": 0.7691,
+      "pros": [
+        "High learned probability (76.9%).",
+        "Strong reliability score (100/100).",
+        "Projected for 4.7 PA.",
+        "Premium lineup slot (2)."
+      ],
+      "cons": [
+        "No major model risk flags inside the top 5 context."
+      ],
+      "confidence_label": "Primary",
+      "thesis": "Luis Arraez is a 87.0 selection-score play with a 76.9% learned hit probability, 4.7 expected PA, and a 100/100 reliability score. The positive case starts with high learned probability (76.9%); the main counterweight is no major model risk flags inside the top 5 context.",
+      "summary": "Luis Arraez grades as primary at 87.0 on the reliability blend.",
+      "recommendation": "Best 1",
+      "h2h_record": "1-3",
+      "safety_score": 100,
+      "bob_score": 74.71,
+      "expected_pa": "4.7",
+      "lineup_slot": "2.0",
+      "hitter_ba_season": "0.331",
+      "probable_pitcher": "Kyle Freeland",
+      "pickable": true,
+      "stop_valve_count": 0,
+      "hard_pass_reasons": [],
+      "concerns": [],
+      "result_hit": null,
+      "result_hits": null,
+      "result_ab": null,
+      "result_pa": null,
+      "result_status": "",
+      "game_state": "unknown",
+      "game_status": "",
+      "game_hits": null
+    },
+    "recommended_pair": [
+      {
+        "rank": 1,
+        "player": "Luis Arraez",
+        "team": "SFG",
+        "opponent": "COL",
+        "selection_score": 87.0,
+        "learned_hit_probability": 0.7691,
+        "pros": [
+          "High learned probability (76.9%).",
+          "Strong reliability score (100/100).",
+          "Projected for 4.7 PA.",
+          "Premium lineup slot (2)."
+        ],
+        "cons": [
+          "No major model risk flags inside the top 5 context."
+        ],
+        "confidence_label": "Primary",
+        "thesis": "Luis Arraez is a 87.0 selection-score play with a 76.9% learned hit probability, 4.7 expected PA, and a 100/100 reliability score. The positive case starts with high learned probability (76.9%); the main counterweight is no major model risk flags inside the top 5 context.",
+        "summary": "Luis Arraez grades as primary at 87.0 on the reliability blend.",
+        "recommendation": "Best 1",
+        "h2h_record": "1-3",
+        "safety_score": 100,
+        "bob_score": 74.71,
+        "expected_pa": "4.7",
+        "lineup_slot": "2.0",
+        "hitter_ba_season": "0.331",
+        "probable_pitcher": "Kyle Freeland",
+        "pickable": true,
+        "stop_valve_count": 0,
+        "hard_pass_reasons": [],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      },
+      {
+        "rank": 2,
+        "player": "Bobby Witt Jr.",
+        "team": "KCR",
+        "opponent": "BAL",
+        "selection_score": 71.4,
+        "learned_hit_probability": 0.7385,
+        "pros": [
+          "High learned probability (73.9%).",
+          "Strong reliability score (82/100).",
+          "Projected for 4.7 PA.",
+          "Premium lineup slot (2)."
+        ],
+        "cons": [
+          "5 stop valves.",
+          "HiPA 500 0.258."
+        ],
+        "confidence_label": "Playable",
+        "thesis": "Bobby Witt Jr. is a 71.4 selection-score play with a 73.9% learned hit probability, 4.7 expected PA, and a 82/100 reliability score. The positive case starts with high learned probability (73.9%); the main counterweight is 5 stop valves.",
+        "summary": "Bobby Witt Jr. grades as playable at 71.4 on the reliability blend.",
+        "recommendation": "Best 2",
+        "h2h_record": "1-3",
+        "safety_score": 82,
+        "bob_score": 55.4,
+        "expected_pa": "4.7",
+        "lineup_slot": "2.0",
+        "hitter_ba_season": "0.289",
+        "probable_pitcher": "Kyle Bradish",
+        "pickable": false,
+        "stop_valve_count": 5,
+        "hard_pass_reasons": [
+          "H2H whiff rate over 25%",
+          "H2H K rate over 20%",
+          "Starter H/IP under .875 over last 200 innings",
+          "Starter Stuff+ over 95",
+          "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows"
+        ],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      }
+    ],
+    "items": [
+      {
+        "rank": 1,
+        "player": "Luis Arraez",
+        "team": "SFG",
+        "opponent": "COL",
+        "selection_score": 87.0,
+        "learned_hit_probability": 0.7691,
+        "pros": [
+          "High learned probability (76.9%).",
+          "Strong reliability score (100/100).",
+          "Projected for 4.7 PA.",
+          "Premium lineup slot (2)."
+        ],
+        "cons": [
+          "No major model risk flags inside the top 5 context."
+        ],
+        "confidence_label": "Primary",
+        "thesis": "Luis Arraez is a 87.0 selection-score play with a 76.9% learned hit probability, 4.7 expected PA, and a 100/100 reliability score. The positive case starts with high learned probability (76.9%); the main counterweight is no major model risk flags inside the top 5 context.",
+        "summary": "Luis Arraez grades as primary at 87.0 on the reliability blend.",
+        "recommendation": "Best 1",
+        "h2h_record": "1-3",
+        "safety_score": 100,
+        "bob_score": 74.71,
+        "expected_pa": "4.7",
+        "lineup_slot": "2.0",
+        "hitter_ba_season": "0.331",
+        "probable_pitcher": "Kyle Freeland",
+        "pickable": true,
+        "stop_valve_count": 0,
+        "hard_pass_reasons": [],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      },
+      {
+        "rank": 2,
+        "player": "Bobby Witt Jr.",
+        "team": "KCR",
+        "opponent": "BAL",
+        "selection_score": 71.4,
+        "learned_hit_probability": 0.7385,
+        "pros": [
+          "High learned probability (73.9%).",
+          "Strong reliability score (82/100).",
+          "Projected for 4.7 PA.",
+          "Premium lineup slot (2)."
+        ],
+        "cons": [
+          "5 stop valves.",
+          "HiPA 500 0.258."
+        ],
+        "confidence_label": "Playable",
+        "thesis": "Bobby Witt Jr. is a 71.4 selection-score play with a 73.9% learned hit probability, 4.7 expected PA, and a 82/100 reliability score. The positive case starts with high learned probability (73.9%); the main counterweight is 5 stop valves.",
+        "summary": "Bobby Witt Jr. grades as playable at 71.4 on the reliability blend.",
+        "recommendation": "Best 2",
+        "h2h_record": "1-3",
+        "safety_score": 82,
+        "bob_score": 55.4,
+        "expected_pa": "4.7",
+        "lineup_slot": "2.0",
+        "hitter_ba_season": "0.289",
+        "probable_pitcher": "Kyle Bradish",
+        "pickable": false,
+        "stop_valve_count": 5,
+        "hard_pass_reasons": [
+          "H2H whiff rate over 25%",
+          "H2H K rate over 20%",
+          "Starter H/IP under .875 over last 200 innings",
+          "Starter Stuff+ over 95",
+          "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows"
+        ],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      }
+    ]
+  },
+  "players": [
+    {
+      "rank": 1,
+      "player": "Luis Arraez",
+      "player_id": "650333",
+      "team": "SFG",
+      "opponent": "COL",
+      "dashboard_summary": {
+        "learned_hit_probability": 0.7691,
+        "bob_score": 74.71,
+        "pickable": true,
+        "safety_score": 100,
+        "h2h_record": "1-3",
+        "expected_pa": "4.7",
+        "lineup_slot": "2.0",
+        "season_ba": "0.331",
+        "last_5_ba": "0.400",
+        "hot_streak": true,
+        "hot_streak_tooltip": "8-20",
+        "probable_pitcher": "Kyle Freeland",
+        "pitcher_hand": "L",
+        "batter_stand": "L",
+        "venue_name": "Oracle Park",
+        "weather_label": "Rain: 1.0%",
+        "congregation_status": "Publisher"
+      },
+      "model_signals": [
+        "Expected PA 4.7",
+        "Season PA/G 4.40",
+        "Lineup slot 2",
+        "No stop valves",
+        "K rate 4.4%"
+      ],
+      "model_risks": [],
+      "stop_valves": [],
+      "watch_notes": [],
+      "field_context": {
+        "identity": {
+          "date": "2026-07-11",
+          "player": "Luis Arraez",
+          "player_id": "650333",
+          "team": "SFG",
+          "team_id": "137",
+          "opponent": "COL",
+          "opponent_id": "115",
+          "game_pk": "823198"
+        },
+        "learned_model": {
+          "learned_rank": "1",
+          "learned_hit_probability": "0.7691",
+          "model_version": "learned-logistic-v2-20260711T121109Z",
+          "model_trained_at": "2026-07-11T12:11:09Z",
+          "bob_score": "74.71",
+          "score": "74.71",
+          "pickable": "Y"
+        },
+        "game_context": {
+          "venue_name": "Oracle Park",
+          "game_start_time_utc": "2026-07-11T20:05:00Z",
+          "road_game": "N",
+          "division_matchup": "Y",
+          "doubleheader": "N",
+          "confirmed_lineup": "N",
+          "lineup_slot": "2.0",
+          "expected_pa": "4.70",
+          "starts_last_5": "5"
+        },
+        "weather_park": {
+          "precip_probability": "1.0",
+          "forecast_temperature_f": "70.3",
+          "park_hit_factor": "101.0"
+        },
+        "hitter_form_contact": {
+          "hitter_ba_season": "0.331",
+          "hitter_hipa_2500_pa": "0.296",
+          "hitter_pa_per_game_season": "4.40",
+          "hitter_ba_2500_ab": "0.318",
+          "hitter_hipa_500_pa": "0.300",
+          "hitter_hipa_75_ab": "0.318",
+          "hitter_ba_75_ab": "0.360",
+          "hitter_ba_25_ab": "0.320",
+          "hitter_ba_500_ab": "0.322",
+          "hitter_last_5_games_played": "5",
+          "hitter_last_5_games_hits": "8",
+          "hitter_last_5_games_ab": "20",
+          "hitter_last_5_games_ba": "0.400",
+          "sprint_speed": "26.5"
+        },
+        "hitter_plate_discipline": {
+          "hitter_bb_rate_season": "0.058",
+          "hitter_bb_rate_500_pa": "0.060",
+          "hitter_whiff_rate_season": "0.078",
+          "hitter_whiff_rate_500_pa": "0.077",
+          "hitter_k_rate_season": "0.038",
+          "hitter_k_rate_500_pa": "0.044"
+        },
+        "hitter_handedness_splits": {
+          "batter_stand": "L",
+          "pitcher_hand": "L",
+          "hitter_split_ba_season_vs_lhp": "0.321",
+          "hitter_split_ba_season_vs_rhp": "0.335",
+          "hitter_split_pa_season_vs_lhp": "118",
+          "hitter_split_pa_season_vs_rhp": "276",
+          "hitter_split_ba_500_vs_lhp": "0.281",
+          "hitter_split_ba_500_vs_rhp": "0.322",
+          "hitter_split_ba_1500_vs_lhp": "0.281",
+          "hitter_split_ba_1500_vs_rhp": "0.314"
+        },
+        "probable_starter": {
+          "probable_pitcher": "Kyle Freeland",
+          "probable_pitcher_id": "607536",
+          "pitcher_hand": "L",
+          "pitcher_hpi_350": "1.192",
+          "pitcher_hpi_200": "1.203",
+          "pitcher_hpi_season": "1.390",
+          "pitcher_hits_last_18_ip": "30",
+          "pitcher_stuff_plus": "92.0",
+          "pitcher_lr_opp_ba": "0.288",
+          "pitcher_lr_opp_ba_50": "0.357",
+          "pitcher_lr_opp_ba_200": "0.312"
+        },
+        "probable_starter_last_start": {
+          "pitcher_last_start_date": "2026-07-06",
+          "pitcher_last_start_ip": "5.0",
+          "pitcher_last_start_hits": "9",
+          "pitcher_last_start_strikeouts": "2",
+          "pitcher_last_start_walks": "0"
+        },
+        "h2h": {
+          "h2h_pa": "3",
+          "h2h_hits": "1",
+          "h2h_hit_rate": "0.333",
+          "h2h_whiff_rate": "0.000",
+          "h2h_k_rate": "0.000",
+          "h2h_exit_velocity": "82.4",
+          "h2h_xba": "0.403"
+        },
+        "pitch_type_matchup": {
+          "inferred_pitch_type_ba": "0.280",
+          "inferred_pitch_type_xba": "0.301",
+          "inferred_pitch_type_coverage": "0.867"
+        },
+        "bullpen_context": {
+          "bullpen_hpi": "1.065",
+          "bullpen_opp_ba": "0.274"
+        },
+        "bob_score_components": {
+          "component_hitter.hipa_2500_pa": "100.00",
+          "component_hitter.pa_per_game_season": "44.44",
+          "component_hitter.hipa_500_pa": "100.00",
+          "component_hitter.hipa_75_ab": "100.00",
+          "component_starting_pitcher.hpi_350": "88.41",
+          "component_starting_pitcher.hpi_season": "100.00",
+          "component_starting_pitcher.stuff_plus": "65.71",
+          "component_h2h.direct": "79.86",
+          "component_h2h.pitcher_lr_opp_ba": "61.80",
+          "component_h2h.inferred_pitch_type": "62.19",
+          "component_bullpen.hpi_season": "70.07",
+          "component_other.road_game": "0.00",
+          "component_other.division_matchup": "100.00",
+          "component_other.sprint_speed": "36.36",
+          "component_other.park_hit_factor": "55.00",
+          "component_other.lineup_opportunity": "91.67"
+        },
+        "results": {}
+      },
+      "missing_relevant_fields": {
+        "results": [
+          "result_hit",
+          "result_hits",
+          "result_ab",
+          "result_pa",
+          "result_status",
+          "result_updated_at",
+          "notes"
+        ]
+      },
+      "source_targets": [
+        {
+          "label": "MLB probable pitchers",
+          "url": "https://www.mlb.com/probable-pitchers",
+          "why": "Verify the probable starter has not changed."
+        },
+        {
+          "label": "MLB starting lineups",
+          "url": "https://www.mlb.com/starting-lineups",
+          "why": "Check whether the hitter is confirmed in the lineup and whether the slot changed."
+        },
+        {
+          "label": "MLB injury report",
+          "url": "https://www.mlb.com/injury-report",
+          "why": "Check for late injury or availability notes."
+        },
+        {
+          "label": "RotoWire bullpen usage",
+          "url": "https://www.rotowire.com/baseball/bullpen-usage.php",
+          "why": "Look for bullpen fatigue or unavailable leverage arms."
+        },
+        {
+          "label": "RotoWire daily lineups",
+          "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+          "why": "Cross-check lineup and late-scratch risk."
+        },
+        {
+          "label": "MLB news",
+          "url": "https://www.mlb.com/news",
+          "why": "Search for current notes on Luis Arraez, Kyle Freeland, SFG, and COL."
+        },
+        {
+          "label": "MLB live game feed",
+          "url": "https://statsapi.mlb.com/api/v1.1/game/823198/feed/live",
+          "why": "Verify official game, lineup, venue, and probable-pitcher context."
+        },
+        {
+          "label": "MLB boxscore endpoint",
+          "url": "https://statsapi.mlb.com/api/v1/game/823198/boxscore",
+          "why": "Useful after lineups post or for later result checks."
+        },
+        {
+          "label": "Baseball Savant: Luis Arraez",
+          "url": "https://baseballsavant.mlb.com/savant-player/luis-arraez-650333",
+          "why": "Review hitter quality of contact, rolling form, pitch-type strengths, and handedness context."
+        },
+        {
+          "label": "Baseball Savant: Kyle Freeland",
+          "url": "https://baseballsavant.mlb.com/savant-player/kyle-freeland-607536",
+          "why": "Review starter pitch mix, recent shape, contact allowed, and possible matchup fragility."
+        }
+      ],
+      "chatgpt_review_questions": [
+        "Has the probable starter or lineup changed since the morning run?",
+        "Do current news, beat notes, or injury reports create scratch, rest, or pinch-hit risk?",
+        "Does the hitter have a pitch-type or handedness edge that survives beyond the headline model probability?",
+        "Is the opposing bullpen likely to help or hurt the one-hit path if the starter exits early?",
+        "Is the recent form signal supported by contact quality, or does it look like short-sample noise?"
+      ]
+    },
+    {
+      "rank": 2,
+      "player": "Bobby Witt Jr.",
+      "player_id": "677951",
+      "team": "KCR",
+      "opponent": "BAL",
+      "dashboard_summary": {
+        "learned_hit_probability": 0.7385,
+        "bob_score": 55.4,
+        "pickable": false,
+        "safety_score": 82,
+        "h2h_record": "1-3",
+        "expected_pa": "4.7",
+        "lineup_slot": "2.0",
+        "season_ba": "0.289",
+        "last_5_ba": "0.261",
+        "hot_streak": false,
+        "hot_streak_tooltip": "",
+        "probable_pitcher": "Kyle Bradish",
+        "pitcher_hand": "R",
+        "batter_stand": "R",
+        "venue_name": "Oriole Park at Camden Yards",
+        "weather_label": "Rain: 28.0%",
+        "congregation_status": "Publisher"
+      },
+      "model_signals": [
+        "Expected PA 4.7",
+        "Season PA/G 4.43",
+        "Lineup slot 2",
+        "K rate 16.6%"
+      ],
+      "model_risks": [
+        "5 stop valves",
+        "HiPA 500 0.258"
+      ],
+      "stop_valves": [
+        "H2H whiff rate over 25%",
+        "H2H K rate over 20%",
+        "Starter H/IP under .875 over last 200 innings",
+        "Starter Stuff+ over 95",
+        "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows"
+      ],
+      "watch_notes": [],
+      "field_context": {
+        "identity": {
+          "date": "2026-07-11",
+          "player": "Bobby Witt Jr.",
+          "player_id": "677951",
+          "team": "KCR",
+          "team_id": "118",
+          "opponent": "BAL",
+          "opponent_id": "110",
+          "game_pk": "824813"
+        },
+        "learned_model": {
+          "learned_rank": "2",
+          "learned_hit_probability": "0.7385",
+          "model_version": "learned-logistic-v2-20260711T121109Z",
+          "model_trained_at": "2026-07-11T12:11:09Z",
+          "bob_score": "55.40",
+          "score": "55.40",
+          "pickable": "N"
+        },
+        "game_context": {
+          "venue_name": "Oriole Park at Camden Yards",
+          "game_start_time_utc": "2026-07-11T23:05:00Z",
+          "road_game": "Y",
+          "division_matchup": "N",
+          "doubleheader": "N",
+          "confirmed_lineup": "N",
+          "lineup_slot": "2.0",
+          "expected_pa": "4.70",
+          "starts_last_5": "4"
+        },
+        "weather_park": {
+          "precip_probability": "28.0",
+          "forecast_temperature_f": "78.6",
+          "park_hit_factor": "105.0"
+        },
+        "hitter_form_contact": {
+          "hitter_ba_season": "0.289",
+          "hitter_hipa_2500_pa": "0.270",
+          "hitter_pa_per_game_season": "4.43",
+          "hitter_ba_2500_ab": "0.294",
+          "hitter_hipa_500_pa": "0.258",
+          "hitter_hipa_75_ab": "0.301",
+          "hitter_ba_75_ab": "0.333",
+          "hitter_ba_25_ab": "0.280",
+          "hitter_ba_500_ab": "0.294",
+          "hitter_last_5_games_played": "5",
+          "hitter_last_5_games_hits": "6",
+          "hitter_last_5_games_ab": "23",
+          "hitter_last_5_games_ba": "0.261",
+          "sprint_speed": "30.1"
+        },
+        "hitter_plate_discipline": {
+          "hitter_bb_rate_season": "0.099",
+          "hitter_bb_rate_500_pa": "0.086",
+          "hitter_whiff_rate_season": "0.244",
+          "hitter_whiff_rate_500_pa": "0.231",
+          "hitter_k_rate_season": "0.170",
+          "hitter_k_rate_500_pa": "0.166"
+        },
+        "hitter_handedness_splits": {
+          "batter_stand": "R",
+          "pitcher_hand": "R",
+          "hitter_split_ba_season_vs_lhp": "0.330",
+          "hitter_split_ba_season_vs_rhp": "0.273",
+          "hitter_split_pa_season_vs_lhp": "101",
+          "hitter_split_pa_season_vs_rhp": "293",
+          "hitter_split_ba_500_vs_lhp": "0.325",
+          "hitter_split_ba_500_vs_rhp": "0.288",
+          "hitter_split_ba_1500_vs_lhp": "0.325",
+          "hitter_split_ba_1500_vs_rhp": "0.306"
+        },
+        "probable_starter": {
+          "probable_pitcher": "Kyle Bradish",
+          "probable_pitcher_id": "680694",
+          "pitcher_hand": "R",
+          "pitcher_hpi_350": "0.796",
+          "pitcher_hpi_200": "0.791",
+          "pitcher_hpi_season": "0.924",
+          "pitcher_hits_last_18_ip": "12",
+          "pitcher_stuff_plus": "100.0",
+          "pitcher_lr_opp_ba": "0.225",
+          "pitcher_lr_opp_ba_50": "0.212",
+          "pitcher_lr_opp_ba_200": "0.225"
+        },
+        "probable_starter_last_start": {
+          "pitcher_last_start_date": "2026-07-05",
+          "pitcher_last_start_ip": "7.7",
+          "pitcher_last_start_hits": "5",
+          "pitcher_last_start_strikeouts": "5",
+          "pitcher_last_start_walks": "1"
+        },
+        "h2h": {
+          "h2h_pa": "3",
+          "h2h_hits": "1",
+          "h2h_hit_rate": "0.333",
+          "h2h_whiff_rate": "0.400",
+          "h2h_k_rate": "0.333",
+          "h2h_exit_velocity": "99.5",
+          "h2h_xba": "0.412"
+        },
+        "pitch_type_matchup": {
+          "inferred_pitch_type_ba": "0.307",
+          "inferred_pitch_type_xba": "0.366",
+          "inferred_pitch_type_coverage": "0.816"
+        },
+        "bullpen_context": {
+          "bullpen_hpi": "0.933",
+          "bullpen_opp_ba": "0.244"
+        },
+        "bob_score_components": {
+          "component_hitter.hipa_2500_pa": "100.00",
+          "component_hitter.pa_per_game_season": "48.15",
+          "component_hitter.hipa_500_pa": "88.00",
+          "component_hitter.hipa_75_ab": "100.00",
+          "component_starting_pitcher.hpi_350": "9.25",
+          "component_starting_pitcher.hpi_season": "34.77",
+          "component_starting_pitcher.stuff_plus": "42.86",
+          "component_h2h.direct": "60.37",
+          "component_h2h.pitcher_lr_opp_ba": "4.22",
+          "component_h2h.inferred_pitch_type": "86.82",
+          "component_bullpen.hpi_season": "40.58",
+          "component_other.road_game": "100.00",
+          "component_other.division_matchup": "0.00",
+          "component_other.sprint_speed": "100.00",
+          "component_other.park_hit_factor": "75.00",
+          "component_other.lineup_opportunity": "91.67"
+        },
+        "results": {}
+      },
+      "missing_relevant_fields": {
+        "results": [
+          "result_hit",
+          "result_hits",
+          "result_ab",
+          "result_pa",
+          "result_status",
+          "result_updated_at",
+          "notes"
+        ]
+      },
+      "source_targets": [
+        {
+          "label": "MLB probable pitchers",
+          "url": "https://www.mlb.com/probable-pitchers",
+          "why": "Verify the probable starter has not changed."
+        },
+        {
+          "label": "MLB starting lineups",
+          "url": "https://www.mlb.com/starting-lineups",
+          "why": "Check whether the hitter is confirmed in the lineup and whether the slot changed."
+        },
+        {
+          "label": "MLB injury report",
+          "url": "https://www.mlb.com/injury-report",
+          "why": "Check for late injury or availability notes."
+        },
+        {
+          "label": "RotoWire bullpen usage",
+          "url": "https://www.rotowire.com/baseball/bullpen-usage.php",
+          "why": "Look for bullpen fatigue or unavailable leverage arms."
+        },
+        {
+          "label": "RotoWire daily lineups",
+          "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+          "why": "Cross-check lineup and late-scratch risk."
+        },
+        {
+          "label": "MLB news",
+          "url": "https://www.mlb.com/news",
+          "why": "Search for current notes on Bobby Witt Jr., Kyle Bradish, KCR, and BAL."
+        },
+        {
+          "label": "MLB live game feed",
+          "url": "https://statsapi.mlb.com/api/v1.1/game/824813/feed/live",
+          "why": "Verify official game, lineup, venue, and probable-pitcher context."
+        },
+        {
+          "label": "MLB boxscore endpoint",
+          "url": "https://statsapi.mlb.com/api/v1/game/824813/boxscore",
+          "why": "Useful after lineups post or for later result checks."
+        },
+        {
+          "label": "Baseball Savant: Bobby Witt Jr.",
+          "url": "https://baseballsavant.mlb.com/savant-player/bobby-witt-jr-677951",
+          "why": "Review hitter quality of contact, rolling form, pitch-type strengths, and handedness context."
+        },
+        {
+          "label": "Baseball Savant: Kyle Bradish",
+          "url": "https://baseballsavant.mlb.com/savant-player/kyle-bradish-680694",
+          "why": "Review starter pitch mix, recent shape, contact allowed, and possible matchup fragility."
+        }
+      ],
+      "chatgpt_review_questions": [
+        "Has the probable starter or lineup changed since the morning run?",
+        "Do current news, beat notes, or injury reports create scratch, rest, or pinch-hit risk?",
+        "Does the hitter have a pitch-type or handedness edge that survives beyond the headline model probability?",
+        "Is the opposing bullpen likely to help or hurt the one-hit path if the starter exits early?",
+        "Is the recent form signal supported by contact quality, or does it look like short-sample noise?"
+      ]
+    }
+  ],
+  "chatgpt_committee_process": [
+    "Read this staged context and treat it as evidence, not as a thesis.",
+    "Browse current free sources for lineup, probable pitcher, injury/news, bullpen, and matchup updates.",
+    "Write a pro thesis and con thesis for each player.",
+    "Have a final reviewer compare the arguments and choose one single hitter.",
+    "Save the finished dashboard-ready JSON to expected_thesis_path, then refresh the learned dashboard export."
+  ],
+  "output_schema": {
+    "date": "2026-07-11",
+    "target": "learned_rank_top_2",
+    "committee_pick": "Player Name",
+    "committee_summary": "One paragraph explaining the single-pick decision.",
+    "source_notes": [
+      {
+        "label": "Source name",
+        "url": "https://...",
+        "note": "What was reviewed."
+      }
+    ],
+    "players": [
+      {
+        "rank": 1,
+        "player": "Player Name",
+        "team": "AAA",
+        "opponent": "BBB",
+        "probable_pitcher": "Pitcher Name",
+        "pro_thesis": "Dashboard-ready paragraph.",
+        "con_thesis": "Dashboard-ready paragraph.",
+        "committee_thesis": "Dashboard-ready paragraph."
+      }
+    ]
+  }
+}

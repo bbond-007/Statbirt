@@ -1,0 +1,742 @@
+{
+  "generated_at": "2026-07-02T13:01:38Z",
+  "date": "2026-07-02",
+  "requested_date": "2026-07-02",
+  "used_latest_fallback": false,
+  "target": "learned_rank_top_2",
+  "purpose": "Evidence staging only. ChatGPT/Codex should write the pro thesis, con thesis, and committee decision.",
+  "daily_timing": {
+    "morning_models_scheduled": "07:00 America/Chicago",
+    "recommended_stage_after": "08:00 America/Chicago",
+    "note": "The morning model scripts normally need about 45 minutes, so 8:00am Central gives them a buffer."
+  },
+  "workflow_prompt": "X:\\Coding\\Statbirt\\prompts\\learned_top2_thesis.md",
+  "expected_thesis_path": "X:\\Coding\\Statbirt\\data\\manual\\learned_top2_theses\\2026-07-02.json",
+  "dashboard_refresh_command": "py -3 -m statbirt.export_learned_web --date latest --limit 5",
+  "total_predictions_for_date": 298,
+  "injury_filtered_count": 36,
+  "selection_brief_from_local_metrics": {
+    "policy_version": "learned-selection-v1",
+    "headline": "Recommended single: Otto Lopez. Best two-pick card: Otto Lopez and Xavier Edwards.",
+    "recommended_single": {
+      "rank": 1,
+      "player": "Otto Lopez",
+      "team": "MIA",
+      "opponent": "COL",
+      "selection_score": 85.2,
+      "learned_hit_probability": 0.805,
+      "pros": [
+        "High learned probability (80.5%).",
+        "Strong reliability score (100/100).",
+        "Projected for 4.7 PA.",
+        "Premium lineup slot (2)."
+      ],
+      "cons": [
+        "H2H K rate over 20%."
+      ],
+      "confidence_label": "Primary",
+      "thesis": "Otto Lopez is a 85.2 selection-score play with a 80.5% learned hit probability, 4.7 expected PA, and a 100/100 reliability score. The positive case starts with high learned probability (80.5%); the main counterweight is h2H K rate over 20%.",
+      "summary": "Otto Lopez grades as primary at 85.2 on the reliability blend.",
+      "recommendation": "Best 1",
+      "h2h_record": "1-4",
+      "safety_score": 100,
+      "bob_score": 72.72,
+      "expected_pa": "4.7",
+      "lineup_slot": "2.2",
+      "hitter_ba_season": "0.332",
+      "probable_pitcher": "Michael Lorenzen",
+      "pickable": false,
+      "stop_valve_count": 1,
+      "hard_pass_reasons": [
+        "H2H K rate over 20%"
+      ],
+      "concerns": [],
+      "result_hit": null,
+      "result_hits": null,
+      "result_ab": null,
+      "result_pa": null,
+      "result_status": "",
+      "game_state": "unknown",
+      "game_status": "",
+      "game_hits": null
+    },
+    "recommended_pair": [
+      {
+        "rank": 1,
+        "player": "Otto Lopez",
+        "team": "MIA",
+        "opponent": "COL",
+        "selection_score": 85.2,
+        "learned_hit_probability": 0.805,
+        "pros": [
+          "High learned probability (80.5%).",
+          "Strong reliability score (100/100).",
+          "Projected for 4.7 PA.",
+          "Premium lineup slot (2)."
+        ],
+        "cons": [
+          "H2H K rate over 20%."
+        ],
+        "confidence_label": "Primary",
+        "thesis": "Otto Lopez is a 85.2 selection-score play with a 80.5% learned hit probability, 4.7 expected PA, and a 100/100 reliability score. The positive case starts with high learned probability (80.5%); the main counterweight is h2H K rate over 20%.",
+        "summary": "Otto Lopez grades as primary at 85.2 on the reliability blend.",
+        "recommendation": "Best 1",
+        "h2h_record": "1-4",
+        "safety_score": 100,
+        "bob_score": 72.72,
+        "expected_pa": "4.7",
+        "lineup_slot": "2.2",
+        "hitter_ba_season": "0.332",
+        "probable_pitcher": "Michael Lorenzen",
+        "pickable": false,
+        "stop_valve_count": 1,
+        "hard_pass_reasons": [
+          "H2H K rate over 20%"
+        ],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      },
+      {
+        "rank": 2,
+        "player": "Xavier Edwards",
+        "team": "MIA",
+        "opponent": "COL",
+        "selection_score": 83.6,
+        "learned_hit_probability": 0.7916,
+        "pros": [
+          "High learned probability (79.2%).",
+          "Strong reliability score (100/100).",
+          "Projected for 4.5 PA.",
+          "Current-season BA .303."
+        ],
+        "cons": [
+          "HiPA 500 0.242."
+        ],
+        "confidence_label": "Primary",
+        "thesis": "Xavier Edwards is a 83.6 selection-score play with a 79.2% learned hit probability, 4.5 expected PA, and a 100/100 reliability score. The positive case starts with high learned probability (79.2%); the main counterweight is hiPA 500 0.242.",
+        "summary": "Xavier Edwards grades as primary at 83.6 on the reliability blend.",
+        "recommendation": "Best 2",
+        "h2h_record": "1-3",
+        "safety_score": 100,
+        "bob_score": 70.97,
+        "expected_pa": "4.5",
+        "lineup_slot": "3.8",
+        "hitter_ba_season": "0.303",
+        "probable_pitcher": "Michael Lorenzen",
+        "pickable": true,
+        "stop_valve_count": 0,
+        "hard_pass_reasons": [],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      }
+    ],
+    "items": [
+      {
+        "rank": 1,
+        "player": "Otto Lopez",
+        "team": "MIA",
+        "opponent": "COL",
+        "selection_score": 85.2,
+        "learned_hit_probability": 0.805,
+        "pros": [
+          "High learned probability (80.5%).",
+          "Strong reliability score (100/100).",
+          "Projected for 4.7 PA.",
+          "Premium lineup slot (2)."
+        ],
+        "cons": [
+          "H2H K rate over 20%."
+        ],
+        "confidence_label": "Primary",
+        "thesis": "Otto Lopez is a 85.2 selection-score play with a 80.5% learned hit probability, 4.7 expected PA, and a 100/100 reliability score. The positive case starts with high learned probability (80.5%); the main counterweight is h2H K rate over 20%.",
+        "summary": "Otto Lopez grades as primary at 85.2 on the reliability blend.",
+        "recommendation": "Best 1",
+        "h2h_record": "1-4",
+        "safety_score": 100,
+        "bob_score": 72.72,
+        "expected_pa": "4.7",
+        "lineup_slot": "2.2",
+        "hitter_ba_season": "0.332",
+        "probable_pitcher": "Michael Lorenzen",
+        "pickable": false,
+        "stop_valve_count": 1,
+        "hard_pass_reasons": [
+          "H2H K rate over 20%"
+        ],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      },
+      {
+        "rank": 2,
+        "player": "Xavier Edwards",
+        "team": "MIA",
+        "opponent": "COL",
+        "selection_score": 83.6,
+        "learned_hit_probability": 0.7916,
+        "pros": [
+          "High learned probability (79.2%).",
+          "Strong reliability score (100/100).",
+          "Projected for 4.5 PA.",
+          "Current-season BA .303."
+        ],
+        "cons": [
+          "HiPA 500 0.242."
+        ],
+        "confidence_label": "Primary",
+        "thesis": "Xavier Edwards is a 83.6 selection-score play with a 79.2% learned hit probability, 4.5 expected PA, and a 100/100 reliability score. The positive case starts with high learned probability (79.2%); the main counterweight is hiPA 500 0.242.",
+        "summary": "Xavier Edwards grades as primary at 83.6 on the reliability blend.",
+        "recommendation": "Best 2",
+        "h2h_record": "1-3",
+        "safety_score": 100,
+        "bob_score": 70.97,
+        "expected_pa": "4.5",
+        "lineup_slot": "3.8",
+        "hitter_ba_season": "0.303",
+        "probable_pitcher": "Michael Lorenzen",
+        "pickable": true,
+        "stop_valve_count": 0,
+        "hard_pass_reasons": [],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      }
+    ]
+  },
+  "players": [
+    {
+      "rank": 1,
+      "player": "Otto Lopez",
+      "player_id": "672640",
+      "team": "MIA",
+      "opponent": "COL",
+      "dashboard_summary": {
+        "learned_hit_probability": 0.805,
+        "bob_score": 72.72,
+        "pickable": false,
+        "safety_score": 100,
+        "h2h_record": "1-4",
+        "expected_pa": "4.7",
+        "lineup_slot": "2.2",
+        "season_ba": "0.332",
+        "last_5_ba": "0.227",
+        "hot_streak": false,
+        "hot_streak_tooltip": "",
+        "probable_pitcher": "Michael Lorenzen",
+        "pitcher_hand": "R",
+        "batter_stand": "R",
+        "venue_name": "Coors Field",
+        "weather_label": "Rain: 5.0%",
+        "congregation_status": "Publisher"
+      },
+      "model_signals": [
+        "Expected PA 4.7",
+        "Season PA/G 4.26",
+        "Lineup slot 2",
+        "1 stop valve",
+        "K rate 13.6%"
+      ],
+      "model_risks": [],
+      "stop_valves": [
+        "H2H K rate over 20%"
+      ],
+      "watch_notes": [],
+      "field_context": {
+        "identity": {
+          "date": "2026-07-02",
+          "player": "Otto Lopez",
+          "player_id": "672640",
+          "team": "MIA",
+          "team_id": "146",
+          "opponent": "COL",
+          "opponent_id": "115",
+          "game_pk": "824335"
+        },
+        "learned_model": {
+          "learned_rank": "1",
+          "learned_hit_probability": "0.8050",
+          "model_version": "learned-logistic-v2-20260702T115304Z",
+          "model_trained_at": "2026-07-02T11:53:04Z",
+          "bob_score": "72.72",
+          "score": "72.72",
+          "pickable": "N"
+        },
+        "game_context": {
+          "venue_name": "Coors Field",
+          "game_start_time_utc": "2026-07-02T19:10:00Z",
+          "road_game": "Y",
+          "division_matchup": "N",
+          "doubleheader": "N",
+          "confirmed_lineup": "N",
+          "lineup_slot": "2.2",
+          "expected_pa": "4.70",
+          "starts_last_5": "5"
+        },
+        "weather_park": {
+          "precip_probability": "5.0",
+          "forecast_temperature_f": "89.1",
+          "park_hit_factor": "118.0"
+        },
+        "hitter_form_contact": {
+          "hitter_ba_season": "0.332",
+          "hitter_hipa_2500_pa": "0.258",
+          "hitter_pa_per_game_season": "4.26",
+          "hitter_ba_2500_ab": "0.279",
+          "hitter_hipa_500_pa": "0.294",
+          "hitter_hipa_75_ab": "0.280",
+          "hitter_ba_75_ab": "0.307",
+          "hitter_ba_25_ab": "0.280",
+          "hitter_ba_500_ab": "0.306",
+          "hitter_last_5_games_played": "5",
+          "hitter_last_5_games_hits": "5",
+          "hitter_last_5_games_ab": "22",
+          "hitter_last_5_games_ba": "0.227",
+          "sprint_speed": "28.2"
+        },
+        "hitter_plate_discipline": {
+          "hitter_bb_rate_season": "0.044",
+          "hitter_bb_rate_500_pa": "0.042",
+          "hitter_whiff_rate_season": "0.205",
+          "hitter_whiff_rate_500_pa": "0.201",
+          "hitter_k_rate_season": "0.138",
+          "hitter_k_rate_500_pa": "0.136"
+        },
+        "hitter_handedness_splits": {
+          "batter_stand": "R",
+          "pitcher_hand": "R",
+          "hitter_split_ba_season_vs_lhp": "0.444",
+          "hitter_split_ba_season_vs_rhp": "0.296",
+          "hitter_split_pa_season_vs_lhp": "85",
+          "hitter_split_pa_season_vs_rhp": "278",
+          "hitter_split_ba_500_vs_lhp": "0.263",
+          "hitter_split_ba_500_vs_rhp": "0.290",
+          "hitter_split_ba_1500_vs_lhp": "0.263",
+          "hitter_split_ba_1500_vs_rhp": "0.288"
+        },
+        "probable_starter": {
+          "probable_pitcher": "Michael Lorenzen",
+          "probable_pitcher_id": "547179",
+          "pitcher_hand": "R",
+          "pitcher_hpi_350": "1.046",
+          "pitcher_hpi_200": "1.215",
+          "pitcher_hpi_season": "1.469",
+          "pitcher_hits_last_18_ip": "21",
+          "pitcher_stuff_plus": "88.0",
+          "pitcher_lr_opp_ba": "0.274",
+          "pitcher_lr_opp_ba_50": "0.292",
+          "pitcher_lr_opp_ba_200": "0.283"
+        },
+        "probable_starter_last_start": {
+          "pitcher_last_start_date": "2026-06-27",
+          "pitcher_last_start_ip": "5.7",
+          "pitcher_last_start_hits": "7",
+          "pitcher_last_start_strikeouts": "1",
+          "pitcher_last_start_walks": "0"
+        },
+        "h2h": {
+          "h2h_pa": "4",
+          "h2h_hits": "1",
+          "h2h_hit_rate": "0.250",
+          "h2h_whiff_rate": "0.250",
+          "h2h_k_rate": "0.250",
+          "h2h_exit_velocity": "97.1",
+          "h2h_xba": "0.333"
+        },
+        "pitch_type_matchup": {
+          "inferred_pitch_type_ba": "0.322",
+          "inferred_pitch_type_xba": "0.354",
+          "inferred_pitch_type_coverage": "0.461"
+        },
+        "bullpen_context": {
+          "bullpen_hpi": "1.079",
+          "bullpen_opp_ba": "0.277"
+        },
+        "bob_score_components": {
+          "component_hitter.hipa_2500_pa": "100.00",
+          "component_hitter.pa_per_game_season": "28.76",
+          "component_hitter.hipa_500_pa": "100.00",
+          "component_hitter.hipa_75_ab": "90.33",
+          "component_starting_pitcher.hpi_350": "59.24",
+          "component_starting_pitcher.hpi_season": "100.00",
+          "component_starting_pitcher.stuff_plus": "77.14",
+          "component_h2h.direct": "57.34",
+          "component_h2h.pitcher_lr_opp_ba": "49.05",
+          "component_h2h.inferred_pitch_type": "88.71",
+          "component_bullpen.hpi_season": "73.12",
+          "component_other.road_game": "100.00",
+          "component_other.division_matchup": "0.00",
+          "component_other.sprint_speed": "67.27",
+          "component_other.park_hit_factor": "100.00",
+          "component_other.lineup_opportunity": "91.67"
+        },
+        "results": {}
+      },
+      "missing_relevant_fields": {
+        "results": [
+          "result_hit",
+          "result_hits",
+          "result_ab",
+          "result_pa",
+          "result_status",
+          "result_updated_at",
+          "notes"
+        ]
+      },
+      "source_targets": [
+        {
+          "label": "MLB probable pitchers",
+          "url": "https://www.mlb.com/probable-pitchers",
+          "why": "Verify the probable starter has not changed."
+        },
+        {
+          "label": "MLB starting lineups",
+          "url": "https://www.mlb.com/starting-lineups",
+          "why": "Check whether the hitter is confirmed in the lineup and whether the slot changed."
+        },
+        {
+          "label": "MLB injury report",
+          "url": "https://www.mlb.com/injury-report",
+          "why": "Check for late injury or availability notes."
+        },
+        {
+          "label": "RotoWire bullpen usage",
+          "url": "https://www.rotowire.com/baseball/bullpen-usage.php",
+          "why": "Look for bullpen fatigue or unavailable leverage arms."
+        },
+        {
+          "label": "RotoWire daily lineups",
+          "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+          "why": "Cross-check lineup and late-scratch risk."
+        },
+        {
+          "label": "MLB news",
+          "url": "https://www.mlb.com/news",
+          "why": "Search for current notes on Otto Lopez, Michael Lorenzen, MIA, and COL."
+        },
+        {
+          "label": "MLB live game feed",
+          "url": "https://statsapi.mlb.com/api/v1.1/game/824335/feed/live",
+          "why": "Verify official game, lineup, venue, and probable-pitcher context."
+        },
+        {
+          "label": "MLB boxscore endpoint",
+          "url": "https://statsapi.mlb.com/api/v1/game/824335/boxscore",
+          "why": "Useful after lineups post or for later result checks."
+        },
+        {
+          "label": "Baseball Savant: Otto Lopez",
+          "url": "https://baseballsavant.mlb.com/savant-player/otto-lopez-672640",
+          "why": "Review hitter quality of contact, rolling form, pitch-type strengths, and handedness context."
+        },
+        {
+          "label": "Baseball Savant: Michael Lorenzen",
+          "url": "https://baseballsavant.mlb.com/savant-player/michael-lorenzen-547179",
+          "why": "Review starter pitch mix, recent shape, contact allowed, and possible matchup fragility."
+        }
+      ],
+      "chatgpt_review_questions": [
+        "Has the probable starter or lineup changed since the morning run?",
+        "Do current news, beat notes, or injury reports create scratch, rest, or pinch-hit risk?",
+        "Does the hitter have a pitch-type or handedness edge that survives beyond the headline model probability?",
+        "Is the opposing bullpen likely to help or hurt the one-hit path if the starter exits early?",
+        "Is the recent form signal supported by contact quality, or does it look like short-sample noise?"
+      ]
+    },
+    {
+      "rank": 2,
+      "player": "Xavier Edwards",
+      "player_id": "669364",
+      "team": "MIA",
+      "opponent": "COL",
+      "dashboard_summary": {
+        "learned_hit_probability": 0.7916,
+        "bob_score": 70.97,
+        "pickable": true,
+        "safety_score": 100,
+        "h2h_record": "1-3",
+        "expected_pa": "4.5",
+        "lineup_slot": "3.8",
+        "season_ba": "0.303",
+        "last_5_ba": "0.450",
+        "hot_streak": true,
+        "hot_streak_tooltip": "9-20",
+        "probable_pitcher": "Michael Lorenzen",
+        "pitcher_hand": "R",
+        "batter_stand": "L",
+        "venue_name": "Coors Field",
+        "weather_label": "Rain: 5.0%",
+        "congregation_status": "Publisher"
+      },
+      "model_signals": [
+        "Expected PA 4.5",
+        "Season PA/G 4.22",
+        "Lineup slot 4",
+        "No stop valves",
+        "K rate 13.6%"
+      ],
+      "model_risks": [
+        "HiPA 500 0.242"
+      ],
+      "stop_valves": [],
+      "watch_notes": [],
+      "field_context": {
+        "identity": {
+          "date": "2026-07-02",
+          "player": "Xavier Edwards",
+          "player_id": "669364",
+          "team": "MIA",
+          "team_id": "146",
+          "opponent": "COL",
+          "opponent_id": "115",
+          "game_pk": "824335"
+        },
+        "learned_model": {
+          "learned_rank": "2",
+          "learned_hit_probability": "0.7916",
+          "model_version": "learned-logistic-v2-20260702T115304Z",
+          "model_trained_at": "2026-07-02T11:53:04Z",
+          "bob_score": "70.97",
+          "score": "70.97",
+          "pickable": "Y"
+        },
+        "game_context": {
+          "venue_name": "Coors Field",
+          "game_start_time_utc": "2026-07-02T19:10:00Z",
+          "road_game": "Y",
+          "division_matchup": "N",
+          "doubleheader": "N",
+          "confirmed_lineup": "N",
+          "lineup_slot": "3.8",
+          "expected_pa": "4.50",
+          "starts_last_5": "5"
+        },
+        "weather_park": {
+          "precip_probability": "5.0",
+          "forecast_temperature_f": "89.1",
+          "park_hit_factor": "117.0"
+        },
+        "hitter_form_contact": {
+          "hitter_ba_season": "0.303",
+          "hitter_hipa_2500_pa": "0.267",
+          "hitter_pa_per_game_season": "4.22",
+          "hitter_ba_2500_ab": "0.299",
+          "hitter_hipa_500_pa": "0.242",
+          "hitter_hipa_75_ab": "0.253",
+          "hitter_ba_75_ab": "0.293",
+          "hitter_ba_25_ab": "0.440",
+          "hitter_ba_500_ab": "0.286",
+          "hitter_last_5_games_played": "5",
+          "hitter_last_5_games_hits": "9",
+          "hitter_last_5_games_ab": "20",
+          "hitter_last_5_games_ba": "0.450",
+          "sprint_speed": "27.9"
+        },
+        "hitter_plate_discipline": {
+          "hitter_bb_rate_season": "0.116",
+          "hitter_bb_rate_500_pa": "0.102",
+          "hitter_whiff_rate_season": "0.145",
+          "hitter_whiff_rate_500_pa": "0.154",
+          "hitter_k_rate_season": "0.121",
+          "hitter_k_rate_500_pa": "0.136"
+        },
+        "hitter_handedness_splits": {
+          "batter_stand": "L",
+          "pitcher_hand": "R",
+          "hitter_split_ba_season_vs_lhp": "0.300",
+          "hitter_split_ba_season_vs_rhp": "0.304",
+          "hitter_split_pa_season_vs_lhp": "80",
+          "hitter_split_pa_season_vs_rhp": "283",
+          "hitter_split_ba_500_vs_lhp": "0.274",
+          "hitter_split_ba_500_vs_rhp": "0.304",
+          "hitter_split_ba_1500_vs_lhp": "0.274",
+          "hitter_split_ba_1500_vs_rhp": "0.318"
+        },
+        "probable_starter": {
+          "probable_pitcher": "Michael Lorenzen",
+          "probable_pitcher_id": "547179",
+          "pitcher_hand": "R",
+          "pitcher_hpi_350": "1.046",
+          "pitcher_hpi_200": "1.215",
+          "pitcher_hpi_season": "1.469",
+          "pitcher_hits_last_18_ip": "21",
+          "pitcher_stuff_plus": "88.0",
+          "pitcher_lr_opp_ba": "0.260",
+          "pitcher_lr_opp_ba_50": "0.356",
+          "pitcher_lr_opp_ba_200": "0.311"
+        },
+        "probable_starter_last_start": {
+          "pitcher_last_start_date": "2026-06-27",
+          "pitcher_last_start_ip": "5.7",
+          "pitcher_last_start_hits": "7",
+          "pitcher_last_start_strikeouts": "1",
+          "pitcher_last_start_walks": "0"
+        },
+        "h2h": {
+          "h2h_pa": "3",
+          "h2h_hits": "1",
+          "h2h_hit_rate": "0.333",
+          "h2h_whiff_rate": "0.200",
+          "h2h_k_rate": "0.000",
+          "h2h_exit_velocity": "99.7",
+          "h2h_xba": "0.719"
+        },
+        "pitch_type_matchup": {
+          "inferred_pitch_type_ba": "0.312",
+          "inferred_pitch_type_xba": "0.305",
+          "inferred_pitch_type_coverage": "0.539"
+        },
+        "bullpen_context": {
+          "bullpen_hpi": "1.079",
+          "bullpen_opp_ba": "0.277"
+        },
+        "bob_score_components": {
+          "component_hitter.hipa_2500_pa": "100.00",
+          "component_hitter.pa_per_game_season": "24.55",
+          "component_hitter.hipa_500_pa": "72.00",
+          "component_hitter.hipa_75_ab": "71.92",
+          "component_starting_pitcher.hpi_350": "59.24",
+          "component_starting_pitcher.hpi_season": "100.00",
+          "component_starting_pitcher.stuff_plus": "77.14",
+          "component_h2h.direct": "84.44",
+          "component_h2h.pitcher_lr_opp_ba": "35.93",
+          "component_h2h.inferred_pitch_type": "70.97",
+          "component_bullpen.hpi_season": "73.12",
+          "component_other.road_game": "100.00",
+          "component_other.division_matchup": "0.00",
+          "component_other.sprint_speed": "61.82",
+          "component_other.park_hit_factor": "100.00",
+          "component_other.lineup_opportunity": "75.00"
+        },
+        "results": {}
+      },
+      "missing_relevant_fields": {
+        "results": [
+          "result_hit",
+          "result_hits",
+          "result_ab",
+          "result_pa",
+          "result_status",
+          "result_updated_at",
+          "notes"
+        ]
+      },
+      "source_targets": [
+        {
+          "label": "MLB probable pitchers",
+          "url": "https://www.mlb.com/probable-pitchers",
+          "why": "Verify the probable starter has not changed."
+        },
+        {
+          "label": "MLB starting lineups",
+          "url": "https://www.mlb.com/starting-lineups",
+          "why": "Check whether the hitter is confirmed in the lineup and whether the slot changed."
+        },
+        {
+          "label": "MLB injury report",
+          "url": "https://www.mlb.com/injury-report",
+          "why": "Check for late injury or availability notes."
+        },
+        {
+          "label": "RotoWire bullpen usage",
+          "url": "https://www.rotowire.com/baseball/bullpen-usage.php",
+          "why": "Look for bullpen fatigue or unavailable leverage arms."
+        },
+        {
+          "label": "RotoWire daily lineups",
+          "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+          "why": "Cross-check lineup and late-scratch risk."
+        },
+        {
+          "label": "MLB news",
+          "url": "https://www.mlb.com/news",
+          "why": "Search for current notes on Xavier Edwards, Michael Lorenzen, MIA, and COL."
+        },
+        {
+          "label": "MLB live game feed",
+          "url": "https://statsapi.mlb.com/api/v1.1/game/824335/feed/live",
+          "why": "Verify official game, lineup, venue, and probable-pitcher context."
+        },
+        {
+          "label": "MLB boxscore endpoint",
+          "url": "https://statsapi.mlb.com/api/v1/game/824335/boxscore",
+          "why": "Useful after lineups post or for later result checks."
+        },
+        {
+          "label": "Baseball Savant: Xavier Edwards",
+          "url": "https://baseballsavant.mlb.com/savant-player/xavier-edwards-669364",
+          "why": "Review hitter quality of contact, rolling form, pitch-type strengths, and handedness context."
+        },
+        {
+          "label": "Baseball Savant: Michael Lorenzen",
+          "url": "https://baseballsavant.mlb.com/savant-player/michael-lorenzen-547179",
+          "why": "Review starter pitch mix, recent shape, contact allowed, and possible matchup fragility."
+        }
+      ],
+      "chatgpt_review_questions": [
+        "Has the probable starter or lineup changed since the morning run?",
+        "Do current news, beat notes, or injury reports create scratch, rest, or pinch-hit risk?",
+        "Does the hitter have a pitch-type or handedness edge that survives beyond the headline model probability?",
+        "Is the opposing bullpen likely to help or hurt the one-hit path if the starter exits early?",
+        "Is the recent form signal supported by contact quality, or does it look like short-sample noise?"
+      ]
+    }
+  ],
+  "chatgpt_committee_process": [
+    "Read this staged context and treat it as evidence, not as a thesis.",
+    "Browse current free sources for lineup, probable pitcher, injury/news, bullpen, and matchup updates.",
+    "Write a pro thesis and con thesis for each player.",
+    "Have a final reviewer compare the arguments and choose one single hitter.",
+    "Save the finished dashboard-ready JSON to expected_thesis_path, then refresh the learned dashboard export."
+  ],
+  "output_schema": {
+    "date": "2026-07-02",
+    "target": "learned_rank_top_2",
+    "committee_pick": "Player Name",
+    "committee_summary": "One paragraph explaining the single-pick decision.",
+    "source_notes": [
+      {
+        "label": "Source name",
+        "url": "https://...",
+        "note": "What was reviewed."
+      }
+    ],
+    "players": [
+      {
+        "rank": 1,
+        "player": "Player Name",
+        "team": "AAA",
+        "opponent": "BBB",
+        "probable_pitcher": "Pitcher Name",
+        "pro_thesis": "Dashboard-ready paragraph.",
+        "con_thesis": "Dashboard-ready paragraph.",
+        "committee_thesis": "Dashboard-ready paragraph."
+      }
+    ]
+  }
+}

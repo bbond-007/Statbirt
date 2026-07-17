@@ -1,0 +1,91 @@
+{
+  "date": "2026-07-10",
+  "target": "learned_rank_top_2",
+  "committee_pick": "Pete Crow-Armstrong",
+  "committee_summary": "The committee pick is Pete Crow-Armstrong. Nico Hoerner has the slightly higher learned probability, Publisher status, a better safety score, and the cleaner contact profile, so he belongs on the two-pick card. But the single-pick job is to find the best one-hit path, and Crow-Armstrong has the stronger path today: projected leadoff volume, a .296 season average, an 8-for-17 last-five-game heater, a current RHP split near .300, plus a recent public note that he is on an eight-game hitting streak after a two-homer game. Hunter Greene is dangerous because his swing-and-miss stuff showed up even in his first start back, and Crow-Armstrong's eight stop valves are real. Still, Greene was just activated from the 60-day IL, got hit around for eight runs in 3.1 innings in that return start, and the local H2H quality-of-contact signals are better for Crow-Armstrong than the ugly 1-for-15 surface record implies. Hoerner is safer at avoiding strikeouts, but his .240 season average, .215 season split against righties, sixth lineup slot, and weaker recent form make him the runner-up. Crow-Armstrong is the single; Hoerner is the second pick if playing two.",
+  "workflow_notes": [
+    "Staged the learned model raw top 2 for the active dashboard date.",
+    "Reviewed local model context, H2H, stop valves, expected PA, lineup slot, recent form, handedness splits, starter profile, park/weather, and bullpen context.",
+    "Checked current free public sources for probable pitchers, lineup status, injury/news context, Statcast preview, recent player news, and bullpen workload.",
+    "Used pro, con, and reviewer committee roles before choosing the single hitter."
+  ],
+  "source_notes": [
+    {
+      "label": "MLB StatsAPI Cubs-Reds Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/824493/feed/live",
+      "note": "Verified scheduled preview status, Great American Ball Park venue, Shota Imanaga vs. Hunter Greene probable starters, and no official batting orders posted during review."
+    },
+    {
+      "label": "MLB Cubs Starting Lineups",
+      "url": "https://www.mlb.com/cubs/roster/starting-lineups",
+      "note": "Checked the official Cubs-Reds page; today's lineup was still TBD during review, while recent Cubs lineups repeatedly showed Pete Crow-Armstrong first and Nico Hoerner sixth."
+    },
+    {
+      "label": "RotoWire Daily Lineups",
+      "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+      "note": "Reviewed expected lineup and game context; RotoWire projected Crow-Armstrong first and Hoerner sixth, listed Hunter Greene as the Cincinnati starter, and showed mid-80s weather with precipitation risk."
+    },
+    {
+      "label": "Cubs Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/cubs-injuries-and-roster-moves",
+      "note": "Checked the official Cubs injury page; neither Crow-Armstrong nor Hoerner appeared in the listed injury items during review."
+    },
+    {
+      "label": "Reds Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/reds-injuries-and-roster-moves",
+      "note": "Checked the official Reds injury page; Hunter Greene was listed as activated from the 60-day injured list on July 4."
+    },
+    {
+      "label": "RotoWire Pete Crow-Armstrong News",
+      "url": "https://www.rotowire.com/baseball/player/pete-crow-armstrong-16684",
+      "note": "Reviewed Crow-Armstrong's player page; it listed a .296 average, 21 homers, 23 steals, and a July 8 note that he had an eight-game hitting streak after a two-homer game."
+    },
+    {
+      "label": "RotoWire Nico Hoerner News",
+      "url": "https://www.rotowire.com/baseball/player/nico-hoerner-15440",
+      "note": "Reviewed Hoerner's player page; it listed a .240 average and noted his strong contact/speed profile but weaker current-season production."
+    },
+    {
+      "label": "RotoWire Hunter Greene News",
+      "url": "https://www.rotowire.com/baseball/player/hunter-greene-14763",
+      "note": "Reviewed Greene's player page; it listed a 21.60 ERA and 3.30 WHIP in 2026, with a July 5 note that he allowed eight runs over 3.1 innings in his season debut while still producing 15 swinging strikes."
+    },
+    {
+      "label": "Baseball Savant Cubs-Reds Preview",
+      "url": "https://baseballsavant.mlb.com/preview?game_date=07%2F10%2F2026&game_pk=824493",
+      "note": "Reviewed the Statcast game preview page for the Cubs-Reds matchup and used local staged Statcast-derived matchup fields for the dashboard thesis."
+    },
+    {
+      "label": "Bleed Cubbie Blue Cubs-Orioles Recap",
+      "url": "https://www.bleedcubbieblue.com/chicago-cubs-scores/224845/cubs-orioles-score-pete-crow-armstrong-seiya-suzuki-mlb",
+      "note": "Reviewed recent Cubs context; the recap highlighted Crow-Armstrong's two-homer game and the Cubs' recent offensive surge."
+    },
+    {
+      "label": "Recent MLB Boxscores via StatsAPI",
+      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1",
+      "note": "Checked recent official boxscores for Crow-Armstrong and Hoerner usage/results plus recent Reds bullpen workload."
+    }
+  ],
+  "players": [
+    {
+      "rank": 1,
+      "player": "Nico Hoerner",
+      "team": "CHC",
+      "opponent": "CIN",
+      "probable_pitcher": "Hunter Greene",
+      "pro_thesis": "Nico Hoerner's case is the cleaner contact case. He is the learned model's raw No. 1 at 79.2%, carries Publisher status, has the better safety score of the two at 70/100, and almost never beats himself with strikeouts: his season K rate is 7.8%, his last-500 PA K rate is 8.2%, and his whiff rates sit around 11-12%. Against Hunter Greene specifically, the 4-for-25 H2H line is not exciting, but it is more established than Crow-Armstrong's 1-for-15, and the H2H whiff and K rates are manageable. Greene's return start also creates a reasonable pitcher-vulnerability path, because he was just activated from the 60-day IL and allowed heavy damage in his first outing back. If Greene is rusty again, Hoerner is the kind of hitter who can put the ball in play early and let speed, placement, and Cincinnati's defense turn a plate appearance into a hit.",
+      "con_thesis": "The con case is that Hoerner's contact skill is not currently translating into enough one-hit probability. He is hitting .240 on the season, only .215 against right-handed pitching this year, and just 4-for-18 across his last five played. He also projects sixth rather than first, trimming his expected plate appearances to 4.1 while Crow-Armstrong projects for 4.8 from the leadoff spot. The local model gives him four stop valves, including the same starter suppression and pitcher-allowed-average flags that hit Crow-Armstrong, plus a current-day handedness concern. Hoerner is the steadier bat-to-ball player, but today's contest needs one actual hit, and a sixth-slot hitter with a weak current RHP split has less margin if Greene's velocity is sharp.",
+      "committee_thesis": "Committee read: Hoerner is the runner-up. The pro advocate is right that Publisher status, elite contact, lower strikeout risk, and a higher safety score make him appealing for a conservative two-pick card. The con advocate wins the single-pick comparison because the season average, recent form, lineup slot, and current righty split all point away from him as the best lone choice. The reviewer keeps Hoerner as the second pick, especially if confirmed in the lineup, but prefers Crow-Armstrong's leadoff volume and current heat for the single."
+    },
+    {
+      "rank": 2,
+      "player": "Pete Crow-Armstrong",
+      "team": "CHC",
+      "opponent": "CIN",
+      "probable_pitcher": "Hunter Greene",
+      "pro_thesis": "Pete Crow-Armstrong has the best single-pick path because the volume and form signals are loud. He projects to lead off, carries 4.8 expected plate appearances, is hitting .296 for the season, and is 8-for-17 over his last five played. The public context backs the same read: RotoWire noted his eight-game hitting streak and two-homer game, and the recent boxscores show he has been locked into the top spot. The handedness matchup also supports him more than the surface H2H line suggests, with a .297 current-season split against righties, a .333 local inferred pitch-type xBA, a .337 H2H xBA, and strong speed that can turn imperfect contact into singles. Greene has elite stuff, but he was activated from the 60-day IL on July 4 and was hit hard in his first start back, so Crow-Armstrong's first-crack-at-the-game profile is the most attractive one-hit thesis.",
+      "con_thesis": "The con case is that Crow-Armstrong's risk stack is not subtle. He has eight stop valves, including season and last-500 whiff flags, season and last-500 K-rate flags, a starter H/IP suppression flag, and a pitcher-allowed-average flag. His H2H surface record against Greene is also poor at 1-for-15, and Greene still generated 15 swinging strikes in that ugly return start, which says the bat-missing gear is still there. A hitter who is running hot, swinging for damage, and facing elite velocity can have a four-plate-appearance night disappear quickly if the chase expands. Crow-Armstrong is the more exciting play, but he is not the safer bat-to-ball profile.",
+      "committee_thesis": "Committee read: Crow-Armstrong is the single pick. The pro advocate has the stronger day-specific argument: leadoff slot, nearly five expected plate appearances, .296 season average, 8-for-17 recent form, current RHP success, and a starter who is talented but still shaking off an IL return. The con advocate is right about the stop valves and Greene's strikeout ceiling, but those risks are already priced into the model while the active form and plate-appearance edge are harder to ignore. The reviewer chooses Crow-Armstrong as the single and Hoerner as the two-pick partner."
+    }
+  ]
+}

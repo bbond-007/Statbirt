@@ -1,0 +1,791 @@
+{
+  "generated_at": "2026-07-09T13:01:05Z",
+  "date": "2026-07-09",
+  "requested_date": "2026-07-09",
+  "used_latest_fallback": false,
+  "target": "learned_rank_top_2",
+  "purpose": "Evidence staging only. ChatGPT/Codex should write the pro thesis, con thesis, and committee decision.",
+  "daily_timing": {
+    "morning_models_scheduled": "07:00 America/Chicago",
+    "recommended_stage_after": "08:00 America/Chicago",
+    "note": "The morning model scripts normally need about 45 minutes, so 8:00am Central gives them a buffer."
+  },
+  "workflow_prompt": "X:\\Coding\\Statbirt\\prompts\\learned_top2_thesis.md",
+  "expected_thesis_path": "X:\\Coding\\Statbirt\\data\\manual\\learned_top2_theses\\2026-07-09.json",
+  "dashboard_refresh_command": "py -3 -m statbirt.export_learned_web --date latest --limit 5",
+  "total_predictions_for_date": 440,
+  "injury_filtered_count": 56,
+  "selection_brief_from_local_metrics": {
+    "policy_version": "learned-selection-v1",
+    "headline": "Recommended single: Trea Turner. Best two-pick card: Trea Turner and Taylor Ward.",
+    "recommended_single": {
+      "rank": 1,
+      "player": "Trea Turner",
+      "team": "PHI",
+      "opponent": "CIN",
+      "selection_score": 73.0,
+      "learned_hit_probability": 0.7406,
+      "pros": [
+        "High learned probability (74.1%).",
+        "Strong reliability score (82/100).",
+        "Projected for 4.8 PA.",
+        "Premium lineup slot (1)."
+      ],
+      "cons": [
+        "6 stop valves.",
+        "HiPA 500 0.258."
+      ],
+      "confidence_label": "Strong",
+      "thesis": "Trea Turner is a 73.0 selection-score play with a 74.1% learned hit probability, 4.8 expected PA, and a 82/100 reliability score. The positive case starts with high learned probability (74.1%); the main counterweight is 6 stop valves.",
+      "summary": "Trea Turner grades as strong at 73.0 on the reliability blend.",
+      "recommendation": "Best 1",
+      "h2h_record": "3-9",
+      "safety_score": 82,
+      "bob_score": 61.43,
+      "expected_pa": "4.8",
+      "lineup_slot": "1.0",
+      "hitter_ba_season": "0.241",
+      "probable_pitcher": "Brady Singer",
+      "pickable": false,
+      "stop_valve_count": 6,
+      "hard_pass_reasons": [
+        "Hitter season whiff rate over 25%",
+        "Hitter last-500 PA whiff rate over 25%",
+        "Hitter season K rate over 22%",
+        "H2H whiff rate over 25%",
+        "H2H K rate over 20%",
+        "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows"
+      ],
+      "concerns": [],
+      "result_hit": null,
+      "result_hits": null,
+      "result_ab": null,
+      "result_pa": null,
+      "result_status": "",
+      "game_state": "unknown",
+      "game_status": "",
+      "game_hits": null
+    },
+    "recommended_pair": [
+      {
+        "rank": 1,
+        "player": "Trea Turner",
+        "team": "PHI",
+        "opponent": "CIN",
+        "selection_score": 73.0,
+        "learned_hit_probability": 0.7406,
+        "pros": [
+          "High learned probability (74.1%).",
+          "Strong reliability score (82/100).",
+          "Projected for 4.8 PA.",
+          "Premium lineup slot (1)."
+        ],
+        "cons": [
+          "6 stop valves.",
+          "HiPA 500 0.258."
+        ],
+        "confidence_label": "Strong",
+        "thesis": "Trea Turner is a 73.0 selection-score play with a 74.1% learned hit probability, 4.8 expected PA, and a 82/100 reliability score. The positive case starts with high learned probability (74.1%); the main counterweight is 6 stop valves.",
+        "summary": "Trea Turner grades as strong at 73.0 on the reliability blend.",
+        "recommendation": "Best 1",
+        "h2h_record": "3-9",
+        "safety_score": 82,
+        "bob_score": 61.43,
+        "expected_pa": "4.8",
+        "lineup_slot": "1.0",
+        "hitter_ba_season": "0.241",
+        "probable_pitcher": "Brady Singer",
+        "pickable": false,
+        "stop_valve_count": 6,
+        "hard_pass_reasons": [
+          "Hitter season whiff rate over 25%",
+          "Hitter last-500 PA whiff rate over 25%",
+          "Hitter season K rate over 22%",
+          "H2H whiff rate over 25%",
+          "H2H K rate over 20%",
+          "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows"
+        ],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      },
+      {
+        "rank": 2,
+        "player": "Taylor Ward",
+        "team": "BAL",
+        "opponent": "CHC",
+        "selection_score": 66.9,
+        "learned_hit_probability": 0.7331,
+        "pros": [
+          "High learned probability (73.3%).",
+          "Projected for 4.6 PA.",
+          "Premium lineup slot (3).",
+          "Positive H2H record (1-3)."
+        ],
+        "cons": [
+          "5 stop valves.",
+          "K rate 22.4%.",
+          "HiPA 500 0.210."
+        ],
+        "confidence_label": "Playable",
+        "thesis": "Taylor Ward is a 66.9 selection-score play with a 73.3% learned hit probability, 4.6 expected PA, and a 70/100 reliability score. The positive case starts with high learned probability (73.3%); the main counterweight is 5 stop valves.",
+        "summary": "Taylor Ward grades as playable at 66.9 on the reliability blend.",
+        "recommendation": "Best 2",
+        "h2h_record": "1-3",
+        "safety_score": 70,
+        "bob_score": 56.02,
+        "expected_pa": "4.6",
+        "lineup_slot": "2.6",
+        "hitter_ba_season": "0.254",
+        "probable_pitcher": "David Peterson",
+        "pickable": false,
+        "stop_valve_count": 5,
+        "hard_pass_reasons": [
+          "Hitter is below .270 over both long and last-500 AB windows",
+          "Hitter season BB rate over 12%",
+          "Hitter last-500 PA BB rate over 12%",
+          "Hitter last-500 PA K rate over 22%",
+          "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows"
+        ],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      }
+    ],
+    "items": [
+      {
+        "rank": 1,
+        "player": "Trea Turner",
+        "team": "PHI",
+        "opponent": "CIN",
+        "selection_score": 73.0,
+        "learned_hit_probability": 0.7406,
+        "pros": [
+          "High learned probability (74.1%).",
+          "Strong reliability score (82/100).",
+          "Projected for 4.8 PA.",
+          "Premium lineup slot (1)."
+        ],
+        "cons": [
+          "6 stop valves.",
+          "HiPA 500 0.258."
+        ],
+        "confidence_label": "Strong",
+        "thesis": "Trea Turner is a 73.0 selection-score play with a 74.1% learned hit probability, 4.8 expected PA, and a 82/100 reliability score. The positive case starts with high learned probability (74.1%); the main counterweight is 6 stop valves.",
+        "summary": "Trea Turner grades as strong at 73.0 on the reliability blend.",
+        "recommendation": "Best 1",
+        "h2h_record": "3-9",
+        "safety_score": 82,
+        "bob_score": 61.43,
+        "expected_pa": "4.8",
+        "lineup_slot": "1.0",
+        "hitter_ba_season": "0.241",
+        "probable_pitcher": "Brady Singer",
+        "pickable": false,
+        "stop_valve_count": 6,
+        "hard_pass_reasons": [
+          "Hitter season whiff rate over 25%",
+          "Hitter last-500 PA whiff rate over 25%",
+          "Hitter season K rate over 22%",
+          "H2H whiff rate over 25%",
+          "H2H K rate over 20%",
+          "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows"
+        ],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      },
+      {
+        "rank": 2,
+        "player": "Taylor Ward",
+        "team": "BAL",
+        "opponent": "CHC",
+        "selection_score": 66.9,
+        "learned_hit_probability": 0.7331,
+        "pros": [
+          "High learned probability (73.3%).",
+          "Projected for 4.6 PA.",
+          "Premium lineup slot (3).",
+          "Positive H2H record (1-3)."
+        ],
+        "cons": [
+          "5 stop valves.",
+          "K rate 22.4%.",
+          "HiPA 500 0.210."
+        ],
+        "confidence_label": "Playable",
+        "thesis": "Taylor Ward is a 66.9 selection-score play with a 73.3% learned hit probability, 4.6 expected PA, and a 70/100 reliability score. The positive case starts with high learned probability (73.3%); the main counterweight is 5 stop valves.",
+        "summary": "Taylor Ward grades as playable at 66.9 on the reliability blend.",
+        "recommendation": "Best 2",
+        "h2h_record": "1-3",
+        "safety_score": 70,
+        "bob_score": 56.02,
+        "expected_pa": "4.6",
+        "lineup_slot": "2.6",
+        "hitter_ba_season": "0.254",
+        "probable_pitcher": "David Peterson",
+        "pickable": false,
+        "stop_valve_count": 5,
+        "hard_pass_reasons": [
+          "Hitter is below .270 over both long and last-500 AB windows",
+          "Hitter season BB rate over 12%",
+          "Hitter last-500 PA BB rate over 12%",
+          "Hitter last-500 PA K rate over 22%",
+          "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows"
+        ],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      }
+    ]
+  },
+  "players": [
+    {
+      "rank": 1,
+      "player": "Trea Turner",
+      "player_id": "607208",
+      "team": "PHI",
+      "opponent": "CIN",
+      "dashboard_summary": {
+        "learned_hit_probability": 0.7406,
+        "bob_score": 61.43,
+        "pickable": false,
+        "safety_score": 82,
+        "h2h_record": "3-9",
+        "expected_pa": "4.8",
+        "lineup_slot": "1.0",
+        "season_ba": "0.241",
+        "last_5_ba": "0.273",
+        "hot_streak": false,
+        "hot_streak_tooltip": "",
+        "probable_pitcher": "Brady Singer",
+        "pitcher_hand": "R",
+        "batter_stand": "R",
+        "venue_name": "Great American Ball Park",
+        "weather_label": "Rain: 9.0%",
+        "congregation_status": "Publisher"
+      },
+      "model_signals": [
+        "Expected PA 4.8",
+        "Season PA/G 4.42",
+        "Lineup slot 1",
+        "K rate 22.0%",
+        "Stuff+ 91.0"
+      ],
+      "model_risks": [
+        "6 stop valves",
+        "HiPA 500 0.258"
+      ],
+      "stop_valves": [
+        "Hitter season whiff rate over 25%",
+        "Hitter last-500 PA whiff rate over 25%",
+        "Hitter season K rate over 22%",
+        "H2H whiff rate over 25%",
+        "H2H K rate over 20%",
+        "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows"
+      ],
+      "watch_notes": [],
+      "field_context": {
+        "identity": {
+          "date": "2026-07-09",
+          "player": "Trea Turner",
+          "player_id": "607208",
+          "team": "PHI",
+          "team_id": "143",
+          "opponent": "CIN",
+          "opponent_id": "113",
+          "game_pk": "824494"
+        },
+        "learned_model": {
+          "learned_rank": "1",
+          "learned_hit_probability": "0.7406",
+          "model_version": "learned-logistic-v2-20260709T120441Z",
+          "model_trained_at": "2026-07-09T12:04:41Z",
+          "bob_score": "61.43",
+          "score": "61.43",
+          "pickable": "N"
+        },
+        "game_context": {
+          "venue_name": "Great American Ball Park",
+          "game_start_time_utc": "2026-07-09T23:10:00Z",
+          "road_game": "Y",
+          "division_matchup": "N",
+          "doubleheader": "N",
+          "confirmed_lineup": "N",
+          "lineup_slot": "1.0",
+          "expected_pa": "4.80",
+          "starts_last_5": "4"
+        },
+        "weather_park": {
+          "precip_probability": "9.0",
+          "forecast_temperature_f": "88.4",
+          "park_hit_factor": "99.0"
+        },
+        "hitter_form_contact": {
+          "hitter_ba_season": "0.241",
+          "hitter_hipa_2500_pa": "0.260",
+          "hitter_pa_per_game_season": "4.42",
+          "hitter_ba_2500_ab": "0.282",
+          "hitter_hipa_500_pa": "0.258",
+          "hitter_hipa_75_ab": "0.312",
+          "hitter_ba_75_ab": "0.320",
+          "hitter_ba_25_ab": "0.280",
+          "hitter_ba_500_ab": "0.276",
+          "hitter_last_5_games_played": "5",
+          "hitter_last_5_games_hits": "6",
+          "hitter_last_5_games_ab": "22",
+          "hitter_last_5_games_ba": "0.273",
+          "sprint_speed": "30.0"
+        },
+        "hitter_plate_discipline": {
+          "hitter_bb_rate_season": "0.055",
+          "hitter_bb_rate_500_pa": "0.054",
+          "hitter_whiff_rate_season": "0.276",
+          "hitter_whiff_rate_500_pa": "0.273",
+          "hitter_k_rate_season": "0.226",
+          "hitter_k_rate_500_pa": "0.220"
+        },
+        "hitter_handedness_splits": {
+          "batter_stand": "R",
+          "pitcher_hand": "R",
+          "hitter_split_ba_season_vs_lhp": "0.205",
+          "hitter_split_ba_season_vs_rhp": "0.259",
+          "hitter_split_pa_season_vs_lhp": "136",
+          "hitter_split_pa_season_vs_rhp": "262",
+          "hitter_split_ba_500_vs_lhp": "0.266",
+          "hitter_split_ba_500_vs_rhp": "0.274",
+          "hitter_split_ba_1500_vs_lhp": "0.266",
+          "hitter_split_ba_1500_vs_rhp": "0.275"
+        },
+        "probable_starter": {
+          "probable_pitcher": "Brady Singer",
+          "probable_pitcher_id": "663903",
+          "pitcher_hand": "R",
+          "pitcher_hpi_350": "0.990",
+          "pitcher_hpi_200": "0.993",
+          "pitcher_hpi_season": "1.178",
+          "pitcher_hits_last_18_ip": "17",
+          "pitcher_stuff_plus": "91.0",
+          "pitcher_lr_opp_ba": "0.227",
+          "pitcher_lr_opp_ba_50": "0.274",
+          "pitcher_lr_opp_ba_200": "0.232"
+        },
+        "probable_starter_last_start": {
+          "pitcher_last_start_date": "2026-07-03",
+          "pitcher_last_start_ip": "5.0",
+          "pitcher_last_start_hits": "3",
+          "pitcher_last_start_strikeouts": "6",
+          "pitcher_last_start_walks": "5"
+        },
+        "h2h": {
+          "h2h_pa": "9",
+          "h2h_hits": "3",
+          "h2h_hit_rate": "0.333",
+          "h2h_whiff_rate": "0.320",
+          "h2h_k_rate": "0.222",
+          "h2h_exit_velocity": "90.7",
+          "h2h_xba": "0.365"
+        },
+        "pitch_type_matchup": {
+          "inferred_pitch_type_ba": "0.292",
+          "inferred_pitch_type_xba": "0.316",
+          "inferred_pitch_type_coverage": "0.781"
+        },
+        "bullpen_context": {
+          "bullpen_hpi": "0.887",
+          "bullpen_opp_ba": "0.236"
+        },
+        "bob_score_components": {
+          "component_hitter.hipa_2500_pa": "100.00",
+          "component_hitter.pa_per_game_season": "46.91",
+          "component_hitter.hipa_500_pa": "88.00",
+          "component_hitter.hipa_75_ab": "100.00",
+          "component_starting_pitcher.hpi_350": "47.93",
+          "component_starting_pitcher.hpi_season": "85.63",
+          "component_starting_pitcher.stuff_plus": "68.57",
+          "component_h2h.direct": "61.11",
+          "component_h2h.pitcher_lr_opp_ba": "6.61",
+          "component_h2h.inferred_pitch_type": "69.51",
+          "component_bullpen.hpi_season": "30.35",
+          "component_other.road_game": "100.00",
+          "component_other.division_matchup": "0.00",
+          "component_other.sprint_speed": "100.00",
+          "component_other.park_hit_factor": "45.00",
+          "component_other.lineup_opportunity": "100.00"
+        },
+        "results": {}
+      },
+      "missing_relevant_fields": {
+        "results": [
+          "result_hit",
+          "result_hits",
+          "result_ab",
+          "result_pa",
+          "result_status",
+          "result_updated_at",
+          "notes"
+        ]
+      },
+      "source_targets": [
+        {
+          "label": "MLB probable pitchers",
+          "url": "https://www.mlb.com/probable-pitchers",
+          "why": "Verify the probable starter has not changed."
+        },
+        {
+          "label": "MLB starting lineups",
+          "url": "https://www.mlb.com/starting-lineups",
+          "why": "Check whether the hitter is confirmed in the lineup and whether the slot changed."
+        },
+        {
+          "label": "MLB injury report",
+          "url": "https://www.mlb.com/injury-report",
+          "why": "Check for late injury or availability notes."
+        },
+        {
+          "label": "RotoWire bullpen usage",
+          "url": "https://www.rotowire.com/baseball/bullpen-usage.php",
+          "why": "Look for bullpen fatigue or unavailable leverage arms."
+        },
+        {
+          "label": "RotoWire daily lineups",
+          "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+          "why": "Cross-check lineup and late-scratch risk."
+        },
+        {
+          "label": "MLB news",
+          "url": "https://www.mlb.com/news",
+          "why": "Search for current notes on Trea Turner, Brady Singer, PHI, and CIN."
+        },
+        {
+          "label": "MLB live game feed",
+          "url": "https://statsapi.mlb.com/api/v1.1/game/824494/feed/live",
+          "why": "Verify official game, lineup, venue, and probable-pitcher context."
+        },
+        {
+          "label": "MLB boxscore endpoint",
+          "url": "https://statsapi.mlb.com/api/v1/game/824494/boxscore",
+          "why": "Useful after lineups post or for later result checks."
+        },
+        {
+          "label": "Baseball Savant: Trea Turner",
+          "url": "https://baseballsavant.mlb.com/savant-player/trea-turner-607208",
+          "why": "Review hitter quality of contact, rolling form, pitch-type strengths, and handedness context."
+        },
+        {
+          "label": "Baseball Savant: Brady Singer",
+          "url": "https://baseballsavant.mlb.com/savant-player/brady-singer-663903",
+          "why": "Review starter pitch mix, recent shape, contact allowed, and possible matchup fragility."
+        }
+      ],
+      "chatgpt_review_questions": [
+        "Has the probable starter or lineup changed since the morning run?",
+        "Do current news, beat notes, or injury reports create scratch, rest, or pinch-hit risk?",
+        "Does the hitter have a pitch-type or handedness edge that survives beyond the headline model probability?",
+        "Is the opposing bullpen likely to help or hurt the one-hit path if the starter exits early?",
+        "Is the recent form signal supported by contact quality, or does it look like short-sample noise?"
+      ]
+    },
+    {
+      "rank": 2,
+      "player": "Taylor Ward",
+      "player_id": "621493",
+      "team": "BAL",
+      "opponent": "CHC",
+      "dashboard_summary": {
+        "learned_hit_probability": 0.7331,
+        "bob_score": 56.02,
+        "pickable": false,
+        "safety_score": 70,
+        "h2h_record": "1-3",
+        "expected_pa": "4.6",
+        "lineup_slot": "2.6",
+        "season_ba": "0.254",
+        "last_5_ba": "0.333",
+        "hot_streak": false,
+        "hot_streak_tooltip": "",
+        "probable_pitcher": "David Peterson",
+        "pitcher_hand": "L",
+        "batter_stand": "R",
+        "venue_name": "Oriole Park at Camden Yards",
+        "weather_label": "Rain: 40.0%",
+        "congregation_status": ""
+      },
+      "model_signals": [
+        "Expected PA 4.6",
+        "Season PA/G 4.59",
+        "Lineup slot 3",
+        "Stuff+ 89.0"
+      ],
+      "model_risks": [
+        "5 stop valves",
+        "K rate 22.4%",
+        "HiPA 500 0.210"
+      ],
+      "stop_valves": [
+        "Hitter is below .270 over both long and last-500 AB windows",
+        "Hitter season BB rate over 12%",
+        "Hitter last-500 PA BB rate over 12%",
+        "Hitter last-500 PA K rate over 22%",
+        "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows"
+      ],
+      "watch_notes": [],
+      "field_context": {
+        "identity": {
+          "date": "2026-07-09",
+          "player": "Taylor Ward",
+          "player_id": "621493",
+          "team": "BAL",
+          "team_id": "110",
+          "opponent": "CHC",
+          "opponent_id": "112",
+          "game_pk": "824816"
+        },
+        "learned_model": {
+          "learned_rank": "2",
+          "learned_hit_probability": "0.7331",
+          "model_version": "learned-logistic-v2-20260709T120441Z",
+          "model_trained_at": "2026-07-09T12:04:41Z",
+          "bob_score": "56.02",
+          "score": "56.02",
+          "pickable": "N"
+        },
+        "game_context": {
+          "venue_name": "Oriole Park at Camden Yards",
+          "game_start_time_utc": "2026-07-09T17:35:00Z",
+          "road_game": "N",
+          "division_matchup": "N",
+          "doubleheader": "N",
+          "confirmed_lineup": "N",
+          "lineup_slot": "2.6",
+          "expected_pa": "4.60",
+          "starts_last_5": "5"
+        },
+        "weather_park": {
+          "precip_probability": "40.0",
+          "forecast_temperature_f": "86.2",
+          "park_hit_factor": "105.0"
+        },
+        "hitter_form_contact": {
+          "hitter_ba_season": "0.254",
+          "hitter_hipa_2500_pa": "0.213",
+          "hitter_pa_per_game_season": "4.59",
+          "hitter_ba_2500_ab": "0.251",
+          "hitter_hipa_500_pa": "0.210",
+          "hitter_hipa_75_ab": "0.217",
+          "hitter_ba_75_ab": "0.240",
+          "hitter_ba_25_ab": "0.280",
+          "hitter_ba_500_ab": "0.240",
+          "hitter_last_5_games_played": "5",
+          "hitter_last_5_games_hits": "6",
+          "hitter_last_5_games_ab": "18",
+          "hitter_last_5_games_ba": "0.333",
+          "sprint_speed": "27.0"
+        },
+        "hitter_plate_discipline": {
+          "hitter_bb_rate_season": "0.165",
+          "hitter_bb_rate_500_pa": "0.148",
+          "hitter_whiff_rate_season": "0.194",
+          "hitter_whiff_rate_500_pa": "0.200",
+          "hitter_k_rate_season": "0.210",
+          "hitter_k_rate_500_pa": "0.224"
+        },
+        "hitter_handedness_splits": {
+          "batter_stand": "R",
+          "pitcher_hand": "L",
+          "hitter_split_ba_season_vs_lhp": "0.291",
+          "hitter_split_ba_season_vs_rhp": "0.241",
+          "hitter_split_pa_season_vs_lhp": "111",
+          "hitter_split_pa_season_vs_rhp": "312",
+          "hitter_split_ba_500_vs_lhp": "0.302",
+          "hitter_split_ba_500_vs_rhp": "0.236",
+          "hitter_split_ba_1500_vs_lhp": "0.302",
+          "hitter_split_ba_1500_vs_rhp": "0.229"
+        },
+        "probable_starter": {
+          "probable_pitcher": "David Peterson",
+          "probable_pitcher_id": "656849",
+          "pitcher_hand": "L",
+          "pitcher_hpi_350": "1.005",
+          "pitcher_hpi_200": "1.081",
+          "pitcher_hpi_season": "1.241",
+          "pitcher_hits_last_18_ip": "29",
+          "pitcher_stuff_plus": "89.0",
+          "pitcher_lr_opp_ba": "0.266",
+          "pitcher_lr_opp_ba_50": "0.303",
+          "pitcher_lr_opp_ba_200": "0.283"
+        },
+        "probable_starter_last_start": {
+          "pitcher_last_start_date": "2026-07-03",
+          "pitcher_last_start_ip": "3.7",
+          "pitcher_last_start_hits": "9",
+          "pitcher_last_start_strikeouts": "3",
+          "pitcher_last_start_walks": "3"
+        },
+        "h2h": {
+          "h2h_pa": "3",
+          "h2h_hits": "1",
+          "h2h_hit_rate": "0.333",
+          "h2h_whiff_rate": "0.250",
+          "h2h_k_rate": "0.000",
+          "h2h_exit_velocity": "94.3",
+          "h2h_xba": "0.509"
+        },
+        "pitch_type_matchup": {
+          "inferred_pitch_type_ba": "0.309",
+          "inferred_pitch_type_xba": "0.376",
+          "inferred_pitch_type_coverage": "0.874"
+        },
+        "bullpen_context": {
+          "bullpen_hpi": "0.906",
+          "bullpen_opp_ba": "0.243"
+        },
+        "bob_score_components": {
+          "component_hitter.hipa_2500_pa": "47.75",
+          "component_hitter.pa_per_game_season": "65.22",
+          "component_hitter.hipa_500_pa": "40.00",
+          "component_hitter.hipa_75_ab": "47.91",
+          "component_starting_pitcher.hpi_350": "50.95",
+          "component_starting_pitcher.hpi_season": "98.28",
+          "component_starting_pitcher.stuff_plus": "74.29",
+          "component_h2h.direct": "80.02",
+          "component_h2h.pitcher_lr_opp_ba": "42.21",
+          "component_h2h.inferred_pitch_type": "87.38",
+          "component_bullpen.hpi_season": "34.77",
+          "component_other.road_game": "0.00",
+          "component_other.division_matchup": "0.00",
+          "component_other.sprint_speed": "45.45",
+          "component_other.park_hit_factor": "75.00",
+          "component_other.lineup_opportunity": "83.33"
+        },
+        "results": {}
+      },
+      "missing_relevant_fields": {
+        "results": [
+          "result_hit",
+          "result_hits",
+          "result_ab",
+          "result_pa",
+          "result_status",
+          "result_updated_at",
+          "notes"
+        ]
+      },
+      "source_targets": [
+        {
+          "label": "MLB probable pitchers",
+          "url": "https://www.mlb.com/probable-pitchers",
+          "why": "Verify the probable starter has not changed."
+        },
+        {
+          "label": "MLB starting lineups",
+          "url": "https://www.mlb.com/starting-lineups",
+          "why": "Check whether the hitter is confirmed in the lineup and whether the slot changed."
+        },
+        {
+          "label": "MLB injury report",
+          "url": "https://www.mlb.com/injury-report",
+          "why": "Check for late injury or availability notes."
+        },
+        {
+          "label": "RotoWire bullpen usage",
+          "url": "https://www.rotowire.com/baseball/bullpen-usage.php",
+          "why": "Look for bullpen fatigue or unavailable leverage arms."
+        },
+        {
+          "label": "RotoWire daily lineups",
+          "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+          "why": "Cross-check lineup and late-scratch risk."
+        },
+        {
+          "label": "MLB news",
+          "url": "https://www.mlb.com/news",
+          "why": "Search for current notes on Taylor Ward, David Peterson, BAL, and CHC."
+        },
+        {
+          "label": "MLB live game feed",
+          "url": "https://statsapi.mlb.com/api/v1.1/game/824816/feed/live",
+          "why": "Verify official game, lineup, venue, and probable-pitcher context."
+        },
+        {
+          "label": "MLB boxscore endpoint",
+          "url": "https://statsapi.mlb.com/api/v1/game/824816/boxscore",
+          "why": "Useful after lineups post or for later result checks."
+        },
+        {
+          "label": "Baseball Savant: Taylor Ward",
+          "url": "https://baseballsavant.mlb.com/savant-player/taylor-ward-621493",
+          "why": "Review hitter quality of contact, rolling form, pitch-type strengths, and handedness context."
+        },
+        {
+          "label": "Baseball Savant: David Peterson",
+          "url": "https://baseballsavant.mlb.com/savant-player/david-peterson-656849",
+          "why": "Review starter pitch mix, recent shape, contact allowed, and possible matchup fragility."
+        }
+      ],
+      "chatgpt_review_questions": [
+        "Has the probable starter or lineup changed since the morning run?",
+        "Do current news, beat notes, or injury reports create scratch, rest, or pinch-hit risk?",
+        "Does the hitter have a pitch-type or handedness edge that survives beyond the headline model probability?",
+        "Is the opposing bullpen likely to help or hurt the one-hit path if the starter exits early?",
+        "Is the recent form signal supported by contact quality, or does it look like short-sample noise?"
+      ]
+    }
+  ],
+  "chatgpt_committee_process": [
+    "Read this staged context and treat it as evidence, not as a thesis.",
+    "Browse current free sources for lineup, probable pitcher, injury/news, bullpen, and matchup updates.",
+    "Write a pro thesis and con thesis for each player.",
+    "Have a final reviewer compare the arguments and choose one single hitter.",
+    "Save the finished dashboard-ready JSON to expected_thesis_path, then refresh the learned dashboard export."
+  ],
+  "output_schema": {
+    "date": "2026-07-09",
+    "target": "learned_rank_top_2",
+    "committee_pick": "Player Name",
+    "committee_summary": "One paragraph explaining the single-pick decision.",
+    "source_notes": [
+      {
+        "label": "Source name",
+        "url": "https://...",
+        "note": "What was reviewed."
+      }
+    ],
+    "players": [
+      {
+        "rank": 1,
+        "player": "Player Name",
+        "team": "AAA",
+        "opponent": "BBB",
+        "probable_pitcher": "Pitcher Name",
+        "pro_thesis": "Dashboard-ready paragraph.",
+        "con_thesis": "Dashboard-ready paragraph.",
+        "committee_thesis": "Dashboard-ready paragraph."
+      }
+    ]
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "date": "2026-07-14",
+  "target": "learned_rank_top_2",
+  "committee_pick": "Bobby Witt Jr.",
+  "committee_summary": "The committee pick is Bobby Witt Jr. This is an All-Star Game board, so the regular-season model needs a discount: pitcher usage, substitutions, and plate-appearance volume are less predictable than a normal daily slate. Within that constraint, Witt has the cleaner one-hit path. He is the learned No. 1 at 81.1%, a Publisher, confirmed in the AL starting lineup, batting fifth, and carries an 89/100 safety score. His left-handed-pitching split is strong at .330 this season and .332 in the rolling split windows, and the staged pitch-type matchup against Cristopher Sanchez is excellent at .320 BA and .363 xBA. Ernie Clement is also confirmed in the lineup and has a better recent average plus a stronger surface H2H record against Sanchez, but he bats ninth, projects for fewer plate appearances, has a much lower reliability score, and his H2H xBA is weaker than the surface 4-for-13 record. Sanchez's Stuff+ and All-Star volatility make this a lower-certainty pick than a normal slate, but Witt is the single; Clement is the two-pick partner.",
+  "workflow_notes": [
+    "Staged the learned model raw top 2 for the active dashboard date.",
+    "Confirmed this is the 2026 All-Star Game, not a standard regular-season slate.",
+    "Reviewed local model context, H2H, stop valves, expected PA, lineup slot, recent form, handedness splits, starter profile, park/weather, and missing bullpen context.",
+    "Checked current free public sources for game type, confirmed lineups, starting pitchers, injury/replacement context, and recent player notes.",
+    "Used pro, con, and reviewer committee roles before choosing the single hitter."
+  ],
+  "source_notes": [
+    {
+      "label": "MLB StatsAPI All-Star Game Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/823443/feed/live",
+      "note": "Verified game type A, pre-game status, Citizens Bank Park venue, American League All-Stars at National League All-Stars, Dylan Cease vs. Cristopher Sanchez, and confirmed batting orders with Witt fifth and Clement ninth."
+    },
+    {
+      "label": "MLB StatsAPI Schedule",
+      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=2026-07-14",
+      "note": "Verified July 14 has one MLB game, the All-Star Game, with game type A."
+    },
+    {
+      "label": "MLB All-Star Game FAQ",
+      "url": "https://www.mlb.com/news/mlb-all-star-game-faq-2026",
+      "note": "Reviewed MLB's official All-Star Game FAQ; it confirmed the AL lineup, the NL lineup, the 8 p.m. ET start, Citizens Bank Park context, and Cristopher Sanchez/Dylan Cease as starters."
+    },
+    {
+      "label": "Sportsnet All-Star Lineup Report",
+      "url": "https://www.sportsnet.ca/mlb/article/ernie-clement-to-bat-ninth-as-managers-reveal-all-star-game-lineups/",
+      "note": "Reviewed Associated Press/Sportsnet report confirming Clement batting ninth, Witt batting fifth, injury-related AL lineup replacements, and Sanchez/Cease as starting pitchers."
+    },
+    {
+      "label": "FOX Sports All-Star Starting Lineups",
+      "url": "https://www.foxsports.com/stories/mlb/2026-mlb-all-star-game-starting-lineups-announced-trout-schwarber-soto-set-start",
+      "note": "Reviewed public lineup and player context; FOX listed Witt's first-half line and Clement's first All-Star start context."
+    },
+    {
+      "label": "RotoWire Bobby Witt News",
+      "url": "https://www.rotowire.com/baseball/player/bobby-witt-16040",
+      "note": "Reviewed Witt's player page and current 2026 stat context, including average, power, and stolen-base profile."
+    },
+    {
+      "label": "RotoWire Ernie Clement News",
+      "url": "https://www.rotowire.com/baseball/player/ernie-clement-14854",
+      "note": "Reviewed Clement's player page and current 2026 stat context, including his average, recent hitting streak notes, and first-half production."
+    },
+    {
+      "label": "Baseball Savant Bobby Witt Jr.",
+      "url": "https://baseballsavant.mlb.com/savant-player/bobby-witt-jr-677951",
+      "note": "Used as the public Statcast target for Witt while relying on staged local Statcast-derived fields for H2H and pitch-type matchup."
+    },
+    {
+      "label": "Baseball Savant Ernie Clement",
+      "url": "https://baseballsavant.mlb.com/savant-player/ernie-clement-676391",
+      "note": "Used as the public Statcast target for Clement while relying on staged local Statcast-derived fields for H2H and pitch-type matchup."
+    },
+    {
+      "label": "Baseball Savant Cristopher Sanchez",
+      "url": "https://baseballsavant.mlb.com/savant-player/cristopher-sanchez-650911",
+      "note": "Used as the public Statcast target for Sanchez while relying on staged local starter fields for Stuff+, HPI, recent hits allowed, and pitch-type matchup."
+    }
+  ],
+  "players": [
+    {
+      "rank": 1,
+      "player": "Bobby Witt Jr.",
+      "team": "AWY",
+      "opponent": "HME",
+      "probable_pitcher": "Cristopher Sanchez",
+      "pro_thesis": "Bobby Witt Jr. is the stronger single-pick case because he combines the best model signal with the better opportunity profile. He is the learned No. 1 at 81.1%, carries Publisher status, has an 89/100 safety score, and is confirmed in the American League starting lineup batting fifth. The lefty matchup is also real: Witt is hitting .330 against left-handed pitching this season, .332 in the 500/1500-window lefty split, and the staged pitch-type matchup against Cristopher Sanchez grades very well at .320 BA and .363 xBA. His H2H surface record against Sanchez is only 1-for-6, but the .401 local H2H xBA and 92.4 mph H2H exit velocity suggest better contact quality than the hit column shows. In an exhibition where starters may only get one or two swings at the starting pitcher, Witt's combination of bat speed, speed, and matchup-specific upside is the best single path.",
+      "con_thesis": "The con case is that this is not a normal slate and Sanchez is not a normal starter. The All-Star Game substitution pattern makes expected plate appearances less reliable, and Witt's regular-season last-five line is only 5-for-22. The local model also flags three stop valves: season whiff rate, H2H whiff rate, and Sanchez's 118 Stuff+. Sanchez is starting in his home ballpark, has high-end bat-missing stuff, and the staged H2H whiff rate against Witt is 40.0%, which is a direct risk for a one-hit contest. Witt's fifth lineup slot is better than Clement's ninth slot, but it is still not top-of-order volume, and he may only see Sanchez once before pitcher substitutions reshape the game.",
+      "committee_thesis": "Committee read: Witt is the single pick. The pro advocate has the better full-case profile: higher learned probability, better reliability, confirmed fifth slot, stronger split against today's pitcher hand, and a more favorable pitch-type/xBA read. The con advocate is right that Sanchez's Stuff+ and the All-Star format reduce certainty, but those same format risks hurt Clement even more because Clement bats ninth and carries lower projected opportunity. The reviewer chooses Witt as the single and Clement as the two-pick partner."
+    },
+    {
+      "rank": 2,
+      "player": "Ernie Clement",
+      "team": "AWY",
+      "opponent": "HME",
+      "probable_pitcher": "Cristopher Sanchez",
+      "pro_thesis": "Ernie Clement has a legitimate two-pick case because his contact profile is built for a one-hit contest. He is a Publisher, confirmed in the AL starting lineup, hitting .296 on the season, and enters with an 8-for-23 last-five-game line. His bat-to-ball indicators are strong: 16.3% season whiff rate, 9.8% season strikeout rate, and only an 8.8% strikeout rate over the last-500 PA window. The H2H surface line against Cristopher Sanchez is also better than Witt's at 4-for-13, with manageable H2H whiff and strikeout rates. If Clement gets his first plate appearance against Sanchez before the parade of relievers starts, his low-strikeout profile gives him a credible singles path.",
+      "con_thesis": "The con case is opportunity and quality of contact. Clement bats ninth in an All-Star Game, which is a major constraint because starters are commonly replaced early, and the staged model projects only 3.7 expected plate appearances even before applying an All-Star discount. His safety score is only 54/100, his Bob score is 45.55, and he has three stop valves, including season PA/G under 4.2, Sanchez's 118 Stuff+, and a handedness threshold flag. The 4-for-13 H2H line is useful, but the local H2H xBA is only .234 and the average H2H exit velocity is 83.8 mph, so the surface record may overstate the quality of contact. Clement is playable as the second pick, but the ninth slot and weaker underlying H2H quality make him harder to choose as the single.",
+      "committee_thesis": "Committee read: Clement is the runner-up. The pro advocate is correct that his contact skills, recent form, and 4-for-13 H2H surface record give him a credible one-hit case. The con advocate wins the single-pick comparison because Clement's ninth lineup slot and lower reliability score are difficult to overcome in the All-Star format. The reviewer keeps Clement on the two-pick card, but Witt has the better combination of probability, opportunity, and matchup upside."
+    }
+  ]
+}

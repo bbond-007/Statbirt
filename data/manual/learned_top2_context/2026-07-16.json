@@ -1,0 +1,780 @@
+{
+  "generated_at": "2026-07-16T13:00:38Z",
+  "date": "2026-07-16",
+  "requested_date": "2026-07-16",
+  "used_latest_fallback": false,
+  "target": "learned_rank_top_2",
+  "purpose": "Evidence staging only. ChatGPT/Codex should write the pro thesis, con thesis, and committee decision.",
+  "daily_timing": {
+    "morning_models_scheduled": "07:00 America/Chicago",
+    "recommended_stage_after": "08:00 America/Chicago",
+    "note": "The morning model scripts normally need about 45 minutes, so 8:00am Central gives them a buffer."
+  },
+  "workflow_prompt": "X:\\Coding\\Statbirt\\prompts\\learned_top2_thesis.md",
+  "expected_thesis_path": "X:\\Coding\\Statbirt\\data\\manual\\learned_top2_theses\\2026-07-16.json",
+  "dashboard_refresh_command": "py -3 -m statbirt.export_learned_web --date latest --limit 5",
+  "total_predictions_for_date": 31,
+  "injury_filtered_count": 3,
+  "selection_brief_from_local_metrics": {
+    "policy_version": "learned-selection-v1",
+    "headline": "Recommended single: Bo Bichette. Best two-pick card: Bo Bichette and Francisco Lindor.",
+    "recommended_single": {
+      "rank": 2,
+      "player": "Bo Bichette",
+      "team": "NYM",
+      "opponent": "PHI",
+      "selection_score": 64.6,
+      "learned_hit_probability": 0.6588,
+      "pros": [
+        "Strong reliability score (86/100).",
+        "Projected for 4.5 PA.",
+        "Has seen the probable starter (4-18).",
+        "Expected PA 4.5."
+      ],
+      "cons": [
+        "HiPA 500 0.260.",
+        "Stuff+ 107.0."
+      ],
+      "confidence_label": "Watch",
+      "thesis": "Bo Bichette is a 64.6 selection-score play with a 65.9% learned hit probability, 4.5 expected PA, and a 86/100 reliability score. The positive case starts with strong reliability score (86/100); the main counterweight is hiPA 500 0.260.",
+      "summary": "Bo Bichette grades as watch at 64.6 on the reliability blend.",
+      "recommendation": "Best 1",
+      "h2h_record": "4-18",
+      "safety_score": 86,
+      "bob_score": 59.38,
+      "expected_pa": "4.5",
+      "lineup_slot": "4.5",
+      "hitter_ba_season": "0.255",
+      "probable_pitcher": "Aaron Nola",
+      "pickable": false,
+      "stop_valve_count": 2,
+      "hard_pass_reasons": [
+        "H2H K rate over 20%",
+        "Starter Stuff+ over 95"
+      ],
+      "concerns": [],
+      "result_hit": null,
+      "result_hits": null,
+      "result_ab": null,
+      "result_pa": null,
+      "result_status": "",
+      "game_state": "unknown",
+      "game_status": "",
+      "game_hits": null
+    },
+    "recommended_pair": [
+      {
+        "rank": 2,
+        "player": "Bo Bichette",
+        "team": "NYM",
+        "opponent": "PHI",
+        "selection_score": 64.6,
+        "learned_hit_probability": 0.6588,
+        "pros": [
+          "Strong reliability score (86/100).",
+          "Projected for 4.5 PA.",
+          "Has seen the probable starter (4-18).",
+          "Expected PA 4.5."
+        ],
+        "cons": [
+          "HiPA 500 0.260.",
+          "Stuff+ 107.0."
+        ],
+        "confidence_label": "Watch",
+        "thesis": "Bo Bichette is a 64.6 selection-score play with a 65.9% learned hit probability, 4.5 expected PA, and a 86/100 reliability score. The positive case starts with strong reliability score (86/100); the main counterweight is hiPA 500 0.260.",
+        "summary": "Bo Bichette grades as watch at 64.6 on the reliability blend.",
+        "recommendation": "Best 1",
+        "h2h_record": "4-18",
+        "safety_score": 86,
+        "bob_score": 59.38,
+        "expected_pa": "4.5",
+        "lineup_slot": "4.5",
+        "hitter_ba_season": "0.255",
+        "probable_pitcher": "Aaron Nola",
+        "pickable": false,
+        "stop_valve_count": 2,
+        "hard_pass_reasons": [
+          "H2H K rate over 20%",
+          "Starter Stuff+ over 95"
+        ],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      },
+      {
+        "rank": 1,
+        "player": "Francisco Lindor",
+        "team": "NYM",
+        "opponent": "PHI",
+        "selection_score": 61.1,
+        "learned_hit_probability": 0.6999,
+        "pros": [
+          "Solid learned probability (70.0%).",
+          "Strong reliability score (78/100).",
+          "Projected for 4.6 PA.",
+          "Has seen the probable starter (8-45)."
+        ],
+        "cons": [
+          "Current-season BA is .216.",
+          "6 stop valves.",
+          "HiPA 500 0.224.",
+          "Stuff+ 107.0."
+        ],
+        "confidence_label": "Watch",
+        "thesis": "Francisco Lindor is a 61.1 selection-score play with a 70.0% learned hit probability, 4.6 expected PA, and a 78/100 reliability score. The positive case starts with solid learned probability (70.0%); the main counterweight is current-season BA is .216.",
+        "summary": "Francisco Lindor grades as watch at 61.1 on the reliability blend.",
+        "recommendation": "Best 2",
+        "h2h_record": "8-45",
+        "safety_score": 78,
+        "bob_score": 55.79,
+        "expected_pa": "4.6",
+        "lineup_slot": "3.4",
+        "hitter_ba_season": "0.216",
+        "probable_pitcher": "Aaron Nola",
+        "pickable": false,
+        "stop_valve_count": 6,
+        "hard_pass_reasons": [
+          "Hitter is below .270 over both long and last-500 AB windows",
+          "H2H whiff rate over 25%",
+          "H2H K rate over 20%",
+          "Starter Stuff+ over 95",
+          "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows",
+          "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows"
+        ],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      }
+    ],
+    "items": [
+      {
+        "rank": 1,
+        "player": "Francisco Lindor",
+        "team": "NYM",
+        "opponent": "PHI",
+        "selection_score": 61.1,
+        "learned_hit_probability": 0.6999,
+        "pros": [
+          "Solid learned probability (70.0%).",
+          "Strong reliability score (78/100).",
+          "Projected for 4.6 PA.",
+          "Has seen the probable starter (8-45)."
+        ],
+        "cons": [
+          "Current-season BA is .216.",
+          "6 stop valves.",
+          "HiPA 500 0.224.",
+          "Stuff+ 107.0."
+        ],
+        "confidence_label": "Watch",
+        "thesis": "Francisco Lindor is a 61.1 selection-score play with a 70.0% learned hit probability, 4.6 expected PA, and a 78/100 reliability score. The positive case starts with solid learned probability (70.0%); the main counterweight is current-season BA is .216.",
+        "summary": "Francisco Lindor grades as watch at 61.1 on the reliability blend.",
+        "recommendation": "Best 2",
+        "h2h_record": "8-45",
+        "safety_score": 78,
+        "bob_score": 55.79,
+        "expected_pa": "4.6",
+        "lineup_slot": "3.4",
+        "hitter_ba_season": "0.216",
+        "probable_pitcher": "Aaron Nola",
+        "pickable": false,
+        "stop_valve_count": 6,
+        "hard_pass_reasons": [
+          "Hitter is below .270 over both long and last-500 AB windows",
+          "H2H whiff rate over 25%",
+          "H2H K rate over 20%",
+          "Starter Stuff+ over 95",
+          "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows",
+          "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows"
+        ],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      },
+      {
+        "rank": 2,
+        "player": "Bo Bichette",
+        "team": "NYM",
+        "opponent": "PHI",
+        "selection_score": 64.6,
+        "learned_hit_probability": 0.6588,
+        "pros": [
+          "Strong reliability score (86/100).",
+          "Projected for 4.5 PA.",
+          "Has seen the probable starter (4-18).",
+          "Expected PA 4.5."
+        ],
+        "cons": [
+          "HiPA 500 0.260.",
+          "Stuff+ 107.0."
+        ],
+        "confidence_label": "Watch",
+        "thesis": "Bo Bichette is a 64.6 selection-score play with a 65.9% learned hit probability, 4.5 expected PA, and a 86/100 reliability score. The positive case starts with strong reliability score (86/100); the main counterweight is hiPA 500 0.260.",
+        "summary": "Bo Bichette grades as watch at 64.6 on the reliability blend.",
+        "recommendation": "Best 1",
+        "h2h_record": "4-18",
+        "safety_score": 86,
+        "bob_score": 59.38,
+        "expected_pa": "4.5",
+        "lineup_slot": "4.5",
+        "hitter_ba_season": "0.255",
+        "probable_pitcher": "Aaron Nola",
+        "pickable": false,
+        "stop_valve_count": 2,
+        "hard_pass_reasons": [
+          "H2H K rate over 20%",
+          "Starter Stuff+ over 95"
+        ],
+        "concerns": [],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      }
+    ]
+  },
+  "players": [
+    {
+      "rank": 1,
+      "player": "Francisco Lindor",
+      "player_id": "596019",
+      "team": "NYM",
+      "opponent": "PHI",
+      "dashboard_summary": {
+        "learned_hit_probability": 0.6999,
+        "bob_score": 55.79,
+        "pickable": false,
+        "safety_score": 78,
+        "h2h_record": "8-45",
+        "expected_pa": "4.6",
+        "lineup_slot": "3.4",
+        "season_ba": "0.216",
+        "last_5_ba": "0.211",
+        "hot_streak": false,
+        "hot_streak_tooltip": "",
+        "probable_pitcher": "Aaron Nola",
+        "pitcher_hand": "R",
+        "batter_stand": "L",
+        "venue_name": "Citizens Bank Park",
+        "weather_label": "Rain: 3.0%",
+        "congregation_status": ""
+      },
+      "model_signals": [
+        "Expected PA 4.6",
+        "Season PA/G 4.38",
+        "Lineup slot 3",
+        "K rate 17.0%"
+      ],
+      "model_risks": [
+        "6 stop valves",
+        "HiPA 500 0.224",
+        "Stuff+ 107.0"
+      ],
+      "stop_valves": [
+        "Hitter is below .270 over both long and last-500 AB windows",
+        "H2H whiff rate over 25%",
+        "H2H K rate over 20%",
+        "Starter Stuff+ over 95",
+        "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows",
+        "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows"
+      ],
+      "watch_notes": [],
+      "field_context": {
+        "identity": {
+          "date": "2026-07-16",
+          "player": "Francisco Lindor",
+          "player_id": "596019",
+          "team": "NYM",
+          "team_id": "121",
+          "opponent": "PHI",
+          "opponent_id": "143",
+          "game_pk": "823440"
+        },
+        "learned_model": {
+          "learned_rank": "1",
+          "learned_hit_probability": "0.6999",
+          "model_version": "learned-logistic-v2-20260716T113432Z",
+          "model_trained_at": "2026-07-16T11:34:32Z",
+          "bob_score": "55.79",
+          "score": "55.79",
+          "pickable": "N"
+        },
+        "game_context": {
+          "venue_name": "Citizens Bank Park",
+          "game_start_time_utc": "2026-07-16T23:10:00Z",
+          "road_game": "Y",
+          "division_matchup": "Y",
+          "doubleheader": "N",
+          "confirmed_lineup": "N",
+          "lineup_slot": "3.4",
+          "expected_pa": "4.60",
+          "starts_last_5": "5"
+        },
+        "weather_park": {
+          "precip_probability": "3.0",
+          "forecast_temperature_f": "97.1",
+          "park_hit_factor": "102.0"
+        },
+        "hitter_form_contact": {
+          "hitter_ba_season": "0.216",
+          "hitter_hipa_2500_pa": "0.233",
+          "hitter_pa_per_game_season": "4.38",
+          "hitter_ba_2500_ab": "0.265",
+          "hitter_hipa_500_pa": "0.224",
+          "hitter_hipa_75_ab": "0.220",
+          "hitter_ba_75_ab": "0.240",
+          "hitter_ba_25_ab": "0.160",
+          "hitter_ba_500_ab": "0.252",
+          "hitter_last_5_games_played": "5",
+          "hitter_last_5_games_hits": "4",
+          "hitter_last_5_games_ab": "19",
+          "hitter_last_5_games_ba": "0.211",
+          "sprint_speed": "26.9"
+        },
+        "hitter_plate_discipline": {
+          "hitter_bb_rate_season": "0.094",
+          "hitter_bb_rate_500_pa": "0.100",
+          "hitter_whiff_rate_season": "0.236",
+          "hitter_whiff_rate_500_pa": "0.219",
+          "hitter_k_rate_season": "0.158",
+          "hitter_k_rate_500_pa": "0.170"
+        },
+        "hitter_handedness_splits": {
+          "batter_stand": "L",
+          "pitcher_hand": "R",
+          "hitter_split_ba_season_vs_lhp": "0.227",
+          "hitter_split_ba_season_vs_rhp": "0.211",
+          "hitter_split_pa_season_vs_lhp": "51",
+          "hitter_split_pa_season_vs_rhp": "120",
+          "hitter_split_ba_500_vs_lhp": "0.248",
+          "hitter_split_ba_500_vs_rhp": "0.260",
+          "hitter_split_ba_1500_vs_lhp": "0.248",
+          "hitter_split_ba_1500_vs_rhp": "0.281"
+        },
+        "probable_starter": {
+          "probable_pitcher": "Aaron Nola",
+          "probable_pitcher_id": "605400",
+          "pitcher_hand": "R",
+          "pitcher_hpi_350": "1.039",
+          "pitcher_hpi_200": "1.102",
+          "pitcher_hpi_season": "1.113",
+          "pitcher_hits_last_18_ip": "21",
+          "pitcher_stuff_plus": "107.0",
+          "pitcher_lr_opp_ba": "0.251",
+          "pitcher_lr_opp_ba_50": "0.233",
+          "pitcher_lr_opp_ba_200": "0.262"
+        },
+        "probable_starter_last_start": {
+          "pitcher_last_start_date": "2026-07-10",
+          "pitcher_last_start_ip": "5.0",
+          "pitcher_last_start_hits": "3",
+          "pitcher_last_start_strikeouts": "8",
+          "pitcher_last_start_walks": "2"
+        },
+        "h2h": {
+          "h2h_pa": "45",
+          "h2h_hits": "8",
+          "h2h_hit_rate": "0.178",
+          "h2h_whiff_rate": "0.269",
+          "h2h_k_rate": "0.244",
+          "h2h_exit_velocity": "91.6",
+          "h2h_xba": "0.283"
+        },
+        "pitch_type_matchup": {
+          "inferred_pitch_type_ba": "0.337",
+          "inferred_pitch_type_xba": "0.387",
+          "inferred_pitch_type_coverage": "0.806"
+        },
+        "bullpen_context": {
+          "bullpen_hpi": "0.988",
+          "bullpen_opp_ba": "0.255"
+        },
+        "bob_score_components": {
+          "component_hitter.hipa_2500_pa": "72.75",
+          "component_hitter.pa_per_game_season": "42.74",
+          "component_hitter.hipa_500_pa": "54.00",
+          "component_hitter.hipa_75_ab": "49.67",
+          "component_starting_pitcher.hpi_350": "57.78",
+          "component_starting_pitcher.hpi_season": "72.68",
+          "component_starting_pitcher.stuff_plus": "22.86",
+          "component_h2h.direct": "39.76",
+          "component_h2h.pitcher_lr_opp_ba": "28.30",
+          "component_h2h.inferred_pitch_type": "94.29",
+          "component_bullpen.hpi_season": "52.81",
+          "component_other.road_game": "100.00",
+          "component_other.division_matchup": "100.00",
+          "component_other.sprint_speed": "43.64",
+          "component_other.park_hit_factor": "60.00",
+          "component_other.lineup_opportunity": "83.33"
+        },
+        "results": {}
+      },
+      "missing_relevant_fields": {
+        "results": [
+          "result_hit",
+          "result_hits",
+          "result_ab",
+          "result_pa",
+          "result_status",
+          "result_updated_at",
+          "notes"
+        ]
+      },
+      "source_targets": [
+        {
+          "label": "MLB probable pitchers",
+          "url": "https://www.mlb.com/probable-pitchers",
+          "why": "Verify the probable starter has not changed."
+        },
+        {
+          "label": "MLB starting lineups",
+          "url": "https://www.mlb.com/starting-lineups",
+          "why": "Check whether the hitter is confirmed in the lineup and whether the slot changed."
+        },
+        {
+          "label": "MLB injury report",
+          "url": "https://www.mlb.com/injury-report",
+          "why": "Check for late injury or availability notes."
+        },
+        {
+          "label": "RotoWire bullpen usage",
+          "url": "https://www.rotowire.com/baseball/bullpen-usage.php",
+          "why": "Look for bullpen fatigue or unavailable leverage arms."
+        },
+        {
+          "label": "RotoWire daily lineups",
+          "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+          "why": "Cross-check lineup and late-scratch risk."
+        },
+        {
+          "label": "MLB news",
+          "url": "https://www.mlb.com/news",
+          "why": "Search for current notes on Francisco Lindor, Aaron Nola, NYM, and PHI."
+        },
+        {
+          "label": "MLB live game feed",
+          "url": "https://statsapi.mlb.com/api/v1.1/game/823440/feed/live",
+          "why": "Verify official game, lineup, venue, and probable-pitcher context."
+        },
+        {
+          "label": "MLB boxscore endpoint",
+          "url": "https://statsapi.mlb.com/api/v1/game/823440/boxscore",
+          "why": "Useful after lineups post or for later result checks."
+        },
+        {
+          "label": "Baseball Savant: Francisco Lindor",
+          "url": "https://baseballsavant.mlb.com/savant-player/francisco-lindor-596019",
+          "why": "Review hitter quality of contact, rolling form, pitch-type strengths, and handedness context."
+        },
+        {
+          "label": "Baseball Savant: Aaron Nola",
+          "url": "https://baseballsavant.mlb.com/savant-player/aaron-nola-605400",
+          "why": "Review starter pitch mix, recent shape, contact allowed, and possible matchup fragility."
+        }
+      ],
+      "chatgpt_review_questions": [
+        "Has the probable starter or lineup changed since the morning run?",
+        "Do current news, beat notes, or injury reports create scratch, rest, or pinch-hit risk?",
+        "Does the hitter have a pitch-type or handedness edge that survives beyond the headline model probability?",
+        "Is the opposing bullpen likely to help or hurt the one-hit path if the starter exits early?",
+        "Is the recent form signal supported by contact quality, or does it look like short-sample noise?"
+      ]
+    },
+    {
+      "rank": 2,
+      "player": "Bo Bichette",
+      "player_id": "666182",
+      "team": "NYM",
+      "opponent": "PHI",
+      "dashboard_summary": {
+        "learned_hit_probability": 0.6588,
+        "bob_score": 59.38,
+        "pickable": false,
+        "safety_score": 86,
+        "h2h_record": "4-18",
+        "expected_pa": "4.5",
+        "lineup_slot": "4.5",
+        "season_ba": "0.255",
+        "last_5_ba": "0.143",
+        "hot_streak": false,
+        "hot_streak_tooltip": "",
+        "probable_pitcher": "Aaron Nola",
+        "pitcher_hand": "R",
+        "batter_stand": "R",
+        "venue_name": "Citizens Bank Park",
+        "weather_label": "Rain: 3.0%",
+        "congregation_status": "Publisher"
+      },
+      "model_signals": [
+        "Expected PA 4.5",
+        "Season PA/G 4.30",
+        "Lineup slot 4",
+        "2 stop valves",
+        "K rate 16.8%"
+      ],
+      "model_risks": [
+        "HiPA 500 0.260",
+        "Stuff+ 107.0"
+      ],
+      "stop_valves": [
+        "H2H K rate over 20%",
+        "Starter Stuff+ over 95"
+      ],
+      "watch_notes": [],
+      "field_context": {
+        "identity": {
+          "date": "2026-07-16",
+          "player": "Bo Bichette",
+          "player_id": "666182",
+          "team": "NYM",
+          "team_id": "121",
+          "opponent": "PHI",
+          "opponent_id": "143",
+          "game_pk": "823440"
+        },
+        "learned_model": {
+          "learned_rank": "2",
+          "learned_hit_probability": "0.6588",
+          "model_version": "learned-logistic-v2-20260716T113432Z",
+          "model_trained_at": "2026-07-16T11:34:32Z",
+          "bob_score": "59.38",
+          "score": "59.38",
+          "pickable": "N"
+        },
+        "game_context": {
+          "venue_name": "Citizens Bank Park",
+          "game_start_time_utc": "2026-07-16T23:10:00Z",
+          "road_game": "Y",
+          "division_matchup": "Y",
+          "doubleheader": "N",
+          "confirmed_lineup": "N",
+          "lineup_slot": "4.5",
+          "expected_pa": "4.50",
+          "starts_last_5": "4"
+        },
+        "weather_park": {
+          "precip_probability": "3.0",
+          "forecast_temperature_f": "97.1",
+          "park_hit_factor": "103.0"
+        },
+        "hitter_form_contact": {
+          "hitter_ba_season": "0.255",
+          "hitter_hipa_2500_pa": "0.268",
+          "hitter_pa_per_game_season": "4.30",
+          "hitter_ba_2500_ab": "0.285",
+          "hitter_hipa_500_pa": "0.260",
+          "hitter_hipa_75_ab": "0.253",
+          "hitter_ba_75_ab": "0.280",
+          "hitter_ba_25_ab": "0.280",
+          "hitter_ba_500_ab": "0.282",
+          "hitter_last_5_games_played": "5",
+          "hitter_last_5_games_hits": "2",
+          "hitter_last_5_games_ab": "14",
+          "hitter_last_5_games_ba": "0.143",
+          "sprint_speed": "25.7"
+        },
+        "hitter_plate_discipline": {
+          "hitter_bb_rate_season": "0.061",
+          "hitter_bb_rate_500_pa": "0.072",
+          "hitter_whiff_rate_season": "0.188",
+          "hitter_whiff_rate_500_pa": "0.193",
+          "hitter_k_rate_season": "0.177",
+          "hitter_k_rate_500_pa": "0.168"
+        },
+        "hitter_handedness_splits": {
+          "batter_stand": "R",
+          "pitcher_hand": "R",
+          "hitter_split_ba_season_vs_lhp": "0.255",
+          "hitter_split_ba_season_vs_rhp": "0.255",
+          "hitter_split_pa_season_vs_lhp": "107",
+          "hitter_split_pa_season_vs_rhp": "306",
+          "hitter_split_ba_500_vs_lhp": "0.287",
+          "hitter_split_ba_500_vs_rhp": "0.298",
+          "hitter_split_ba_1500_vs_lhp": "0.287",
+          "hitter_split_ba_1500_vs_rhp": "0.282"
+        },
+        "probable_starter": {
+          "probable_pitcher": "Aaron Nola",
+          "probable_pitcher_id": "605400",
+          "pitcher_hand": "R",
+          "pitcher_hpi_350": "1.039",
+          "pitcher_hpi_200": "1.102",
+          "pitcher_hpi_season": "1.113",
+          "pitcher_hits_last_18_ip": "21",
+          "pitcher_stuff_plus": "107.0",
+          "pitcher_lr_opp_ba": "0.262",
+          "pitcher_lr_opp_ba_50": "0.314",
+          "pitcher_lr_opp_ba_200": "0.277"
+        },
+        "probable_starter_last_start": {
+          "pitcher_last_start_date": "2026-07-10",
+          "pitcher_last_start_ip": "5.0",
+          "pitcher_last_start_hits": "3",
+          "pitcher_last_start_strikeouts": "8",
+          "pitcher_last_start_walks": "2"
+        },
+        "h2h": {
+          "h2h_pa": "18",
+          "h2h_hits": "4",
+          "h2h_hit_rate": "0.222",
+          "h2h_whiff_rate": "0.229",
+          "h2h_k_rate": "0.222",
+          "h2h_exit_velocity": "88.2",
+          "h2h_xba": "0.361"
+        },
+        "pitch_type_matchup": {
+          "inferred_pitch_type_ba": "0.226",
+          "inferred_pitch_type_xba": "0.310",
+          "inferred_pitch_type_coverage": "0.829"
+        },
+        "bullpen_context": {
+          "bullpen_hpi": "0.988",
+          "bullpen_opp_ba": "0.255"
+        },
+        "bob_score_components": {
+          "component_hitter.hipa_2500_pa": "100.00",
+          "component_hitter.pa_per_game_season": "33.56",
+          "component_hitter.hipa_500_pa": "90.00",
+          "component_hitter.hipa_75_ab": "72.01",
+          "component_starting_pitcher.hpi_350": "57.78",
+          "component_starting_pitcher.hpi_season": "72.68",
+          "component_starting_pitcher.stuff_plus": "22.86",
+          "component_h2h.direct": "54.10",
+          "component_h2h.pitcher_lr_opp_ba": "38.32",
+          "component_h2h.inferred_pitch_type": "51.39",
+          "component_bullpen.hpi_season": "52.81",
+          "component_other.road_game": "100.00",
+          "component_other.division_matchup": "100.00",
+          "component_other.sprint_speed": "21.82",
+          "component_other.park_hit_factor": "65.00",
+          "component_other.lineup_opportunity": "75.00"
+        },
+        "results": {}
+      },
+      "missing_relevant_fields": {
+        "results": [
+          "result_hit",
+          "result_hits",
+          "result_ab",
+          "result_pa",
+          "result_status",
+          "result_updated_at",
+          "notes"
+        ]
+      },
+      "source_targets": [
+        {
+          "label": "MLB probable pitchers",
+          "url": "https://www.mlb.com/probable-pitchers",
+          "why": "Verify the probable starter has not changed."
+        },
+        {
+          "label": "MLB starting lineups",
+          "url": "https://www.mlb.com/starting-lineups",
+          "why": "Check whether the hitter is confirmed in the lineup and whether the slot changed."
+        },
+        {
+          "label": "MLB injury report",
+          "url": "https://www.mlb.com/injury-report",
+          "why": "Check for late injury or availability notes."
+        },
+        {
+          "label": "RotoWire bullpen usage",
+          "url": "https://www.rotowire.com/baseball/bullpen-usage.php",
+          "why": "Look for bullpen fatigue or unavailable leverage arms."
+        },
+        {
+          "label": "RotoWire daily lineups",
+          "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+          "why": "Cross-check lineup and late-scratch risk."
+        },
+        {
+          "label": "MLB news",
+          "url": "https://www.mlb.com/news",
+          "why": "Search for current notes on Bo Bichette, Aaron Nola, NYM, and PHI."
+        },
+        {
+          "label": "MLB live game feed",
+          "url": "https://statsapi.mlb.com/api/v1.1/game/823440/feed/live",
+          "why": "Verify official game, lineup, venue, and probable-pitcher context."
+        },
+        {
+          "label": "MLB boxscore endpoint",
+          "url": "https://statsapi.mlb.com/api/v1/game/823440/boxscore",
+          "why": "Useful after lineups post or for later result checks."
+        },
+        {
+          "label": "Baseball Savant: Bo Bichette",
+          "url": "https://baseballsavant.mlb.com/savant-player/bo-bichette-666182",
+          "why": "Review hitter quality of contact, rolling form, pitch-type strengths, and handedness context."
+        },
+        {
+          "label": "Baseball Savant: Aaron Nola",
+          "url": "https://baseballsavant.mlb.com/savant-player/aaron-nola-605400",
+          "why": "Review starter pitch mix, recent shape, contact allowed, and possible matchup fragility."
+        }
+      ],
+      "chatgpt_review_questions": [
+        "Has the probable starter or lineup changed since the morning run?",
+        "Do current news, beat notes, or injury reports create scratch, rest, or pinch-hit risk?",
+        "Does the hitter have a pitch-type or handedness edge that survives beyond the headline model probability?",
+        "Is the opposing bullpen likely to help or hurt the one-hit path if the starter exits early?",
+        "Is the recent form signal supported by contact quality, or does it look like short-sample noise?"
+      ]
+    }
+  ],
+  "chatgpt_committee_process": [
+    "Read this staged context and treat it as evidence, not as a thesis.",
+    "Browse current free sources for lineup, probable pitcher, injury/news, bullpen, and matchup updates.",
+    "Write a pro thesis and con thesis for each player.",
+    "Have a final reviewer compare the arguments and choose one single hitter.",
+    "Save the finished dashboard-ready JSON to expected_thesis_path, then refresh the learned dashboard export."
+  ],
+  "output_schema": {
+    "date": "2026-07-16",
+    "target": "learned_rank_top_2",
+    "committee_pick": "Player Name",
+    "committee_summary": "One paragraph explaining the single-pick decision.",
+    "source_notes": [
+      {
+        "label": "Source name",
+        "url": "https://...",
+        "note": "What was reviewed."
+      }
+    ],
+    "players": [
+      {
+        "rank": 1,
+        "player": "Player Name",
+        "team": "AAA",
+        "opponent": "BBB",
+        "probable_pitcher": "Pitcher Name",
+        "pro_thesis": "Dashboard-ready paragraph.",
+        "con_thesis": "Dashboard-ready paragraph.",
+        "committee_thesis": "Dashboard-ready paragraph."
+      }
+    ]
+  }
+}

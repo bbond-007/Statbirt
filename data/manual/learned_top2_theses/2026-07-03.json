@@ -1,0 +1,126 @@
+{
+  "date": "2026-07-03",
+  "target": "learned_rank_top_2",
+  "committee_pick": "Luis Arraez",
+  "committee_summary": "The committee pick is Luis Arraez because the single-pick goal should prioritize contact certainty over a narrow learned-probability tie. Arraez and Gunnar Henderson are nearly even by learned hit probability, but the rest of the evidence is not close: Arraez has the stronger selection score, 100 safety score, Publisher status, .326 season average, 8-for-20 last-five line, 4.0% local strikeout rate, leadoff projection, Coors Field context, and a 3-for-10 H2H record with no strikeouts against Ryan Feltner. Henderson has real upside against Brady Singer at Great American Ball Park, and his leadoff role keeps him viable as the second hitter. The reviewer still rejects Henderson as the single because he carries five stop valves, a .227 season average, weaker rolling hit markers, higher strikeout/whiff risk, and a less helpful bullpen/park context than Arraez. Official lineups were still TBD during review, so a late lineup check remains required.",
+  "workflow_notes": [
+    "Staged the learned model raw top 2 for the active dashboard date.",
+    "Reviewed local model context, H2H, stop valves, expected PA, lineup slot, recent form, handedness splits, starter profile, and bullpen context.",
+    "Checked current free public sources for probable pitchers, lineup status, injury/news context, weather/park context, Statcast context, and recent bullpen workload.",
+    "Used pro, con, and reviewer committee roles before choosing the single hitter."
+  ],
+  "source_notes": [
+    {
+      "label": "MLB Giants Starting Lineups",
+      "url": "https://www.mlb.com/giants/roster/starting-lineups",
+      "note": "Checked the official Giants-Rockies page; today's lineup was still TBD during review, with Ryan Feltner listed for Colorado."
+    },
+    {
+      "label": "MLB Orioles Starting Lineups",
+      "url": "https://www.mlb.com/orioles/roster/starting-lineups",
+      "note": "Checked the official Orioles-Reds page; today's lineup was still TBD during review, with Trevor Rogers and Brady Singer listed as probable starters."
+    },
+    {
+      "label": "MLB Probable Pitchers",
+      "url": "https://www.mlb.com/probable-pitchers",
+      "note": "Confirmed MLB's probable-pitcher context: Giants at Rockies with Ryan Feltner for Colorado, and Orioles at Reds with Brady Singer for Cincinnati."
+    },
+    {
+      "label": "MLB StatsAPI Giants-Rockies Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/824336/feed/live",
+      "note": "Verified scheduled status, Coors Field venue, and no posted official batting orders during review."
+    },
+    {
+      "label": "MLB StatsAPI Orioles-Reds Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/824498/feed/live",
+      "note": "Verified scheduled status, Great American Ball Park venue, Trevor Rogers vs. Brady Singer probable starters, and no posted official batting orders during review."
+    },
+    {
+      "label": "RotoWire Daily Lineups",
+      "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+      "note": "Reviewed expected lineup context; RotoWire listed today's lineups as expected rather than official during review."
+    },
+    {
+      "label": "RotoGrinders MLB Lineups",
+      "url": "https://rotogrinders.com/lineups/mlb",
+      "note": "Cross-checked public projection context; RotoGrinders projected Arraez first for San Francisco and Henderson first for Baltimore, with both lineups marked not released."
+    },
+    {
+      "label": "Giants Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/giants-injuries-and-roster-moves",
+      "note": "Checked the official Giants injury page; Arraez was not listed as a current injury item."
+    },
+    {
+      "label": "Orioles Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/orioles-injuries-and-roster-moves",
+      "note": "Checked the official Orioles injury page; Henderson was not listed as a current injury item."
+    },
+    {
+      "label": "RotoWire Luis Arraez News",
+      "url": "https://www.rotowire.com/baseball/player/luis-arraez-14053",
+      "note": "Reviewed Arraez's current-season line, recent foot-injury return, trade-rumor context, and recent multi-hit public notes."
+    },
+    {
+      "label": "RotoWire Gunnar Henderson News",
+      "url": "https://www.rotowire.com/baseball/player/gunnar-henderson-16070",
+      "note": "Reviewed Henderson's current-season line and recent note showing improvement after a slow start."
+    },
+    {
+      "label": "RotoWire Ryan Feltner News",
+      "url": "https://www.rotowire.com/baseball/player/ryan-feltner-15541",
+      "note": "Reviewed Feltner's current 2026 pitching line and recent six-inning start against Minnesota."
+    },
+    {
+      "label": "RotoWire Brady Singer News",
+      "url": "https://www.rotowire.com/baseball/headlines/brady-singer-news-falls-to-pirates-1011727",
+      "note": "Reviewed Singer's recent start against Pittsburgh and current season ERA/WHIP context."
+    },
+    {
+      "label": "Baseball Savant Luis Arraez",
+      "url": "https://baseballsavant.mlb.com/savant-player/luis-arraez-650333",
+      "note": "Reviewed Arraez's Statcast player page, including 2026 average, OPS, and elite contact profile."
+    },
+    {
+      "label": "Baseball Savant Gunnar Henderson",
+      "url": "https://baseballsavant.mlb.com/savant-player/gunnar-henderson-683002",
+      "note": "Reviewed Henderson's Statcast player page for season production and contact-risk context."
+    },
+    {
+      "label": "Baseball Savant Ryan Feltner",
+      "url": "https://baseballsavant.mlb.com/savant-player/ryan-feltner-663372",
+      "note": "Reviewed Feltner's Statcast player page for starter profile and contact-allowed context."
+    },
+    {
+      "label": "Baseball Savant Brady Singer",
+      "url": "https://baseballsavant.mlb.com/savant-player/brady-singer-663903",
+      "note": "Reviewed Singer's Statcast player page for starter profile and contact-allowed context."
+    },
+    {
+      "label": "Recent MLB Boxscores via StatsAPI",
+      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1",
+      "note": "Checked recent public boxscore data for San Francisco, Colorado, Baltimore, and Cincinnati bullpen workload context."
+    }
+  ],
+  "players": [
+    {
+      "rank": 1,
+      "player": "Luis Arraez",
+      "team": "SFG",
+      "opponent": "COL",
+      "probable_pitcher": "Ryan Feltner",
+      "pro_thesis": "Luis Arraez is the best single-pick profile because his strengths map directly to the contest. He has a 76.6% learned hit probability, 86.2 selection score, 100 safety score, Publisher status, 4.8 expected plate appearances, and a projected leadoff role at Coors Field. The local hitter profile is exactly what we want: .326 season average, .314 last-500 average, .333 last-75 average, .400 last-25 average, 8-for-20 over the last five games, and only a 4.0% strikeout rate in the 500-PA window. The H2H is also usable at 3-for-10 with no strikeouts and only a 5.9% whiff rate against Feltner. Even though Feltner has not been an ideal pitcher target by every stop valve, Arraez's contact skill, park context, lineup volume, and current form create the clearest one-hit path.",
+      "con_thesis": "The con case is that Feltner is not a pure gas-can matchup. The local model flags two stop valves for Arraez: Feltner's season H/IP is under the preferred threshold, and the left-handed batter split does not clear the pitcher-allowed-average rule in both recent windows. RotoWire's latest Feltner note also described a competent June profile, including a 4.00 ERA and 1.19 WHIP over five starts, and his most recent start was six innings with only five hits allowed. Arraez also had a recent foot issue that caused missed games in late June, even though he returned and has produced since. The risk is not Arraez; it is that Feltner may be competent enough to make the first three trips quieter than the park and batting average suggest.",
+      "committee_thesis": "Committee read: Arraez is the single pick because the contact floor is materially stronger than Henderson's. The pro advocate has the better batting average, better current form, better safety score, fewer stop valves, Publisher status, Coors Field, and a leadoff projection. The con advocate correctly notes that Feltner is not a weak target by every model rule, but Arraez's low-whiff profile is specifically built to survive a merely competent starter. The reviewer chooses Arraez unless official lineups later remove him from the leadoff/top-order role."
+    },
+    {
+      "rank": 2,
+      "player": "Gunnar Henderson",
+      "team": "BAL",
+      "opponent": "CIN",
+      "probable_pitcher": "Brady Singer",
+      "pro_thesis": "Gunnar Henderson has a real upside case and belongs as the second hitter. His learned hit probability is almost identical to Arraez's at 76.4%, and he projects for 4.8 plate appearances in a leadoff role at Great American Ball Park. Brady Singer is a viable attack point: MLB lists him with a 5.12 ERA, the local context shows 20 hits allowed over his last 18 innings, and his last start included nine hits allowed in 4.1 innings. Henderson also has a positive pitch-type matchup in the local model, with a .323 inferred BA and .392 xBA, plus a 1-for-3 H2H line with strong local contact quality. RotoWire's recent note supports the idea that he has been improving after a slow start.",
+      "con_thesis": "The con case is substantial for a single pick. Henderson has five stop valves, a .227 season average, a .236 last-500 average, a .240 last-25 average, and a season strikeout rate above the model threshold. His H2H line against Singer is small and noisy, but the local whiff and strikeout rates in that sample are both bad enough to trigger stop valves. He also lacks Publisher status and draws a less helpful bullpen/park setup than Arraez: Cincinnati's bullpen opponent average is much lower than Colorado's, and Great American Ball Park is favorable but not Coors. Henderson can certainly hit Singer, but his path depends more on power-quality contact and less on repeatable ball-in-play certainty.",
+      "committee_thesis": "Committee read: Henderson is the runner-up because the model likes the opportunity and Singer matchup, but the risk profile is too heavy for the single. The pro advocate has the leadoff volume, pitcher vulnerability, and pitch-type argument. The con advocate wins the one-pick comparison because Henderson's batting-average floor, strikeout risk, five stop valves, and non-Publisher status are all worse than Arraez's. The reviewer would keep Henderson as the second hitter, not the preferred single."
+    }
+  ]
+}

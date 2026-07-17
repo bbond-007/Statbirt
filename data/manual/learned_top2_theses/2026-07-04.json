@@ -1,0 +1,111 @@
+{
+  "date": "2026-07-04",
+  "target": "learned_rank_top_2",
+  "committee_pick": "Luis Arraez",
+  "committee_summary": "The committee pick is Luis Arraez because he has the cleaner one-hit structure after combining the model, role, park, and pitcher context. Otto Lopez is a strong second hitter and may have the louder recent headline after a 3-for-5 game with two extra-base hits, but he also carries three stop valves, a tougher pitcher-quality flag against Aaron Civale, a lower Bob score, and a less favorable bullpen/park environment. Arraez has the higher learned selection score, 100 safety score, Publisher status, 8-for-19 last-five line, elite season and rolling contact indicators, projected leadoff volume, Coors Field, and Tomoyuki Sugano's hittable profile. Neither official lineup was posted during review, and both hitters lack H2H history against today's starter, so the late lineup check remains mandatory. With the information available this morning, Arraez is the better single and Lopez is the correct two-pick partner.",
+  "workflow_notes": [
+    "Staged the learned model raw top 2 for the active dashboard date.",
+    "Reviewed local model context, H2H, stop valves, expected PA, lineup slot, recent form, handedness splits, starter profile, and bullpen context.",
+    "Checked current free public sources for probable pitchers, lineup status, injury/news context, weather/park context, Statcast context, and recent bullpen workload.",
+    "Used pro, con, and reviewer committee roles before choosing the single hitter."
+  ],
+  "source_notes": [
+    {
+      "label": "MLB Giants Starting Lineups",
+      "url": "https://www.mlb.com/giants/roster/starting-lineups",
+      "note": "Checked the official Giants-Rockies page; today's lineup was still TBD during review, with Robbie Ray and Tomoyuki Sugano listed as probable starters at Coors Field."
+    },
+    {
+      "label": "MLB Marlins Starting Lineups",
+      "url": "https://www.mlb.com/marlins/roster/starting-lineups",
+      "note": "Checked the official Marlins-Athletics page; today's lineup was still TBD during review, with Sandy Alcantara and Aaron Civale listed as probable starters."
+    },
+    {
+      "label": "MLB StatsAPI Giants-Rockies Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/824334/feed/live",
+      "note": "Verified scheduled status, Coors Field venue, Robbie Ray vs. Tomoyuki Sugano probable starters, and no posted official batting orders during review."
+    },
+    {
+      "label": "MLB StatsAPI Marlins-Athletics Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/824983/feed/live",
+      "note": "Verified scheduled status, Sutter Health Park venue, Sandy Alcantara vs. Aaron Civale probable starters, and no posted official batting orders during review."
+    },
+    {
+      "label": "RotoWire Daily Lineups",
+      "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+      "note": "Reviewed expected lineup context; RotoWire projected Arraez at the top of San Francisco's order and Lopez near the top of Miami's order, with both lineups marked expected rather than official."
+    },
+    {
+      "label": "RotoGrinders MLB Lineups",
+      "url": "https://rotogrinders.com/lineups/mlb",
+      "note": "Cross-checked public projection context; RotoGrinders listed both lineups as not released and projected Arraez first for San Francisco and Lopez third for Miami."
+    },
+    {
+      "label": "Giants Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/giants-injuries-and-roster-moves",
+      "note": "Checked the official Giants injury page; Arraez was not listed as a current injury item."
+    },
+    {
+      "label": "Marlins Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/marlins-injuries-and-roster-moves",
+      "note": "Checked the official Marlins injury page; Lopez was not listed as a current injury item."
+    },
+    {
+      "label": "RotoWire Luis Arraez News",
+      "url": "https://www.rotowire.com/baseball/player/luis-arraez-14053",
+      "note": "Reviewed Arraez's current context, including the June 30 note showing a 17-for-41 stretch and his season batting-average profile."
+    },
+    {
+      "label": "RotoWire Otto Lopez News",
+      "url": "https://www.rotowire.com/baseball/player/otto-lopez-15753",
+      "note": "Reviewed Lopez's current context, including the July 3 note after a 3-for-5 game and his league-leading batting-average profile."
+    },
+    {
+      "label": "RotoWire Tomoyuki Sugano News",
+      "url": "https://www.rotowire.com/baseball/player/tomoyuki-sugano-14712",
+      "note": "Reviewed Sugano's current public pitching profile, including a 4.80 ERA, 1.32 WHIP, and poor ratio context."
+    },
+    {
+      "label": "RotoWire Aaron Civale News",
+      "url": "https://www.rotowire.com/baseball/player/aaron-civale-14366",
+      "note": "Reviewed Civale's current public pitching profile, including a 5.05 ERA, 1.58 WHIP, and recent shoulder-tendinitis return context."
+    },
+    {
+      "label": "Baseball Savant Tomoyuki Sugano",
+      "url": "https://baseballsavant.mlb.com/savant-player/tomoyuki-sugano-608372",
+      "note": "Reviewed Statcast context for Sugano, including elevated 2026 hard-hit and expected-contact indicators."
+    },
+    {
+      "label": "Baseball Savant Aaron Civale",
+      "url": "https://baseballsavant.mlb.com/savant-player/aaron-civale-650644",
+      "note": "Reviewed Statcast context for Civale, including elevated 2026 hard-hit and exit-velocity indicators."
+    },
+    {
+      "label": "Recent MLB Boxscores via StatsAPI",
+      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1",
+      "note": "Checked recent public boxscore data for San Francisco, Colorado, Miami, and the Athletics bullpen workload and prior-day hitter usage."
+    }
+  ],
+  "players": [
+    {
+      "rank": 1,
+      "player": "Luis Arraez",
+      "team": "SFG",
+      "opponent": "COL",
+      "probable_pitcher": "Tomoyuki Sugano",
+      "pro_thesis": "Luis Arraez is the best single-pick profile because his case is built on repeatable contact, not just model probability. He has a 76.5% learned hit probability, an 84.0 selection score, a 100 safety score, Publisher status, and a projected top-of-order role with 4.7 expected plate appearances. The hitter profile is very strong for this contest: .326 season average, .314 last-500 average, .333 last-75 average, .360 last-25 average, 8-for-19 over his last five games, and a strikeout rate around 4%. The matchup context also supports him. Coors Field is the best hit environment on the slate, Sugano has allowed 26 hits over his last 18 local innings with only 80 Stuff+, and public Statcast/RotoWire context points to a hittable profile with a 4.80 ERA and 1.32 WHIP.",
+      "con_thesis": "The con case is that Arraez has no direct H2H history against Sugano, which is his only stop valve, and official lineups were still not posted during the morning review. He also started only four of the last five in the local context, so the late lineup check matters even though public projection sources still place him at the top of the order. Arraez's Statcast profile is contact-heavy rather than impact-heavy, so if Sugano is keeping soft contact on the ground, Arraez can lose a hit on ordinary batted-ball variance. There is also mild recent foot-injury history from late June, but the official injury page does not list him and his post-return production has been strong.",
+      "committee_thesis": "Committee read: Arraez is the single pick because he has the cleanest combination of contact floor, park, pitcher vulnerability, and model support. The pro advocate has the stronger selection score, fewer stop valves, Coors Field, projected top-order volume, and elite bat-to-ball evidence. The con advocate's only major issue is missing H2H, which is real but less damaging than Lopez's three stop valves and lower environment score. The reviewer chooses Arraez, pending official lineup confirmation."
+    },
+    {
+      "rank": 2,
+      "player": "Otto Lopez",
+      "team": "MIA",
+      "opponent": "ATH",
+      "probable_pitcher": "Aaron Civale",
+      "pro_thesis": "Otto Lopez is a legitimate two-pick partner and not far behind Arraez on hitter quality. He carries a 75.6% learned probability, 79.4 selection score, 99 safety score, Publisher status, and 4.7 expected plate appearances near the top of Miami's order. His current profile is excellent: .337 season average, .314 last-500 average, .320 last-75 average, .360 last-25 average, and 8-for-23 over his last five games. Public news also supports the form, with RotoWire noting his 3-for-5 game with a double, triple, and two runs on Thursday. Civale is hittable overall, with a 5.05 ERA, 1.58 WHIP, and 35 hits allowed over his last 18 local innings, so Lopez has a credible one-hit path despite the model ranking him second.",
+      "con_thesis": "The con case is that Lopez has more matchup friction than Arraez. He has three stop valves: no H2H history, Civale's Stuff+ over 95, and a pitcher split flag where Civale does not clear the preferred right-handed-batter allowed-average threshold in both windows. The park and bullpen context are also weaker than Arraez's: Sutter Health Park is playable but not Coors, and the Athletics bullpen profile is less generous than Colorado's by local opponent-average and H/IP context. Public projection sources also do not fully agree on his exact lineup slot, with RotoWire putting him near the top and RotoGrinders projecting him third. The bat is strong enough to hit anyway, but the single-pick margin is thinner.",
+      "committee_thesis": "Committee read: Lopez is the runner-up because the hitter form is excellent but the total context is not as clean as Arraez's. The pro advocate has a strong batting-average case and a vulnerable starter in Civale. The con advocate wins the single-pick comparison because Lopez has more stop valves, no H2H, a tougher Stuff+ flag, and a less favorable game environment. The reviewer would use Lopez as the second hitter on a two-pick card, not as the preferred single."
+    }
+  ]
+}

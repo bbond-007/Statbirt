@@ -1,0 +1,121 @@
+{
+  "date": "2026-07-06",
+  "target": "learned_rank_top_2",
+  "committee_pick": "Yordan Alvarez",
+  "committee_summary": "The committee pick is Yordan Alvarez because his single-hit case is built on the more stable hitter foundation even though both top-two options carry three stop valves. Mookie Betts has a very real argument: Kyle Freeland is the weaker opposing starter by 2026 ERA, WHIP, right-handed-batter split, and road profile, and Betts owns the much deeper direct H2H line at 13-for-47. The reviewer still prefers Alvarez because the contest goal is one hit, and Alvarez has the better current batting average, better same-handedness matchup result, hotter recent form, higher learned probability, higher selection score, better projected lineup volume, and a more contact-friendly season context against right-handed pitching. Betts' path depends on Freeland being bad enough to overcome Betts' own .190 season average against left-handed pitching and three non-pickable stop valves. Alvarez also has risks, especially walk rate and rain in Washington, but his 10-for-20 last-five line, .321 season average, .329 mark against right-handed pitching, 4.7 expected plate appearances, and Mikolas' low-strikeout/hit-allowing profile make him the better single this morning. Betts remains the correct two-pick partner.",
+  "workflow_notes": [
+    "Staged the learned model raw top 2 for the active dashboard date.",
+    "Reviewed local model context, H2H, stop valves, expected PA, lineup slot, recent form, handedness splits, starter profile, park/weather, and bullpen context.",
+    "Checked current free public sources for probable pitchers, lineup status, injury/news context, weather/park context, Statcast game previews, player notes, and recent bullpen workload.",
+    "Used pro, con, and reviewer committee roles before choosing the single hitter."
+  ],
+  "source_notes": [
+    {
+      "label": "MLB Astros Starting Lineups",
+      "url": "https://www.mlb.com/astros/roster/starting-lineups",
+      "note": "Checked the official Astros-Nationals page; today's lineup was still TBD during review, with Mike Burrows and Miles Mikolas listed as probable starters at Nationals Park."
+    },
+    {
+      "label": "MLB Dodgers Starting Lineups",
+      "url": "https://www.mlb.com/dodgers/roster/starting-lineups",
+      "note": "Checked the official Rockies-Dodgers page; today's lineup was still TBD during review, with Kyle Freeland and Eric Lauer listed as probable starters at Dodger Stadium."
+    },
+    {
+      "label": "MLB StatsAPI Astros-Nationals Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/822712/feed/live",
+      "note": "Verified scheduled preview status, Nationals Park venue, Mike Burrows vs. Miles Mikolas probable starters, and no posted official batting orders during review."
+    },
+    {
+      "label": "MLB StatsAPI Rockies-Dodgers Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/823930/feed/live",
+      "note": "Verified scheduled preview status, Dodger Stadium venue, Kyle Freeland vs. Eric Lauer probable starters, and no posted official batting orders during review."
+    },
+    {
+      "label": "RotoWire Daily Lineups",
+      "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+      "note": "Reviewed expected lineup context; RotoWire projected Alvarez second for Houston against Mikolas and Betts fourth for Los Angeles against Freeland, with both lineups marked expected rather than official."
+    },
+    {
+      "label": "RotoGrinders MLB Lineups",
+      "url": "https://rotogrinders.com/lineups/mlb",
+      "note": "Cross-checked public projection context; RotoGrinders listed both lineups as not released and projected Alvarez second and Betts fourth."
+    },
+    {
+      "label": "Astros Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/astros-injuries-and-roster-moves",
+      "note": "Checked the official Astros injury page; Alvarez was not listed as a current injury item."
+    },
+    {
+      "label": "Dodgers Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/dodgers-injuries-and-roster-moves",
+      "note": "Checked the official Dodgers injury page; Betts was not listed as a current injury item, though the page noted unrelated position-player and bullpen injuries."
+    },
+    {
+      "label": "Nationals Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/nationals-injuries-and-roster-moves",
+      "note": "Checked the official Nationals injury page; Mikolas was not listed as a current injury item."
+    },
+    {
+      "label": "Rockies Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/rockies-injuries-and-roster-moves",
+      "note": "Checked the official Rockies injury page; Freeland was not listed as a current injury item, while several Rockies pitchers were listed on the IL."
+    },
+    {
+      "label": "RotoWire Yordan Alvarez News",
+      "url": "https://www.rotowire.com/baseball/player/yordan-alvarez-14407",
+      "note": "Reviewed Alvarez's public player page, including his .320 average, 29 home runs, July 4 two-homer note, and strong 2026 split against right-handed pitching."
+    },
+    {
+      "label": "RotoWire Mookie Betts News",
+      "url": "https://www.rotowire.com/baseball/player/mookie-betts-12925",
+      "note": "Reviewed Betts' public player page, including his 2026 split against left-handed pitching and recent starting-role context after a wrist note."
+    },
+    {
+      "label": "RotoWire Miles Mikolas News",
+      "url": "https://www.rotowire.com/baseball/player/miles-mikolas-11177",
+      "note": "Reviewed Mikolas' public pitching profile, including his 5.44 ERA, 1.29 WHIP, low swing-and-miss indicators, and eligibility to pitch while appealing a suspension."
+    },
+    {
+      "label": "RotoWire Kyle Freeland News",
+      "url": "https://www.rotowire.com/baseball/player/kyle-freeland-13369",
+      "note": "Reviewed Freeland's public pitching profile, including his 7.25 ERA, 1.60 WHIP, poor 2026 right-handed-batter split, and road struggles."
+    },
+    {
+      "label": "Baseball Savant Astros-Nationals Preview",
+      "url": "https://baseballsavant.mlb.com/preview?game_date=07%2F06%2F2026&game_pk=822712",
+      "note": "Reviewed the Statcast game preview for the Astros-Nationals matchup."
+    },
+    {
+      "label": "Baseball Savant Rockies-Dodgers Preview",
+      "url": "https://baseballsavant.mlb.com/preview?game_date=07%2F06%2F2026&game_pk=823930",
+      "note": "Reviewed the Statcast game preview for the Rockies-Dodgers matchup."
+    },
+    {
+      "label": "Recent MLB Boxscores via StatsAPI",
+      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1",
+      "note": "Checked recent public boxscore data for Houston, Washington, Los Angeles, and Colorado bullpen workload, plus prior-game usage for Alvarez and Betts."
+    }
+  ],
+  "players": [
+    {
+      "rank": 1,
+      "player": "Yordan Alvarez",
+      "team": "HOU",
+      "opponent": "WSN",
+      "probable_pitcher": "Miles Mikolas",
+      "pro_thesis": "Yordan Alvarez has the strongest single-hit foundation because the model, matchup, and current form are all pointing toward a high-contact opportunity even though his offensive value is usually power-driven. The learned model gives him a 75.2% probability and the highest selection score in the top two, while the local profile adds 4.7 expected plate appearances, a projected second lineup slot, a .321 season average, a .329 average against right-handed pitching, a 10-for-20 last-five-game line, and a .400 last-25-at-bat marker. Mikolas is a favorable opponent for a one-hit pick because he is not overpowering: 90 Stuff+ locally, 26 hits allowed over his last 18 local innings, 5.44 ERA and 1.29 WHIP publicly, and a 2026 left-handed-batter average allowed around .279 on RotoWire. Alvarez also matches Mikolas' pitch mix well in the local inferred pitch-type data, with a .301 BA and .381 xBA over heavy coverage, so the argument is not only that Alvarez is hot; it is that today's pitcher profile gives him enough hittable contact windows to convert that form into one knock.",
+      "con_thesis": "The con case for Alvarez is real because his three stop valves all point at ways a great hitter can fail this specific contest. Two of the flags are walk-rate based, and that matters because Mikolas' low strikeout profile can still turn dangerous plate appearances into walks instead of hits if Washington chooses caution. The H2H sample is also thin and not especially pretty at 1-for-5 with a 33.3% local whiff rate and a low local xBA, so the direct history does not confirm the model's optimism. Weather is the other practical problem: local data showed a 32% rain chance, while public lineup/weather sources showed a materially wetter evening in Washington. A delay or damp hitting environment does not destroy the pick, but it adds uncertainty that Betts does not have in Los Angeles. Finally, Alvarez went hitless yesterday after the huge Saturday game, so the recent heater is strong but not immune to normal one-day variance.",
+      "committee_thesis": "Committee read: Alvarez is the single pick because the core hitter skill is cleaner and more current than Betts' case. The pro advocate has the stronger evidence stack: higher learned probability, better selection score, much better season average, dominant split against the starter's hand, hotter recent hit form, and more projected plate appearances. The con advocate's walk and weather warnings are valid, and the official lineup still must be checked, but those risks are less damaging than Betts' lefty-split problem. The reviewer chooses Alvarez as the best one-hit candidate and keeps Betts as the two-pick partner."
+    },
+    {
+      "rank": 2,
+      "player": "Mookie Betts",
+      "team": "LAD",
+      "opponent": "COL",
+      "probable_pitcher": "Kyle Freeland",
+      "pro_thesis": "Mookie Betts has a strong argument because the pitcher matchup may be the softest part of either top-two profile. Freeland's public numbers are ugly at 7.25 ERA and 1.60 WHIP, and his split profile is especially attractive for a right-handed hitter: RotoWire shows right-handed batters hitting .327 against him in 2026, and his road ERA/WHIP profile is worse than his Coors home line. The local model also gives Betts useful one-hit anchors despite his down season: 74.7% learned probability, 94 safety score, 4.5 expected plate appearances, a 6-for-20 last-five-game line, low strikeout and whiff rates, and meaningful H2H familiarity at 13-for-47 with a .332 local xBA against Freeland. The environment is cleaner than Washington's too: Dodger Stadium has no rain concern, the game total is high in public lineup sources, and the Colorado bullpen has thrown several leverage-ish arms over the last three days. If Betts is in the projected fourth slot, he has enough chances and matchup leverage to be a very reasonable second pick.",
+      "con_thesis": "The con case is that Betts' own hitter profile is carrying more of the risk than Freeland's pitcher profile can fully erase. He is hitting .242 on the season and only .190 against left-handed pitching in the public RotoWire split, which directly matches today's Freeland matchup and explains two of the local stop valves. The third stop valve is H2H strikeout rate, and while 13-for-47 is useful history, the 25.5% H2H K rate means the direct matchup has not been pure contact comfort. Betts' recent form is fine but not loud at 6-for-20, and he went 0-for-3 with a walk yesterday, so the current heater does not compare with Alvarez's. He also projects fourth rather than second, trimming expected plate appearances. The Dodgers offense and Freeland's struggles make the ceiling obvious, but for a single-hit contest the weak lefty split is a hard piece of evidence to ignore.",
+      "committee_thesis": "Committee read: Betts is the runner-up because his opponent is more vulnerable, but his own handedness split makes the single pick less stable than Alvarez. The pro advocate has a strong Freeland-centered argument: bad ERA/WHIP, poor right-handed-batter split, road problems, strong H2H volume, and dry weather. The con advocate wins the head-to-head comparison because Betts' .190 season mark against lefties and three stop valves describe exactly the kind of failure mode that can survive even against a shaky starter. The reviewer would use Betts as the second card pick, but would only move him ahead of Alvarez if weather or lineup news meaningfully reduces Alvarez's volume."
+    }
+  ]
+}

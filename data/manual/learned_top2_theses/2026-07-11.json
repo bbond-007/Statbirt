@@ -1,0 +1,121 @@
+{
+  "date": "2026-07-11",
+  "target": "learned_rank_top_2",
+  "committee_pick": "Luis Arraez",
+  "committee_summary": "The committee pick is Luis Arraez. This is the cleanest single-pick profile the shortlist has produced recently: Arraez is the learned No. 1, a Publisher, pickable, 100/100 safety, zero stop valves, projected second in the lineup, and carrying a .331 season average with an 8-for-20 last-five-game line. The matchup supports the same conclusion. Kyle Freeland is a left-hander, but Arraez is still hitting .321 against lefties this season, owns a 1-for-3 H2H record with no H2H whiffs or strikeouts, and the local pitcher context shows Freeland allowing a lot of contact: 30 hits over his last 18 innings, a 7.46 public ERA, and a weak last start with nine hits allowed. Bobby Witt Jr. is the correct two-pick partner because his talent, lineup slot, speed, and righty-split record are real, but his single-pick case carries more friction: five stop valves, a tougher Kyle Bradish matchup, Bradish's strong recent form, and a recent knee context that still matters even if Witt is active. Arraez is the single; Witt is the backup if playing two.",
+  "workflow_notes": [
+    "Staged the learned model raw top 2 for the active dashboard date.",
+    "Reviewed local model context, H2H, stop valves, expected PA, lineup slot, recent form, handedness splits, starter profile, park/weather, and bullpen context.",
+    "Checked current free public sources for probable pitchers, lineup status, injury/news context, recent player news, and bullpen workload.",
+    "Used pro, con, and reviewer committee roles before choosing the single hitter."
+  ],
+  "source_notes": [
+    {
+      "label": "MLB StatsAPI Rockies-Giants Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/823198/feed/live",
+      "note": "Verified scheduled preview status, Oracle Park venue, Kyle Freeland vs. Tyler Mahle probable starters, and no official batting orders posted during review."
+    },
+    {
+      "label": "MLB StatsAPI Royals-Orioles Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/824813/feed/live",
+      "note": "Verified scheduled preview status, Camden Yards venue, Noah Cameron vs. Kyle Bradish probable starters, and no official batting orders posted during review."
+    },
+    {
+      "label": "MLB Giants Starting Lineups",
+      "url": "https://www.mlb.com/giants/roster/starting-lineups",
+      "note": "Checked the official Giants page; today's lineup was still TBD during review, while recent Giants lineups repeatedly showed Arraez batting second."
+    },
+    {
+      "label": "MLB Royals Starting Lineups",
+      "url": "https://www.mlb.com/royals/roster/starting-lineups",
+      "note": "Checked the official Royals page; today's lineup was still TBD during review, while recent Royals lineups repeatedly showed Witt batting second."
+    },
+    {
+      "label": "RotoWire Daily Lineups",
+      "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+      "note": "Reviewed expected lineup context; RotoWire projected Arraez second for San Francisco and Witt second for Kansas City, with both relevant lineups marked expected rather than official."
+    },
+    {
+      "label": "Giants Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/giants-injuries-and-roster-moves",
+      "note": "Checked the official Giants injury page; Arraez was not listed among current injury items, while unrelated Giants outfield and pitching injuries were noted."
+    },
+    {
+      "label": "Rockies Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/rockies-injuries-and-roster-moves",
+      "note": "Checked the official Rockies injury page for pitching-staff context; Freeland was not listed as a current injury item."
+    },
+    {
+      "label": "Royals Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/royals-injuries-and-roster-moves",
+      "note": "Checked the official Royals injury page; Witt was not listed as a current injury item, while Maikel Garcia, Kyle Isbel, and several pitchers remained out."
+    },
+    {
+      "label": "Orioles Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/orioles-injuries-and-roster-moves",
+      "note": "Checked the official Orioles injury page; Bradish was not listed as a current injury item, while Ryan Helsley remained on the injured list and Baltimore bullpen depth was affected."
+    },
+    {
+      "label": "RotoWire Luis Arraez News",
+      "url": "https://www.rotowire.com/baseball/player/luis-arraez-14053",
+      "note": "Reviewed Arraez's player page; it listed a .331 average and noted he went 3-for-4 with a walk and stolen base on July 10, his fourth multi-hit game in seven games."
+    },
+    {
+      "label": "RotoWire Bobby Witt News",
+      "url": "https://www.rotowire.com/baseball/player/bobby-witt-16040",
+      "note": "Reviewed Witt's player page; it listed a .288 average and 30 steals, and recent news noted he had returned from a right knee MCL sprain."
+    },
+    {
+      "label": "RotoWire Kyle Bradish News",
+      "url": "https://www.rotowire.com/baseball/player/kyle-bradish-15482",
+      "note": "Reviewed Bradish's player page; it listed a 3.75 ERA, 1.40 WHIP, 101 strikeouts, and a recent 7.2-inning start with five hits, one walk, and five strikeouts."
+    },
+    {
+      "label": "RotoWire Kyle Freeland News",
+      "url": "https://www.rotowire.com/baseball/player/kyle-freeland-13369",
+      "note": "Reviewed Freeland's player page and public probable-starter context, then used local staged starter fields for the dashboard thesis."
+    },
+    {
+      "label": "SF Chronicle Giants-Rockies Recap",
+      "url": "https://www.sfchronicle.com/sports/giants/article/sf-giants-see-victory-escape-grasp-ninth-inning-22341193.php",
+      "note": "Reviewed recent Giants/Rockies context; the recap noted Arraez had three hits on July 10 and highlighted a late Rockies rally against the Giants bullpen."
+    },
+    {
+      "label": "Camden Chat Orioles-Royals Series Preview",
+      "url": "https://www.camdenchat.com/baltimore-orioles-game-information/68313/orioles-royals-series-preview-wrapping-up-the-first-half",
+      "note": "Reviewed series context; the preview identified Witt as Kansas City's offensive leader and listed Bradish as the Orioles' Game 2 starter."
+    },
+    {
+      "label": "Royals Review Orioles Series Preview",
+      "url": "https://www.royalsreview.com/kansas-city-royals-discussion/102001/orioles-series-preview-a-team-no-longer-on-the-rise",
+      "note": "Reviewed opponent context; the preview noted Bradish as a projected starter and Baltimore's bullpen structure without Ryan Helsley."
+    },
+    {
+      "label": "Recent MLB Boxscores via StatsAPI",
+      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1",
+      "note": "Checked recent official boxscores for Arraez and Witt usage/results plus recent Rockies and Orioles bullpen workload."
+    }
+  ],
+  "players": [
+    {
+      "rank": 1,
+      "player": "Luis Arraez",
+      "team": "SFG",
+      "opponent": "COL",
+      "probable_pitcher": "Kyle Freeland",
+      "pro_thesis": "Luis Arraez has the strongest single-pick case because every major category points the same direction. He is the learned No. 1 at 76.9%, carries Publisher status, is pickable, has a 100/100 safety score, and triggers zero stop valves. He projects second in the lineup with 4.7 expected plate appearances and owns a .331 season average, an 8-for-20 last-five line, and elite bat-to-ball indicators: 7.8% season whiff rate, 3.8% season strikeout rate, and a strong .321 current-season split against left-handed pitching. Kyle Freeland is exactly the kind of starter this profile should attack: low Stuff+ at 92, 30 hits allowed over his last 18 innings, a 7.46 public ERA on the MLB lineup page, and nine hits allowed in his latest local start. Add in Colorado's high-contact bullpen profile and Arraez's 3-for-4 game last night, and the path to one hit is direct rather than theoretical.",
+      "con_thesis": "The con case is mostly about context rather than hitter quality. Official lineups were still not posted during review, so the final check should confirm Arraez is in his expected No. 2 slot. The matchup is lefty-on-lefty, and although Arraez handles lefties well, Freeland can still suppress damage if he lives on the edges and forces soft grounders at Oracle Park. Arraez also has limited power and only average speed, so most of the thesis depends on singles volume and contact precision rather than extra-base damage. The H2H sample is tiny at 1-for-3, and the Giants offense has been inconsistent enough that run environment cannot be assumed. Even so, those are ordinary baseball risks, not model red flags.",
+      "committee_thesis": "Committee read: Arraez is the single pick. The pro advocate has the stronger argument by a wide margin: no stop valves, elite contact, strong current average, excellent recent form, favorable starter contact profile, and a bullpen that does not meaningfully undercut the play. The con advocate is correct to flag official-lineup timing and lefty-on-lefty variance, but those concerns are smaller than the risks attached to Witt against Bradish. The reviewer chooses Arraez as the single and keeps Witt only as the two-pick partner."
+    },
+    {
+      "rank": 2,
+      "player": "Bobby Witt Jr.",
+      "team": "KCR",
+      "opponent": "BAL",
+      "probable_pitcher": "Kyle Bradish",
+      "pro_thesis": "Bobby Witt Jr. is the correct second card because the talent and opportunity remain strong. He is a Publisher, owns a 73.9% learned probability, projects second with 4.7 expected plate appearances, and carries a strong .289 local season average with excellent speed. His right-on-right profile is not a weakness: the staged data shows a .273 season split, .288 last-500 split, and .306 1500-window split against right-handed pitching. The H2H sample against Kyle Bradish is only three plate appearances, but Witt has a hit, a .412 local xBA, and 99.5 mph average exit velocity in that small set. The inferred pitch-type matchup is also excellent at .307 BA and .366 xBA. If Bradish misses over the plate or exits before the late innings, Witt has enough quality, speed, and volume to get there.",
+      "con_thesis": "The con case is why Witt is not the single. He has five stop valves, including H2H whiff and strikeout flags, starter H/IP suppression, high Stuff+, and a pitcher-allowed-average flag. Bradish is a much tougher opponent than Freeland: RotoWire lists him at 3.75 ERA, 1.40 WHIP, and 101 strikeouts, and his latest public note described 7.2 innings with five hits, one walk, and five strikeouts. The local model also shows only 12 hits allowed over Bradish's last 18 innings and a 100 Stuff+ marker. Witt's recent form is useful but not hot by Arraez standards, with a 6-for-23 last-five line, and his recent knee MCL context is not an active injury item now but still adds a small availability/performance caution. The upside is real, but the one-hit path has more pitcher-driven resistance.",
+      "committee_thesis": "Committee read: Witt is the runner-up. The pro advocate is right that Witt's talent, lineup slot, speed, and pitch-type indicators justify keeping him on a two-pick card. The con advocate wins the single-pick comparison because Bradish is the stronger opposing starter, Witt carries five stop valves, and Arraez has the cleaner profile with no meaningful stop-valve friction. The reviewer would use Witt as the second pick if playing two, but not over Arraez for the single."
+    }
+  ]
+}

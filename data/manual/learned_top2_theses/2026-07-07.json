@@ -1,0 +1,101 @@
+{
+  "date": "2026-07-07",
+  "target": "learned_rank_top_2",
+  "committee_pick": "Shohei Ohtani",
+  "committee_summary": "The committee pick is Shohei Ohtani even though Mookie Betts is the learned model's raw No. 1 by a very narrow margin. Betts has the safer contact/control profile, fewer stop valves, and a strong direct 3-for-6 H2H line against Michael Lorenzen, so he is a very defensible two-pick partner. The single-pick case shifts to Ohtani because the two hitters share the same opponent, same park, same bullpen context, and same official-lineup uncertainty, while Ohtani owns the stronger current hitter evidence: .294 season average, .305 against right-handed pitching, projected leadoff volume, 4.8 expected plate appearances, 5-for-15 H2H, better local pitch-type matchup, and a 3-for-4 game with a homer and four RBI last night. Betts' .237 season average, .259 right-handed-pitcher split, 3-for-20 last-five line, and 0-for-5 yesterday are too much cold-form drag to ignore when the learned probability gap is only 0.23 percentage points. Ohtani's six stop valves are real, especially the strikeout/whiff and walk flags, but those are the known cost of his profile rather than new matchup-specific damage. If official lineup news unexpectedly removes Ohtani from the leadoff spot or gives Betts a much better role, this should be rechecked; with the morning evidence available, Ohtani is the preferred single and Betts is the runner-up.",
+  "workflow_notes": [
+    "Staged the learned model raw top 2 for the active dashboard date.",
+    "Reviewed local model context, H2H, stop valves, expected PA, lineup slot, recent form, handedness splits, starter profile, park/weather, and bullpen context.",
+    "Checked current free public sources for probable pitchers, lineup status, injury/news context, weather/park context, Statcast preview, recent game notes, and bullpen workload.",
+    "Used pro, con, and reviewer committee roles before choosing the single hitter."
+  ],
+  "source_notes": [
+    {
+      "label": "MLB Dodgers Starting Lineups",
+      "url": "https://www.mlb.com/dodgers/roster/starting-lineups",
+      "note": "Checked the official Rockies-Dodgers page; today's lineup was still TBD during review, with Michael Lorenzen and Justin Wrobleski listed as probable starters at Dodger Stadium."
+    },
+    {
+      "label": "MLB StatsAPI Rockies-Dodgers Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/823929/feed/live",
+      "note": "Verified scheduled preview status, Dodger Stadium venue, Michael Lorenzen vs. Justin Wrobleski probable starters, and no official batting orders posted during review."
+    },
+    {
+      "label": "RotoWire Daily Lineups",
+      "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+      "note": "Reviewed expected lineup context; RotoWire projected Ohtani first and Betts fourth for Los Angeles against Lorenzen, with the Dodgers lineup marked expected rather than official."
+    },
+    {
+      "label": "RotoGrinders MLB Lineups",
+      "url": "https://rotogrinders.com/lineups/mlb",
+      "note": "Cross-checked public projection context; RotoGrinders listed the Dodgers lineup as not released and projected Ohtani first and Betts fourth."
+    },
+    {
+      "label": "Dodgers Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/dodgers-injuries-and-roster-moves",
+      "note": "Checked the official Dodgers injury page; neither Ohtani nor Betts was listed as a current injury item. Tommy Edman was expected back July 7, which could affect lower-order lineup shape but not the top-two thesis directly."
+    },
+    {
+      "label": "Rockies Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/rockies-injuries-and-roster-moves",
+      "note": "Checked the official Rockies injury page; Lorenzen was not listed as a current injury item, while Colorado still had multiple pitching injuries affecting overall staff depth."
+    },
+    {
+      "label": "RotoWire Michael Lorenzen News",
+      "url": "https://www.rotowire.com/baseball/player/michael-lorenzen-11605",
+      "note": "Reviewed Lorenzen's public pitcher page and confirmed the current game context also showed him as Colorado's starter with a 3-9 record and 6.91 ERA."
+    },
+    {
+      "label": "RotoWire Mookie Betts News",
+      "url": "https://www.rotowire.com/baseball/player/mookie-betts-12925",
+      "note": "Reviewed Betts' public player page and current role context; local/public lineup sources continued to project him in the Dodgers' upper-middle order."
+    },
+    {
+      "label": "RotoWire Shohei Ohtani News",
+      "url": "https://www.rotowire.com/baseball/player/shohei-ohtani-12739",
+      "note": "Reviewed Ohtani's public player page and current role context; local/public lineup sources continued to project him as the Dodgers leadoff hitter."
+    },
+    {
+      "label": "Baseball Savant Rockies-Dodgers Preview",
+      "url": "https://baseballsavant.mlb.com/preview?game_date=07%2F07%2F2026&game_pk=823929",
+      "note": "Reviewed the Statcast game preview for the Rockies-Dodgers matchup."
+    },
+    {
+      "label": "True Blue LA Dodgers Recap",
+      "url": "https://www.truebluela.com/dodgers-scores-standings/119477/dalton-rushing-walk-off-win-extra-innings-shohei-ohtani-homers",
+      "note": "Reviewed the previous night's recap: Ohtani had three hits, a homer, and four RBI, while Betts went hitless but put a hard ball in play during the extra-inning comeback."
+    },
+    {
+      "label": "Purple Row Rockies-Dodgers Recap",
+      "url": "https://www.purplerow.com/colorado-rockies-scores-standings/94797/rockies-comeback-falls-short-in-8-7-extra-innings-loss-to-dodgers",
+      "note": "Reviewed Colorado's recap, which confirmed the extra-inning game context and that Lorenzen was scheduled for the next start against Los Angeles."
+    },
+    {
+      "label": "Recent MLB Boxscores via StatsAPI",
+      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1",
+      "note": "Checked recent public boxscore data for Dodgers and Rockies bullpen workload, plus prior-game usage for Ohtani and Betts. Colorado used Zach Agnos for three innings on July 6 and several relievers on July 5-6."
+    }
+  ],
+  "players": [
+    {
+      "rank": 1,
+      "player": "Mookie Betts",
+      "team": "LAD",
+      "opponent": "COL",
+      "probable_pitcher": "Michael Lorenzen",
+      "pro_thesis": "Mookie Betts has the cleaner model-safety argument and a very real path to being the correct single if contact reliability matters more than recent form. He is narrowly first in learned probability at 74.0%, carries a 94 safety score, has only two stop valves compared with Ohtani's six, and owns a strong direct history against Michael Lorenzen at 3-for-6 with no local H2H strikeouts and a low H2H whiff rate. Lorenzen is a targetable pitcher: 6.91 ERA publicly, 88 Stuff+ locally, 23 hits allowed over his last 18 local innings, and a last start that included six walks and only one strikeout. Betts also keeps the bat-to-ball profile that matters in a one-hit contest, with season and rolling strikeout rates near 10-11% and a local pitch-type matchup that grades positively by both BA and xBA. If the official lineup confirms him fourth, the role is solid enough, and the Rockies bullpen behind Lorenzen is not a major deterrent.",
+      "con_thesis": "The case against Betts is that the broader hitter profile is colder than the rank suggests. He is hitting only .237 on the season, .259 against right-handed pitching, 3-for-20 over his last five games, and he went 0-for-5 in last night's extra-inning win. The handedness stop valves are also not trivial: the model is warning that he does not clear the .265/.270 thresholds against pitcher handedness across the relevant windows. His projected fourth lineup slot is useful but still gives less plate-appearance volume than Ohtani's leadoff role, and the park is neutral rather than an amplifier. Betts' H2H line against Lorenzen is encouraging, but it is only six plate appearances, so it cannot erase the larger-season contact slump by itself.",
+      "committee_thesis": "Committee read: Betts is the runner-up because he has the cleaner stop-valve profile but not the stronger single-hit case today. The pro advocate makes a good argument from H2H, low strikeout rate, Lorenzen's vulnerability, and fewer stop valves. The con advocate wins the final comparison because Betts' current form and right-handed-pitcher split are both below threshold, and the learned-probability edge over Ohtani is too small to overcome Ohtani's better recent hit evidence and leadoff volume. Betts belongs on the two-pick card, but the reviewer does not choose him as the single."
+    },
+    {
+      "rank": 2,
+      "player": "Shohei Ohtani",
+      "team": "LAD",
+      "opponent": "COL",
+      "probable_pitcher": "Michael Lorenzen",
+      "pro_thesis": "Shohei Ohtani is the better single-pick thesis because his advantages are directly tied to hit probability in this specific matchup. The learned model has him essentially tied with Betts at 73.8%, while the local profile gives him 4.8 expected plate appearances, a projected leadoff role, a .294 season average, a .305 mark against right-handed pitching, and a 5-for-15 H2H record against Lorenzen. His pitch-type matchup is the best single signal in the top two, with a .312 inferred BA and .410 inferred xBA over meaningful coverage, and Lorenzen's profile gives him enough hittable chances: low Stuff+, elevated season HPI, 23 hits allowed over the last 18 local innings, and a poor 6.91 ERA publicly. The public/news context also matters today. Ohtani had three hits, a homer, and four RBI last night, so his bat is not just theoretically superior; it is producing immediately before this matchup. With no rain concern at Dodger Stadium and the Rockies bullpen carrying recent workload, Ohtani has the higher-ceiling and better current one-hit path.",
+      "con_thesis": "The con case is that Ohtani's profile has more ways to produce a frustrating zero than Betts' does. Six stop valves is a large number for a single-pick contest, and they are not random: high walk rate, high whiff rate, and high strikeout rate all cut into actual balls in play. His last-five line is fine but not blazing at 5-for-19, and the local model assigns only a 70 safety score because the plate-discipline risks are persistent across both season and last-500 windows. Lorenzen's six-walk last start also cuts both ways: it signals vulnerability, but it also raises the chance that Ohtani reaches by walk instead of by hit. If Colorado chooses not to challenge him, or if the lineup behind him changes enough to reduce pitch quality, the best hitter on paper may still be less contest-efficient than Betts.",
+      "committee_thesis": "Committee read: Ohtani is the single pick because the best evidence this morning says to accept the volatility in exchange for stronger present-form and matchup upside. The pro advocate has the better full-context case: leadoff volume, better season average, better right-handed-pitcher split, stronger recent game, strong H2H volume, and a superior pitch-type matchup against a vulnerable starter. The con advocate is right that walks and strikeouts are the danger, but those risks are already baked into a learned probability that remains nearly identical to Betts'. The reviewer chooses Ohtani and treats Betts as the safer but slightly colder runner-up."
+    }
+  ]
+}

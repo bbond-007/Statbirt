@@ -1,0 +1,816 @@
+{
+  "generated_at": "2026-07-10T13:02:00Z",
+  "date": "2026-07-10",
+  "requested_date": "2026-07-10",
+  "used_latest_fallback": false,
+  "target": "learned_rank_top_2",
+  "purpose": "Evidence staging only. ChatGPT/Codex should write the pro thesis, con thesis, and committee decision.",
+  "daily_timing": {
+    "morning_models_scheduled": "07:00 America/Chicago",
+    "recommended_stage_after": "08:00 America/Chicago",
+    "note": "The morning model scripts normally need about 45 minutes, so 8:00am Central gives them a buffer."
+  },
+  "workflow_prompt": "X:\\Coding\\Statbirt\\prompts\\learned_top2_thesis.md",
+  "expected_thesis_path": "X:\\Coding\\Statbirt\\data\\manual\\learned_top2_theses\\2026-07-10.json",
+  "dashboard_refresh_command": "py -3 -m statbirt.export_learned_web --date latest --limit 5",
+  "total_predictions_for_date": 505,
+  "injury_filtered_count": 59,
+  "selection_brief_from_local_metrics": {
+    "policy_version": "learned-selection-v1",
+    "headline": "Recommended single: Pete Crow-Armstrong. Best two-pick card: Pete Crow-Armstrong and Nico Hoerner.",
+    "recommended_single": {
+      "rank": 2,
+      "player": "Pete Crow-Armstrong",
+      "team": "CHC",
+      "opponent": "CIN",
+      "selection_score": 64.6,
+      "learned_hit_probability": 0.7831,
+      "pros": [
+        "High learned probability (78.3%).",
+        "Projected for 4.8 PA.",
+        "Premium lineup slot (1).",
+        "Current-season BA .296."
+      ],
+      "cons": [
+        "Thin H2H hit record (1-15).",
+        "Reliability score is only 60/100.",
+        "8 stop valves.",
+        "K rate 26.8%."
+      ],
+      "confidence_label": "Watch",
+      "thesis": "Pete Crow-Armstrong is a 64.6 selection-score play with a 78.3% learned hit probability, 4.8 expected PA, and a 60/100 reliability score. The positive case starts with high learned probability (78.3%); the main counterweight is thin H2H hit record (1-15).",
+      "summary": "Pete Crow-Armstrong grades as watch at 64.6 on the reliability blend.",
+      "recommendation": "Best 1",
+      "h2h_record": "1-15",
+      "safety_score": 60,
+      "bob_score": 51.76,
+      "expected_pa": "4.8",
+      "lineup_slot": "1.0",
+      "hitter_ba_season": "0.296",
+      "probable_pitcher": "Hunter Greene",
+      "pickable": false,
+      "stop_valve_count": 8,
+      "hard_pass_reasons": [
+        "Hitter is below .270 over both long and last-500 AB windows",
+        "Hitter season whiff rate over 25%",
+        "Hitter last-500 PA whiff rate over 25%",
+        "Hitter season K rate over 22%",
+        "Hitter last-500 PA K rate over 22%",
+        "Starter H/IP under .875 over last 200 innings",
+        "Hitter is not at least .270 against today's pitcher hand",
+        "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows"
+      ],
+      "concerns": [
+        "Missing starter Stuff+"
+      ],
+      "result_hit": null,
+      "result_hits": null,
+      "result_ab": null,
+      "result_pa": null,
+      "result_status": "",
+      "game_state": "unknown",
+      "game_status": "",
+      "game_hits": null
+    },
+    "recommended_pair": [
+      {
+        "rank": 2,
+        "player": "Pete Crow-Armstrong",
+        "team": "CHC",
+        "opponent": "CIN",
+        "selection_score": 64.6,
+        "learned_hit_probability": 0.7831,
+        "pros": [
+          "High learned probability (78.3%).",
+          "Projected for 4.8 PA.",
+          "Premium lineup slot (1).",
+          "Current-season BA .296."
+        ],
+        "cons": [
+          "Thin H2H hit record (1-15).",
+          "Reliability score is only 60/100.",
+          "8 stop valves.",
+          "K rate 26.8%."
+        ],
+        "confidence_label": "Watch",
+        "thesis": "Pete Crow-Armstrong is a 64.6 selection-score play with a 78.3% learned hit probability, 4.8 expected PA, and a 60/100 reliability score. The positive case starts with high learned probability (78.3%); the main counterweight is thin H2H hit record (1-15).",
+        "summary": "Pete Crow-Armstrong grades as watch at 64.6 on the reliability blend.",
+        "recommendation": "Best 1",
+        "h2h_record": "1-15",
+        "safety_score": 60,
+        "bob_score": 51.76,
+        "expected_pa": "4.8",
+        "lineup_slot": "1.0",
+        "hitter_ba_season": "0.296",
+        "probable_pitcher": "Hunter Greene",
+        "pickable": false,
+        "stop_valve_count": 8,
+        "hard_pass_reasons": [
+          "Hitter is below .270 over both long and last-500 AB windows",
+          "Hitter season whiff rate over 25%",
+          "Hitter last-500 PA whiff rate over 25%",
+          "Hitter season K rate over 22%",
+          "Hitter last-500 PA K rate over 22%",
+          "Starter H/IP under .875 over last 200 innings",
+          "Hitter is not at least .270 against today's pitcher hand",
+          "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows"
+        ],
+        "concerns": [
+          "Missing starter Stuff+"
+        ],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      },
+      {
+        "rank": 1,
+        "player": "Nico Hoerner",
+        "team": "CHC",
+        "opponent": "CIN",
+        "selection_score": 63.9,
+        "learned_hit_probability": 0.7925,
+        "pros": [
+          "High learned probability (79.2%).",
+          "Has seen the probable starter (4-25).",
+          "Expected PA 4.1.",
+          "Season PA/G 4.50."
+        ],
+        "cons": [
+          "4 stop valves.",
+          "HiPA 500 0.234."
+        ],
+        "confidence_label": "Watch",
+        "thesis": "Nico Hoerner is a 63.9 selection-score play with a 79.2% learned hit probability, 4.1 expected PA, and a 70/100 reliability score. The positive case starts with high learned probability (79.2%); the main counterweight is 4 stop valves.",
+        "summary": "Nico Hoerner grades as watch at 63.9 on the reliability blend.",
+        "recommendation": "Best 2",
+        "h2h_record": "4-25",
+        "safety_score": 70,
+        "bob_score": 50.58,
+        "expected_pa": "4.1",
+        "lineup_slot": "6.0",
+        "hitter_ba_season": "0.240",
+        "probable_pitcher": "Hunter Greene",
+        "pickable": false,
+        "stop_valve_count": 4,
+        "hard_pass_reasons": [
+          "Starter H/IP under .875 over last 200 innings",
+          "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows",
+          "Hitter is not at least .270 against today's pitcher hand",
+          "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows"
+        ],
+        "concerns": [
+          "Missing starter Stuff+"
+        ],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      }
+    ],
+    "items": [
+      {
+        "rank": 1,
+        "player": "Nico Hoerner",
+        "team": "CHC",
+        "opponent": "CIN",
+        "selection_score": 63.9,
+        "learned_hit_probability": 0.7925,
+        "pros": [
+          "High learned probability (79.2%).",
+          "Has seen the probable starter (4-25).",
+          "Expected PA 4.1.",
+          "Season PA/G 4.50."
+        ],
+        "cons": [
+          "4 stop valves.",
+          "HiPA 500 0.234."
+        ],
+        "confidence_label": "Watch",
+        "thesis": "Nico Hoerner is a 63.9 selection-score play with a 79.2% learned hit probability, 4.1 expected PA, and a 70/100 reliability score. The positive case starts with high learned probability (79.2%); the main counterweight is 4 stop valves.",
+        "summary": "Nico Hoerner grades as watch at 63.9 on the reliability blend.",
+        "recommendation": "Best 2",
+        "h2h_record": "4-25",
+        "safety_score": 70,
+        "bob_score": 50.58,
+        "expected_pa": "4.1",
+        "lineup_slot": "6.0",
+        "hitter_ba_season": "0.240",
+        "probable_pitcher": "Hunter Greene",
+        "pickable": false,
+        "stop_valve_count": 4,
+        "hard_pass_reasons": [
+          "Starter H/IP under .875 over last 200 innings",
+          "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows",
+          "Hitter is not at least .270 against today's pitcher hand",
+          "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows"
+        ],
+        "concerns": [
+          "Missing starter Stuff+"
+        ],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      },
+      {
+        "rank": 2,
+        "player": "Pete Crow-Armstrong",
+        "team": "CHC",
+        "opponent": "CIN",
+        "selection_score": 64.6,
+        "learned_hit_probability": 0.7831,
+        "pros": [
+          "High learned probability (78.3%).",
+          "Projected for 4.8 PA.",
+          "Premium lineup slot (1).",
+          "Current-season BA .296."
+        ],
+        "cons": [
+          "Thin H2H hit record (1-15).",
+          "Reliability score is only 60/100.",
+          "8 stop valves.",
+          "K rate 26.8%."
+        ],
+        "confidence_label": "Watch",
+        "thesis": "Pete Crow-Armstrong is a 64.6 selection-score play with a 78.3% learned hit probability, 4.8 expected PA, and a 60/100 reliability score. The positive case starts with high learned probability (78.3%); the main counterweight is thin H2H hit record (1-15).",
+        "summary": "Pete Crow-Armstrong grades as watch at 64.6 on the reliability blend.",
+        "recommendation": "Best 1",
+        "h2h_record": "1-15",
+        "safety_score": 60,
+        "bob_score": 51.76,
+        "expected_pa": "4.8",
+        "lineup_slot": "1.0",
+        "hitter_ba_season": "0.296",
+        "probable_pitcher": "Hunter Greene",
+        "pickable": false,
+        "stop_valve_count": 8,
+        "hard_pass_reasons": [
+          "Hitter is below .270 over both long and last-500 AB windows",
+          "Hitter season whiff rate over 25%",
+          "Hitter last-500 PA whiff rate over 25%",
+          "Hitter season K rate over 22%",
+          "Hitter last-500 PA K rate over 22%",
+          "Starter H/IP under .875 over last 200 innings",
+          "Hitter is not at least .270 against today's pitcher hand",
+          "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows"
+        ],
+        "concerns": [
+          "Missing starter Stuff+"
+        ],
+        "result_hit": null,
+        "result_hits": null,
+        "result_ab": null,
+        "result_pa": null,
+        "result_status": "",
+        "game_state": "unknown",
+        "game_status": "",
+        "game_hits": null
+      }
+    ]
+  },
+  "players": [
+    {
+      "rank": 1,
+      "player": "Nico Hoerner",
+      "player_id": "663538",
+      "team": "CHC",
+      "opponent": "CIN",
+      "dashboard_summary": {
+        "learned_hit_probability": 0.7925,
+        "bob_score": 50.58,
+        "pickable": false,
+        "safety_score": 70,
+        "h2h_record": "4-25",
+        "expected_pa": "4.1",
+        "lineup_slot": "6.0",
+        "season_ba": "0.240",
+        "last_5_ba": "0.222",
+        "hot_streak": false,
+        "hot_streak_tooltip": "",
+        "probable_pitcher": "Hunter Greene",
+        "pitcher_hand": "R",
+        "batter_stand": "R",
+        "venue_name": "Great American Ball Park",
+        "weather_label": "Rain: 15.0%",
+        "congregation_status": "Publisher"
+      },
+      "model_signals": [
+        "Expected PA 4.1",
+        "Season PA/G 4.50",
+        "Lineup slot 6",
+        "K rate 8.2%"
+      ],
+      "model_risks": [
+        "4 stop valves",
+        "HiPA 500 0.234"
+      ],
+      "stop_valves": [
+        "Starter H/IP under .875 over last 200 innings",
+        "Hitter is not at least .265 against both pitcher hands in season/500/1500 windows",
+        "Hitter is not at least .270 against today's pitcher hand",
+        "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows"
+      ],
+      "watch_notes": [
+        "Missing starter Stuff+"
+      ],
+      "field_context": {
+        "identity": {
+          "date": "2026-07-10",
+          "player": "Nico Hoerner",
+          "player_id": "663538",
+          "team": "CHC",
+          "team_id": "112",
+          "opponent": "CIN",
+          "opponent_id": "113",
+          "game_pk": "824493"
+        },
+        "learned_model": {
+          "learned_rank": "1",
+          "learned_hit_probability": "0.7925",
+          "model_version": "learned-logistic-v2-20260710T122044Z",
+          "model_trained_at": "2026-07-10T12:20:44Z",
+          "bob_score": "50.58",
+          "score": "50.58",
+          "pickable": "N"
+        },
+        "game_context": {
+          "venue_name": "Great American Ball Park",
+          "game_start_time_utc": "2026-07-10T23:10:00Z",
+          "road_game": "Y",
+          "division_matchup": "Y",
+          "doubleheader": "N",
+          "confirmed_lineup": "N",
+          "lineup_slot": "6.0",
+          "expected_pa": "4.10",
+          "starts_last_5": "5"
+        },
+        "weather_park": {
+          "precip_probability": "15.0",
+          "forecast_temperature_f": "84.5",
+          "park_hit_factor": "99.0"
+        },
+        "hitter_form_contact": {
+          "hitter_ba_season": "0.240",
+          "hitter_hipa_2500_pa": "0.250",
+          "hitter_pa_per_game_season": "4.50",
+          "hitter_ba_2500_ab": "0.277",
+          "hitter_hipa_500_pa": "0.234",
+          "hitter_hipa_75_ab": "0.244",
+          "hitter_ba_75_ab": "0.267",
+          "hitter_ba_25_ab": "0.200",
+          "hitter_ba_500_ab": "0.264",
+          "hitter_last_5_games_played": "5",
+          "hitter_last_5_games_hits": "4",
+          "hitter_last_5_games_ab": "18",
+          "hitter_last_5_games_ba": "0.222",
+          "sprint_speed": "28.2"
+        },
+        "hitter_plate_discipline": {
+          "hitter_bb_rate_season": "0.088",
+          "hitter_bb_rate_500_pa": "0.076",
+          "hitter_whiff_rate_season": "0.114",
+          "hitter_whiff_rate_500_pa": "0.118",
+          "hitter_k_rate_season": "0.078",
+          "hitter_k_rate_500_pa": "0.082"
+        },
+        "hitter_handedness_splits": {
+          "batter_stand": "R",
+          "pitcher_hand": "R",
+          "hitter_split_ba_season_vs_lhp": "0.301",
+          "hitter_split_ba_season_vs_rhp": "0.215",
+          "hitter_split_pa_season_vs_lhp": "112",
+          "hitter_split_pa_season_vs_rhp": "297",
+          "hitter_split_ba_500_vs_lhp": "0.344",
+          "hitter_split_ba_500_vs_rhp": "0.252",
+          "hitter_split_ba_1500_vs_lhp": "0.344",
+          "hitter_split_ba_1500_vs_rhp": "0.253"
+        },
+        "probable_starter": {
+          "probable_pitcher": "Hunter Greene",
+          "probable_pitcher_id": "668881",
+          "pitcher_hand": "R",
+          "pitcher_hpi_350": "0.756",
+          "pitcher_hpi_200": "0.661",
+          "pitcher_hpi_season": "2.100",
+          "pitcher_hits_last_18_ip": "13",
+          "pitcher_lr_opp_ba": "0.214",
+          "pitcher_lr_opp_ba_50": "0.248",
+          "pitcher_lr_opp_ba_200": "0.207"
+        },
+        "probable_starter_last_start": {
+          "pitcher_last_start_date": "2026-07-04",
+          "pitcher_last_start_ip": "3.3",
+          "pitcher_last_start_hits": "7",
+          "pitcher_last_start_strikeouts": "7",
+          "pitcher_last_start_walks": "4"
+        },
+        "h2h": {
+          "h2h_pa": "25",
+          "h2h_hits": "4",
+          "h2h_hit_rate": "0.160",
+          "h2h_whiff_rate": "0.107",
+          "h2h_k_rate": "0.120",
+          "h2h_exit_velocity": "81.3",
+          "h2h_xba": "0.280"
+        },
+        "pitch_type_matchup": {
+          "inferred_pitch_type_ba": "0.222",
+          "inferred_pitch_type_xba": "0.304",
+          "inferred_pitch_type_coverage": "0.945"
+        },
+        "bullpen_context": {
+          "bullpen_hpi": "0.885",
+          "bullpen_opp_ba": "0.236"
+        },
+        "bob_score_components": {
+          "component_hitter.hipa_2500_pa": "93.75",
+          "component_hitter.pa_per_game_season": "55.56",
+          "component_hitter.hipa_500_pa": "64.00",
+          "component_hitter.hipa_75_ab": "65.93",
+          "component_starting_pitcher.hpi_350": "1.28",
+          "component_starting_pitcher.hpi_season": "100.00",
+          "component_starting_pitcher.stuff_plus": "50.00",
+          "component_h2h.direct": "44.58",
+          "component_h2h.pitcher_lr_opp_ba": "0.00",
+          "component_h2h.inferred_pitch_type": "48.62",
+          "component_bullpen.hpi_season": "30.04",
+          "component_other.road_game": "100.00",
+          "component_other.division_matchup": "100.00",
+          "component_other.sprint_speed": "67.27",
+          "component_other.park_hit_factor": "45.00",
+          "component_other.lineup_opportunity": "41.67"
+        },
+        "results": {}
+      },
+      "missing_relevant_fields": {
+        "probable_starter": [
+          "pitcher_stuff_plus"
+        ],
+        "results": [
+          "result_hit",
+          "result_hits",
+          "result_ab",
+          "result_pa",
+          "result_status",
+          "result_updated_at",
+          "notes"
+        ]
+      },
+      "source_targets": [
+        {
+          "label": "MLB probable pitchers",
+          "url": "https://www.mlb.com/probable-pitchers",
+          "why": "Verify the probable starter has not changed."
+        },
+        {
+          "label": "MLB starting lineups",
+          "url": "https://www.mlb.com/starting-lineups",
+          "why": "Check whether the hitter is confirmed in the lineup and whether the slot changed."
+        },
+        {
+          "label": "MLB injury report",
+          "url": "https://www.mlb.com/injury-report",
+          "why": "Check for late injury or availability notes."
+        },
+        {
+          "label": "RotoWire bullpen usage",
+          "url": "https://www.rotowire.com/baseball/bullpen-usage.php",
+          "why": "Look for bullpen fatigue or unavailable leverage arms."
+        },
+        {
+          "label": "RotoWire daily lineups",
+          "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+          "why": "Cross-check lineup and late-scratch risk."
+        },
+        {
+          "label": "MLB news",
+          "url": "https://www.mlb.com/news",
+          "why": "Search for current notes on Nico Hoerner, Hunter Greene, CHC, and CIN."
+        },
+        {
+          "label": "MLB live game feed",
+          "url": "https://statsapi.mlb.com/api/v1.1/game/824493/feed/live",
+          "why": "Verify official game, lineup, venue, and probable-pitcher context."
+        },
+        {
+          "label": "MLB boxscore endpoint",
+          "url": "https://statsapi.mlb.com/api/v1/game/824493/boxscore",
+          "why": "Useful after lineups post or for later result checks."
+        },
+        {
+          "label": "Baseball Savant: Nico Hoerner",
+          "url": "https://baseballsavant.mlb.com/savant-player/nico-hoerner-663538",
+          "why": "Review hitter quality of contact, rolling form, pitch-type strengths, and handedness context."
+        },
+        {
+          "label": "Baseball Savant: Hunter Greene",
+          "url": "https://baseballsavant.mlb.com/savant-player/hunter-greene-668881",
+          "why": "Review starter pitch mix, recent shape, contact allowed, and possible matchup fragility."
+        }
+      ],
+      "chatgpt_review_questions": [
+        "Has the probable starter or lineup changed since the morning run?",
+        "Do current news, beat notes, or injury reports create scratch, rest, or pinch-hit risk?",
+        "Does the hitter have a pitch-type or handedness edge that survives beyond the headline model probability?",
+        "Is the opposing bullpen likely to help or hurt the one-hit path if the starter exits early?",
+        "Is the recent form signal supported by contact quality, or does it look like short-sample noise?"
+      ]
+    },
+    {
+      "rank": 2,
+      "player": "Pete Crow-Armstrong",
+      "player_id": "691718",
+      "team": "CHC",
+      "opponent": "CIN",
+      "dashboard_summary": {
+        "learned_hit_probability": 0.7831,
+        "bob_score": 51.76,
+        "pickable": false,
+        "safety_score": 60,
+        "h2h_record": "1-15",
+        "expected_pa": "4.8",
+        "lineup_slot": "1.0",
+        "season_ba": "0.296",
+        "last_5_ba": "0.471",
+        "hot_streak": true,
+        "hot_streak_tooltip": "8-17",
+        "probable_pitcher": "Hunter Greene",
+        "pitcher_hand": "R",
+        "batter_stand": "L",
+        "venue_name": "Great American Ball Park",
+        "weather_label": "Rain: 15.0%",
+        "congregation_status": ""
+      },
+      "model_signals": [
+        "Expected PA 4.8",
+        "Season PA/G 4.34",
+        "Lineup slot 1"
+      ],
+      "model_risks": [
+        "8 stop valves",
+        "K rate 26.8%",
+        "HiPA 500 0.240"
+      ],
+      "stop_valves": [
+        "Hitter is below .270 over both long and last-500 AB windows",
+        "Hitter season whiff rate over 25%",
+        "Hitter last-500 PA whiff rate over 25%",
+        "Hitter season K rate over 22%",
+        "Hitter last-500 PA K rate over 22%",
+        "Starter H/IP under .875 over last 200 innings",
+        "Hitter is not at least .270 against today's pitcher hand",
+        "Pitcher is not allowing over .245 BA to hitter hand in both 50/200 IP windows"
+      ],
+      "watch_notes": [
+        "Missing starter Stuff+"
+      ],
+      "field_context": {
+        "identity": {
+          "date": "2026-07-10",
+          "player": "Pete Crow-Armstrong",
+          "player_id": "691718",
+          "team": "CHC",
+          "team_id": "112",
+          "opponent": "CIN",
+          "opponent_id": "113",
+          "game_pk": "824493"
+        },
+        "learned_model": {
+          "learned_rank": "2",
+          "learned_hit_probability": "0.7831",
+          "model_version": "learned-logistic-v2-20260710T122044Z",
+          "model_trained_at": "2026-07-10T12:20:44Z",
+          "bob_score": "51.76",
+          "score": "51.76",
+          "pickable": "N"
+        },
+        "game_context": {
+          "venue_name": "Great American Ball Park",
+          "game_start_time_utc": "2026-07-10T23:10:00Z",
+          "road_game": "Y",
+          "division_matchup": "Y",
+          "doubleheader": "N",
+          "confirmed_lineup": "N",
+          "lineup_slot": "1.0",
+          "expected_pa": "4.80",
+          "starts_last_5": "5"
+        },
+        "weather_park": {
+          "precip_probability": "15.0",
+          "forecast_temperature_f": "84.5",
+          "park_hit_factor": "102.0"
+        },
+        "hitter_form_contact": {
+          "hitter_ba_season": "0.296",
+          "hitter_hipa_2500_pa": "0.228",
+          "hitter_pa_per_game_season": "4.34",
+          "hitter_ba_2500_ab": "0.254",
+          "hitter_hipa_500_pa": "0.240",
+          "hitter_hipa_75_ab": "0.289",
+          "hitter_ba_75_ab": "0.373",
+          "hitter_ba_25_ab": "0.440",
+          "hitter_ba_500_ab": "0.268",
+          "hitter_last_5_games_played": "5",
+          "hitter_last_5_games_hits": "8",
+          "hitter_last_5_games_ab": "17",
+          "hitter_last_5_games_ba": "0.471",
+          "sprint_speed": "29.2"
+        },
+        "hitter_plate_discipline": {
+          "hitter_bb_rate_season": "0.106",
+          "hitter_bb_rate_500_pa": "0.092",
+          "hitter_whiff_rate_season": "0.284",
+          "hitter_whiff_rate_500_pa": "0.298",
+          "hitter_k_rate_season": "0.255",
+          "hitter_k_rate_500_pa": "0.268"
+        },
+        "hitter_handedness_splits": {
+          "batter_stand": "L",
+          "pitcher_hand": "R",
+          "hitter_split_ba_season_vs_lhp": "0.295",
+          "hitter_split_ba_season_vs_rhp": "0.297",
+          "hitter_split_pa_season_vs_lhp": "133",
+          "hitter_split_pa_season_vs_rhp": "271",
+          "hitter_split_ba_500_vs_lhp": "0.232",
+          "hitter_split_ba_500_vs_rhp": "0.264",
+          "hitter_split_ba_1500_vs_lhp": "0.232",
+          "hitter_split_ba_1500_vs_rhp": "0.265"
+        },
+        "probable_starter": {
+          "probable_pitcher": "Hunter Greene",
+          "probable_pitcher_id": "668881",
+          "pitcher_hand": "R",
+          "pitcher_hpi_350": "0.756",
+          "pitcher_hpi_200": "0.661",
+          "pitcher_hpi_season": "2.100",
+          "pitcher_hits_last_18_ip": "13",
+          "pitcher_lr_opp_ba": "0.195",
+          "pitcher_lr_opp_ba_50": "0.185",
+          "pitcher_lr_opp_ba_200": "0.189"
+        },
+        "probable_starter_last_start": {
+          "pitcher_last_start_date": "2026-07-04",
+          "pitcher_last_start_ip": "3.3",
+          "pitcher_last_start_hits": "7",
+          "pitcher_last_start_strikeouts": "7",
+          "pitcher_last_start_walks": "4"
+        },
+        "h2h": {
+          "h2h_pa": "15",
+          "h2h_hits": "1",
+          "h2h_hit_rate": "0.067",
+          "h2h_whiff_rate": "0.148",
+          "h2h_k_rate": "0.200",
+          "h2h_exit_velocity": "92.7",
+          "h2h_xba": "0.337"
+        },
+        "pitch_type_matchup": {
+          "inferred_pitch_type_ba": "0.238",
+          "inferred_pitch_type_xba": "0.333",
+          "inferred_pitch_type_coverage": "0.987"
+        },
+        "bullpen_context": {
+          "bullpen_hpi": "0.885",
+          "bullpen_opp_ba": "0.236"
+        },
+        "bob_score_components": {
+          "component_hitter.hipa_2500_pa": "65.88",
+          "component_hitter.pa_per_game_season": "37.83",
+          "component_hitter.hipa_500_pa": "70.00",
+          "component_hitter.hipa_75_ab": "95.77",
+          "component_starting_pitcher.hpi_350": "1.28",
+          "component_starting_pitcher.hpi_season": "100.00",
+          "component_starting_pitcher.stuff_plus": "50.00",
+          "component_h2h.direct": "50.68",
+          "component_h2h.pitcher_lr_opp_ba": "0.00",
+          "component_h2h.inferred_pitch_type": "61.58",
+          "component_bullpen.hpi_season": "30.04",
+          "component_other.road_game": "100.00",
+          "component_other.division_matchup": "100.00",
+          "component_other.sprint_speed": "85.45",
+          "component_other.park_hit_factor": "60.00",
+          "component_other.lineup_opportunity": "100.00"
+        },
+        "results": {}
+      },
+      "missing_relevant_fields": {
+        "probable_starter": [
+          "pitcher_stuff_plus"
+        ],
+        "results": [
+          "result_hit",
+          "result_hits",
+          "result_ab",
+          "result_pa",
+          "result_status",
+          "result_updated_at",
+          "notes"
+        ]
+      },
+      "source_targets": [
+        {
+          "label": "MLB probable pitchers",
+          "url": "https://www.mlb.com/probable-pitchers",
+          "why": "Verify the probable starter has not changed."
+        },
+        {
+          "label": "MLB starting lineups",
+          "url": "https://www.mlb.com/starting-lineups",
+          "why": "Check whether the hitter is confirmed in the lineup and whether the slot changed."
+        },
+        {
+          "label": "MLB injury report",
+          "url": "https://www.mlb.com/injury-report",
+          "why": "Check for late injury or availability notes."
+        },
+        {
+          "label": "RotoWire bullpen usage",
+          "url": "https://www.rotowire.com/baseball/bullpen-usage.php",
+          "why": "Look for bullpen fatigue or unavailable leverage arms."
+        },
+        {
+          "label": "RotoWire daily lineups",
+          "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+          "why": "Cross-check lineup and late-scratch risk."
+        },
+        {
+          "label": "MLB news",
+          "url": "https://www.mlb.com/news",
+          "why": "Search for current notes on Pete Crow-Armstrong, Hunter Greene, CHC, and CIN."
+        },
+        {
+          "label": "MLB live game feed",
+          "url": "https://statsapi.mlb.com/api/v1.1/game/824493/feed/live",
+          "why": "Verify official game, lineup, venue, and probable-pitcher context."
+        },
+        {
+          "label": "MLB boxscore endpoint",
+          "url": "https://statsapi.mlb.com/api/v1/game/824493/boxscore",
+          "why": "Useful after lineups post or for later result checks."
+        },
+        {
+          "label": "Baseball Savant: Pete Crow-Armstrong",
+          "url": "https://baseballsavant.mlb.com/savant-player/pete-crow-armstrong-691718",
+          "why": "Review hitter quality of contact, rolling form, pitch-type strengths, and handedness context."
+        },
+        {
+          "label": "Baseball Savant: Hunter Greene",
+          "url": "https://baseballsavant.mlb.com/savant-player/hunter-greene-668881",
+          "why": "Review starter pitch mix, recent shape, contact allowed, and possible matchup fragility."
+        }
+      ],
+      "chatgpt_review_questions": [
+        "Has the probable starter or lineup changed since the morning run?",
+        "Do current news, beat notes, or injury reports create scratch, rest, or pinch-hit risk?",
+        "Does the hitter have a pitch-type or handedness edge that survives beyond the headline model probability?",
+        "Is the opposing bullpen likely to help or hurt the one-hit path if the starter exits early?",
+        "Is the recent form signal supported by contact quality, or does it look like short-sample noise?"
+      ]
+    }
+  ],
+  "chatgpt_committee_process": [
+    "Read this staged context and treat it as evidence, not as a thesis.",
+    "Browse current free sources for lineup, probable pitcher, injury/news, bullpen, and matchup updates.",
+    "Write a pro thesis and con thesis for each player.",
+    "Have a final reviewer compare the arguments and choose one single hitter.",
+    "Save the finished dashboard-ready JSON to expected_thesis_path, then refresh the learned dashboard export."
+  ],
+  "output_schema": {
+    "date": "2026-07-10",
+    "target": "learned_rank_top_2",
+    "committee_pick": "Player Name",
+    "committee_summary": "One paragraph explaining the single-pick decision.",
+    "source_notes": [
+      {
+        "label": "Source name",
+        "url": "https://...",
+        "note": "What was reviewed."
+      }
+    ],
+    "players": [
+      {
+        "rank": 1,
+        "player": "Player Name",
+        "team": "AAA",
+        "opponent": "BBB",
+        "probable_pitcher": "Pitcher Name",
+        "pro_thesis": "Dashboard-ready paragraph.",
+        "con_thesis": "Dashboard-ready paragraph.",
+        "committee_thesis": "Dashboard-ready paragraph."
+      }
+    ]
+  }
+}

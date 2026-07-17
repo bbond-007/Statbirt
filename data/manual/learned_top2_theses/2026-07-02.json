@@ -1,0 +1,106 @@
+{
+  "date": "2026-07-02",
+  "target": "learned_rank_top_2",
+  "committee_pick": "Otto Lopez",
+  "committee_summary": "The committee pick is Otto Lopez, with Xavier Edwards close enough to remain the correct two-pick partner. Both hitters benefit from Coors Field, Michael Lorenzen's hittable current profile, and a Colorado bullpen that has carried meaningful recent workload. Edwards has the cleaner stop-valve profile, the hotter bat, and better H2H quality against Lorenzen, so the runner-up case is strong. Lopez gets the single-pick edge because the model gives him the higher learned probability and selection score, both RotoWire and RotoGrinders project him ahead of Edwards in the Miami order, and the official July 1 boxscore showed Lopez starting and getting four plate appearances while Edwards was used only as a pinch-hitter. Until official lineups post, the morning single should prioritize the player with the stronger expected plate-appearance path.",
+  "workflow_notes": [
+    "Staged the learned model raw top 2 for the active dashboard date.",
+    "Reviewed local model context, H2H, stop valves, expected PA, lineup slot, recent form, handedness splits, starter profile, and bullpen context.",
+    "Checked current free public sources for probable pitchers, lineup status, injury/news context, weather/park context, Statcast context, and recent bullpen workload.",
+    "Used pro, con, and reviewer committee roles before choosing the single hitter."
+  ],
+  "source_notes": [
+    {
+      "label": "MLB Marlins Starting Lineups",
+      "url": "https://www.mlb.com/marlins/roster/starting-lineups",
+      "note": "Checked the official Marlins-Rockies page; today's lineups were still TBD during review, with Ryan Gusto and Michael Lorenzen listed as probable starters at Coors Field."
+    },
+    {
+      "label": "MLB Probable Pitchers",
+      "url": "https://www.mlb.com/probable-pitchers",
+      "note": "Confirmed MLB's probable-pitcher context for Marlins at Rockies."
+    },
+    {
+      "label": "MLB StatsAPI Marlins-Rockies Live Feed",
+      "url": "https://statsapi.mlb.com/api/v1.1/game/824335/feed/live",
+      "note": "Verified scheduled status, Coors Field venue, Ryan Gusto vs. Michael Lorenzen probable starters, and no posted official batting orders during review."
+    },
+    {
+      "label": "MLB StatsAPI July 1 Boxscore",
+      "url": "https://statsapi.mlb.com/api/v1/game/824337/boxscore",
+      "note": "Checked the prior Marlins-Rockies boxscore; Lopez started and went 1-for-4, while Edwards appeared as a pinch-hitter and went 0-for-1."
+    },
+    {
+      "label": "RotoWire Daily Lineups",
+      "url": "https://www.rotowire.com/baseball/daily-lineups.php",
+      "note": "Reviewed expected lineups and game context; RotoWire projected Lopez second and Edwards fourth against Lorenzen, with the lineup still expected rather than official."
+    },
+    {
+      "label": "RotoGrinders MLB Lineups",
+      "url": "https://rotogrinders.com/lineups/mlb",
+      "note": "Cross-checked public projection context; RotoGrinders listed Miami's lineup as not released and projected Lopez second and Edwards fourth."
+    },
+    {
+      "label": "Marlins Injuries and Roster Moves",
+      "url": "https://www.mlb.com/news/marlins-injuries-and-roster-moves",
+      "note": "Checked the official Marlins injury page; neither Lopez nor Edwards was listed as a current injury item."
+    },
+    {
+      "label": "RotoWire Otto Lopez News",
+      "url": "https://www.rotowire.com/baseball/player/otto-lopez-15753",
+      "note": "Reviewed Lopez's current season line, low strikeout rate, contact quality, home/away splits, and recent news context."
+    },
+    {
+      "label": "RotoWire Xavier Edwards News",
+      "url": "https://www.rotowire.com/baseball/player/xavier-edwards-15430",
+      "note": "Reviewed Edwards' current season line, recent hot streak note, strong road split, and low strikeout profile."
+    },
+    {
+      "label": "RotoWire Michael Lorenzen News",
+      "url": "https://www.rotowire.com/baseball/player/michael-lorenzen-11605",
+      "note": "Reviewed Lorenzen's current 2026 pitching line and public context showing a vulnerable ERA/WHIP profile."
+    },
+    {
+      "label": "Baseball Savant Otto Lopez",
+      "url": "https://baseballsavant.mlb.com/savant-player/otto-lopez-672640",
+      "note": "Reviewed Statcast context for Lopez's season production and contact profile."
+    },
+    {
+      "label": "Baseball Savant Xavier Edwards",
+      "url": "https://baseballsavant.mlb.com/savant-player/xavier-edwards-669364",
+      "note": "Reviewed Statcast context for Edwards' season production, contact profile, and low strikeout indicators."
+    },
+    {
+      "label": "Baseball Savant Michael Lorenzen",
+      "url": "https://baseballsavant.mlb.com/savant-player/michael-lorenzen-547179",
+      "note": "Reviewed Statcast context for Lorenzen's 2026 run prevention and WHIP profile."
+    },
+    {
+      "label": "Recent MLB Boxscores via StatsAPI",
+      "url": "https://statsapi.mlb.com/api/v1/schedule?sportId=1",
+      "note": "Checked recent public boxscore data for Miami and Colorado bullpen workload; Colorado used multiple relievers in each of the prior Marlins games."
+    }
+  ],
+  "players": [
+    {
+      "rank": 1,
+      "player": "Otto Lopez",
+      "team": "MIA",
+      "opponent": "COL",
+      "probable_pitcher": "Michael Lorenzen",
+      "pro_thesis": "Otto Lopez has the stronger morning single-pick structure because the model edge and projected opportunity line up. He is first in the learned top two at 80.5%, owns an 85.2 selection score, has a perfect 100 safety score, and projects for 4.7 plate appearances near the top of the order. Public lineup sources were not official yet, but both RotoWire and RotoGrinders projected him second for Miami, while the official July 1 boxscore showed him starting at shortstop and getting four at-bats. The hitter foundation is stable: .332 season average, .306 last-500 average, .296 this season against right-handed pitching, and a low strikeout profile. The opponent context is also favorable, with Lorenzen carrying a high ERA/WHIP public profile, 21 hits allowed over his last 18 local innings, 88 Stuff+, and Coors Field raising the one-hit floor.",
+      "con_thesis": "The con case is that Lopez is not the cleanest pure matchup play in this top two. His last-five line is only 5-for-22, so the current-form signal is materially weaker than Edwards' hot streak. The local H2H sample against Lorenzen is 1-for-4 with a 25% strikeout rate, which triggers his only stop valve, and that gives the committee a real reason to avoid treating the higher model rank as automatic. Edwards also owns the better direct H2H quality and no stop valves. If official lineups later show Lopez dropped lower than expected, or Edwards confirmed in a premium slot, this comparison should be revisited.",
+      "committee_thesis": "Committee read: Lopez is the single pick because expected plate appearances are the tiebreaker. The pro advocate has the higher learned probability, higher selection score, better projected lineup slot, stronger season batting average, and clearer starting-role evidence from yesterday. The con advocate correctly flags the H2H strikeout stop valve and weaker five-game form, but those concerns are manageable against Lorenzen at Coors. The reviewer chooses Lopez as the morning single, with a late lineup check still required before contest lock."
+    },
+    {
+      "rank": 2,
+      "player": "Xavier Edwards",
+      "team": "MIA",
+      "opponent": "COL",
+      "probable_pitcher": "Michael Lorenzen",
+      "pro_thesis": "Xavier Edwards has the best statistical counterargument and belongs on the two-pick card. He carries a 79.2% learned probability, 83.6 selection score, perfect 100 safety score, Publisher status, zero stop valves, and a .303 season average. His recent form is clearly better than Lopez's: 9-for-20 over the last five games, .440 over the last 25 at-bats, and a public RotoWire note describing a nine-game hitting streak after a four-hit game. The direct matchup is also useful, with a 1-for-3 H2H line against Lorenzen, no H2H strikeouts, 99.7 mph local H2H exit velocity, and a .719 local H2H xBA. He also owns strong right-handed-pitcher splits and the same Coors/Lorenzen environment as Lopez.",
+      "con_thesis": "The con case is role and plate-appearance certainty. Edwards was only a pinch-hitter in the official July 1 boxscore, while Lopez started and hit leadoff. Today's public lineups were still projected rather than confirmed during review, and both RotoWire and RotoGrinders placed Edwards fourth, two spots behind Lopez. His long-window HiPA 500 marker remains only 0.242, and his lower projected lineup slot trims the margin in a one-hit contest even if the bat is hotter. The zero-stop-valve profile is valuable, but it does not fully erase the risk that he gives away one plate appearance compared with Lopez.",
+      "committee_thesis": "Committee read: Edwards is the runner-up because the bat is hotter and the matchup quality is cleaner, but the playing-time and lineup-slot evidence is less favorable. The pro advocate has the strongest form argument in the top two and a legitimate H2H quality edge. The con advocate wins the single-pick comparison because the contest needs normal plate volume, and the morning evidence points to Lopez having the better path to four or five plate appearances. The reviewer would use Edwards as the second hitter on a two-pick card."
+    }
+  ]
+}
